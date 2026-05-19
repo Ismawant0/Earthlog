@@ -1,0 +1,171 @@
+---
+title: Pump Basic
+slug: pump-basic
+category: equipment
+description: PUMP FUNDAMENTAL FOR OIL & GAS ENGINEERING
+difficulty: Beginner
+keywords: []
+tags: []
+readingTime: 5 Menit
+featured: false
+date: '2026-05-19'
+cover: ''
+---
+**Disclaimer:** Materi ini untuk keperluan edukasi teknik dasar. Untuk desain spesifik proyek, selalu rujuk pada standar internasional seperti **API 610** (Centrifugal Pumps for Petroleum) dan **API 674** (Positive Displacement Pumps).
+
+## **1. Pendahuluan: Mengapa Pompa Kritis di Oil & Gas?**
+
+Dalam industri hulu (upstream) hingga hilir (downstream), pompa adalah "jantung" yang mengalirkan fluida. Tanpa pemahaman mendalam, kegagalan pompa bisa menyebabkan *shutdown* produksi yang merugikan jutaan dolar per hari.
+
+**Definisi:** Pompa adalah mesin konversi energi yang mengubah energi mekanik dari penggerak (motor/turbin) menjadi energi fluida (tekanan dan kecepatan) untuk memindahkan cairan dari satu titik ke titik lain.
+
+---
+
+## **2. Klasifikasi & Jenis Pompa**
+
+Tidak ada satu pompa yang cocok untuk semua kondisi. Pemilihan didasarkan pada sifat fluida dan kebutuhan proses.
+
+### **A. Positive Displacement (PD) Pumps**
+
+*Prinsip: Memindahkan fluida dengan menjebak volume tetap dan mendorongnya secara mekanis ke pipa discharge. Output bersifat pulsatif (berdenyut).*
+
+![](https://media.licdn.com/dms/image/v2/D5612AQE5mptUlnOKrg/article-cover_image-shrink_720_1280/B56ZpBL8BLKEAI-/0/1762030248879?e=2147483647&v=beta&t=XAR3MCZCZRbQLG0NO3fNlyIBkJf-Uy_fuj6Jbgy88kU)| **Jenis** | **Fungsi Khas di Oil & Gas** | **Keunggulan** | | --- | --- | --- | | **Reciprocating (Torak)** | Injeksi kimia (Chemical Injection), Injeksi Methanol, Pompa Lumpur Pengeboran (Mud Pump). | Tekanan sangat tinggi (up to 10,000 psi), akurasi aliran tinggi. | | **Rotary (Gear/Screw)** | Transfer minyak mentah kental, bitumen, bunkering BBM. PCP (Progressive Cavity Pump) di sumur minyak. | Cocok untuk viskositas tinggi (heavy crude), laju alir stabil, self-priming. |
+
+### **B. Dynamic (Centrifugal) Pumps**
+
+*Prinsip: Mengubah energi kinetik (kecepatan) menjadi energi tekanan menggunakan impeller. Output bersifat kontinu (steady flow).*
+
+| **Jenis** | **Fungsi Khas di Oil & Gas** | **Keunggulan** |
+| --- | --- | --- |
+| **Horizontal Multistage** | Pompa Injeksi Air (Water Injection), Booster Pipeline, Kilang. | Tekanan tinggi dengan konstruksi sejajar. |
+| **Vertical Multistage** | Pompa sumur dalam di lepas pantai (Firewater pump). | Hemat tempat, NPSHr rendah. |
+| **Submersible (ESP)** | Artificial Lift di sumur minyak (90% sumur dunia). | Bisa menghasilkan flow tinggi dari kedalaman &gt; 2.000 ft. |
+| **Axial Flow** | Pompa sirkulasi air pendingin (Cooling Water) di LNG Plant. | Flow rate sangat tinggi, head rendah. |
+
+---
+
+## 
+
+---
+
+## **3. Parameter Fundamental: Head, Pressure & Liquid**
+
+### **A. Perbedaan Head dan Pressure**
+
+Engineer sering salah kaprah. **Head** adalah ketinggian kolom cairan yang mampu dipompakan (meter/feet), sementara **Pressure** adalah gaya per satuan luas (bar/psi).\
+**Rumus Konversi:**
+
+**P(psi)=Head (ft)×Specific Gravity (SG)2.31*P*(psi)=2.31Head (ft)×Specific Gravity (SG)​**
+
+*Catatan: Pompa sentrifugal menghasilkan Head yang konstan, tetapi Pressure yang dihasilkan bergantung pada SG fluida. Jika SG berubah (misal ada gas entrained), tekanan discharge akan turun drastis.*
+
+### **B. Pengaruh Sifat Liquid**
+
+- **Viskositas:** Fluida kental (Heavy Crude) membebani impeller sentrifugal (efisiensi turun). Gunakan PCP atau Gear Pump.
+
+- **Temperatur:** Akan mempengaruhi tekanan uap. Jika cairan panas (Naphta), NPSH (Net Positive Suction Head) harus dijaga agar tidak kavitasi.
+
+- **Abrasif (Pasir):** Pasir produksi dari sumur akan mengikis casing pompa. Gunakan material *duplex stainless steel* atau *hard coating*.
+
+- **Korosi (H2S/CO2):** Material harus comply dengan standar **NACE MR0175** (Sour Service).
+
+---
+
+## **4. Kurva Kinerja & Kapasitas Optimum**
+
+### **A. Membaca Kurva**
+
+Kurva pompa adalah "paspor" teknis.
+
+1. **Head-Capacity (H-Q):** Kurva menurun. Aliran naik -&gt; Head turun.
+
+2. **Efficiency Curve:** Berbentuk parabola. **Puncak parabola adalah BEP (Best Efficiency Point).**
+
+3. **Power Curve (BHP):** Mencegah pemilihan motor yang terlalu kecil.
+
+4. **NPSHr Curve:** Mencegah kavitasi.
+
+### **B. Menentukan Kapasitas Optimum (BEP)**
+
+**Aturan Emas (Rule of Thumb):** Operasikan pompa di zona **80% - 110% BEP**.
+
+- **Di Kiri BEP (&lt;70%):** Getaran tinggi, panas, dan *recirculation* internal yang merusak seal.
+
+- **Di Kanan BEP (&gt;120%):** Risiko kavitasi tinggi, NPSHr melonjak, impeller overload.
+
+- **Sweet Spot:** Kapasitas optimum adalah di titik efisiensi maksimum (BEP).
+
+---
+
+## **5. Kavitasi & Net Positive Suction Head (NPSH)**
+
+Ini adalah musuh utama pompa di oil & gas.
+
+**Fenomena:** Terjadi ketika tekanan hisap (suction) turun di bawah tekanan uap cairan (vapor pressure). Cairan mendidih di suction membentuk gelembung, lalu gelembung itu pecah di area discharge bertekanan tinggi.\
+**Dampak:** Suara seperti kerikil, getaran tinggi, dan impeller berlubang hanya dalam hitungan jam.
+
+**Syarat Aman:**
+
+NPSHavailable(Sistem)&gt;NPSHrequired(Pabrikan)+Margin (biasanya 1 meter)NPSHavailable​(Sistem)&gt;NPSHrequired​(Pabrikan)+Margin (biasanya 1 meter)
+
+---
+
+## **6. Strategi Maintenance (Pemeliharaan)**
+
+Beralih dari *Reactive* ke *Predictive*.
+
+### **A. Preventive Maintenance (Time-Based)**
+
+- **Pelumasan (Greasing):** Mengganti grease bearing sesuai jam operasi (Pompa motor listrik vs turbin berbeda).
+
+- **Ganti Seal Mekanik:** Ganti secara berkala jangan menunggu bocor, terutama untuk fluida berbahaya (H2S).
+
+### **B. Predictive Maintenance (Condition-Based)**
+
+Gunakan sensor untuk memprediksi kerusakan:
+
+1. **Analisis Getaran (Vibration):** Spektrum FFT mendeteksi *unbalance*, *misalignment*, *bearing defect*, atau *cavitation*.
+
+2. **Analisis Pelumas (Oil Sample):** Mendeteksi partikel logam yang menandakan keausan gear atau bearing.
+
+3. **Ultrasonik:** Mendeteksi gelembung kavitasi yang tidak terdengar telinga telanjang.
+
+### **C. Prosedur Overhaul (Turnaround)**
+
+- **Impeller Clearance:** Cek jarak antara impeller dan wear ring. Jika terlalu renggang, efisiensi turun karena internal leakage.
+
+- **Shaft Run-out:** Dial indicator untuk memastikan poros tidak bengkok.
+
+---
+
+## **7. Ringkasan Checklist Troubleshooting Cepat**
+
+| **Masalah** | **Gejala** | **Kemungkinan Penyebab** |
+| --- | --- | --- |
+| **Tidak ada flow** | Motor jalan, pressure nol. | Suction valve tertutup, Air lock (pompa tidak priming), Impeller copot. |
+| **Flow rendah** | Pressure fluktuatif. | Filter suction kotor (tersumbat pasir), Pipa bocor (leak), Pompa berputar terbalik. |
+| **Getaran Tinggi** | Bising & pipa goyang. | Kavitasi, Misalignment, Bearing rusak, Pondasi cor longgar. |
+| **Trip Overload** | Ampere naik, MCC trip. | Liquid terlalu kental (Minyak berat dingin), Impeller nyangkut, Voltase drop. |
+
+---
+
+## **8. Kesimpulan Praktis untuk Engineer Lapangan**
+
+1. **Kenali Fluida Anda:** Heavy oil, light condensate, atau air terproduksi membutuhkan jenis pompa yang berbeda.
+
+2. **Hormati BEP:** Jangan paksa pompa injeksi beroperasi di 20% flow dengan memakai valve by-pass besar terus-menerus; Anda akan membunuh pompa itu.
+
+3. **Dengarkan Pompa Anda:** Suara "kerikil" (kavitasi) bukan suara normal, hentikan operasi segera.
+
+4. **Integritas Data:** Catat selalu parameter operasi (Suction Pressure, Discharge Pressure, Flow, Amp) setiap shift untuk menghitung efisiensi aktual.
+
+<FAQAccordion items={[
+  {
+    "question": "Kapan kita memilih Positive Displacement (PD) Pump dan kapan memilih Centrifugal Pump?",
+    "answer": "Gunakan analogi \"Pisau Dapur\":\n\nCentrifugal = Pisau Besar Chef: Cocok untuk memotong banyak sayuran lunak-tidak terlalu keras (flow besar, viskositas rendah-sedang, tekanan sedang), cara kerjanya cepat dan terus-menerus.\n\nPD Pump = Pemecah Biji Kemiri: Digunakan saat bahannya keras dan kental (viskositas tinggi), atau saat Anda hanya butuh memecah satu biji tapi dengan tekanan tepat (tekanan sangat tinggi, dosis akurat)."
+  },
+  {
+    "question": "Apa itu \"Self-Priming\" dan kenapa penting?",
+    "answer": "\"Self-priming\" adalah kemampuan pompa untuk menyedot udara dan menciptakan vakum di pipa hisapnya sendiri tanpa harus diisi cairan manual terlebih dahulu.\nPentingnya: Jika pompa Anda diletakkan di atas tangki penampungan (di darat) atau di atas dek kapal, Anda tidak bisa menuangkan air ke suction tiap kali mau start. Pompa self-priming (sebagian besar PD Pump, atau centrifugal khusus) bisa langsung \"mencari\" cairannya sendiri."
+  }
+]} />
