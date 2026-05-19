@@ -25,6 +25,8 @@ const CATEGORIES = [
   'process',
   'instrumentation',
   'maintenance',
+  'safety',
+  'utilities',
   'learning-path',
   'glossary'
 ];
