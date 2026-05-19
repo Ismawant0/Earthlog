@@ -32,6 +32,7 @@ interface Article {
   tags: string[];
   content: string;
   htmlContent?: string;
+  storageType?: string;
 }
 
 export default function EditorDashboard() {
@@ -162,7 +163,8 @@ export default function EditorDashboard() {
               featured: !!metadata.featured,
               tags: metadata.tags || [],
               content: mdxContent,
-              htmlContent: htmlContent
+              htmlContent: htmlContent,
+              storageType: 'github'
             };
 
             const existingIdx = localArticles.findIndex(a => a.slug === tempArticle.slug && a.categorySlug === tempArticle.categorySlug);
@@ -259,16 +261,25 @@ export default function EditorDashboard() {
         method: 'DELETE',
       });
 
-      if (res.ok) {
-        showToast('Artikel berhasil dihapus.', 'success');
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // Clear from localStorage to avoid cached stale representation
+        try {
+          const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
+          const localArticles: Article[] = JSON.parse(localArticlesStr);
+          const filtered = localArticles.filter(a => !(a.slug === deleteConfirm.slug && a.categorySlug === deleteConfirm.categorySlug));
+          localStorage.setItem('garudaloka_local_articles', JSON.stringify(filtered));
+        } catch (e) {}
+
+        showToast(data.message || 'Artikel berhasil dihapus.', 'success');
         setArticles(prev => prev.filter(a => !(a.slug === deleteConfirm.slug && a.categorySlug === deleteConfirm.categorySlug)));
       } else {
-        const data = await res.json();
-        showToast(data.error || 'Gagal menghapus artikel.', 'error');
+        showToast(data.error || data.message || 'Gagal menghapus artikel.', 'error');
       }
     } catch (error) {
       console.error('Delete error:', error);
-      showToast('Terjadi kesalahan saat menghapus artikel.', 'error');
+      showToast('Terjadi kesalahan koneksi saat menghapus artikel.', 'error');
     } finally {
       setDeleteConfirm(null);
     }

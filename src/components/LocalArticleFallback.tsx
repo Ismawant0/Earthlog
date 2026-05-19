@@ -36,6 +36,7 @@ interface LocalArticle {
   tags: string[];
   content: string;
   htmlContent?: string;
+  storageType?: string;
 }
 
 export default function LocalArticleFallback({ categorySlug, slug }: LocalArticleFallbackProps) {
@@ -153,12 +154,21 @@ export default function LocalArticleFallback({ categorySlug, slug }: LocalArticl
             <article className="xl:col-span-9 space-y-6">
               
               {/* Local Fallback Banner */}
-              <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs font-medium leading-relaxed flex items-start gap-2.5 shadow-sm">
-                <span className="inline-flex h-4 w-4 bg-amber-100 border border-amber-300 rounded-full items-center justify-center shrink-0 font-bold">i</span>
-                <div>
-                  <strong>Local Storage Preview:</strong> Artikel ini berhasil disimpan secara lokal di browser Anda karena repositori produksi berstatus <em>Read-Only</em> (Serverless Hosting). Perubahan ini hanya terlihat di browser Anda saat ini.
+              {article.storageType === 'github' ? (
+                <div className="p-4 bg-indigo-50/80 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-900 rounded-xl text-indigo-800 dark:text-indigo-300 text-xs font-medium leading-relaxed flex items-start gap-2.5 shadow-sm">
+                  <span className="inline-flex h-4 w-4 bg-indigo-100 dark:bg-indigo-900/60 border border-indigo-300 dark:border-indigo-800 rounded-full items-center justify-center shrink-0 font-bold text-indigo-700 dark:text-indigo-300">✓</span>
+                  <div>
+                    <strong>Sinkronisasi GitHub Cloud:</strong> Artikel ini telah berhasil disimpan di server GitHub Anda dan sedang di-deploy secara otomatis oleh Vercel. Halaman ini dimuat dari cache lokal browser Anda saat situs web diperbarui (~1 menit).
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs font-medium leading-relaxed flex items-start gap-2.5 shadow-sm">
+                  <span className="inline-flex h-4 w-4 bg-amber-100 border border-amber-300 rounded-full items-center justify-center shrink-0 font-bold">i</span>
+                  <div>
+                    <strong>Local Storage Preview:</strong> Artikel ini berhasil disimpan secara lokal di browser Anda karena repositori produksi berstatus <em>Read-Only</em> (Serverless Hosting). Perubahan ini hanya terlihat di browser Anda saat ini.
+                  </div>
+                </div>
+              )}
 
               {/* Header block */}
               <div className="space-y-4 border-b border-border/60 pb-6">

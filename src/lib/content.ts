@@ -17,6 +17,8 @@ export interface ArticleMetadata {
 
 export interface Article extends ArticleMetadata {
   content: string;
+  htmlContent?: string;
+  storageType?: string;
 }
 
 export interface LearningPath {
