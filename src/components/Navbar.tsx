@@ -96,12 +96,12 @@ export default function Navbar() {
             {/* Search Box Trigger Button */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2.5 px-3 py-2 border border-border bg-card hover:bg-background-alt text-muted rounded-lg transition-all duration-200 w-40 sm:w-56 text-left cursor-pointer shadow-sm text-sm"
+              className="flex items-center justify-center sm:justify-start gap-2.5 p-2 sm:px-3 sm:py-2 border border-border bg-card hover:bg-background-alt text-muted rounded-lg transition-all duration-200 w-10 h-10 sm:w-56 text-left cursor-pointer shadow-sm text-sm"
               aria-label="Cari pengetahuan"
             >
               <Search className="h-4 w-4 shrink-0 text-muted" />
-              <span className="flex-1 truncate text-xs font-medium text-muted/80">Cari pengetahuan...</span>
-              <span className="hidden sm:inline-flex items-center text-[9px] font-bold border border-border/80 px-1.5 py-0.5 rounded bg-background">
+              <span className="hidden sm:inline-flex flex-1 truncate text-xs font-medium text-muted/80">Cari pengetahuan...</span>
+              <span className="hidden sm:inline-flex items-center text-[9px] font-bold border border-border/80 px-1.5 py-0.5 rounded bg-background shrink-0">
                 ⌘K
               </span>
             </button>

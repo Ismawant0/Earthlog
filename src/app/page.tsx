@@ -114,7 +114,7 @@ export default async function Home() {
               </div>
 
               {/* Hero Standalone Logo Emblem (No frame - 3x Larger) */}
-              <div className="lg:col-span-5 relative w-full flex justify-center items-center py-6">
+              <div className="hidden lg:flex lg:col-span-5 relative w-full justify-center items-center py-6">
                 {/* 3x Larger Glow effect in background */}
                 <div className="absolute w-[360px] sm:w-[480px] h-[360px] sm:h-[480px] bg-primary/20 dark:bg-primary/25 rounded-full blur-[110px] sm:blur-[150px] animate-[pulse_4s_ease-in-out_infinite]" />
                 
