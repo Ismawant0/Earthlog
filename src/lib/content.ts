@@ -159,26 +159,36 @@ export async function getAllArticles(): Promise<Article[]> {
       for (const file of files) {
         if (!file.endsWith(".mdx") && !file.endsWith(".md")) continue;
         
-        const filePath = path.join(folderPath, file);
-        const fileContent = fs.readFileSync(filePath, "utf-8");
-        const { data, content } = parseFrontmatter(fileContent);
-        
-        const slug = file.replace(/\.mdx$/, "").replace(/\.md$/, "");
-        
-        articles.push({
-          slug,
-          title: data.title || slug,
-          description: data.description || "",
-          category: data.category || folder,
-          categorySlug: folder,
-          date: data.date || "2026-05-18",
-          author: data.author || "Editor Garudaloka",
-          difficulty: data.difficulty || "Umum",
-          readTime: data.readTime || "5 Menit",
-          featured: !!data.featured,
-          tags: data.tags || [],
-          content: content
-        });
+        try {
+          const filePath = path.join(folderPath, file);
+          const fileContent = fs.readFileSync(filePath, "utf-8");
+          const { data, content } = parseFrontmatter(fileContent);
+          
+          const slug = file.replace(/\.mdx$/, "").replace(/\.md$/, "");
+          
+          // Ensure tags are parsed as an array
+          const rawTags = data.tags || [];
+          const parsedTags = Array.isArray(rawTags)
+            ? rawTags
+            : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
+
+          articles.push({
+            slug,
+            title: data.title || slug,
+            description: data.description || "",
+            category: data.category || folder,
+            categorySlug: folder,
+            date: data.date || "2026-05-18",
+            author: data.author || "Editor Garudaloka",
+            difficulty: data.difficulty || "Umum",
+            readTime: data.readTime || "5 Menit",
+            featured: !!data.featured,
+            tags: parsedTags,
+            content: content
+          });
+        } catch (fileError) {
+          console.error(`Error reading article file ${folder}/${file}:`, fileError);
+        }
       }
     }
   } catch (error) {
@@ -198,6 +208,11 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = parseFrontmatter(fileContent);
       
+      const rawTags = data.tags || [];
+      const parsedTags = Array.isArray(rawTags)
+        ? rawTags
+        : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
+
       return {
         slug,
         title: data.title || slug,
@@ -209,7 +224,7 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
         difficulty: data.difficulty || "Umum",
         readTime: data.readTime || "5 Menit",
         featured: !!data.featured,
-        tags: data.tags || [],
+        tags: parsedTags,
         content: content
       };
     }

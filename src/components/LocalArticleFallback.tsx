@@ -45,8 +45,14 @@ export default function LocalArticleFallback({ categorySlug, slug }: LocalArticl
 
   useEffect(() => {
     try {
-      const localArticlesStr = localStorage.getItem("garudaloka_local_articles") || "[]";
-      const localArticles: LocalArticle[] = JSON.parse(localArticlesStr);
+      let localArticles: LocalArticle[] = [];
+      const localArticlesStr = localStorage.getItem("garudaloka_local_articles");
+      if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
+        const parsed = JSON.parse(localArticlesStr);
+        if (Array.isArray(parsed)) {
+          localArticles = parsed;
+        }
+      }
       const matched = localArticles.find(
         (a) => a.categorySlug === categorySlug && a.slug === slug
       );

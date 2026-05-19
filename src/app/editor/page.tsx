@@ -65,11 +65,18 @@ export default function EditorDashboard() {
       
       // Load local articles from localStorage
       let localArticles: Article[] = [];
-      try {
-        const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
-        localArticles = JSON.parse(localArticlesStr);
-      } catch (e) {
-        console.error('Error parsing local articles:', e);
+      if (typeof window !== 'undefined') {
+        try {
+          const localArticlesStr = localStorage.getItem('garudaloka_local_articles');
+          if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
+            const parsed = JSON.parse(localArticlesStr);
+            if (Array.isArray(parsed)) {
+              localArticles = parsed;
+            }
+          }
+        } catch (e) {
+          console.error('Error parsing local articles:', e);
+        }
       }
       
       // Merge: local articles override server articles if slug and categorySlug match
@@ -128,8 +135,20 @@ export default function EditorDashboard() {
         setCurrentArticle(null);
       } else if (data.code === 'READ_ONLY_FILESYSTEM') {
         // Read-only fallback! Save to localStorage
-        const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
-        const localArticles: Article[] = JSON.parse(localArticlesStr);
+        let localArticles: Article[] = [];
+        if (typeof window !== 'undefined') {
+          try {
+            const localArticlesStr = localStorage.getItem('garudaloka_local_articles');
+            if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
+              const parsed = JSON.parse(localArticlesStr);
+              if (Array.isArray(parsed)) {
+                localArticles = parsed;
+              }
+            }
+          } catch (e) {
+            console.error('Error parsing local articles in save:', e);
+          }
+        }
         
         const newArticle: Article = {
           slug: metadata.slug,
@@ -205,13 +224,23 @@ export default function EditorDashboard() {
   };
 
   // Filtered articles
-  const filteredArticles = articles.filter(article => {
-    const query = searchQuery.toLowerCase();
+  const filteredArticles = (articles || []).filter(article => {
+    if (!article) return false;
+    const query = (searchQuery || '').toLowerCase();
+    
+    const title = (article.title || '').toLowerCase();
+    const category = (article.category || '').toLowerCase();
+    const slug = (article.slug || '').toLowerCase();
+    
+    const tags = Array.isArray(article.tags) 
+      ? article.tags 
+      : (typeof article.tags === 'string' ? (article.tags as string).split(',').map(t => t.trim()) : []);
+      
     return (
-      article.title.toLowerCase().includes(query) ||
-      article.category.toLowerCase().includes(query) ||
-      article.tags.some(tag => tag.toLowerCase().includes(query)) ||
-      article.slug.toLowerCase().includes(query)
+      title.includes(query) ||
+      category.includes(query) ||
+      slug.includes(query) ||
+      tags.some(tag => (tag || '').toLowerCase().includes(query))
     );
   });
 
