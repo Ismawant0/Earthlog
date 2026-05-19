@@ -79,6 +79,25 @@ export default function EditorDashboard() {
         }
       }
       
+      // Clean up localStorage: if a local article is now fully deployed & returned by the server,
+      // we can safely remove it from localStorage.
+      let localArticlesUpdated = false;
+      const filteredLocalArticles = localArticles.filter(local => {
+        const isLiveOnServer = serverArticles.some(a => a.slug === local.slug && a.categorySlug === local.categorySlug);
+        if (isLiveOnServer) {
+          localArticlesUpdated = true;
+          return false; // Remove from localStorage because it is now published!
+        }
+        return true;
+      });
+
+      if (localArticlesUpdated && typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('garudaloka_local_articles', JSON.stringify(filteredLocalArticles));
+          localArticles = filteredLocalArticles;
+        } catch (e) {}
+      }
+
       // Merge: local articles override server articles if slug and categorySlug match
       const mergedArticles = [...serverArticles];
       localArticles.forEach(local => {
@@ -117,20 +136,64 @@ export default function EditorDashboard() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        // If it successfully wrote to server disk, check if it was previously in local storage and delete it
-        try {
-          const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
-          const localArticles: Article[] = JSON.parse(localArticlesStr);
-          const filtered = localArticles.filter(a => !(a.slug === metadata.slug && a.categorySlug === metadata.category));
-          localStorage.setItem('garudaloka_local_articles', JSON.stringify(filtered));
-        } catch (e) {}
+        // If it was committed to GitHub, we save it temporarily to localStorage so they see it instantly
+        // in their dashboard list without waiting ~1 minute for Vercel's rebuild!
+        if (data.code === 'GITHUB_SAVED') {
+          try {
+            let localArticles: Article[] = [];
+            const localArticlesStr = localStorage.getItem('garudaloka_local_articles');
+            if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
+              const parsed = JSON.parse(localArticlesStr);
+              if (Array.isArray(parsed)) {
+                localArticles = parsed;
+              }
+            }
+            
+            const tempArticle: Article = {
+              slug: metadata.slug,
+              title: metadata.title || metadata.slug,
+              description: metadata.description || '',
+              category: metadata.category,
+              categorySlug: metadata.category,
+              date: metadata.date || new Date().toISOString().split('T')[0],
+              author: metadata.author || 'Editor Garudaloka',
+              difficulty: metadata.difficulty || 'Beginner',
+              readTime: metadata.readingTime || '5 min',
+              featured: !!metadata.featured,
+              tags: metadata.tags || [],
+              content: mdxContent,
+              htmlContent: htmlContent
+            };
 
-        showToast(
-          editorMode === 'edit' 
-            ? 'Artikel berhasil diperbarui di disk server.' 
-            : 'Artikel baru berhasil disimpan di disk server.', 
-          'success'
-        );
+            const existingIdx = localArticles.findIndex(a => a.slug === tempArticle.slug && a.categorySlug === tempArticle.categorySlug);
+            if (existingIdx > -1) {
+              localArticles[existingIdx] = tempArticle;
+            } else {
+              localArticles.push(tempArticle);
+            }
+            localStorage.setItem('garudaloka_local_articles', JSON.stringify(localArticles));
+          } catch (e) {
+            console.error('Error saving temporary local copy for GitHub:', e);
+          }
+
+          showToast(data.message || 'Artikel berhasil di-commit langsung ke GitHub! Vercel sedang membangun ulang situs Anda.', 'success');
+        } else {
+          // If it successfully wrote to server disk (local development), check if it was previously in local storage and delete it
+          try {
+            const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
+            const localArticles: Article[] = JSON.parse(localArticlesStr);
+            const filtered = localArticles.filter(a => !(a.slug === metadata.slug && a.categorySlug === metadata.category));
+            localStorage.setItem('garudaloka_local_articles', JSON.stringify(filtered));
+          } catch (e) {}
+
+          showToast(
+            editorMode === 'edit' 
+              ? 'Artikel berhasil diperbarui di disk server.' 
+              : 'Artikel baru berhasil disimpan di disk server.', 
+            'success'
+          );
+        }
+
         setView('dashboard');
         setCurrentArticle(null);
       } else if (data.code === 'READ_ONLY_FILESYSTEM') {

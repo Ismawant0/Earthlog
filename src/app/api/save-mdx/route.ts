@@ -33,39 +33,97 @@ export async function POST(req: Request) {
     // Generate MDX with frontmatter
     const fileContent = matter.stringify(mdxContent || '', frontmatter);
 
-    // Save to the appropriate category directory
-    const categoryFolder = path.join(process.cwd(), 'content', frontmatter.category);
-    
-    // Ensure the category directory exists
-    await fs.mkdir(categoryFolder, { recursive: true });
+    const githubToken = process.env.GITHUB_PAT;
+    const isVercel = process.env.VERCEL === '1';
 
-    const filePath = path.join(categoryFolder, `${frontmatter.slug}.mdx`);
-
-    await fs.writeFile(filePath, fileContent, 'utf-8');
-
-    // Purge the Next.js cache for this article and relevant pages
-    revalidatePath(`/${frontmatter.category}/${frontmatter.slug}`, 'page');
-    revalidatePath(`/category/${frontmatter.category}`, 'page');
-    revalidatePath('/', 'page');
-
-    return NextResponse.json({ success: true, message: 'Artikel berhasil disimpan.' });
-  } catch (error: any) {
-    console.error('Error saving MDX:', error);
-    
-    const isReadOnly = error.code === 'EROFS' || 
-                       error.message?.includes('read-only') || 
-                       error.message?.includes('ROFS') || 
-                       error.message?.includes('EACCES') ||
-                       process.env.VERCEL === '1';
-
-    if (isReadOnly) {
-      return NextResponse.json({ 
-        success: false, 
-        code: 'READ_ONLY_FILESYSTEM', 
-        message: 'Repositori berjalan di serverless hosting dengan read-only file system. Perubahan Anda akan disimpan sementara secara lokal di browser Anda.' 
-      }, { status: 200 });
+    // 1. Try writing locally first if NOT on Vercel
+    let localWriteSuccess = false;
+    if (!isVercel) {
+      try {
+        const categoryFolder = path.join(process.cwd(), 'content', frontmatter.category);
+        await fs.mkdir(categoryFolder, { recursive: true });
+        const filePath = path.join(categoryFolder, `${frontmatter.slug}.mdx`);
+        await fs.writeFile(filePath, fileContent, 'utf-8');
+        localWriteSuccess = true;
+        console.log("Local write successful!");
+      } catch (err) {
+        console.warn("Local write failed, attempting GitHub path...", err);
+      }
     }
 
+    if (localWriteSuccess) {
+      // Purge Next.js cache locally
+      revalidatePath(`/${frontmatter.category}/${frontmatter.slug}`, 'page');
+      revalidatePath(`/category/${frontmatter.category}`, 'page');
+      revalidatePath('/', 'page');
+      return NextResponse.json({ success: true, message: 'Artikel berhasil disimpan.' });
+    }
+
+    // 2. If local write was bypassed/failed and GITHUB_PAT is present, save to GitHub!
+    if (githubToken) {
+      const owner = 'Ismawant0';
+      const repo = 'garudaloka';
+      const gitPath = `content/${frontmatter.category}/${frontmatter.slug}.mdx`;
+      const fileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${gitPath}`;
+
+      try {
+        // Retrieve SHA if the file already exists on GitHub
+        let sha = undefined;
+        const getFileRes = await fetch(fileUrl, {
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'Garudaloka-CMS'
+          }
+        });
+
+        if (getFileRes.ok) {
+          const fileData = await getFileRes.json();
+          sha = fileData.sha;
+          console.log(`File exists on GitHub. SHA: ${sha}`);
+        }
+
+        // Commit directly via GitHub API
+        const commitRes = await fetch(fileUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'Garudaloka-CMS'
+          },
+          body: JSON.stringify({
+            message: `cms: ${sha ? 'update' : 'create'} article ${frontmatter.title}`,
+            content: Buffer.from(fileContent).toString('base64'),
+            branch: 'main',
+            sha: sha
+          })
+        });
+
+        if (commitRes.ok) {
+          console.log("Successfully committed to GitHub!");
+          return NextResponse.json({ 
+            success: true, 
+            code: 'GITHUB_SAVED', 
+            message: 'Artikel berhasil disimpan dan di-commit langsung ke repositori GitHub. Vercel akan membangun ulang situs Anda dalam beberapa saat.' 
+          });
+        } else {
+          const errText = await commitRes.text();
+          console.error("GitHub commit failed:", errText);
+        }
+      } catch (gitErr) {
+        console.error("GitHub API transaction failed:", gitErr);
+      }
+    }
+
+    // 3. Fallback to read-only browser localStorage if all else fails
+    return NextResponse.json({ 
+      success: false, 
+      code: 'READ_ONLY_FILESYSTEM', 
+      message: 'Repositori berjalan di serverless hosting dengan read-only file system. Perubahan Anda akan disimpan sementara secara lokal di browser Anda.' 
+    }, { status: 200 });
+  } catch (error: any) {
+    console.error('Error saving MDX:', error);
     return NextResponse.json({ error: error.message || 'Failed to save MDX' }, { status: 500 });
   }
 }
