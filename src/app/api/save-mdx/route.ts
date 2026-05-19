@@ -51,6 +51,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, message: 'Artikel berhasil disimpan.' });
   } catch (error: any) {
     console.error('Error saving MDX:', error);
+    
+    const isReadOnly = error.code === 'EROFS' || 
+                       error.message?.includes('read-only') || 
+                       error.message?.includes('ROFS') || 
+                       error.message?.includes('EACCES') ||
+                       process.env.VERCEL === '1';
+
+    if (isReadOnly) {
+      return NextResponse.json({ 
+        success: false, 
+        code: 'READ_ONLY_FILESYSTEM', 
+        message: 'Repositori berjalan di serverless hosting dengan read-only file system. Perubahan Anda akan disimpan sementara secara lokal di browser Anda.' 
+      }, { status: 200 });
+    }
+
     return NextResponse.json({ error: error.message || 'Failed to save MDX' }, { status: 500 });
   }
 }

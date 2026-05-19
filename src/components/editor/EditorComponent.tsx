@@ -26,7 +26,7 @@ import { InteractiveDiagramExtension } from './extensions/InteractiveDiagramExte
 interface EditorComponentProps {
   initialContent?: string;
   initialMetadata?: any;
-  onSave: (mdxContent: string, metadata: any) => Promise<void>;
+  onSave: (mdxContent: string, metadata: any, htmlContent: string) => Promise<void>;
   onCancel?: () => void;
 }
 
@@ -242,13 +242,15 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
     
     // Ensure we get the absolute latest content directly from the editor
     let finalMdx = mdxPreview;
+    let htmlContent = '';
     if (editor) {
       // @ts-ignore
       let rawMdx = editor.storage.markdown.getMarkdown();
       finalMdx = cleanMdx(rawMdx);
+      htmlContent = editor.getHTML();
     }
     
-    await onSave(finalMdx, metadata);
+    await onSave(finalMdx, metadata, htmlContent);
   };
 
   // Update preview automatically if tab is switched

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import LocalArticleFallback from "@/components/LocalArticleFallback";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ArticleToc from "@/components/ArticleToc";
@@ -85,7 +86,7 @@ export default async function ArticlePage({ params }: PageProps) {
   const article = await getArticleBySlug(categorySlug, slug);
 
   if (!article) {
-    return notFound();
+    return <LocalArticleFallback categorySlug={categorySlug} slug={slug} />;
   }
 
   const allArticles = await getAllArticles();

@@ -31,6 +31,7 @@ interface Article {
   featured: boolean;
   tags: string[];
   content: string;
+  htmlContent?: string;
 }
 
 export default function EditorDashboard() {
@@ -55,15 +56,37 @@ export default function EditorDashboard() {
     setLoading(true);
     try {
       const res = await fetch(`/api/articles?t=${Date.now()}`, { cache: 'no-store' });
+      let serverArticles: Article[] = [];
       if (res.ok) {
-        const data = await res.json();
-        setArticles(data);
+        serverArticles = await res.json();
       } else {
-        showToast('Gagal memuat daftar artikel.', 'error');
+        console.warn('Gagal memuat daftar artikel dari server, menggunakan local fallback.');
       }
+      
+      // Load local articles from localStorage
+      let localArticles: Article[] = [];
+      try {
+        const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
+        localArticles = JSON.parse(localArticlesStr);
+      } catch (e) {
+        console.error('Error parsing local articles:', e);
+      }
+      
+      // Merge: local articles override server articles if slug and categorySlug match
+      const mergedArticles = [...serverArticles];
+      localArticles.forEach(local => {
+        const idx = mergedArticles.findIndex(a => a.slug === local.slug && a.categorySlug === local.categorySlug);
+        if (idx > -1) {
+          mergedArticles[idx] = local;
+        } else {
+          mergedArticles.unshift(local);
+        }
+      });
+      
+      setArticles(mergedArticles);
     } catch (error) {
       console.error('Fetch articles error:', error);
-      showToast('Terjadi kesalahan jaringan.', 'error');
+      showToast('Terjadi kesalahan jaringan saat memuat artikel.', 'error');
     } finally {
       setLoading(false);
     }
@@ -74,11 +97,8 @@ export default function EditorDashboard() {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const handleSave = async (mdxContent: string, metadata: any) => {
+  const handleSave = async (mdxContent: string, metadata: any, htmlContent: string) => {
     try {
-      // In edit mode, we want to ensure we're saving to the correct category/slug.
-      // If category or slug changes, we should ideally handle moving/overwriting. 
-      // The api/save-mdx endpoint handles saving grey matter.
       const res = await fetch('/api/save-mdx', {
         method: 'POST',
         headers: {
@@ -89,18 +109,59 @@ export default function EditorDashboard() {
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (res.ok && data.success) {
+        // If it successfully wrote to server disk, check if it was previously in local storage and delete it
+        try {
+          const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
+          const localArticles: Article[] = JSON.parse(localArticlesStr);
+          const filtered = localArticles.filter(a => !(a.slug === metadata.slug && a.categorySlug === metadata.category));
+          localStorage.setItem('garudaloka_local_articles', JSON.stringify(filtered));
+        } catch (e) {}
+
         showToast(
           editorMode === 'edit' 
-            ? 'Artikel berhasil diperbarui.' 
-            : 'Artikel baru berhasil disimpan.', 
+            ? 'Artikel berhasil diperbarui di disk server.' 
+            : 'Artikel baru berhasil disimpan di disk server.', 
           'success'
         );
-        // Switch back to dashboard view after successful save
+        setView('dashboard');
+        setCurrentArticle(null);
+      } else if (data.code === 'READ_ONLY_FILESYSTEM') {
+        // Read-only fallback! Save to localStorage
+        const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
+        const localArticles: Article[] = JSON.parse(localArticlesStr);
+        
+        const newArticle: Article = {
+          slug: metadata.slug,
+          title: metadata.title || metadata.slug,
+          description: metadata.description || '',
+          category: metadata.category,
+          categorySlug: metadata.category, // e.g. equipment
+          date: metadata.date || new Date().toISOString().split('T')[0],
+          author: metadata.author || 'Editor Garudaloka',
+          difficulty: metadata.difficulty || 'Beginner',
+          readTime: metadata.readingTime || '5 min',
+          featured: !!metadata.featured,
+          tags: metadata.tags || [],
+          content: mdxContent,
+          htmlContent: htmlContent // Save the rendered HTML as local fallback!
+        };
+
+        // If editing, replace. Otherwise add.
+        const existingIdx = localArticles.findIndex(a => a.slug === newArticle.slug && a.categorySlug === newArticle.categorySlug);
+        if (existingIdx > -1) {
+          localArticles[existingIdx] = newArticle;
+        } else {
+          localArticles.push(newArticle);
+        }
+
+        localStorage.setItem('garudaloka_local_articles', JSON.stringify(localArticles));
+        
+        showToast('Tersimpan secara lokal di browser Anda (Serverless Read-Only).', 'success');
         setView('dashboard');
         setCurrentArticle(null);
       } else {
-        showToast(data.error || 'Gagal menyimpan artikel.', 'error');
+        showToast(data.error || data.message || 'Gagal menyimpan artikel.', 'error');
       }
     } catch (error) {
       console.error('Save error:', error);
