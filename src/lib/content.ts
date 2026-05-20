@@ -191,7 +191,7 @@ export async function getAllArticles(): Promise<Article[]> {
             readTime: data.readTime || "5 Menit",
             featured: !!data.featured,
             tags: parsedTags,
-            content: content
+            content: content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />')
           });
         } catch (fileError) {
           console.error(`Error reading article file ${folder}/${file}:`, fileError);
@@ -234,7 +234,7 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
         readTime: data.readTime || "5 Menit",
         featured: !!data.featured,
         tags: parsedTags,
-        content: content
+        content: content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />')
       };
     }
   } catch (error) {
