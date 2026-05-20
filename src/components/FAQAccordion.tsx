@@ -8,37 +8,36 @@ interface FAQItem {
   answer: string;
 }
 
-interface FAQAccordionProps {
-  items: FAQItem[] | string;
-}
-
-export default function FAQAccordion({ items }: FAQAccordionProps) {
+export default function FAQAccordion({ items }: { items: unknown }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
-  let safeItems = Array.isArray(items) ? items : [];
-  if (typeof items === 'string') {
-    const unescaped = items
+  let safeItems: FAQItem[] = [];
+
+  if (Array.isArray(items)) {
+    safeItems = items as FAQItem[];
+  } else if (typeof items === "string") {
+    const unescaped = (items as string)
       .replace(/&quot;/g, '"')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>');
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">");
     try {
       const parsed = JSON.parse(unescaped);
       if (Array.isArray(parsed)) safeItems = parsed;
     } catch {
       try {
+        // eslint-disable-next-line no-new-func
         const parsed = new Function(`return ${unescaped}`)();
         if (Array.isArray(parsed)) safeItems = parsed;
       } catch {}
     }
   }
 
-  if (!safeItems || !Array.isArray(safeItems) || safeItems.length === 0) {
-    console.warn("FAQAccordion: safeItems is empty or not an array:", items);
+  if (safeItems.length === 0) {
     return null;
   }
 
@@ -53,13 +52,13 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
               className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-foreground hover:bg-background-alt/50 transition-colors cursor-pointer select-none text-[15px]"
             >
               <span>{item.question}</span>
-              <ChevronDown 
+              <ChevronDown
                 className={`h-4 w-4 text-muted transition-transform duration-200 ${
                   isOpen ? "rotate-180 text-primary animate-pulse" : ""
-                }`} 
+                }`}
               />
             </button>
-            <div 
+            <div
               className={`overflow-hidden transition-all duration-300 ${
                 isOpen ? "max-h-[500px] border-t border-border/40" : "max-h-0"
               }`}

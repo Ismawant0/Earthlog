@@ -57,53 +57,55 @@ export function WarningBox({ type, children }: WarningBoxProps) {
 }
 
 // 2. TechnicalTable Component
-interface TechnicalTableProps {
-  headers: string[] | string;
-  data: string[][] | string;
+function parseStringProp(raw: unknown): string[] {
+  if (Array.isArray(raw)) return raw as string[];
+  if (typeof raw !== "string") return [];
+  const unescaped = (raw as string)
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+  try {
+    const parsed = JSON.parse(unescaped);
+    if (Array.isArray(parsed)) return parsed;
+  } catch {
+    try {
+      // eslint-disable-next-line no-new-func
+      const parsed = new Function(`return ${unescaped}`)();
+      if (Array.isArray(parsed)) return parsed;
+    } catch {}
+  }
+  return [];
 }
 
-export function TechnicalTable({ headers = [], data = [] }: TechnicalTableProps) {
-  let safeHeaders = Array.isArray(headers) ? headers : [];
-  let safeData = Array.isArray(data) ? data : [];
-
-  if (typeof headers === 'string') {
-    const unescaped = headers
-      .replace(/&quot;/g, '"')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>');
-    try {
-      const parsed = JSON.parse(unescaped);
-      if (Array.isArray(parsed)) safeHeaders = parsed;
-    } catch {
-      try {
-        const parsed = new Function(`return ${unescaped}`)();
-        if (Array.isArray(parsed)) safeHeaders = parsed;
-      } catch {}
-    }
-  }
-
-  if (typeof data === 'string') {
-    const unescaped = data
-      .replace(/&quot;/g, '"')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>');
-    try {
-      const parsed = JSON.parse(unescaped);
-      if (Array.isArray(parsed)) safeData = parsed;
-    } catch {
-      try {
-        const parsed = new Function(`return ${unescaped}`)();
-        if (Array.isArray(parsed)) safeData = parsed;
-      } catch {}
-    }
-  }
+export function TechnicalTable({ headers, data }: { headers: unknown; data: unknown }) {
+  const safeHeaders = parseStringProp(headers);
+  const safeData: string[][] = Array.isArray(data)
+    ? (data as string[][])
+    : (() => {
+        if (typeof data !== "string") return [];
+        const unescaped = (data as string)
+          .replace(/&quot;/g, '"')
+          .replace(/&amp;/g, "&")
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">");
+        try {
+          const parsed = JSON.parse(unescaped);
+          if (Array.isArray(parsed)) return parsed as string[][];
+        } catch {
+          try {
+            // eslint-disable-next-line no-new-func
+            const parsed = new Function(`return ${unescaped}`)();
+            if (Array.isArray(parsed)) return parsed as string[][];
+          } catch {}
+        }
+        return [];
+      })();
 
   if (safeHeaders.length === 0 && safeData.length === 0) {
-    console.warn("TechnicalTable: safeHeaders and safeData are empty:", headers, data);
     return null;
   }
+
 
   return (
     <div className="my-8 overflow-x-auto rounded-lg border border-border bg-card shadow-sm">
