@@ -67,24 +67,34 @@ export function TechnicalTable({ headers = [], data = [] }: TechnicalTableProps)
   let safeData = Array.isArray(data) ? data : [];
 
   if (typeof headers === 'string') {
+    const unescaped = headers
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
     try {
-      const parsed = JSON.parse(headers);
+      const parsed = JSON.parse(unescaped);
       if (Array.isArray(parsed)) safeHeaders = parsed;
     } catch {
       try {
-        const parsed = new Function(`return ${headers}`)();
+        const parsed = new Function(`return ${unescaped}`)();
         if (Array.isArray(parsed)) safeHeaders = parsed;
       } catch {}
     }
   }
 
   if (typeof data === 'string') {
+    const unescaped = data
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
     try {
-      const parsed = JSON.parse(data);
+      const parsed = JSON.parse(unescaped);
       if (Array.isArray(parsed)) safeData = parsed;
     } catch {
       try {
-        const parsed = new Function(`return ${data}`)();
+        const parsed = new Function(`return ${unescaped}`)();
         if (Array.isArray(parsed)) safeData = parsed;
       } catch {}
     }

@@ -72,7 +72,8 @@ const cleanMdx = (rawMdx: string) => {
   cleaned = cleaned.replace(/<faqaccordion\s+items="([\s\S]*?)">\s*<\/faqaccordion>/gi, (match: string, items: string) => {
     const parsed = robustParseJSON(items);
     if (parsed) {
-      return `<FAQAccordion items={${JSON.stringify(parsed, null, 2)}} />`;
+      const safeItems = JSON.stringify(parsed).replace(/"/g, '&quot;');
+      return `<FAQAccordion items="${safeItems}" />`;
     }
     return `<FAQAccordion items="${items}" />`;
   });
@@ -82,7 +83,9 @@ const cleanMdx = (rawMdx: string) => {
     const pHeaders = robustParseJSON(headers);
     const pData = robustParseJSON(data);
     if (pHeaders && pData) {
-      return `<TechnicalTable headers={${JSON.stringify(pHeaders)}} data={${JSON.stringify(pData)}} />`;
+      const safeHeaders = JSON.stringify(pHeaders).replace(/"/g, '&quot;');
+      const safeData = JSON.stringify(pData).replace(/"/g, '&quot;');
+      return `<TechnicalTable headers="${safeHeaders}" data="${safeData}" />`;
     }
     return `<TechnicalTable headers="${headers}" data="${data}" />`;
   });
@@ -110,7 +113,12 @@ const prepareMdxForEditor = (rawMdx?: string) => {
   prepared = prepared.replace(/&lt;FAQAccordion/gi, '<FAQAccordion');
   prepared = prepared.replace(/\/&gt;/g, '/>');
 
-  // 3. Convert JSX FAQAccordion to HTML FAQAccordion with HTML entities
+  // 3. Convert string-based JSX FAQAccordion to HTML FAQAccordion with closing tags
+  prepared = prepared.replace(/<FAQAccordion\s+items="([\s\S]*?)"\s*\/>/gi, (match, itemsStr) => {
+    return `<FAQAccordion items="${itemsStr}"></FAQAccordion>`;
+  });
+
+  // 3b. Convert JSX FAQAccordion to HTML FAQAccordion with HTML entities
   prepared = prepared.replace(/<FAQAccordion\s+items={([\s\S]*?)}\s*\/>/gi, (match, itemsStr) => {
     try {
       const evalItems = new Function(`return ${itemsStr}`)();
@@ -122,7 +130,12 @@ const prepareMdxForEditor = (rawMdx?: string) => {
     }
   });
 
-  // 4. Convert JSX TechnicalTable to HTML TechnicalTable with HTML entities
+  // 4. Convert string-based JSX TechnicalTable to HTML TechnicalTable with closing tags
+  prepared = prepared.replace(/<TechnicalTable\s+headers="([\s\S]*?)"\s+data="([\s\S]*?)"\s*\/>/gi, (match, headersStr, dataStr) => {
+    return `<TechnicalTable headers="${headersStr}" data="${dataStr}"></TechnicalTable>`;
+  });
+
+  // 4b. Convert JSX TechnicalTable to HTML TechnicalTable with HTML entities
   prepared = prepared.replace(/<TechnicalTable\s+headers={([\s\S]*?)}\s+data={([\s\S]*?)}\s*\/>/gi, (match, headersStr, dataStr) => {
     try {
       const evalHeaders = new Function(`return ${headersStr}`)();

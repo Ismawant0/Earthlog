@@ -21,12 +21,17 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
 
   let safeItems = Array.isArray(items) ? items : [];
   if (typeof items === 'string') {
+    const unescaped = items
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
     try {
-      const parsed = JSON.parse(items);
+      const parsed = JSON.parse(unescaped);
       if (Array.isArray(parsed)) safeItems = parsed;
     } catch {
       try {
-        const parsed = new Function(`return ${items}`)();
+        const parsed = new Function(`return ${unescaped}`)();
         if (Array.isArray(parsed)) safeItems = parsed;
       } catch {}
     }
