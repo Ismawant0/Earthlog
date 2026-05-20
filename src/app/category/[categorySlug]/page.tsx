@@ -36,11 +36,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { categorySlug } = await params;
   const category = CATEGORIES.find((c) => c.slug === categorySlug);
   
+  console.log(`[DEBUG CategoryPage] categorySlug: "${categorySlug}", found category:`, !!category);
+
   if (!category) {
     return notFound();
   }
 
   const articles = await getArticlesByCategory(categorySlug);
+  console.log(`[DEBUG CategoryPage] getArticlesByCategory("${categorySlug}") returned ${articles.length} articles`);
 
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {

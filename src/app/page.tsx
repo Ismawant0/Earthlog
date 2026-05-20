@@ -20,7 +20,10 @@ import {
   CheckCircle2,
   Calendar,
   Clock,
-  Sparkles
+  Sparkles,
+  Library,
+  Factory,
+  AlertTriangle
 } from "lucide-react";
 
 export const revalidate = 3600; // ISR - revalidate every hour
@@ -42,6 +45,9 @@ export default async function Home() {
       case "ShieldAlert": return <ShieldAlert className="h-5 w-5" />;
       case "Droplet": return <Droplet className="h-5 w-5" />;
       case "Map": return <Compass className="h-5 w-5" />;
+      case "Library": return <Library className="h-5 w-5" />;
+      case "Factory": return <Factory className="h-5 w-5" />;
+      case "AlertTriangle": return <AlertTriangle className="h-5 w-5" />;
       case "BookOpen":
       default:
         return <BookOpen className="h-5 w-5" />;

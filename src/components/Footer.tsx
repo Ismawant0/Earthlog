@@ -11,13 +11,13 @@ export default function Footer() {
           {/* Brand Introduction */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="h-9 w-9 relative rounded-lg overflow-hidden flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
+              <div className="h-11 w-11 relative flex items-center justify-center transition-transform group-hover:scale-105">
                 <Image 
                   src="/icon-garudaloka.png" 
                   alt="Garudaloka Logo" 
                   fill 
-                  className="object-cover" 
-                  sizes="36px"
+                  className="object-contain" 
+                  sizes="44px"
                 />
               </div>
               <div className="flex flex-col">
@@ -52,12 +52,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/category/chemical" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
-                  <FlaskConical className="h-3 w-3" /> Chemical Perminyakan
+                <Link href="/category/process-chemicals" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
+                  <FlaskConical className="h-3 w-3" /> Process Chemicals
                 </Link>
               </li>
               <li>
-                <Link href="/category/process" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
+                <Link href="/category/process-systems" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
                   <Terminal className="h-3 w-3" /> Process Systems
                 </Link>
               </li>

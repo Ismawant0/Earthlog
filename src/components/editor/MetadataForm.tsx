@@ -20,13 +20,16 @@ interface MetadataFormProps {
 }
 
 const CATEGORIES = [
+  'fundamentals',
+  'production-operations',
   'equipment',
-  'chemical',
-  'process',
+  'process-systems',
+  'process-chemicals',
   'instrumentation',
   'maintenance',
   'safety',
-  'utilities',
+  'utility-systems',
+  'troubleshooting',
   'learning-path',
   'glossary'
 ];

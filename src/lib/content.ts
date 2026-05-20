@@ -32,17 +32,19 @@ export interface LearningPath {
   tags: string[];
 }
 
-// Map the categories requested
 export const CATEGORIES = [
-  { name: "Equipment", slug: "equipment", count: 12, icon: "Settings", desc: "Peralatan mekanikal & industri" },
-  { name: "Chemicals", slug: "chemical", count: 8, icon: "FlaskConical", desc: "Kimia minyak & pemrosesan" },
-  { name: "Process Systems", slug: "process", count: 15, icon: "GitBranch", desc: "Sistem aliran & termodinamika" },
-  { name: "Instrumentation", slug: "instrumentation", count: 10, icon: "Gauge", desc: "Sistem kontrol & otomasi" },
-  { name: "Maintenance", slug: "maintenance", count: 9, icon: "Wrench", desc: "Perawatan & kehandalan mesin" },
-  { name: "Safety", slug: "safety", count: 6, icon: "ShieldAlert", desc: "Keselamatan kerja & K3 industri" },
-  { name: "Utilities", slug: "utilities", count: 5, icon: "Droplet", desc: "Sistem pendukung boiler & steam" },
-  { name: "Learning Path", slug: "learning-path", count: 4, icon: "Map", desc: "Jalur belajar terstruktur" },
-  { name: "Glossary", slug: "glossary", count: 45, icon: "BookOpen", desc: "Kamus istilah teknik industri" },
+  { name: "Fundamentals", slug: "fundamentals", count: 0, icon: "Library", desc: "Basic engineering, industrial science, thermodynamics, fluid mechanics, and oil & gas fundamentals." },
+  { name: "Production Operations", slug: "production-operations", count: 0, icon: "Factory", desc: "Oil & gas production facilities, operational flow, and production systems." },
+  { name: "Equipment", slug: "equipment", count: 12, icon: "Settings", desc: "Industrial static and rotating equipment used in oil & gas and process industries." },
+  { name: "Process Systems", slug: "process-systems", count: 15, icon: "GitBranch", desc: "Industrial process systems, separation, flow systems, and thermodynamic processes." },
+  { name: "Process Chemicals", slug: "process-chemicals", count: 8, icon: "FlaskConical", desc: "Chemical treatment and processing chemicals used in oil & gas facilities." },
+  { name: "Instrumentation", slug: "instrumentation", count: 10, icon: "Gauge", desc: "Sensors, control systems, automation, PLC, DCS, and industrial instrumentation." },
+  { name: "Maintenance", slug: "maintenance", count: 9, icon: "Wrench", desc: "Asset reliability, inspection, maintenance engineering, and integrity systems." },
+  { name: "Safety", slug: "safety", count: 6, icon: "ShieldAlert", desc: "Industrial safety, process safety, and HSE systems." },
+  { name: "Utility Systems", slug: "utility-systems", count: 5, icon: "Droplet", desc: "Supporting systems required for industrial plant operation." },
+  { name: "Troubleshooting", slug: "troubleshooting", count: 0, icon: "AlertTriangle", desc: "Operational issues, failure modes, diagnosis, and corrective action." },
+  { name: "Learning Path", slug: "learning-path", count: 4, icon: "Map", desc: "Structured guided learning roadmap for different career paths." },
+  { name: "Glossary", slug: "glossary", count: 45, icon: "BookOpen", desc: "Technical engineering terminology and definitions." },
 ];
 
 const CONTENT_PATH = path.join(process.cwd(), "content");
@@ -106,8 +108,8 @@ const fallbackArticles: Article[] = [
     slug: "demulsifier",
     title: "Demulsifier: Mengatasi Emulsi Minyak dan Air",
     description: "Panduan kimia perminyakan tentang demulsifier, mekanisme pemecahan emulsi air dalam minyak, jenis surfaktan, dan aplikasi optimal di lapangan produksi migas.",
-    category: "Chemicals",
-    categorySlug: "chemical",
+    category: "Process Chemicals",
+    categorySlug: "process-chemicals",
     date: "2026-05-18",
     author: "Team Garudaloka",
     difficulty: "Menengah",
@@ -121,7 +123,7 @@ const fallbackArticles: Article[] = [
     title: "Sistem Hulu Migas: Aliran Proses dari Sumur ke Terminal",
     description: "Gambaran komprehensif rantai proses industri hulu (upstream) minyak dan gas bumi, mulai dari reservoir, pengeboran, stasiun pengumpul, hingga stasiun pengapalan.",
     category: "Process Systems",
-    categorySlug: "process",
+    categorySlug: "process-systems",
     date: "2026-05-18",
     author: "Team Garudaloka",
     difficulty: "Pengantar",
@@ -202,7 +204,9 @@ export async function getAllArticles(): Promise<Article[]> {
   }
   
   // Sort articles by date descending
-  return articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const sortedArticles = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  console.log(`[DEBUG] getAllArticles returning ${sortedArticles.length} total articles. Equipment articles:`, sortedArticles.filter(a => a.categorySlug === 'equipment').map(a => a.slug));
+  return sortedArticles;
 }
 
 export async function getArticleBySlug(categorySlug: string, slug: string): Promise<Article | null> {

@@ -39,8 +39,8 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Equipment", href: "/category/equipment", icon: <Settings className="h-4 w-4" /> },
-    { name: "Chemicals", href: "/category/chemical", icon: <FlaskConical className="h-4 w-4" /> },
-    { name: "Process", href: "/category/process", icon: <GitBranch className="h-4 w-4" /> },
+    { name: "Process Chemicals", href: "/category/process-chemicals", icon: <FlaskConical className="h-4 w-4" /> },
+    { name: "Process Systems", href: "/category/process-systems", icon: <GitBranch className="h-4 w-4" /> },
     { name: "Learning Path", href: "/learning-path", icon: <Compass className="h-4 w-4" /> },
     { name: "Glossary", href: "/category/glossary", icon: <BookOpen className="h-4 w-4" /> },
   ];
@@ -56,12 +56,12 @@ export default function Navbar() {
           
           {/* Logo Branding */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="h-11 w-11 relative rounded-lg overflow-hidden flex items-center justify-center transition-transform group-hover:scale-105 shadow-md">
+            <div className="h-12 w-12 relative flex items-center justify-center transition-transform group-hover:scale-105">
               <Image 
                 src="/icon-garudaloka.png" 
                 alt="Garudaloka Logo" 
                 fill 
-                className="object-cover" 
+                className="object-contain" 
                 sizes="48px"
                 priority
               />
