@@ -9,7 +9,7 @@ interface FAQItem {
 }
 
 interface FAQAccordionProps {
-  items: FAQItem[];
+  items: FAQItem[] | string;
 }
 
 export default function FAQAccordion({ items }: FAQAccordionProps) {

@@ -58,8 +58,8 @@ export function WarningBox({ type, children }: WarningBoxProps) {
 
 // 2. TechnicalTable Component
 interface TechnicalTableProps {
-  headers: string[];
-  data: string[][];
+  headers: string[] | string;
+  data: string[][] | string;
 }
 
 export function TechnicalTable({ headers = [], data = [] }: TechnicalTableProps) {
