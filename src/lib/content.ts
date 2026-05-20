@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import matter from "gray-matter";
 
 export interface ArticleMetadata {
   slug: string;
@@ -46,41 +47,43 @@ export const CATEGORIES = [
 
 const CONTENT_PATH = path.join(process.cwd(), "content");
 
-// Simple, robust frontmatter parser
+// Simple, robust frontmatter parser using gray-matter
 export function parseFrontmatter(fileContent: string): { data: any; content: string } {
-  const match = fileContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-  if (!match) {
-    return { data: {}, content: fileContent };
-  }
-  const yamlBlock = match[1];
-  const content = match[2];
-  const data: any = {};
-
-  yamlBlock.split("\n").forEach((line) => {
-    const parts = line.split(":");
-    if (parts.length >= 2) {
-      const key = parts[0].trim();
-      const val = parts.slice(1).join(":").trim();
-      
-      // Clean quotes
-      let cleanedVal = val.replace(/^["']|["']$/g, "");
-      
-      if (cleanedVal === "true") {
-        data[key] = true;
-      } else if (cleanedVal === "false") {
-        data[key] = false;
-      } else if (cleanedVal.startsWith("[") && cleanedVal.endsWith("]")) {
-        data[key] = cleanedVal
-          .slice(1, -1)
-          .split(",")
-          .map((s) => s.trim().replace(/^["']|["']$/g, ""));
-      } else {
-        data[key] = cleanedVal;
-      }
+  try {
+    const { data, content } = matter(fileContent);
+    return { data, content };
+  } catch (error) {
+    console.error("Error parsing with gray-matter, falling back:", error);
+    // Basic fallback regex parser if gray-matter fails
+    const match = fileContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+    if (!match) {
+      return { data: {}, content: fileContent };
     }
-  });
-
-  return { data, content };
+    const yamlBlock = match[1];
+    const content = match[2];
+    const data: any = {};
+    yamlBlock.split("\n").forEach((line) => {
+      const parts = line.split(":");
+      if (parts.length >= 2) {
+        const key = parts[0].trim();
+        const val = parts.slice(1).join(":").trim();
+        let cleanedVal = val.replace(/^["']|["']$/g, "");
+        if (cleanedVal === "true") {
+          data[key] = true;
+        } else if (cleanedVal === "false") {
+          data[key] = false;
+        } else if (cleanedVal.startsWith("[") && cleanedVal.endsWith("]")) {
+          data[key] = cleanedVal
+            .slice(1, -1)
+            .split(",")
+            .map((s) => s.trim().replace(/^["']|["']$/g, ""));
+        } else {
+          data[key] = cleanedVal;
+        }
+      }
+    });
+    return { data, content };
+  }
 }
 
 // Fallback data in case the file reading has any runtime issues (e.g. during edge runtimes)

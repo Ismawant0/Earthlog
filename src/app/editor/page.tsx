@@ -126,12 +126,18 @@ export default function EditorDashboard() {
 
   const handleSave = async (mdxContent: string, metadata: any, htmlContent: string) => {
     try {
+      const payload: any = { mdxContent, metadata };
+      if (editorMode === 'edit' && currentArticle) {
+        payload.originalSlug = currentArticle.slug;
+        payload.originalCategory = currentArticle.categorySlug;
+      }
+
       const res = await fetch('/api/save-mdx', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ mdxContent, metadata }),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();

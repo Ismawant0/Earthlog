@@ -63,10 +63,37 @@ interface TechnicalTableProps {
 }
 
 export function TechnicalTable({ headers = [], data = [] }: TechnicalTableProps) {
-  const safeHeaders = Array.isArray(headers) ? headers : [];
-  const safeData = Array.isArray(data) ? data : [];
+  let safeHeaders = Array.isArray(headers) ? headers : [];
+  let safeData = Array.isArray(data) ? data : [];
 
-  if (safeHeaders.length === 0 && safeData.length === 0) return null;
+  if (typeof headers === 'string') {
+    try {
+      const parsed = JSON.parse(headers);
+      if (Array.isArray(parsed)) safeHeaders = parsed;
+    } catch {
+      try {
+        const parsed = new Function(`return ${headers}`)();
+        if (Array.isArray(parsed)) safeHeaders = parsed;
+      } catch {}
+    }
+  }
+
+  if (typeof data === 'string') {
+    try {
+      const parsed = JSON.parse(data);
+      if (Array.isArray(parsed)) safeData = parsed;
+    } catch {
+      try {
+        const parsed = new Function(`return ${data}`)();
+        if (Array.isArray(parsed)) safeData = parsed;
+      } catch {}
+    }
+  }
+
+  if (safeHeaders.length === 0 && safeData.length === 0) {
+    console.warn("TechnicalTable: safeHeaders and safeData are empty:", headers, data);
+    return null;
+  }
 
   return (
     <div className="my-8 overflow-x-auto rounded-lg border border-border bg-card shadow-sm">

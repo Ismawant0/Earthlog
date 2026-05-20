@@ -19,11 +19,27 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
-  if (!items || !Array.isArray(items)) return null;
+  let safeItems = Array.isArray(items) ? items : [];
+  if (typeof items === 'string') {
+    try {
+      const parsed = JSON.parse(items);
+      if (Array.isArray(parsed)) safeItems = parsed;
+    } catch {
+      try {
+        const parsed = new Function(`return ${items}`)();
+        if (Array.isArray(parsed)) safeItems = parsed;
+      } catch {}
+    }
+  }
+
+  if (!safeItems || !Array.isArray(safeItems) || safeItems.length === 0) {
+    console.warn("FAQAccordion: safeItems is empty or not an array:", items);
+    return null;
+  }
 
   return (
     <div className="my-8 border border-border rounded-lg bg-card overflow-hidden divide-y divide-border shadow-sm">
-      {items.map((item, idx) => {
+      {safeItems.map((item, idx) => {
         const isOpen = openIndex === idx;
         return (
           <div key={idx} className="transition-all duration-200">

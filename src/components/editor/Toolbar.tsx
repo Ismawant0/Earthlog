@@ -56,8 +56,11 @@ export function Toolbar({ editor }: ToolbarProps) {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-1 p-2 border-b border-gray-200 bg-white sticky top-0 z-10 w-full rounded-t-xl">
-      <div className="flex items-center gap-1 pr-2 border-r border-gray-200">
+    <div className="
+      flex flex-wrap items-center gap-1 p-2 border-b border-gray-200 bg-white sticky top-0 z-10 w-full rounded-t-xl
+      xl:fixed xl:right-6 xl:top-24 xl:z-40 xl:w-14 xl:flex-col xl:items-center xl:p-3 xl:border xl:border-gray-200 xl:shadow-xl xl:rounded-2xl xl:max-h-[75vh] xl:overflow-y-auto xl:bg-white xl:rounded-t-2xl xl:gap-3 xl:border-b-0
+    ">
+      <div className="flex xl:flex-col items-center gap-1 pr-2 xl:pr-0 xl:pb-2 border-r xl:border-r-0 xl:border-b border-gray-200 xl:w-full">
         <ToolbarButton title="Heading 1" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} isActive={editor.isActive('heading', { level: 1 })}>
           <Heading1 size={18} />
         </ToolbarButton>
@@ -68,11 +71,11 @@ export function Toolbar({ editor }: ToolbarProps) {
           <Heading3 size={18} />
         </ToolbarButton>
         <ToolbarButton title="Paragraph" onClick={() => editor.chain().focus().setParagraph().run()} isActive={editor.isActive('paragraph')}>
-          <span className="font-serif font-bold px-1">P</span>
+          <span className="font-serif font-bold px-1 text-[15px]">P</span>
         </ToolbarButton>
       </div>
 
-      <div className="flex items-center gap-1 px-2 border-r border-gray-200">
+      <div className="flex xl:flex-col items-center gap-1 px-2 xl:px-0 xl:py-2 border-r xl:border-r-0 xl:border-b border-gray-200 xl:w-full">
         <ToolbarButton title="Bold" onClick={() => editor.chain().focus().toggleBold().run()} isActive={editor.isActive('bold')}>
           <Bold size={18} />
         </ToolbarButton>
@@ -90,7 +93,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         </ToolbarButton>
       </div>
 
-      <div className="flex items-center gap-1 px-2 border-r border-gray-200">
+      <div className="flex xl:flex-col items-center gap-1 px-2 xl:px-0 xl:py-2 border-r xl:border-r-0 xl:border-b border-gray-200 xl:w-full">
         <ToolbarButton title="Bullet List" onClick={() => editor.chain().focus().toggleBulletList().run()} isActive={editor.isActive('bulletList')}>
           <List size={18} />
         </ToolbarButton>
@@ -108,7 +111,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         </ToolbarButton>
       </div>
 
-      <div className="flex items-center gap-1 px-2 border-r border-gray-200">
+      <div className="flex xl:flex-col items-center gap-1 px-2 xl:px-0 xl:py-2 border-r xl:border-r-0 xl:border-b border-gray-200 xl:w-full">
         <ToolbarButton title="Insert Link" onClick={addLink} isActive={editor.isActive('link')}>
           <LinkIcon size={18} />
         </ToolbarButton>
@@ -121,32 +124,32 @@ export function Toolbar({ editor }: ToolbarProps) {
       </div>
 
       {editor.isActive('table') && (
-        <div className="flex items-center gap-1 px-2 border-r border-gray-200">
+        <div className="flex xl:flex-col items-center gap-1 px-2 xl:px-0 xl:py-2 border-r xl:border-r-0 xl:border-b border-gray-200 xl:w-full bg-amber-50/50 xl:rounded-lg">
           <ToolbarButton title="Add Column Before" onClick={() => editor.chain().focus().addColumnBefore().run()}>
-            <span className="text-[10px] font-bold text-gray-700">+COL L</span>
+            <span className="text-[9px] font-bold text-gray-700">+C L</span>
           </ToolbarButton>
           <ToolbarButton title="Add Column After" onClick={() => editor.chain().focus().addColumnAfter().run()}>
-            <span className="text-[10px] font-bold text-gray-700">+COL R</span>
+            <span className="text-[9px] font-bold text-gray-700">+C R</span>
           </ToolbarButton>
           <ToolbarButton title="Delete Column" onClick={() => editor.chain().focus().deleteColumn().run()}>
-            <span className="text-[10px] font-bold text-red-600">-COL</span>
+            <span className="text-[9px] font-bold text-red-600">-C</span>
           </ToolbarButton>
           <ToolbarButton title="Add Row Before" onClick={() => editor.chain().focus().addRowBefore().run()}>
-            <span className="text-[10px] font-bold text-gray-700">+ROW U</span>
+            <span className="text-[9px] font-bold text-gray-700">+R U</span>
           </ToolbarButton>
           <ToolbarButton title="Add Row After" onClick={() => editor.chain().focus().addRowAfter().run()}>
-            <span className="text-[10px] font-bold text-gray-700">+ROW D</span>
+            <span className="text-[9px] font-bold text-gray-700">+R D</span>
           </ToolbarButton>
           <ToolbarButton title="Delete Row" onClick={() => editor.chain().focus().deleteRow().run()}>
-            <span className="text-[10px] font-bold text-red-600">-ROW</span>
+            <span className="text-[9px] font-bold text-red-600">-R</span>
           </ToolbarButton>
           <ToolbarButton title="Delete Table" onClick={() => editor.chain().focus().deleteTable().run()}>
-            <span className="text-[10px] font-bold text-red-600">DEL TBL</span>
+            <span className="text-[9px] font-bold text-red-600">DEL</span>
           </ToolbarButton>
         </div>
       )}
 
-      <div className="flex items-center gap-1 px-2">
+      <div className="flex xl:flex-col items-center gap-1 px-2 xl:px-0 xl:pt-2 xl:w-full">
         <ToolbarButton title="Warning Box" onClick={() => editor.chain().focus().insertContent('<WarningBox type="warning">Important warning here</WarningBox>').run()}>
           <AlertCircle size={18} />
         </ToolbarButton>

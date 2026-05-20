@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache';
 export async function POST(req: Request) {
   try {
     const data = await req.json();
-    const { mdxContent, metadata } = data;
+    const { mdxContent, metadata, originalSlug, originalCategory } = data;
     console.log("RECEIVED SAVE REQUEST for:", metadata?.slug);
     console.log("MDX CONTENT PREVIEW:", mdxContent ? mdxContent.substring(0, 100) : "EMPTY");
 
@@ -46,6 +46,17 @@ export async function POST(req: Request) {
         await fs.writeFile(filePath, fileContent, 'utf-8');
         localWriteSuccess = true;
         console.log("Local write successful!");
+
+        // If it's a rename/move, delete the old file!
+        if (originalSlug && originalCategory && (originalSlug !== frontmatter.slug || originalCategory !== frontmatter.category)) {
+          const oldFilePath = path.join(process.cwd(), 'content', originalCategory, `${originalSlug}.mdx`);
+          try {
+            await fs.unlink(oldFilePath);
+            console.log("Deleted old file on local rename:", oldFilePath);
+          } catch (unlinkErr) {
+            console.warn("Failed to delete old file on local rename:", unlinkErr);
+          }
+        }
       } catch (err) {
         console.warn("Local write failed, attempting GitHub path...", err);
       }
@@ -56,6 +67,12 @@ export async function POST(req: Request) {
       revalidatePath(`/${frontmatter.category}/${frontmatter.slug}`, 'page');
       revalidatePath(`/category/${frontmatter.category}`, 'page');
       revalidatePath('/', 'page');
+
+      if (originalSlug && originalCategory) {
+        revalidatePath(`/${originalCategory}/${originalSlug}`, 'page');
+        revalidatePath(`/category/${originalCategory}`, 'page');
+      }
+
       return NextResponse.json({ success: true, message: 'Artikel berhasil disimpan.' });
     }
 
@@ -63,6 +80,43 @@ export async function POST(req: Request) {
     if (githubToken) {
       const owner = 'Ismawant0';
       const repo = 'garudaloka';
+
+      // If it's a rename/move on GitHub, first delete the old file on GitHub!
+      if (originalSlug && originalCategory && (originalSlug !== frontmatter.slug || originalCategory !== frontmatter.category)) {
+        const oldGitPath = `content/${originalCategory}/${originalSlug}.mdx`;
+        const oldFileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${oldGitPath}`;
+        try {
+          const getOldFileRes = await fetch(oldFileUrl, {
+            headers: {
+              'Authorization': `token ${githubToken}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'User-Agent': 'Garudaloka-CMS'
+            }
+          });
+          if (getOldFileRes.ok) {
+            const oldFileData = await getOldFileRes.json();
+            const oldSha = oldFileData.sha;
+            await fetch(oldFileUrl, {
+              method: 'DELETE',
+              headers: {
+                'Authorization': `token ${githubToken}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json',
+                'User-Agent': 'Garudaloka-CMS'
+              },
+              body: JSON.stringify({
+                message: `cms: delete old file on rename ${originalSlug}`,
+                sha: oldSha,
+                branch: 'main'
+              })
+            });
+            console.log("Deleted old file on GitHub rename:", oldGitPath);
+          }
+        } catch (gitDeleteErr) {
+          console.error("Failed to delete old file on GitHub rename:", gitDeleteErr);
+        }
+      }
+
       const gitPath = `content/${frontmatter.category}/${frontmatter.slug}.mdx`;
       const fileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${gitPath}`;
 
