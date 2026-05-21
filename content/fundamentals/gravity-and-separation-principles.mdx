@@ -1,0 +1,222 @@
+---
+title: Gravity and Separation Principles
+slug: gravity-and-separation-principles
+category: fundamentals
+description: >-
+  Artikel teknis ini mengupas prinsip pemisahan gravitasi sebagai fondasi
+  operasi pemisahan fasa fluida di industri minyak dan gas. Dibahas hukum
+  Stokes, mekanisme pengendapan, parameter operasi kritis seperti residence time
+  dan ukuran droplet, serta penerapannya pada separator, free water knockout,
+  dan unit klarifikasi. Materi disusun secara sistematis mulai dari konsep
+  fundamental, komponen utama, klasifikasi, praktik operasi, hingga mode
+  kegagalan dan pertimbangan desain, sesuai standar handbook teknik profesional.
+difficulty: Beginner
+keywords:
+  - Separation
+tags:
+  - Separation
+readingTime: 15 min
+featured: true
+date: '2026-05-21'
+cover: ''
+---
+
+1. Introduction
+
+Pemisahan berbasis gravitasi merupakan metode pemisahan fasa yang mengandalkan perbedaan massa jenis (density) antara dua atau lebih fluida yang tidak saling larut, atau antara fluida dengan padatan tersuspensi. Dalam konteks industri minyak dan gas, prinsip ini diaplikasikan untuk memisahkan gas, minyak, air, dan material padat dari aliran sumur atau aliran proses, sehingga setiap fasa dapat ditangani lebih lanjut sesuai spesifikasi.
+
+Tujuan utama operasi pemisahan gravitasi adalah menghasilkan fasa gas bebas cairan (liquid-free gas), fasa minyak dengan kadar air dan sedimen rendah (basic sediment & water, BS&W), serta fasa air dengan kandungan minyak yang memenuhi baku mutu pembuangan atau reinjeksi. Tanpa pemisahan yang memadai, peralatan hilir seperti kompresor, kolom distilasi, unit dehidrasi glikol, atau pompa injeksi air akan mengalami penurunan kinerja, kerusakan mekanis, atau peningkatan beban pemrosesan lanjut.
+
+Secara historis, gravitasi menjadi gaya penggerak pemisahan yang paling sederhana dan andal karena tidak memerlukan energi eksternal selain potensial gravitasi bumi. Meskipun saat ini tersedia teknologi pemisahan berbasis sentrifugal, elektrostatik, atau membran, pemisahan gravitasi tetap menjadi tulang punggung fasilitas produksi di lapangan (field surface facility), anjungan lepas pantai, kilang, dan instalasi pengolahan air terproduksi.
+
+2. Fundamental Principle
+
+Prinsip dasar pemisahan gravitasi bersumber dari interaksi tiga gaya pada partikel atau tetesan (droplet) yang bergerak di dalam fluida kontinu: gaya gravitasi, gaya apung (buoyancy), dan gaya hambat (drag force). Partikel dengan massa jenis lebih besar dari fluida kontinu akan mengendap (sedimentation), sedangkan partikel dengan massa jenis lebih kecil akan naik (creaming). Pemisahan terjadi selama terdapat perbedaan densitas positif dan waktu tinggal yang mencukupi.
+
+Gaya pengendapan neto dinyatakan sebagai selisih antara gaya gravitasi dan gaya apung. Bila tetesan berbentuk bola dan aliran fluida di sekitarnya laminar, kecepatan terminal pengendapan (terminal settling velocity, v) didekati oleh Hukum Stokes:
+
+v = (g × (ρ\_p – ρ\_f) × d²) / (18 × μ)
+
+di mana:\
+g = percepatan gravitasi,\
+ρ\_p = densitas partikel/tetesan,\
+ρ\_f = densitas fluida kontinu,\
+d = diameter partikel/tetesan,\
+μ = viskositas dinamik fluida kontinu.
+
+Persamaan Stokes berlaku pada bilangan Reynolds partikel kurang dari 0,1. Dalam banyak aplikasi pemisahan gas-cair dan cair-cair, asumsi ini terpenuhi karena ukuran tetesan kecil dan viskositas relatif tinggi. Kecepatan pengendapan yang lebih tinggi memperpendek waktu yang dibutuhkan tetesan mencapai permukaan pemisah atau dasar vessel, sehingga memungkinkan laju alir volumetrik lebih besar untuk ukuran vessel tertentu.
+
+Faktor penentu efisiensi pemisahan gravitasi adalah ukuran tetesan minimum yang dapat dipisahkan (cut-off diameter). Tetesan berukuran di bawah ambang ini tidak memiliki kecepatan pengendapan cukup untuk mencapai fasa bulk selama periode residence time yang tersedia, dan akan terbawa aliran kontinu menuju outlet fasa yang salah. Inilah akar penyebab fenomena carryover atau carryunder.
+
+Perbedaan densitas antara dua fasa mempengaruhi besar gaya apung neto. Pada pemisahan minyak-air, densitas air formasi (1,02–1,20 kg/L) dengan minyak (0,80–0,95 kg/L) menghasilkan perbedaan yang relatif kecil, sehingga kecepatan pemisahan jauh lebih lambat dibandingkan pemisahan gas-cair, di mana perbedaan densitasnya sangat besar. Viskositas fasa kontinu menghambat gerakan tetesan; kenaikan viskositas, misalnya pada minyak berat atau air dingin, menurunkan kecepatan pengendapan secara linear menurut Stokes.
+
+3. Working Principle
+
+Dalam peralatan pemisah gravitasi seperti separator tiga fasa horizontal, aliran multifasa dari sumur atau header masuk melalui inlet nozzle. Momentum aliran dipecah oleh inlet diverter—berupa pelat deflektor atau siklon mini—yang memisahkan sebagian besar gas dari cairan secara kasar. Pemisahan awal ini mengurangi turbulensi dan mencegah terbawanya cairan ke zona gas.
+
+Fasa gas kemudian bergerak horizontal menuju gas outlet dengan kecepatan yang dijaga rendah. Di zona pengendapan gravitasi (gravity settling section), tetesan cairan yang masih terdispersi dalam gas akan jatuh ke bawah karena densitasnya yang lebih tinggi. Mist extractor di dekat gas outlet, berupa wire mesh pad atau baling-baling, menangkap tetesan yang belum sempat mengendap dengan mekanisme impingement dan koalesensi.
+
+Di bagian bawah vessel, cairan terpisah dari gas mengalir menuju sekat-sekat pengendap. Zona pemisahan cair-cair memanfaatkan perbedaan densitas minyak dan air. Campuran minyak-air masuk ke kompartemen tenang, di mana air yang lebih berat mengendap ke dasar dan minyak naik ke permukaan. Waktu tinggal cairan di zona ini harus cukup agar tetesan air mencapai bulk water dan tetesan minyak mencapai lapisan minyak atas. Weir plate dan bucket mengarahkan minyak terpisah ke kompartemen pengumpul minyak, sementara air keluar dari bagian bawah melalui water outlet yang dilengkapi pengatur level antarmuka (interface level control).
+
+Padatan seperti pasir dan kerak akan terakumulasi di titik terendah vessel, terutama di dekat inlet dan di sepanjang dasar. Akumulasi ini mengurangi volume efektif zona pengendapan, mengubah pola aliran, dan berpotensi menyumbat outlet. Oleh karena itu, sand jetting system atau drain periodik disediakan.
+
+Urutan operasi pada separator tiga fasa yang beroperasi kontinu bergantung pada stabilitas level cairan dan antarmuka. Level minyak diatur oleh level control valve pada saluran minyak, sedangkan level antarmuka minyak-air dikendalikan oleh interface level controller yang membuka atau menutup water outlet valve. Gangguan pada pengendalian level ini akan langsung menggeser waktu tinggal efektif dan meningkatkan potensi carryover maupun oil-in-water.
+
+4. Main Components / Main Parts
+
+Perangkat pemisah gravitasi terdiri dari beberapa komponen yang berfungsi menciptakan kondisi pengendapan optimal.
+
+Vessel (Pressure Vessel/Atmospheric Tank)\
+Vessel menjadi tempat berlangsungnya pemisahan, didesain sesuai tekanan operasi, temperatur, dan korosivitas fluida. Vessel horizontal umum digunakan untuk fluida dengan kadar cairan tinggi atau potensi foaming, sedangkan vessel vertikal lebih sesuai untuk aliran dengan gas-liquid ratio tinggi atau ketersediaan lahan terbatas.
+
+Inlet Diverter\
+Komponen ini mengarahkan aliran masuk ke dinding vessel atau pelat deflektor, mengubah momentum fluida agar terjadi pemisahan gas-cair awal. Siklon inlet meningkatkan efisiensi pemisahan awal dengan gaya sentrifugal dan mengurangi beban zona pengendapan gravitasi.
+
+Mist Extractor\
+Alat penangkap tetesan halus pada aliran gas sebelum keluar vessel. Wire mesh pad bekerja berdasarkan tumbukan inersia, menangkap tetesan 5–10 mikron ke atas dengan efisiensi &gt;99% bila kecepatan gas sesuai desain. Vane pack menggunakan perubahan arah aliran untuk memisahkan cairan.
+
+Weir dan Bucket\
+Pada pemisahan cair-cair, weir menjaga ketinggian minyak agar meluap ke kompartemen pengumpul, sementara bucket menampung dan menyalurkan minyak ke outlet. Ketinggian weir menentukan volume minyak yang ditahan.
+
+Level Control System\
+Pengukuran level antarmuka menggunakan displacer, DP cell, atau radar guided wave, yang mengirim sinyal ke control valve di saluran keluar. Stabilitas kendali level sangat menentukan efisiensi pemisahan.
+
+Sand Drain / Sand Removal System\
+Saluran pembuangan padatan di dasar vessel, dapat berupa manual drain, automatic blowdown, atau sistem water jet yang mengalirkan pasir ke sand cyclone eksternal.
+
+Inlet Calming Baffle\
+Pelat berlubang yang meredam turbulensi setelah inlet diverter, mendistribusikan aliran cairan secara merata pada penampang vessel dan mencegah aliran pendek (short-circuiting).
+
+5. Types / Classification
+
+Klasifikasi alat pemisah gravitasi di industri minyak dan gas didasarkan pada jumlah fasa yang dipisahkan dan konfigurasi konstruksi.
+
+Separator Dua Fasa (Gas–Cair)\
+Hanya memisahkan gas dari fasa cair total, tanpa memisahkan minyak dan air. Digunakan pada sistem test separator temporer, atau di hulu unit gas dehydration. Vessel bisa horizontal atau vertikal. Kelebihan: sederhana, biaya rendah. Keterbatasan: air dan minyak tetap bercampur dan harus dipisahkan di unit berikutnya.
+
+Separator Tiga Fasa (Gas–Minyak–Air)\
+Memisahkan gas, minyak, dan air secara simultan dalam satu vessel. Dilengkapi kompartemen cair-cair, weir, dan pengendali level antarmuka. Umumnya horizontal untuk menambah luas permukaan pemisahan. Kelebihan: menghemat jumlah vessel dan mengurangi jejak instalasi. Keterbatasan: pengendalian antarmuka lebih kompleks, sensitif terhadap slugging dan foaming.
+
+Free Water Knockout (FWKO)\
+Vessel dua atau tiga fasa yang dioperasikan untuk memisahkan air bebas (free water) dari aliran produksi yang masih mengandung banyak air. Biasanya beroperasi pada suhu rendah dan waktu tinggal singkat (&lt;5 menit). Minyak keluaran FWKO masih mengandung air emulsi yang akan diolah di heater-treater.
+
+Gun Barrel Separator (Wash Tank)\
+Tangki atmosferik silinder vertikal yang menggunakan prinsip gravitasi dan pencucian air untuk memisahkan minyak, air, dan sedimen. Minyak masuk ke dalam pipa downcomer menuju bagian bawah tangki, lalu naik perlahan, sementara air dicuci secara berlawanan arah. Umum pada fasilitas onshore tua dan pengolahan minyak berat.
+
+API Separator (Oil-Water Separator)\
+Unit pengolahan air terproduksi atau air limbah kilang yang memisahkan minyak bebas dan padatan berdasarkan gravitasi dalam saluran terbuka atau bak beton. Dimensi dan laju alir didesain agar tetesan minyak 150 mikron ke atas naik ke permukaan. Efisiensi tipikal 90–95% untuk minyak bebas. Digunakan sebelum unit pengapungan gas terlarut (dissolved gas flotation, DGF) atau filtrasi.
+
+Settling Tank / Skimmer Tank\
+Tangki besar berpengaduk atau tanpa pengaduk untuk memisahkan minyak dari air dengan waktu tinggal puluhan jam. Biasa di fasilitas pengolahan air terproduksi, memungkinkan pemisahan tetesan minyak halus karena waktu tinggal yang sangat panjang.
+
+6. Operating Parameter
+
+Parameter operasi yang mengendalikan efektivitas pemisahan gravitasi bersifat saling bergantung.
+
+Residence Time\
+Waktu tinggal adalah rasio volume efektif zona pengendapan terhadap laju alir volumetrik fasa. Untuk pemisahan gas-cair, waktu tinggal gas sekitar 30–120 detik; untuk pemisahan cair-cair, waktu tinggal cairan 3–30 menit, bergantung pada perbedaan densitas dan viskositas. Penurunan residence time di bawah nilai kritis menyebabkan tetesan tidak mencapai lapisan bulk dan terbawa arus.
+
+Kecepatan Superfisial\
+Kecepatan gas dihitung pada penampang kosong vessel, bukan kecepatan aktual. Kecepatan gas yang melebihi batas menyebabkan re-entrainment tetesan dari permukaan cairan atau mist extractor flooding. Untuk separator horizontal, nilai tipikal kecepatan gas superfisial berada di bawah 1,0 m/s, sedangkan untuk vertikal di bawah 0,3 m/s agar tetesan 100 mikron dapat mengendap.
+
+Ukuran Droplet Desain\
+Separator gas-cair umumnya didesain untuk memisahkan tetesan cairan ≥100–150 mikron dengan efisiensi 99%. Mist extractor menangkap tetesan 5–10 mikron. Pada pemisah cair-cair, tetesan air 150–500 mikron dirancang mengendap. Ukuran droplet aktual bergantung pada tegangan antar muka, turbulensi, dan jenis aliran masuk.
+
+Perbedaan Densitas\
+Pada tekanan operasi tinggi, densitas gas meningkat, mengurangi perbedaan densitas gas-cair dan memperlambat pengendapan. Untuk pemisah gas bertekanan tinggi, volume vessel mungkin lebih besar dibanding separator tekanan rendah untuk laju alir massa yang sama. Pada minyak berat (API rendah), densitas minyak mendekati densitas air, sehingga pemisahan cair-cair menjadi lebih sulit.
+
+Viskositas\
+Kenaikan viskositas minyak akan menurunkan kecepatan pengendapan tetesan air secara signifikan. Pemanasan fluida sebelum masuk separator (misal melalui heater-treater) merupakan praktik standar untuk menurunkan viskositas dan mempercepat pemisahan. Air formasi hangat juga memiliki viskositas lebih rendah, membantu tetesan minyak naik lebih cepat.
+
+Tegangan Antarmuka (Interfacial Tension, IFT)\
+IFT mempengaruhi kecenderungan tetesan untuk bergabung (coalescence) dan ukuran droplet stabil. IFT rendah, yang umum pada minyak berat atau kehadiran surfaktan alami, menghalangi koalesensi dan mempertahankan distribusi tetesan halus, sehingga menyulitkan pemisahan gravitasi.
+
+Level dan Interface Control\
+Fluktuasi level cairan mengubah tinggi efektif zona pengendapan gas dan cair-cair. Jika level terlalu tinggi, zona gas menyempit dan kecepatan gas naik, meningkatkan liquid carryover. Jika level antarmuka minyak-air terlalu rendah, air dapat masuk ke kompartemen minyak; sebaliknya minyak dapat keluar ke saluran air.
+
+7. Installation / Operating Practice
+
+Praktik pemasangan dan operasi yang baik mempertahankan kondisi pengendapan ideal.
+
+Orientasi vessel horizontal sering dipilih untuk memaksimalkan luas permukaan cairan, membantu pelepasan gas terlarut, dan mengurangi foaming. Untuk pemisahan padatan, vessel horizontal biasanya memiliki sedikit kemiringan (1:100) ke arah drain agar pasir dapat terbawa gravitasi menuju titik pembuangan.
+
+Distribusi aliran yang merata di sepanjang sumbu vessel dicapai melalui inlet calming baffle atau perforated plate yang dipasang setelah diverter. Ketidakseragaman aliran menimbulkan short-circuiting, yaitu sebagian fluida mencapai outlet tanpa mengalami waktu tinggal cukup. Perforated baffle juga meredam energi kinetik aliran masuk dan mencegah pengadukan cairan di zona pengendapan.
+
+Pengaturan level harus dijaga stabil. Pada separator tiga fasa, interface level controller menggunakan displacer yang dikalibrasi pada densitas air dan minyak setempat. Perubahan salinitas air formasi atau temperatur yang mengubah densitas memerlukan rekalibrasi. Sinyal kontrol yang baik mencegah osilasi yang dapat memindahkan antarmuka secara berlebihan.
+
+Operasi start-up harus dilakukan bertahap. Vessel perlu diisi cairan terlebih dahulu untuk mencegah aliran gas langsung kontak dengan plat deflektor saat laju alir puncak. Sebelum shutdown, vessel ditekan dan dikuras dari akumulasi padatan untuk mencegah pengerasan sedimen. Sistem blowdown darurat harus dapat mengarahkan aliran ke flare atau vent tanpa menyebabkan liquid carryover.
+
+Foaming pada separator dapat diatasi dengan menambah volume vapor space, menyuntikkan defoamer kimia, atau menaikkan temperatur operasi. Foam merusak kontrol level dan menyelimuti mist extractor, sehingga pemantauan sight glass atau differential pressure di mist pad menjadi indikator yang baik.
+
+8. Common Failure Modes
+
+Tabel di bawah menguraikan mode kegagalan utama pada perangkat pemisahan gravitasi.
+
+Failure Mode Penyebab dan Mekanisme Dampak dan Tindakan Mitigasi\
+Liquid Carryover (Cairan ke Gas Outlet) Residence time gas kurang akibat laju alir berlebih atau volume zona gas berkurang (level cairan terlalu tinggi). Mist extractor tersumbat atau rusak. Inlet diverter tidak memadai sehingga banyak cairan masuk zona gas. Cairan masuk ke kompresor/dehidrator, merusak sudu atau mengotori glikol. Mitigasi: atur level set point lebih rendah, bersihkan/ganti mist pad, periksa laju alir desain, pasang coalescer tambahan.\
+Oil-in-Water / High OIW Waktu tinggal cairan tidak cukup, kecepatan alir tinggi. Terbentuk emulsi halus akibat shear valve atau pompa. Level antarmuka terlalu tinggi sehingga lapisan minyak tipis dan mudah terbawa air. Air buangan mengandung minyak melebihi baku mutu, pencemaran lingkungan. Mitigasi: perpanjang residence time, perbaiki kontrol level, injeksi demulsifier, naikkan temperatur.\
+Water-in-Oil / High BS&W Antarmuka terlalu rendah, air masuk kompartemen minyak. Weir rusak atau tidak sejajar. Laju alir melebihi kapasitas pengendapan. Minyak tidak memenuhi spesifikasi penjualan, mengakibatkan penolakan custody transfer atau penalti. Mitigasi: naikkan interface set point, perbaiki weir, kurangi laju alir, tambah heater-treater hilir.\
+Akumulasi Padatan Berlebih Partikel pasir dan kerak mengendap dan tidak dikuras rutin. Volume efektif vessel menyusut, menyebabkan short-circuiting dan pengurangan residence time. Carryover meningkat, korosi di bawah deposit (under-deposit corrosion), dan penyumbatan outlet. Mitigasi: jadwal sand flushing otomatis atau manual, inspeksi internal, desain kemiringan dan drain yang memadai.\
+Flooding Mist Extractor Kecepatan gas melampaui batas desain, tetesan tidak sempat mengalir turun dan terbawa gas. Flooding juga terjadi jika drainage pipe tersumbat. Penurunan efisiensi pemisahan, liquid carryover masif. Mitigasi: pantau differential pressure di mist pad, turunkan laju gas, bersihkan saluran pembuangan, ganti mesh jika rusak.\
+Korosi/Erosi Aliran fluida korosif (CO₂, H₂S) dan abrasif (pasir) pada area impingement, terutama inlet diverter dan dinding vessel di sekitar inlet. Penipisan dinding, perforasi, risiko kebocoran. Mitigasi: inspeksi ketebalan ultrasonik, pasang wear plate atau liner pada titik tumbuk, pemilihan material tahan korosi (CS + inconel overlay).\
+Kegagalan Level Control Displacer tersangkut, akumulasi endapan lilin atau pasir, transmitter drift, sinyal kontrol tidak stabil. Level antarmuka tidak terkendali, mengakibatkan carryover atau carryunder. Mitigasi: verifikasi displacer secara berkala, kalibrasi DP cell setiap 3–6 bulan, gunakan teknologi non-kontak (radar) bila fluida kotor.
+
+9. Inspection, Maintenance & Calibration
+
+Program inspeksi dan pemeliharaan bertujuan mempertahankan integritas vessel dan performa pemisahan.
+
+Inspeksi internal vessel dilakukan selama turnaround atau shutdown berkala, sesuai interval yang ditetapkan API 510 atau regulasi lokal. Pemeriksaan meliputi pengukuran ketebalan dinding dengan ultrasonik di titik rawan erosi/korosi, evaluasi kondisi internal coating atau lining, dan pemeriksaan fisik komponen internal: inlet diverter, baffle, weir, mist extractor, dan downcomer.
+
+Mist extractor diperiksa terhadap penyumbatan, kerusakan fisik, atau korosi. Pembersihan dapat dilakukan dengan pencucian kimia atau penggantian elemen. Differential pressure diukur secara online untuk memantau kecenderungan fouling; kenaikan DP yang tidak normal mengindikasikan penyumbatan dan perlunya pembersihan.
+
+Level instrumentasi, khususnya interface level displacer dan DP cell, harus dikalibrasi dengan medium aktual atau fluida simulasi yang merepresentasikan densitas minyak dan air pada temperatur operasi. Kalibrasi dilakukan minimum setiap enam bulan atau setelah terjadi perubahan komposisi fluida yang signifikan. Transmitter radar guided wave mengurangi ketergantungan pada densitas, tetapi tetap perlu verifikasi terhadap build-up di probe.
+
+Pengurasan padatan dilakukan secara periodik berdasarkan pemantauan tren penurunan volume efektif dan kenaikan differential pressure antar kompartemen. Sistem sand jetting internal dites fungsinya setiap bulan dan nozzle diperiksa dari keausan. Untuk vessel tanpa fasilitas jetting, manual water flushing melalui manway dilakukan pada shutdown.
+
+Anoda korban (sacrificial anode) diperiksa tingkat konsumsinya dan diganti bila tersisa kurang dari 50% dari berat awal. Pada vessel stainless steel atau clad, pemeriksaan difokuskan pada integritas lapisan clad dan zona yang terpengaruh panas pada sambungan las.
+
+10. Selection / Design Consideration
+
+Pemilihan dan perancangan perangkat pemisah gravitasi merupakan proses iteratif yang melibatkan karakterisasi fluida dan kondisi operasi.
+
+Faktor pertama adalah laju alir dan komposisi fasa. Separator untuk sumur dengan gas-oil ratio tinggi dan sedikit cairan cenderung menggunakan konfigurasi vertikal untuk pengendapan tetesan cairan dari gas. Sebaliknya, sumur dengan kadar air tinggi memerlukan vessel tiga fasa horizontal yang menyediakan waktu tinggal cairan panjang dan luas permukaan besar untuk pemisahan cair-cair.
+
+Data fluida masukan yang akurat sangat kritis: analisis distribusi ukuran droplet, viskositas, densitas, tegangan antarmuka, dan potensi foaming harus diperoleh dari sampel representatif atau korelasi empiris. Tanpa data ini, penentuan waktu tinggal dan kecepatan pengendapan hanya bersifat tebakan dan berisiko menghasilkan desain undersized atau oversized.
+
+Sizing mengikuti standar API 12J (oil and gas separator) atau panduan GPSA. Untuk pemisahan gas-cair, diameter vessel dihitung berdasarkan kecepatan gas superfisial kritis yang mencegah re-entrainment, sementara panjang zona pengendapan ditentukan oleh jarak yang dibutuhkan tetesan desain jatuh dari puncak ke permukaan cairan. Untuk pemisahan cair-cair, volume zona settling ditetapkan berdasarkan residence time yang mampu memisahkan tetesan air minyak sesuai target BS&W. Metode koalesensi gravitasi seringkali menghasilkan desain konservatif yang dikoreksi dengan koefisien empiris dari uji lapangan.
+
+Pemilihan material vessel mengacu pada tekanan desain, temperatur, dan korosivitas fluida. Baja karbon dengan kelonggaran korosi 3–6 mm lazim untuk fluida dengan CO₂ dan H₂S rendah. Pada kondisi sour service dengan tekanan parsial H₂S tinggi, material harus memenuhi standar NACE MR0175. Lapisan internal coating epoksi atau cladding stainless steel diperlukan untuk fluida dengan kandungan pasir tinggi atau korosi CO₂ berat. Inlet diverter dan pelat baffle sering dibuat dari material yang lebih keras atau dilapisi stellite untuk menahan erosi.
+
+Pertimbangan lingkungan dan ruang juga mempengaruhi pemilihan. Anjungan lepas pantai membatasi ukuran dan berat vessel, sehingga waktu tinggal cairan dikompromikan dan unit pemisahan tambahan seperti hydrocyclone atau compact flotation unit dipasang di hilir untuk memenuhi spesifikasi air buangan. Di lokasi onshore dengan lahan luas, tangki settling besar lebih ekonomis dibandingkan bejana tekan bertekanan.
+
+11. Practical Field Application in Oil & Gas
+
+Aplikasi pemisahan gravitasi tersebar di seluruh rantai nilai minyak dan gas.
+
+Pada well pad dan stasiun pengumpul (gathering station), inlet separator dua atau tiga fasa memisahkan fluida dari beberapa sumur sebelum custody transfer atau pemrosesan lebih lanjut. Test separator berkapasitas kecil digunakan secara bergantian untuk mengukur laju alir masing-masing sumur secara periodik; di sini, akurasi pemisahan gas-cair dan air-minyak sangat penting bagi evaluasi kinerja reservoir.
+
+Di fasilitas produksi minyak, free water knockout menghilangkan air formasi bebas yang mencapai 80–90% dari total air terproduksi. FWKO dioperasikan pada tekanan 1,5–3,5 barg dan temperatur 30–50 °C. Minyak keluaran FWKO yang mengandung emulsi air selanjutnya diproses di heater-treater atau electrostatic coalescer untuk mencapai BS&W &lt;0,5%.
+
+Unit pengolahan air terproduksi mengandalkan gravitasi secara berjenjang. Skim tank atau API separator mengurangi kadar minyak dari ribuan ppm menjadi sekitar 100–200 ppm. Selanjutnya, flotation cell (IGF/ DGF) dan filter nut shell atau media filter mengolah air ke kadar minyak &lt;15 ppm sebelum reinjeksi atau pembuangan. Settling pond kadang digunakan sebagai buffer darurat.
+
+Pada kilang, API separator berperan sebagai pengolah air limbah primer yang menangani tumpahan minyak dari berbagai unit proses. Sementara desalter electrostatic pada unit distilasi mentah menggunakan prinsip pengendapan gravitasi ditambah medan listrik untuk mencuci dan memisahkan garam serta air dari minyak mentah.
+
+Di pabrik LNG, separator tiga fasa bertekanan tinggi (40–60 barg) memisahkan gas umpan dari kondensat dan air sebelum masuk molecular sieve dan cold box. Keandalan pemisahan gravitasi di sini berdampak langsung pada perlindungan penukar panas kriogenik dari pembekuan dan kerusakan akibat hidrat.
+
+Anjungan lepas pantai sering menggunakan separator horizontal dua tingkat: high-pressure separator dan low-pressure separator secara seri untuk melepaskan gas bertahap dan memaksimalkan perolehan cairan. Konfigurasi ini memanfaatkan prinsip gravitasi sambil mengurangi beban kompresi gas suar.
+
+12. Key Takeaways
+
+13. Pemisahan gravitasi memanfaatkan perbedaan densitas fasa dan percepatan gravitasi untuk mengendapkan atau mengapungkan partikel dan tetesan, dengan kecepatan terminal diatur oleh Hukum Stokes pada aliran laminar.
+
+14. Efisiensi pemisahan ditentukan oleh residence time, ukuran droplet desain, perbedaan densitas, dan viskositas fluida kontinu; parameter ini saling terkait dan setiap penyimpangan mengurangi performa.
+
+15. Komponen internal seperti inlet diverter, calming baffle, weir, bucket, dan mist extractor bekerja sinergis untuk menciptakan zona pengendapan bebas turbulensi dan menangkap tetesan halus.
+
+16. Klasifikasi alat meliputi separator dua fasa, tiga fasa, free water knockout, gun barrel, dan API separator, yang masing-masing dioptimasi untuk rentang komposisi aliran dan target kualitas produk tertentu.
+
+17. Praktik operasi yang baik menuntut stabilitas kontrol level dan antarmuka, distribusi aliran merata, pengurasan padatan terjadwal, serta prosedur start-up dan shutdown yang menjaga keutuhan profil pengendapan.
+
+18. Mode kegagalan dominan adalah liquid carryover, oil-in-water dan water-in-oil akibat ketidakseimbangan parameter operasi, akumulasi padatan, serta kegagalan level instrumentasi, yang semuanya dapat dideteksi dini melalui pemantauan diferensial tekanan dan inspeksi berkala.
+
+19. Desain yang tepat memerlukan karakterisasi fluida yang teliti, pemilihan orientasi dan material, serta pengukuran ukuran vessel berdasarkan standar API 12J atau GPSA, dengan mempertimbangkan fleksibilitas terhadap variasi laju alir dan sifat fluida selama umur lapangan.
