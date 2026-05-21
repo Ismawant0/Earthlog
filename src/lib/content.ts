@@ -179,20 +179,26 @@ export async function getAllArticles(): Promise<Article[]> {
             ? rawTags
             : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
 
-          articles.push({
-            slug,
-            title: data.title || slug,
-            description: data.description || "",
-            category: data.category || folder,
-            categorySlug: folder,
-            date: data.date || "2026-05-18",
-            author: data.author || "Editor Garudaloka",
-            difficulty: data.difficulty || "Umum",
-            readTime: data.readTime || "5 Menit",
-            featured: !!data.featured,
-            tags: parsedTags,
-            content: content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />')
-          });
+            let safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
+            safeContent = safeContent.replace(/\\text\{([^}]+)\}/g, '\\text&#123;$1&#125;');
+            safeContent = safeContent.replace(/_\{([^}]+)\}/g, '_&#123;$1&#125;');
+            safeContent = safeContent.replace(/\^\{([^}]+)\}/g, '^&#123;$1&#125;');
+            safeContent = safeContent.replace(/\\_\{([^}]+)\}/g, '\\_&#123;$1&#125;');
+
+            articles.push({
+              slug,
+              title: data.title || slug,
+              description: data.description || "",
+              category: data.category || folder,
+              categorySlug: folder,
+              date: data.date || "2026-05-18",
+              author: data.author || "Editor Garudaloka",
+              difficulty: data.difficulty || "Umum",
+              readTime: data.readTime || "5 Menit",
+              featured: !!data.featured,
+              tags: parsedTags,
+              content: safeContent
+            });
         } catch (fileError) {
           console.error(`Error reading article file ${folder}/${file}:`, fileError);
         }
@@ -222,20 +228,26 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
         ? rawTags
         : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
 
-      return {
-        slug,
-        title: data.title || slug,
-        description: data.description || "",
-        category: data.category || categorySlug,
-        categorySlug,
-        date: data.date || "2026-05-18",
-        author: data.author || "Editor Garudaloka",
-        difficulty: data.difficulty || "Umum",
-        readTime: data.readTime || "5 Menit",
-        featured: !!data.featured,
-        tags: parsedTags,
-        content: content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />')
-      };
+        let safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
+        safeContent = safeContent.replace(/\\text\{([^}]+)\}/g, '\\text&#123;$1&#125;');
+        safeContent = safeContent.replace(/_\{([^}]+)\}/g, '_&#123;$1&#125;');
+        safeContent = safeContent.replace(/\^\{([^}]+)\}/g, '^&#123;$1&#125;');
+        safeContent = safeContent.replace(/\\_\{([^}]+)\}/g, '\\_&#123;$1&#125;');
+
+        return {
+          slug,
+          title: data.title || slug,
+          description: data.description || "",
+          category: data.category || categorySlug,
+          categorySlug,
+          date: data.date || "2026-05-18",
+          author: data.author || "Editor Garudaloka",
+          difficulty: data.difficulty || "Umum",
+          readTime: data.readTime || "5 Menit",
+          featured: !!data.featured,
+          tags: parsedTags,
+          content: safeContent
+        };
     }
   } catch (error) {
     console.error(`Error reading article ${categorySlug}/${slug}`, error);
