@@ -1,0 +1,329 @@
+---
+title: Flare System Fundamental
+slug: flare-system-fundamental
+category: fundamentals
+description: >-
+  Artikel ini mengupas secara fundamental sistem flare dalam industri minyak dan
+  gas, meliputi definisi, prinsip dasar, alur kerja, komponen utama, klasifikasi
+  tipe, parameter operasi, praktik instalasi, mode kegagalan, perawatan, serta
+  pertimbangan desain. Disusun sebagai referensi teknis profesional, materi ini
+  cocok untuk pelatihan engineer, operator, dan inspektor dalam memahami dan
+  mengelola flare system yang aman, andal, dan ramah lingkungan di berbagai
+  fasilitas migas.
+difficulty: Beginner
+keywords:
+  - Flare
+tags:
+  - Flare
+readingTime: 15 min
+featured: true
+date: '2026-05-21'
+cover: ''
+---
+## 1. Introduction
+
+Flare system merupakan sistem pengaman proses yang dirancang untuk menerima, mengumpulkan, dan membakar gas buang hidrokarbon, gas beracun, atau campuran gas yang tidak dapat dimanfaatkan kembali dari berbagai sumber di fasilitas produksi, pengolahan, dan pemurnian minyak dan gas. Gas yang dilepaskan ke flare system berasal dari peralatan proses yang mengalami kondisi abnormal, operasi start‑up dan shutdown, pembersihan (purging), dekomisioning, atau pembuangan kontinyu dengan volume kecil seperti gas dari sistem pemulihan uap. Tanpa flare system, pelepasan gas bertekanan langsung ke atmosfer akan menimbulkan risiko kebakaran, ledakan, toksisitas, dan pencemaran lingkungan yang tidak terkendali.
+
+Fungsi utama flare system dalam process plant mencakup: (1) menyediakan jalur pembuangan yang aman untuk gas lebih dan kondisi darurat dengan pembakaran terkendali di ujung flare tip, (2) memisahkan cairan yang mungkin terbawa dalam aliran gas untuk mencegah "burning rain" atau ledakan di dalam stack, (3) menjaga tekanan balik (back pressure) di header tetap dalam batas yang diizinkan oleh sumber‑sumber pelepasan, (4) memastikan efisiensi pembakaran yang tinggi dengan sistem pilot dan penyalaan ulang otomatis, serta (5) meminimalkan dampak radiasi termal, kebisingan, dan asap terhadap personel dan lingkungan sekitar. Peran flare system sangat krusial dalam memenuhi regulasi keselamatan dan lingkungan, sekaligus menjaga integritas operasi penuh (full operation integrity) kilang, LNG plant, dan anjungan lepas pantai.
+
+---
+
+## 2. Fundamental Principle
+
+Prinsip fundamental flare system didasarkan pada konsep pengumpulan gas dari berbagai titik pelepasan melalui jaringan pipa header, pemisahan fasa cair yang mungkin terbentuk akibat penurunan temperatur atau kondensasi, dan pembakaran gas di ujung flare tip dengan nyala api terbuka. Tiga fenomena fisik kunci yang mendasari operasi flare system adalah:
+
+a) **Aliran kompresibel (compressible flow)** – Gas yang dilepaskan mengalir dari tekanan sumber ke flare tip pada tekanan mendekati atmosfer. Aliran gas melalui pipa flare header dan stack mengalami percepatan karena perbedaan tekanan; pada kapasitas tinggi, kecepatan gas di tip dapat mendekati kecepatan sonik (Mach number \~0,5 untuk flare elevated konvensional, atau lebih rendah untuk ground flare). Tekanan balik sistem harus dijaga di bawah batas maksimum yang diizinkan oleh masing‑masing peralatan yang terhubung, khususnya Pressure Safety Valve (PSV) yang kinerjanya bergantung pada back pressure rendah.
+
+b) **Pemisahan densitas (gravity separation)** – Sebelum mencapai flare tip, gas dilewatkan melalui knock‑out drum (KOD) yang memanfaatkan perbedaan densitas antara gas, cairan, dan partikel padat. Penurunan kecepatan aliran di dalam KOD memungkinkan tetesan cairan (droplet) dengan diameter lebih besar dari batas tertentu (biasanya &gt;300–600 µm) mengendap secara gravitasi. Pemisahan cairan wajib dilakukan untuk menghindari terbawanya cairan ke flare tip, yang dapat menghasilkan pembakaran tidak sempurna, hujan api (burning rain), atau bahkan kegagalan struktural flare stack akibat beban termal tambahan.
+
+c) **Pembakaran difusi (diffusion flame)** – Di flare tip, gas buangan bercampur dengan udara ambien secara turbulen di sekitar nyala pilot. Oksigen dari udara berdifusi ke dalam aliran gas, dan pembakaran terjadi pada zona reaksi yang tipis. Stabilitas nyala dijaga oleh pilot burner yang menyala terus‑menerus. Efisiensi pembakaran sangat dipengaruhi oleh kecepatan aliran gas di tip, komposisi gas (terutama rasio hidrogen terhadap karbon), kecepatan angin, dan desain flare tip. Pembakaran sempurna gas hidrokarbon menghasilkan CO₂ dan H₂O; pembakaran tidak sempurna menghasilkan CO, jelaga, dan hidrokarbon tak‑terbakar.
+
+---
+
+## 3. Working Principle
+
+### 3.1 Alur Proses Umum
+
+Gas dari sumber pelepas (PSV, blowdown valve, vent dari separator, kompresor, kolom distilasi) mengalir melalui sub‑header menuju flare header utama. Jalur ini dirancang dengan kemiringan minimum menuju knock‑out drum untuk drainase kondensat. Di KOD, gas menjalani pemisahan dua fasa: gas meninggalkan bagian atas drum menuju water seal drum atau langsung ke flare stack, sedangkan cairan yang terkumpul dialirkan secara otomatis atau manual ke sistem pengolahan air berminyak (oily water treatment). Setelah pemisahan, gas memasuki flare stack. Pada elevated flare, stack menjulang vertikal; pada ground flare, gas dialirkan ke burner yang diletakkan di permukaan tanah dalam enclosure.
+
+Saat gas mencapai flare tip, gas keluar melalui orifis atau slot dengan kecepatan yang diatur oleh tekanan header dan luas bukaan tip. Di sekitar tip, satu atau beberapa pilot burner menyediakan sumber nyala kontinyu. Gas yang keluar langsung terbakar setelah kontak dengan nyala pilot. Untuk mencegah masuknya udara ke dalam stack yang dapat menimbulkan campuran eksplosif dan fenomena flashback, sistem purge gas—biasanya gas alam atau nitrogen—dialirkan secara kontinyu dengan laju alir rendah untuk mempertahankan tekanan positif di dalam stack. Selain itu, pada titik terendah stack atau di outlet KOD sering dipasang water seal drum atau molecular seal untuk mencegah propagasi api balik.
+
+### 3.2 Sequence Operasi Saat Pelepasan Besar (Major Flaring)
+
+1. **Awal pelepasan:** PSV membuka akibat kenaikan tekanan di bejana, atau operator membuka blowdown valve. Gas mengalir cepat ke header.
+2. **Pemisahan di KOD:** Lonjakan aliran meningkatkan kecepatan di KOD. Tetesan cairan besar terpisah, sedangkan partikel kecil mungkin lolos ke stack. Level cairan di KOD dipantau; pompa atau katup drain otomatis mengalirkan cairan ke storage.
+3. **Pengaliran ke stack:** Gas memasuki stack. Purge gas yang semula mengalir rendah akan tertindih oleh aliran gas buang. Pressure transmitter di header memonitor back pressure.
+4. **Pembakaran di tip:** Aliran gas keluar tip. Pilot terus menyala. Jika diperlukan smokeless operation, sistem injeksi steam atau udara diaktifkan untuk menambahkan oksigen dan memecah molekul hidrokarbon berat, sehingga mengurangi pembentukan jelaga.
+5. **Penghentian pelepasan:** PSV menutup kembali. Aliran gas berhenti. Purge gas kembali dominan menjaga tekanan positif dan mencegah udara masuk. Sistem pilot tetap menyala. Flare kembali ke kondisi standby.
+
+Pada pelepasan sangat besar, api flare dapat membesar secara signifikan, menghasilkan radiasi termal tinggi. Zona pembatasan (exclusion zone) di sekitar flare harus dipastikan aman berdasarkan perhitungan radiasi sesuai API RP 521.
+
+---
+
+## 4. Main Components / Main Parts
+
+Sistem flare terdiri dari beberapa sub‑sistem dan komponen utama yang saling terhubung. Uraian komponen beserta fungsi disajikan sebagai berikut:
+
+| Komponen | Fungsi | Material / Desain Umum |
+| --- | --- | --- |
+| **Flare Header & Sub‑Header** | Mengumpulkan dan menyalurkan gas dari sumber pelepas ke KOD. Dirancang dengan kemiringan menuju KOD. | Baja karbon (CS) dengan proteksi korosi; untuk gas korosif digunakan SS atau clad. Ukuran diameter dihitung berdasarkan kapasitas maksimum dan batas back pressure. |
+| **Knock‑Out Drum (KOD)** | Memisahkan cairan dan padatan dari aliran gas menggunakan penurunan kecepatan dan gravitasi. Dilengkapi demister pad atau vane pack untuk efisiensi tinggi. | Baja karbon dengan internal coating; SS untuk fluida korosif. Ukuran berdasarkan diameter droplet cut-off dan waktu tinggal (residence time). |
+| **Liquid Seal Drum / Water Seal** | Menyediakan penghalang cairan (water seal) untuk mencegah propagasi api balik ke hulu. Gas harus menggelembung melewati air, sehingga tekanan hulu sedikit meningkat. | Baja karbon; air sebagai seal liquid. Harus dilengkapi pemanas atau glycol injection untuk mencegah pembekuan. |
+| **Molecular Seal (MOLS)** | Perangkat statis di bagian bawah flare stack yang menciptakan barrier gas berdensitas rendah untuk mencegah masuknya udara ke stack dan meminimalkan kebutuhan purge gas. | Stainless steel atau baja karbon; terdiri dari ruang dan baffle yang mengarahkan aliran. |
+| **Flare Stack** | Struktur vertikal yang mengangkat flare tip ke ketinggian aman agar radiasi termal dan dispersi produk pembakaran tidak membahayakan area sekitar. | Pipa baja karbon, didukung struktur guy wire atau self‑supporting. Ketinggian dihitung berdasarkan API RP 521. |
+| **Flare Tip** | Tempat pembakaran gas. Desain orifis atau slot mempengaruhi stabilitas nyala, smokeless capability, dan noise. | Stainless steel tahan temperatur tinggi (310 SS, Incoloy) karena paparan api kontinyu. |
+| **Pilot Burner & Ignition System** | Menyediakan nyala kontinyu untuk menyalakan gas buangan. Dilengkapi spark ignition atau flame front generator (FFG) untuk penyalaan awal dan ulang. | Material tahan panas; thermocouple atau UV/IR scanner mendeteksi keberadaan nyala pilot. |
+| **Purge Gas System** | Mengalirkan gas inert (N₂) atau gas bahan bakar secara kontinyu ke stack untuk mempertahankan tekanan positif dan mencegah udara masuk. | Regulator tekanan, rotameter, orifice pembatas aliran. |
+| **Smokeless Injection System (Steam/Air)** | Menginjeksikan steam atau udara bertekanan ke dalam aliran gas di flare tip untuk meningkatkan turbulensi dan suplai oksigen, sehingga pembakaran lebih sempurna dan bebas asap. | Nozzle steam/udara di sekitar tip; kontrol otomatis berdasarkan output sensor asap atau laju alir gas. |
+| **Flare Gas Recovery System (opsional)** | Mengompresi gas yang seharusnya dibakar untuk dimanfaatkan kembali sebagai fuel gas atau bahan baku. | Kompresor, cooler, separator, control valve. |
+
+Desain umum menekankan keandalan pasif (passive reliability) di mana komponen statis seperti seal dan stack memiliki masa pakai panjang, sedangkan komponen yang terpapar api (tip, pilot) dirancang untuk penggantian berkala.
+
+---
+
+## 5. Types / Classification
+
+Flare system diklasifikasikan berdasarkan konfigurasi dan metode pembakaran menjadi tiga tipe utama, dengan varian turunan.
+
+### 5.1 Elevated Flare
+
+- **Prinsip kerja:** Gas dialirkan melalui stack vertikal tinggi dan dibakar di ujung flare tip di udara terbuka. Nyala api terletak jauh dari permukaan tanah.
+- **Kelebihan:** Dispersi radiasi termal dan produk pembakaran berlangsung efektif karena ketinggian, cocok untuk kapasitas besar, sederhana secara mekanis.
+- **Keterbatasan:** Membutuhkan lahan yang cukup besar untuk zona aman radiasi, nyala api terlihat dari jauh (visual impact), biaya struktural tinggi untuk stack yang sangat tinggi (&gt;100 m). Pada kondisi angin kencang, nyala dapat condong (flame tilt) sehingga meningkatkan radiasi di tanah.
+- **Aplikasi umum:** Kilang besar, LNG plant, kompleks petrokimia dengan kapasitas flare maksimum ratusan ton/jam.
+
+### 5.2 Ground Flare (Open Ground Flare)
+
+- **Prinsip kerja:** Burner diletakkan di permukaan tanah dalam area yang dilindungi oleh pagar radiasi atau tanggul. Gas dibakar pada ketinggian rendah, biasanya dengan beberapa burner array.
+- **Kelebihan:** Tidak ada struktur tinggi yang mencolok, radiasi termal ke lingkungan sekitar lebih mudah dikontrol karena api dekat tanah, biaya konstruksi lebih rendah untuk kapasitas menengah.
+- **Keterbatasan:** Zona aman radiasi di sekitar burner harus dijaga, potensi akumulasi gas tak‑terbakar di dekat tanah (safety concern), memerlukan sistem drainase area yang baik, asap dan noise lebih terasa pada level tanah.
+- **Aplikasi umum:** Fasilitas dengan ruang terbatas untuk zona jatuh radiasi elevated flare, anjungan lepas pantai (flare boom kadang disebut sebagai ground flare arah horizontal), dan plant yang memprioritaskan estetika.
+
+### 5.3 Enclosed Ground Flare
+
+- **Prinsip kerja:** Burner dan nyala api seluruhnya tertutup dalam ruang bakar silindris (enclosure) berinsulasi. Udara pembakaran masuk melalui bukaan terkontrol, dan gas hasil pembakaran keluar melalui stack pendek.
+- **Kelebihan:** Tidak ada nyala api yang terlihat, radiasi termal dan kebisingan sangat rendah, emisi asap dapat dikontrol dengan sangat baik, tidak terpengaruh angin.
+- **Keterbatasan:** Kapasitas terbatas per unit enclosure, biaya investasi tinggi, kompleksitas sistem kontrol udara, memerlukan perawatan insulasi dan blower udara (jika forced draft).
+- **Aplikasi umum:** Daerah padat penduduk sekitar kilang, fasilitas yang sangat membatasi dampak visual dan bising, terminal LNG.
+
+### 5.4 Offshore Flare (Flare Boom / Tilted Flare)
+
+- **Prinsip kerja:** Flare boom menjorok keluar dari sisi anjungan dengan sudut tertentu (miring) untuk menjauhkan nyala dan radiasi dari platform. Gas dibakar di ujung boom.
+- **Kelebihan:** Memaksimalkan jarak aman pada ruang terbatas platform, mengurangi beban struktural vertikal.
+- **Keterbatasan:** Orientasi dipengaruhi arah angin dominan; radiasi ke laut dan ke platform harus dikalkulasi ketat; akses perawatan lebih sulit.
+- **Aplikasi umum:** Hampir semua anjungan produksi lepas pantai.
+
+---
+
+## 6. Operating Parameter
+
+Parameter operasi kunci yang menentukan kinerja dan keselamatan flare system meliputi:
+
+### 6.1 Kapasitas Aliran (Flare Load)
+
+Dinyatakan dalam kg/h atau MMSCFD. Kapasitas flare ditentukan oleh beban maksimum yang dapat terjadi pada skenario darurat (emergency depressurization, kegagalan utilitas, kebakaran). Standar API 521 menetapkan beberapa skenario desain yang harus dipertimbangkan. Turndown ratio—perbandingan antara laju alir minimum dan maksimum—penting untuk menjamin stabilitas nyala; flare tip konvensional mungkin memiliki turndown 10:1, sementara dengan bantuan purge gas bisa lebih rendah.
+
+### 6.2 Tekanan Balik (Back Pressure)
+
+Tekanan di flare header pada titik tie‑in PSV atau BDV. Back pressure terdiri dari tekanan statik akibat ketinggian, kerugian gesek di pipa, dan tekanan yang diperlukan untuk melewati water seal atau molecular seal. Back pressure harus dijaga di bawah nilai maksimum yang diizinkan oleh PSV (biasanya 10% dari set pressure untuk PSV konvensional). Perhitungan hidrolik aliran kompresibel dilakukan untuk memvalidasi back pressure.
+
+### 6.3 Kecepatan Gas di Flare Tip (Exit Velocity)
+
+Kecepatan aliran gas saat keluar dari nozzle tip. Parameter ini dinyatakan dalam Mach number. Untuk elevated flare tanpa smokeless assist, kecepatan desain tipikal adalah Mach 0,2–0,5. Kecepatan lebih tinggi menghasilkan pencampuran udara lebih baik dan mengurangi asap, tetapi meningkatkan risiko lift‑off (nyala terlepas dari tip) dan kebisingan. Flare tip smokeless dapat dirancang hingga Mach 0,8 atau lebih dengan bantuan steam/udara.
+
+### 6.4 Radiasi Termal
+
+Intensitas radiasi termal di permukaan tanah atau di titik tertentu (misal, platform, menara) dihitung berdasarkan laju pelepasan gas, tinggi stack, kecepatan angin, dan kelembaban. Batas radiasi yang diizinkan bervariasi: untuk area tidak berawak dan terbatas, 15,8 kW/m²; untuk area kerja darurat (personel dengan pakaian pelindung) sekitar 4,7–6,3 kW/m²; untuk area terbuka yang sering dilalui, ≤1,58 kW/m² (API RP 521). Ketinggian stack dan jarak horizontal ditentukan agar radiasi di bawah ambang.
+
+### 6.5 Efisiensi Pembakaran (Destruction Efficiency)
+
+Persentase massa hidrokarbon yang terkonversi menjadi CO₂ dan H₂O. Nilai yang disyaratkan umumnya ≥98% untuk flare operasi normal, dan ≥96% untuk kondisi darurat. Efisiensi bergantung pada komposisi gas, kecepatan tip, bantuan steam/udara, dan kondisi angin. Gas dengan kandungan hidrogen tinggi lebih mudah terbakar sempurna; gas berat (propane, butane) cenderung menghasilkan jelaga jika tanpa smokeless assist.
+
+### 6.6 Komposisi Gas dan Berat Molekul
+
+Komposisi gas buang mempengaruhi densitas, nilai kalor, dan kecenderungan membentuk asap. Berat molekul mempengaruhi kecepatan sonic dan pressure drop di header. Kehadiran gas inert (N₂, CO₂) menurunkan nilai kalor dan dapat menyebabkan ketidakstabilan nyala.
+
+### 6.7 Ketinggian dan Durasi Pelepasan
+
+Untuk flare system yang melayani emergency depressurization, durasi pelepasan gas mungkin singkat (15–30 menit) namun laju sangat tinggi. Parameter ini menentukan kebutuhan kapasitas KOD (cairan yang terbawa saat blowdown) dan ketahanan termal struktur stack.
+
+---
+
+## 7. Installation / Operating Practice
+
+### 7.1 Konfigurasi Header dan Kemiringan
+
+- Flare header harus memiliki kemiringan kontinyu minimal 1:500 menuju KOD untuk memastikan drainase kondensat secara gravitasi. Tidak boleh ada kantong rendah (low pocket) yang dapat menahan cairan dan menimbulkan water hammer atau pembekuan.
+- Sub‑header dari unit proses disambungkan ke header utama dari atas (top connection) untuk mencegah cairan mengalir balik ke unit.
+- Ekspansi termal pada header panjang harus diakomodasi dengan expansion loop atau bellows.
+
+### 7.2 Posisi KOD dan Liquid Seal
+
+- KOD ditempatkan sedekat mungkin dengan flare stack untuk meminimalkan panjang pipa yang membawa gas berpotensi mengandung tetesan kecil.
+- Outlet gas KOD menuju stack harus bebas dari siku tajam dan aksesoris yang dapat menimbulkan hambatan aliran.
+- Water seal drum biasanya dipasang setelah KOD. Untuk daerah dingin, seal water dipanaskan menggunakan steam coil atau ditambahkan ethylene glycol untuk menurunkan titik beku.
+
+### 7.3 Flare Stack dan Tip
+
+- Stack harus memiliki akses tangga atau sistem untuk inspeksi dan penggantian tip.
+- Flare tip dipasang dengan sistem quick release atau flange untuk memudahkan penggantian saat overhaul.
+- Instrumen seperti thermocouple pilot dan kamera CCTV diarahkan ke tip untuk pemantauan jarak jauh.
+
+### 7.4 Purge Gas dan Start‑up
+
+- Laju alir purge gas diatur untuk menjaga kecepatan gas di stack sedikit di atas kecepatan difusi balik udara (purge velocity). Nilai tipikal untuk natural gas purge adalah 0,012 m/s di stack diameter kecil, atau sesuai API 537. Molecular seal dapat mengurangi kebutuhan purge hingga 90%.
+- Sebelum start‑up, purge gas dinyalakan untuk mendorong udara keluar dari sistem. Setelah itu pilot dinyalakan menggunakan spark ignition. Urutan: pastikan purge &gt; konfirmasi pilot menyala &gt; buka valve gas.
+
+### 7.5 Smokeless Operation
+
+- Steam atau udara smokeless assist diaktifkan hanya ketika beban gas mencapai ambang di mana asap mulai terbentuk. Kontrol otomatis menerima sinyal dari flow meter gas atau optical smoke detector untuk mengatur katup steam.
+- Steam yang terlalu banyak menyebabkan over‑aeration, noise tinggi, dan dapat menurunkan efisiensi pembakaran karena pendinginan berlebihan.
+
+### 7.6 Shutdown dan Pembersihan
+
+- Pada shutdown unit yang terhubung ke flare, semua PSV dan vent harus diisolasi. Purge tetap dipertahankan untuk mencegah udara masuk.
+- Sebelum pekerjaan pemeliharaan pada flare header atau KOD, sistem harus diisolasi, dikosongkan (drain), dan di‑purge dengan nitrogen hingga konsentrasi hidrokarbon di bawah LEL. Prosedur lock‑out/tag‑out dan gas testing wajib dilakukan.
+
+---
+
+## 8. Common Failure Modes
+
+Tabel berikut menyajikan mode kegagalan utama pada flare system, penyebab, mekanisme, dampak, dan langkah penanganan.
+
+| Failure Mode | Penyebab | Mekanisme Kegagalan | Dampak Operasi | Troubleshooting & Mitigasi |
+| --- | --- | --- | --- | --- |
+| **Pilot Flame Out** | Kecepatan angin tinggi, purge berlebihan, tip pilot tersumbat, kegagalan pasokan fuel gas, kerusakan thermocouple. | Nyala pilot padam. Gas yang dilepaskan tidak tersulut, sehingga dibuang ke atmosfer tanpa pembakaran. | Lepasan hidrokarbon mentah ke udara, risiko cloud mudah terbakar, pelanggaran lingkungan berat. | Monitoring nyala pilot kontinyu dengan thermocouple, UV/IR scanner. Auto‑relight system harus berfungsi. Periksa pasokan fuel gas, lindungi pilot dari angin dengan windshield. |
+| **Flashback / Flame Propagation** | Air seal gagal (level rendah), molecular seal rusak, purge gas berhenti, udara masuk stack membentuk campuran eksplosif. | Api merambat balik dari tip ke dalam stack menuju KOD atau header. | Potensi ledakan internal, kerusakan parah KOD, header, dan water seal. | Pastikan level air di seal drum selalu terjaga. Monitor purge gas flow dengan alarm rendah. Pasang flame arrestor pada jalur berpotensi. Verifikasi keutuhan molecular seal. |
+| **Liquid Carryover** | KOD tidak mampu menangani slug cairan, level control gagal, aliran masuk KOD berkecepatan sangat tinggi akibat blowdown. | Tetesan cairan terbawa keluar dari KOD ke stack dan flare tip. | "Burning rain" – tetesan cairan terbakar jatuh di sekitar area flare, risiko kebakaran di tanah. Kerusakan flare tip akibat beban termal. | Perbesar KOD atau tambah demister. Pastikan level control bekerja dan pompa drain otomatis berfungsi. Pasang level alarm tinggi. Skenario blowdown harus diperhitungkan dalam desain KOD. |
+| **Smoking / Incomplete Combustion** | Gas berat (high C/H ratio), beban flare tinggi tanpa smokeless assist, angin rendah, tip aus. | Pembentukan jelaga (soot) dan asap hitam akibat pembakaran tidak sempurna. | Pelanggaran lingkungan (visible emission), keluhan masyarakat, potensi denda. | Aktifkan steam/air assist. Optimalkan laju injeksi berdasarkan flow gas. Periksa dan bersihkan tip. Gunakan flare gas recovery untuk mengurangi beban. |
+| **Flare Tip Burnback / Overheating** | Kecepatan gas di tip sangat rendah (&lt; Mach 0,05) sehingga api mendekat ke metal tip; purge tidak cukup. | Metal tip menyerap panas berlebihan dari nyala yang melekat, melebihi temperatur desain. | Deformasi, oksidasi, dan kegagalan struktural flare tip. | Tingkatkan purge gas ke nilai minimum yang aman. Gunakan tip dengan cooling slots. Material tip upgrade ke Incoloy 800H/825. |
+| **Blockage / Plugging** | Hidrat terbentuk di header akibat ekspansi gas, korosi dan scale, polimerisasi, atau material asing. | Sebagian atau seluruh area aliran tersumbat, meningkatkan back pressure. | PSV gagal membuka penuh karena back pressure tinggi, overpressure bejana tak terlepas. | Injeksi methanol pada titik rawan hidrat. Pembersihan pipa secara periodik (pigging), material kompatibel. Monitor differential pressure di filter/KOD. |
+| **Water Seal Blowout** | Beda tekanan antara upstream dan downstream seal drum melebihi tinggi kolom air saat pelepasan besar. | Air dalam seal drum terdorong keluar dan seal gas hilang. | Potensi flashback. Air yang terbuang dapat mengalir ke area proses. | Desain water seal dengan tinggi kolom yang sesuai tekanan maksimum hulu. Gunakan seal pot dengan make‑up water otomatis. |
+| **Korosi & Erosi Internal** | Gas buang mengandung H₂S, CO₂, air, dan partikel padatan. | Material header, KOD, atau stack menipis akibat korosi asam atau erosi partikel. | Kebocoran gas ke atmosfer, penurunan kekuatan struktur. | Pemilihan material tahan korosi (SS, clad). Inspeksi ketebalan dinding rutin (UT). Injeksi corrosion inhibitor. |
+
+---
+
+## 9. Inspection, Maintenance & Calibration
+
+### 9.1 Inspeksi Rutin dan Pemantauan Kondisi
+
+- **Flare Pilot Monitoring:** Sensor thermocouple tipe K atau UV/IR scanner dipasang pada setiap pilot untuk mendeteksi nyala. Sinyal dikirim ke control room. Kehilangan sinyal harus memicu alarm dan auto‑relight sequence.
+- **Visual Inspection:** Pada siang hari, operator melakukan pemeriksaan visual flare tip untuk mendeteksi asap berlebihan, perubahan bentuk tip, atau nyala tidak normal. CCTV dengan zoom dapat membantu.
+- **Tekanan dan Aliran Purge:** Flow meter dan pressure transmitter di line purge dipantau secara kontinyu. Penurunan aliran dapat mengindikasikan sumbatan atau kegagalan regulator.
+- **Termografi Inframerah:** Untuk ground flare enclosure, kamera termal dapat mendeteksi hot spot pada insulasi atau kebocoran gas.
+- **Inspeksi Ketebalan Dinding:** Secara periodik, UT thickness measurement dilakukan pada header, KOD, dan stack bagian bawah untuk mendeteksi penipisan akibat korosi/erosi.
+
+### 9.2 Preventive Maintenance
+
+- **Penggantian Flare Tip:** Tip memiliki umur terbatas, terutama yang terpapar api terus‑menerus. Inspeksi visual saat shutdown menentukan kebutuhan penggantian. Material tip aus akibat oksidasi dan siklus termal.
+- **Pembersihan KOD:** Setiap beberapa tahun, KOD dibuka, dibersihkan dari sludge, dan demister pad diganti jika tersumbat.
+- **Pilot dan Ignitor:** Bersihkan orifice pilot dari kotoran. Uji fungsi spark ignition. Ganti elektroda yang aus.
+- **Water Seal Drum:** Kuras dan bersihkan seal drum dari akumulasi padatan dan minyak. Pastikan make‑up water line tidak tersumbat.
+
+### 9.3 Kalibrasi dan Uji Fungsional
+
+- **Kalibrasi Flow Meter dan Pressure Transmitter:** Sesuai jadwal kalibrasi reguler untuk memastikan akurasi data pemantauan.
+- **Uji Fungsional Auto‑Relight:** Simulasikan kegagalan pilot dengan memutuskan fuel gas sementara, verifikasi bahwa sistem mendeteksi flame‑out dan melakukan penyalaan ulang dalam waktu desain (biasanya &lt; 30 detik).
+- **Uji Fungsi Valve Isolation & Blowdown:** Latihan operasi katup darurat untuk memastikan operabilitas saat dibutuhkan.
+
+### 9.4 Predictive Maintenance & Reliability
+
+- Trend data pressure drop di KOD dan demister mengindikasikan fouling. Pemantauan laju korosi dengan coupon atau probe membantu menentukan interval penggantian material.
+- Analisis root cause setiap kegagalan pilot flame‑out atau carryover digunakan untuk perbaikan desain atau prosedur operasi.
+
+---
+
+## 10. Selection / Design Consideration
+
+Pemilihan dan perancangan flare system mengacu pada standar API 521 (Pressure‑relieving and Depressuring Systems) dan API 537 (Flare Details for General Refinery and Petrochemical Service). Faktor‑faktor kunci yang harus dipertimbangkan:
+
+### 10.1 Skenario Desain dan Beban Maksimum
+
+Identifikasi seluruh skenario overpressure dan blowdown yang akan mengalirkan gas ke flare, termasuk:
+
+- Kegagalan cooling water ke kondensor (reflux failure)
+- Kebakaran eksternal (pool fire) pada bejana
+- Kegagalan total power (power failure)
+- Kegagalan instrument air
+- Depressurisasi darurat (emergency shutdown)\
+  Beban desain flare adalah jumlah aliran dari beberapa skenario yang mungkin terjadi bersamaan (governing case). Safety factor biasanya tidak diaplikasikan pada beban yang sudah merupakan skenario konservatif.
+
+### 10.2 Back Pressure Maksimum
+
+Hitung back pressure total dari ujung flare tip hingga outlet PSV yang memiliki set pressure terendah. Back pressure harus memenuhi:
+
+- Untuk PSV konvensional: back pressure &lt;10% set pressure.
+- Untuk PSV balanced bellows: back pressure dapat mencapai 30–50% set pressure.\
+  Pertimbangan ini menentukan ukuran header dan stack yang memadai.
+
+### 10.3 Kapasitas dan Dimensi KOD
+
+Pisahkan cairan dengan droplet cut‑off size biasanya 300–600 µm. Hitung diameter KOD berdasarkan kecepatan gas kritis (Souders‑Brown equation) dengan faktor K yang disesuaikan. Panjang KOD menjamin residence time cukup untuk pemisahan. Demister pad meningkatkan efisiensi.
+
+### 10.4 Ketinggian Stack dan Radiasi
+
+Ketinggian stack ditentukan agar intensitas radiasi pada titik‑titik kritis (boundary plant, menara, platform) di bawah batas yang diizinkan. Perhitungan menggunakan model radiasi (Brzustowski & Sommer, atau software seperti Flaresim). Faktor angin, kelembaban, dan orientasi tip (vertikal, miring) dimasukkan.
+
+### 10.5 Smokeless Requirement
+
+Jika regulasi lingkungan melarang asap hitam, desain smokeless flare harus diadopsi. Pemilihan tipe assist (steam, air, high pressure gas) bergantung ketersediaan utilitas. Untuk steam assist, laju steam dapat mencapai 0,3–0,5 kg steam per kg gas. Perhitungan steam untuk berbagai komposisi gas perlu dilakukan.
+
+### 10.6 Material Selection
+
+- **Header & KOD:** Baja karbon dengan corrosion allowance sesuai laju korosi. Untuk gas asam (H₂S tinggi), gunakan SS 316L atau clad.
+- **Flare Tip:** High‑temperature alloy (310 SS, Inconel 625, Incoloy 800H) karena suhu operasi dapat melebihi 1000°C.
+- **Seal & Gasket:** Grafoil atau spiral wound SS untuk layanan temperatur tinggi.
+- **Refractory/Insulation:** Untuk enclosed ground flare, refractory harus tahan siklus termal.
+
+### 10.7 Lingkungan dan Regulasi
+
+Pertimbangkan batas kebisingan (noise limit), emisi NOx, CO, UHC. Tinggi stack dan desain tip mempengaruhi dispersi. Untuk lepas pantai, harus sesuai MARPOL. Untuk darat, sesuai peraturan pemerintah setempat.
+
+---
+
+## 11. Practical Field Application in Oil & Gas
+
+Flare system memiliki aplikasi luas di semua segmen industri migas, baik hulu maupun hilir. Berikut contoh aplikasi spesifik:
+
+### 11.1 Fasilitas Produksi Lepas Pantai (Offshore Platform)
+
+Setiap anjungan produksi dilengkapi flare boom. Gas dari high‑pressure separator, low‑pressure separator, dan test separator dialirkan ke flare header. Pada anjungan, skenario depressurisasi darurat akibat deteksi gas atau kebakaran akan mengalirkan seluruh inventory gas ke flare dalam waktu singkat. KOD harus mampu menangani slug cairan dari separator yang mungkin terjadi saat blowdown. Flare boom diposisikan menjauhi arah angin dominan. Pilot harus tahan angin laut kencang, dan material harus tahan korosi atmosferik garam (marine grade).
+
+### 11.2 Kilang Minyak (Refinery)
+
+Hampir setiap unit proses di kilang—CDU, VDU, FCC, hydrocracker, hydrotreater—memiliki hubungan ke flare system yang biasanya terpusat ke satu atau beberapa elevated flare. Flare gas recovery unit (FGRU) sering dipasang untuk mengambil gas dari header dan mengompresnya sebagai fuel gas, sehingga flare hanya standby untuk kondisi darurat. Pengelolaan gas asam (sour gas) harus memperhitungkan H₂S tinggi, sehingga material header dan KOD menggunakan SS atau clad, dan sistem water seal dilengkapi dengan pH control untuk mencegah korosi asam.
+
+### 11.3 Pabrik LNG
+
+LNG plant memiliki flare kapasitas besar untuk menangani pelepasan dari train liquefaction. Saat train trip, gas dari cold box dan MR compressor dilepas ke flare. Karakteristik gas yang sangat dingin dapat menyebabkan suhu rendah di header; oleh karena itu, header mungkin memerlukan material baja karbon yang telah diuji impak (Charpy V‑notch) untuk low‑temperature service. Ground flare atau enclosed ground flare dipilih pada beberapa plant untuk mengurangi dampak visual dan radiasi.
+
+### 11.4 Stasiun Kompresor Gas
+
+Pada stasiun kompresor di jalur pipa transmisi, flare system melayani blowdown dari discharge kompresor saat shutdown darurat. Gas yang dilepas umumnya bersih (pipeline quality), namun beban pelepasan tinggi dalam waktu singkat. KOD kecil mungkin cukup. Flare tip seringkali tanpa smokeless assist karena gas ringan (methane) tidak mudah membentuk asap.
+
+### 11.5 Terminal Penyimpanan dan Loading
+
+Terminal dengan tangki atap mengambang (floating roof) mengeluarkan uap yang biasanya dipulihkan melalui vapour recovery unit (VRU). Jika VRU gagal, gas dialihkan ke flare. Di sini, flare berukuran relatif kecil, seringkali enclosed ground flare untuk meminimalkan dampak di area dekat pemukiman.
+
+### 11.6 Wellhead dan Fasilitas Uji Produksi (Well Testing)
+
+Pada well testing, minyak dan gas yang dihasilkan dipisahkan. Gas yang tidak ditampung dapat dibakar di flare pit (open pit) atau flare stack portabel. Di wellhead permanent, flare kecil terus menyala untuk membakar gas buangan kontinyu dari casing atau dari sistem dewatering.
+
+### 11.7 Sistem Utilitas dan Insinerasi
+
+Beberapa pabrik menggunakan thermal oxidizer atau enclosed flare untuk menghancurkan gas buang dengan kandungan toksik (H₂S, BTEX, VOC) sebelum dilepas ke atmosfer. Sistem ini beroperasi pada temperatur tinggi dan residence time terkontrol untuk memastikan destruction efficiency &gt;99,99%.
+
+---
+
+## 12. Key Takeaways
+
+ 1. Flare system adalah sistem keselamatan integral yang melindungi peralatan proses dari overpressure dengan mengumpulkan dan membakar gas buang pada ujung flare tip secara terkendali.
+ 2. Prinsip operasi meliputi aliran kompresibel menuju tekanan rendah, pemisahan cairan di knock‑out drum, dan pembakaran difusi yang stabil menggunakan nyala pilot kontinyu.
+ 3. Komponen utama terdiri dari flare header, knock‑out drum, liquid seal / molecular seal, flare stack, flare tip, pilot burner, dan sistem purge gas; masing‑masing memiliki peran kritis dalam keselamatan dan keandalan.
+ 4. Klasifikasi tipe flare—elevated, ground, enclosed, dan offshore boom—dipilih berdasarkan kebutuhan kapasitas, dampak radiasi, kebisingan, keterbatasan lahan, dan persyaratan lingkungan.
+ 5. Parameter operasi kunci seperti kapasitas, back pressure, exit Mach number, radiasi termal, efisiensi pembakaran, dan komposisi gas menentukan desain dan kinerja sistem.
+ 6. Praktik instalasi yang benar, termasuk kemiringan header, pengelolaan kondensat, posisi seal, dan pemantauan pilot, sangat krusial untuk operasi bebas masalah.
+ 7. Mode kegagalan umum meliputi pilot flame‑out, flashback, liquid carryover, smoking, overheating, plugging, dan water seal blowout; masing‑masing memerlukan strategi deteksi dan mitigasi yang spesifik.
+ 8. Program inspeksi dan pemeliharaan yang ketat pada komponen kritis seperti tip, pilot, seal, dan KOD memastikan keandalan flare system selama masa pakainya.
+ 9. Desain flare system memerlukan analisis skenario beban darurat, perhitungan back pressure, dimensi KOD, ketinggian stack terhadap radiasi, dan pemilihan material yang sesuai dengan kondisi gas buangan dan lingkungan.
+10. Aplikasi nyata di lepas pantai, kilang, LNG, kompresor, dan terminal menunjukkan bahwa flare system harus disesuaikan dengan karakteristik operasi spesifik; pengetahuan fundamental ini mendasari rekayasa yang aman, efisien, dan patuh regulasi.
