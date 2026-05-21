@@ -9,6 +9,8 @@ import { getArticleBySlug, getAllArticles } from "@/lib/content";
 import { mdxComponents } from "@/components/MdxComponents";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { 
   Calendar, 
   Clock, 
@@ -161,7 +163,8 @@ export default async function ArticlePage({ params }: PageProps) {
                   components={mdxComponents} 
                   options={{
                     mdxOptions: {
-                      remarkPlugins: [remarkGfm],
+                      remarkPlugins: [remarkGfm, remarkMath],
+                      rehypePlugins: [rehypeKatex],
                     }
                   }}
                 />

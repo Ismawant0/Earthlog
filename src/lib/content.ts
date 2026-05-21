@@ -179,11 +179,7 @@ export async function getAllArticles(): Promise<Article[]> {
             ? rawTags
             : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
 
-            let safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
-            safeContent = safeContent.replace(/\\text\{([^}]+)\}/g, '\\text&#123;$1&#125;');
-            safeContent = safeContent.replace(/_\{([^}]+)\}/g, '_&#123;$1&#125;');
-            safeContent = safeContent.replace(/\^\{([^}]+)\}/g, '^&#123;$1&#125;');
-            safeContent = safeContent.replace(/\\_\{([^}]+)\}/g, '\\_&#123;$1&#125;');
+            const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
 
             articles.push({
               slug,
@@ -228,11 +224,7 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
         ? rawTags
         : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
 
-        let safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
-        safeContent = safeContent.replace(/\\text\{([^}]+)\}/g, '\\text&#123;$1&#125;');
-        safeContent = safeContent.replace(/_\{([^}]+)\}/g, '_&#123;$1&#125;');
-        safeContent = safeContent.replace(/\^\{([^}]+)\}/g, '^&#123;$1&#125;');
-        safeContent = safeContent.replace(/\\_\{([^}]+)\}/g, '\\_&#123;$1&#125;');
+        const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
 
         return {
           slug,
