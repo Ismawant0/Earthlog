@@ -1,0 +1,290 @@
+---
+title: Ammonia Hazard
+slug: ammonia-hazard
+category:
+  - fundamentals
+  - production-operations
+  - process-chemicals
+  - safety
+description: >-
+  Artikel technical handbook fundamental ini membahas bahaya amonia (NH₃) secara
+  komprehensif dalam konteks industri minyak dan gas, mencakup sifat dasar,
+  mekanisme toksisitas dan dispersi, komponen sistem penanganan, klasifikasi
+  hazard, parameter operasi kritis, mode kegagalan, inspeksi dan pemeliharaan,
+  pertimbangan desain, serta aplikasi lapangan nyata. Disusun dengan pendekatan
+  mekanistik dan praktis, artikel menjadi referensi wajib bagi engineer,
+  operator, dan personel pemeliharaan yang berhadapan dengan sistem berservis
+  amonia.
+difficulty: Beginner
+keywords:
+  - Ammonia
+takeaways: []
+tags:
+  - Ammonia
+readingTime: 15 min
+featured: false
+date: '2026-05-22'
+cover: >-
+  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaGKVL4cJmFBPq_HocWUqycw-NRtfIuPHE8g&s
+---
+## Quick Technical Summary
+
+### Function
+
+Ammonia (NH₃) berfungsi sebagai refrigerant, bahan baku kimia, agen penurunan emisi NOx, serta reagen pengolahan air di instalasi minyak dan gas. Kehadirannya dalam proses memerlukan kendali bahaya toksik, korosif, dan mudah terbakar.
+
+### Working Principle
+
+Bahaya amonia muncul dari sifat fisikokimianya: tekanan uap tinggi pada suhu ambien, afinitas kuat terhadap air sehingga bersifat korosif pada jaringan lembap, rentang mudah terbakar sempit (15–28% volume), serta densitas uap lebih ringan dari udara yang memengaruhi dispersi.
+
+### Main Operational Concern
+
+Pelepasan amonia cair atau uap dari sistem bertekanan adalah kekhawatiran utama karena toksisitas akut (IDLH 300 ppm), potensi luka bakar kimia, dan risiko kebakaran/ledakan pada konsentrasi tinggi. Korosi material akibat stress corrosion cracking pada baja karbon di lingkungan amonia juga menjadi perhatian.
+
+### Typical Application
+
+Sistem refrigerasi amonia pada pabrik pengolahan gas (NGL/LPG chilling), injeksi Selective Catalytic Reduction (SCR) di turbin gas, terminal penyimpanan amonia anhidrat, dan instalasi pengolahan air terproduksi.
+
+---
+
+## 30-Second Answer
+
+Amonia anhidrat merupakan senyawa kimia dengan bahaya utama berupa toksisitas inhalasi, korosivitas terhadap jaringan tubuh dan material, serta potensi kebakaran pada konsentrasi tinggi. Prinsip bahayanya didasarkan pada kemampuannya membentuk amonium hidroksida saat kontak dengan kelembapan, yang merusak mukosa saluran pernapasan dan kulit. Pengendalian risiko dilakukan melalui desain sistem tekanan, deteksi gas kontinu, ventilasi, serta prosedur tanggap darurat yang ketat.
+
+---
+
+## 1. Introduction
+
+Amonia (NH₃) merupakan senyawa kimia anorganik berbentuk gas pada suhu dan tekanan atmosferik, tidak berwarna, dengan bau tajam yang khas. Dalam industri minyak dan gas, amonia dimanfaatkan sebagai media pendingin (refrigerant) pada sistem refrigerasi kompresi uap, agen reduksi nitrogen oksida (NOx) pada unit Selective Catalytic Reduction, serta bahan baku produksi urea dan amonium nitrat di fasilitas hilir. Keberadaannya dalam jumlah besar, terutama dalam bentuk cairan bertekanan atau refrigerated, menjadikan pemahaman fundamental terhadap karakteristik bahaya amonia sebagai elemen kritis dalam keselamatan proses (process safety).
+
+Tujuan utama pengelolaan bahaya amonia adalah mencegah pelepasan tidak terkendali (loss of containment) yang dapat menimbulkan paparan toksik akut, cedera korosif, atau eskalasi menjadi peristiwa kebakaran dan ledakan. Peran pengendalian bahaya ini dalam operasi migas meliputi desain instalasi penyimpanan yang aman, sistem deteksi dini, prosedur operasi bongkar muat (unloading), serta mitigasi konsekuensi melalui peralatan keselamatan.
+
+Konsekuensi insiden amonia dapat bersifat lintas disiplin: keracunan personel, kerusakan aset akibat korosi tegangan (stress corrosion cracking), pencemaran lingkungan karena toksisitas akuatik, hingga gangguan keberlanjutan produksi akibat shutdown darurat. Oleh karena itu, pengetahuan fundamental mengenai mekanisme bahaya dan teknik pengendaliannya menjadi kompetensi wajib bagi engineer, operator, dan personel pemeliharaan yang bertanggung jawab terhadap sistem berservis amonia.
+
+---
+
+## 2. Fundamental Principles
+
+### 2.1 Sifat Fisikokimia sebagai Dasar Bahaya
+
+Mekanisme bahaya amonia bertumpu pada beberapa sifat fisikokimia yang saling terkait. Pada suhu ambien dan tekanan atmosferik, amonia berada dalam fase gas dengan densitas uap sekitar 0,6 relatif terhadap udara, sehingga cenderung naik dan menyebar. Namun, jika dilepaskan dalam bentuk cairan bertekanan, pendinginan ekspansi (auto-refrigeration) menghasilkan aerosol berat yang dapat bergerak di permukaan tanah sebelum akhirnya menghangat dan terangkat.
+
+Kelarutan amonia dalam air sangat tinggi (529 g/L pada 20 °C), yang menyebabkan reaksi eksotermis pembentukan amonium hidroksida. Reaksi ini bersifat korosif terhadap jaringan biologis yang lembap, seperti mata, saluran pernapasan, dan kulit. Afinitas terhadap air juga menyebabkan korosi pada material logam jika terdapat uap air dan oksigen, serta dapat memicu stress corrosion cracking pada baja karbon yang tidak mengalami post-weld heat treatment.
+
+Tekanan uap amonia pada suhu 20 °C mencapai sekitar 857 kPa (8,6 bar), sehingga disimpan dalam bejana tekan (pressurized storage) atau dalam tangki atmosferik berpendingin pada suhu sekitar -33 °C. Setiap peningkatan suhu lingkungan akan menaikkan tekanan secara signifikan, yang jika tidak dikendalikan melalui pressure relief valve dapat menyebabkan kegagalan mekanis.
+
+Rentang mudah terbakar amonia di udara adalah 15% hingga 28% volume, yang relatif sempit dan memerlukan konsentrasi tinggi. Suhu penyalaan otomatis (auto-ignition temperature) berkisar 651 °C. Di luar ruangan, energi penyalaan yang dibutuhkan cukup tinggi, tetapi pada ruang terbatas (confined space) akumulasi dapat menghasilkan atmosfer eksplosif jika terdapat sumber api.
+
+### 2.2 Mekanisme Toksisitas dan Korosivitas
+
+Toksisitas amonia terjadi terutama melalui rute inhalasi. Gas amonia yang terhirup akan larut dalam lapisan mukosa saluran pernapasan bagian atas, membentuk amonium hidroksida. Reaksi ini merusak jaringan epitel melalui mekanisme alkali burn, mengakibatkan edema, bronkokonstriksi, dan pada paparan tinggi menyebabkan laryngeal spasm atau edema paru yang dapat berakibat fatal.
+
+Nilai ambang batas paparan (Threshold Limit Value – Time Weighted Average, TLV-TWA) ditetapkan sebesar 25 ppm, dengan short-term exposure limit (STEL) 35 ppm. Kondisi yang langsung berbahaya bagi kehidupan dan kesehatan (Immediately Dangerous to Life and Health, IDLH) tercapai pada 300 ppm. Paparan di atas 5.000 ppm dapat menyebabkan kematian dalam hitungan menit. Efek korosif juga terjadi pada kulit dan mata, yang jika terkena amonia cair atau uap konsentrasi tinggi akan mengalami luka bakar kimiawi akibat dehidrasi sel dan nekrosis.
+
+### 2.3 Reaktivitas dan Inkompatibilitas Material
+
+Amonia bereaksi dengan beberapa material secara berbahaya. Kontak dengan halogen (klorin, bromin), asam kuat, dan oksida nitrogen dapat menghasilkan reaksi eksplosif atau gas beracun tambahan. Terhadap logam, amonia membentuk kompleks larut dengan tembaga, seng, dan paduannya, sehingga material tersebut harus dihindari dalam sistem perpipaan dan instrumentasi.
+
+Baja karbon yang tidak mengalami stress-relief rentan terhadap ammonia stress corrosion cracking (ASCC) di lingkungan amonia anhidrat dengan keberadaan oksigen. Oleh karena itu, desain sistem amonia mensyaratkan pemilihan material yang kompatibel dan pengendalian kandungan oksigen.
+
+---
+
+## 3. Working Principle of Hazard Generation
+
+### 3.1 Skenario Pelepasan dan Dispersi
+
+Bahaya amonia dalam operasi terjadi saat terdapat kehilangan kekandasan primer (primary containment), baik melalui kebocoran flange, kegagalan seal pompa, keretakan tangki, maupun human error saat operasi transfer. Amonia cair yang terlepas akan mengalami flashing akibat penurunan tekanan mendadak, membentuk campuran uap dan aerosol.
+
+Suhu amonia cair yang dilepaskan turun drastis karena penguapan adiabatik, mencapai sekitar -33 °C pada tekanan atmosferik. Hal ini menimbulkan bahaya tambahan berupa luka bakar dingin (cryogenic burns) jika terjadi kontak dengan personel. Aerosol dingin ini memiliki densitas lebih besar dari udara, sehingga pada fase awal dapat bergerak menyusuri permukaan dan terakumulasi di area rendah. Seiring pemanasan, uap amonia akan menjadi lebih ringan dari udara dan menyebar ke atas.
+
+Konsentrasi di area terdekat sumber pelepasan dapat mencapai ribuan ppm dalam waktu singkat, melampaui nilai IDLH. Tanpa ventilasi yang memadai, zona toksik dapat meluas hingga puluhan meter dari titik pelepasan, bergantung pada laju kebocoran, kecepatan angin, dan topografi.
+
+### 3.2 Mekanisme Pembakaran dan Ledakan
+
+Walaupun amonia tidak mudah terbakar pada kondisi biasa, pada pelepasan besar di ruang terbatas (misalnya di dalam bangunan kompresor), uap amonia dapat mencapai konsentrasi dalam rentang mudah terbakar (15–28%). Jika terdapat sumber energi seperti motor listrik non-explosion-proof, percikan las, atau listrik statis, campuran tersebut dapat terpicu menghasilkan deflagrasi.
+
+Kecepatan pembakaran amonia relatif lambat, tetapi peningkatan tekanan akibat pembakaran di area tertutup dapat merusak struktur dan menyebabkan eskalasi insiden. Skenario BLEVE (Boiling Liquid Expanding Vapor Explosion) juga mungkin terjadi jika bejana bertekanan yang berisi amonia cair terpapar api secara langsung, mengakibatkan kenaikan tekanan internal yang cepat hingga kegagalan katastropik.
+
+---
+
+## 4. Main Components of Ammonia Handling and Safety System
+
+Komponen utama pada sistem penanganan amonia dapat dikelompokkan menjadi peralatan proses dan peralatan keselamatan.
+
+### 4.1 Storage Vessel
+
+Bejana penyimpan amonia anhidrat dirancang sesuai dengan tekanan desain yang mempertimbangkan tekanan uap pada suhu maksimum ambien. Tangki bertekanan (bullets) biasanya beroperasi pada tekanan 10–15 barg dengan kapasitas mencapai 150 ton. Tangki atmosferik berpendingin (refrigerated storage) menjaga amonia pada suhu sekitar -33 °C dengan insulasi dan sistem refrigerasi, dan memiliki kapasitas lebih besar. Setiap bejana dilengkapi pressure relief valve (PRV) yang menyalurkan uap ke sistem flare atau ke atmosfer yang aman.
+
+### 4.2 Unloading System
+
+Fasilitas bongkar muat amonia dari truk atau railcar terdiri dari kompresor atau pompa, lengan pemuatan (loading arm), sambungan fleksibel, dan sistem pemulihan uap (vapor return line). Kompresor digunakan untuk menaikkan tekanan pada fasa uap truk, mendorong cairan ke tangki penyimpanan, atau sebaliknya. Sistem ini dilengkapi emergency shutdown (ESD) valve yang dapat diaktifkan secara manual maupun otomatis.
+
+### 4.3 Gas Detection System
+
+Detektor gas amonia tipe electrochemical atau infrared dipasang di sekitar titik potensi kebocoran, seperti area bongkar muat, flange pompa, dan dekat tangki penyimpanan. Alarm bertingkat diatur pada konsentrasi rendah (misal 25 ppm, setara TWA) untuk peringatan dini, dan konsentrasi tinggi (misal 300 ppm, IDLH) untuk eskalasi respons darurat dan automatic isolation.
+
+### 4.4 Ventilation and Water Spray System
+
+Ruang kompresor atau bangunan tertutup dilengkapi ventilasi paksa dengan laju pertukaran udara yang memadai untuk mencegah akumulasi. Water spray atau water curtain system digunakan untuk menyerap uap amonia yang terlepas ke atmosfer, karena kelarutannya yang tinggi. Namun, air tidak boleh disemprotkan langsung ke amonia cair karena reaksi eksotermis yang dihasilkan dapat meningkatkan laju penguapan.
+
+### 4.5 Personal Protective Equipment (PPE) and Safety Station
+
+Di area penanganan amonia wajib tersedia emergency shower dan eyewash station yang mudah diakses. Personel yang bertugas di area berisiko tinggi mengenakan pakaian tahan kimia, sarung tangan, pelindung wajah, dan membawa detektor personal. Untuk kondisi darurat, alat bantu pernapasan mandiri (SCBA) harus tersedia di lokasi strategis.
+
+---
+
+## 5. Types / Classification
+
+### 5.1 Klasifikasi Berdasarkan Jenis Bahaya
+
+- **Bahaya Toksik (Toxic Hazard):** Dampak akut dan kronis inhalasi serta kontak kulit. Parameter kunci: konsentrasi, durasi paparan, dan rute paparan.
+- **Bahaya Korosif (Corrosive Hazard):** Sifat merusak jaringan hidup dan material logam akibat pembentukan amonium hidroksida atau ammonia stress corrosion cracking. Klasifikasi berdasarkan pH larutan dan afinitas air.
+- **Bahaya Kebakaran dan Ledakan (Flammability/Explosion Hazard):** Rentang mudah terbakar 15–28%, suhu nyala otomatis tinggi, tetapi ledakan mungkin terjadi di ruang terbatas. Klasifikasi sebagai gas beracun dan mudah terbakar menurut NFPA 704 atau GHS.
+- **Bahaya Reaktivitas (Reactivity Hazard):** Reaksi eksotermis dengan air, halogen, dan asam. Potensi menghasilkan gas beracun lain atau peningkatan tekanan mendadak.
+
+### 5.2 Klasifikasi Berdasarkan Metode Penyimpanan
+
+- **Penyimpanan Bertekanan (Pressurized Storage):** Tangki horizontal (bullets) atau spherical pada tekanan sekitar 10–18 barg, suhu ambien. Risiko utama: overpressure akibat kenaikan suhu, kebocoran katup relief, dan keretakan akibat ASCC.
+- **Penyimpanan Atmosferik Berpendingin (Refrigerated Atmospheric Storage):** Tangki silinder tegak dengan insulasi, beroperasi pada tekanan dekat atmosferik dan suhu -33 °C. Risiko utama: kegagalan insulasi, embrittlement material, dan akumulasi udara yang dapat memicu korosi atau masuk ke sistem.
+- **Sistem Terdistribusi (Piping dan Package Unit):** Meliputi sistem refrigerasi paket, unit SCR, dan pipa transfer. Bahaya spesifik bergantung pada tekanan operasi, getaran, dan kemungkinan mechanical fatigue.
+
+---
+
+## 6. Operating Parameter
+
+Beberapa parameter operasi menentukan tingkat keparahan (severity) dan probabilitas terjadinya pelepasan amonia:
+
+- **Konsentrasi Amonia di Udara (ppm):** Parameter primer dalam penilaian toksisitas dan alarm setting. Level rendah (25–35 ppm) memicu alarm awal; level IDLH (300 ppm) memicu isolasi otomatis dan evakuasi.
+- **Tekanan Sistem (barg):** Menentukan laju pelepasan dan energi yang tersedia. Tekanan penyimpanan yang lebih tinggi meningkatkan risiko besarnya kebocoran dan flashing. Pengendalian tekanan melalui PRV dan kontrol suhu kritis.
+- **Suhu Operasi (°C):** Mempengaruhi tekanan uap dan kemungkinan auto-refrigeration. Pada suhu ambien tinggi, tekanan internal naik signifikan; pada suhu rendah, material baja berisiko kehilangan ketangguhan (brittle fracture).
+- **Kelembapan Relatif:** Memengaruhi dispersi, karena amonia larut dalam tetesan air di udara, yang dapat mengurangi jarak jangkau awan beracun. Namun, kelembapan tinggi juga meningkatkan korosivitas pada peralatan terbuka.
+- **Laju Pelepasan (Release Rate, kg/s):** Fungsi dari ukuran lubang dan tekanan diferensial. Menentukan profil konsentrasi downwind dan durasi paparan. Digunakan dalam pemodelan konsekuensi (consequence modeling).
+- **Ventilation Rate (air changes per hour):** Pada ruang tertutup, laju ventilasi menentukan kemampuan pengenceran. Kegagalan ventilasi menyebabkan akumulasi mencapai konsentrasi berbahaya.
+- **Inventory (ton):** Total massa amonia dalam sistem menjadi input untuk skenario terburuk (worst-case scenario) dalam analisis risiko.
+
+---
+
+## Mid-Article Engineering Recap
+
+### In Summary So Far
+
+- Amonia anhidrat dalam industri migas digunakan sebagai refrigerant, agen reduksi NOx, dan bahan baku, dengan hazard utama berupa toksisitas inhalasi, korosivitas, dan potensi kebakaran terbatas.
+- Mekanisme bahaya berasal dari kelarutan tinggi dalam air, tekanan uap signifikan, dan reaktivitas terhadap material.
+- Pelepasan amonia cair menghasilkan aerosol dingin yang dapat bergerak di permukaan, diikuti dispersi uap ringan; konsentrasi toksik dapat melampaui IDLH dengan cepat.
+- Sistem penanganan amonia terdiri dari bejana tekan atau refrigerated storage, detektor gas, ventilasi, water spray, dan PPE stasiun.
+- Klasifikasi hazard mencakup toksik, korosif, mudah terbakar, dan reaktif; metode penyimpanan bertekanan dan berpendingin memiliki profil risiko berbeda.
+- Parameter operasi kritis meliputi konsentrasi, tekanan, suhu, laju pelepasan, ventilasi, dan inventori.
+
+---
+
+## 7. Installation / Operating Practice
+
+Praktik pemasangan dan operasi sistem amonia harus memenuhi standar ANSI/CGA G-2.1, API 620/650 untuk tangki, serta regulasi nasional terkait keselamatan B3.
+
+**Lokasi dan Tata Letak:** Bejana penyimpan diletakkan di area terbuka, jauh dari jalan akses padat, sumber api, dan bangunan berpenghuni. Zona eksklusi (exclusion zone) ditetapkan berdasarkan pemodelan dispersi gas. Tangki dilengkapi bund wall untuk menampung tumpahan cairan dan mengarahkan ke penampungan netralisasi.
+
+**Unloading dan Transfer:** Operasi bongkar muat hanya dilakukan oleh personel terlatih dengan prosedur tertulis. Sambungan hose diperiksa secara visual sebelum dan sesudah digunakan, dan sistem interlock diterapkan untuk mencegah drive-away tanpa pelepasan sambungan. Vapor return line digunakan untuk mengurangi emisi dan tekanan balik.
+
+**Penggunaan Water Spray:** Water curtain diaktifkan saat deteksi pelepasan uap untuk menyerap amonia, bukan untuk menyiram langsung ke sumber cairan karena dapat meningkatkan penguapan dan percikan. Deluge system otomatis dipasang di sekitar tangki untuk pendinginan saat paparan api, bukan untuk netralisasi.
+
+**Ventilasi:** Ruang kompresor atau pompa amonia dirancang dengan ventilasi mekanis kontinu minimum 12 air changes per hour, dengan interlock yang mematikan peralatan jika ventilasi gagal. Sensor aliran udara dipantau oleh sistem kontrol.
+
+**Isolasi Darurat:** Valve ESD yang digerakkan aktuator dipasang pada nozzle tangki dan jalur pipa utama, dengan tombol darurat (push button) di lokasi strategis dan di ruang kontrol. Penutupan otomatis dipicu oleh deteksi gas tinggi atau hilangnya daya pneumatik.
+
+**Manajemen Confined Space:** Setiap kegiatan masuk ke bejana, pipa, atau pit yang berpotensi mengandung sisa amonia memerlukan ijin kerja khusus, pemurnian (purging) dengan nitrogen, dan pemantauan kontinu atmosfer internal.
+
+---
+
+## 8. Common Failure Modes
+
+Tabel berikut merangkum mode kegagalan yang sering terjadi pada sistem amonia, penyebab mekanistik, dampak operasi, dan mitigasi.
+
+| Mode Kegagalan | Penyebab Utama | Dampak Operasi & Mitigasi |
+| --- | --- | --- |
+| Kebocoran flange / gasket | Torsi baut tidak merata, degradasi gasket oleh uap amonia dan suhu, getaran berlebih | Pelepasan uap toksik setempat, risiko paparan akut; lakukan pengencangan ulang sesuai prosedur, ganti gasket berbahan kompatibel (PTFE atau graphite spiral wound), inspeksi termal. |
+| Kegagalan mechanical seal pompa | Operasi kering, ketidaksejajaran poros, korosi pada seat | Kebocoran cairan amonia bertekanan dengan potensi aerosol; pasang sensor kebocoran, gunakan double mechanical seal dengan buffer fluid inert, program predictive maintenance vibrasi. |
+| Overpressure pada bejana | Kenaikan suhu lingkungan tanpa fungsi PRV memadai, block-in kondisi cair, api eksternal | Katup relief terbuka, atau jika gagal dapat menyebabkan rupture disk pecah; pastikan PRV diinspeksi dan disetel dengan benar, sediakan pendingin darurat atau water spray untuk pendinginan tangki saat kebakaran eksternal. |
+| Stress corrosion cracking (ASCC) pada baja karbon | Keberadaan oksigen dan amonia, tegangan tarik residual dari pengelasan tanpa PWHT, suhu di atas -5 °C | Keretakan propagasi lambat hingga kebocoran mendadak; lakukan post-weld heat treatment, pilih baja dengan kekuatan rendah hingga menengah, kontrol oksigen &lt; 10 ppm, inspeksi berkala dengan wet fluorescent magnetic particle. |
+| Kegagalan hose unloading | Aus mekanis, paparan cuaca, tekanan berlebih, kesalahan penyambungan | Pelepasan mendadak selama transfer, berpotensi mengenai personel; gunakan hose berperingkat tekanan sesuai, jadwal penggantian rutin, sistem interlock anti-driveaway, uji hidrostatik periodik. |
+| Atmospheric contamination (udara masuk) pada refrigerated tank | Kegagalan sistem purge, kebocoran masuk, dan fluktuasi tekanan negatif | Akumulasi oksigen meningkatkan laju korosi dan potensi campuran eksplosif; pertahankan tekanan positif nitrogen blanket, monitor kandungan oksigen secara kontinu, sistem vakum breaker yang andal. |
+| Plugging pada safety valve | Polimerisasi amonia dengan kontaminan minyak, pembentukan garam amonium | Fungsi proteksi tekanan hilang, bejana tidak terlindung; lakukan inspeksi dan pembersihan berkala, pastikan fluida proses bersih, sediakan dual PRV dengan changeover valve. |
+
+---
+
+## 9. Inspection, Maintenance & Calibration
+
+Program inspeksi dan pemeliharaan sistem amonia disusun berbasis risiko (risk-based inspection) dengan mempertimbangkan mekanisme degradasi dominan.
+
+**Inspeksi Visual dan Ketebalan:** Bejana tekan dan pipa amonia diperiksa secara visual setiap bulan untuk tanda-tanda korosi, kebocoran, atau keretakan. Pengukuran ketebalan dinding dengan ultrasonik dilakukan sesuai interval yang ditentukan oleh corrosion rate. Titik pemantauan (corrosion monitoring location) dipilih di area rawan akumulasi air atau endapan.
+
+**Non-Destructive Testing (NDT):** Pemeriksaan weld seam dengan teknik radiografi atau phased array ultrasonic testing (PAUT) untuk mendeteksi retak tersembunyi, terutama di tangki yang telah beroperasi lebih dari 10 tahun. Wet fluorescent magnetic particle inspection (WFMPI) diterapkan untuk mendeteksi ASCC di permukaan dalam bejana.
+
+**Kalibrasi Detektor Gas:** Detektor amonia tipe electrochemical atau infrared dikalibrasi setiap 3 hingga 6 bulan menggunakan gas standar konsentrasi tertentu, biasanya 50 ppm atau 100 ppm. Functional test dengan gas bump test dilakukan lebih sering, sesuai rekomendasi pabrikan. Catatan kalibrasi dipelihara untuk analisis drift.
+
+**Pressure Relief Valve (PRV):** PRV pada bejana amonia diinspeksi dan diuji set pressure-nya setiap satu hingga dua tahun, bergantung pada hasil inspeksi sebelumnya. PRV yang terpasang pada tangki penyimpanan biasanya menggunakan dual valve dengan changeover valve agar sistem tetap terlindungi selama pengujian.
+
+**Peralatan Keselamatan:** Emergency shower dan eyewash diuji fungsi dan alirannya setiap minggu. SCBA dan tabung pernapasan darurat diperiksa tekanan dan kondisi segelnya setiap bulan. Selang pemadam dan sistem deluge diuji fungsional setiap semester.
+
+**Purging dan Drying:** Sebelum pembukaan sistem untuk pemeliharaan, peralatan dipurging dengan nitrogen kering hingga konsentrasi amonia residual di bawah ambang aman. Prosedur lock-out/tag-out diterapkan secara ketat.
+
+---
+
+## 10. Selection / Design Consideration
+
+Pemilihan desain sistem amonia bertujuan meminimalkan risiko pelepasan dan memastikan integritas mekanis jangka panjang.
+
+**Material Kompatibel:** Baja karbon dengan spesifikasi ASTM A516 Gr.60/70 atau setara lazim digunakan, dengan syarat dilakukan post-weld heat treatment (PWHT) untuk mereduksi tegangan residual. Baja tahan karat austenitik tipe 304/304L dan 316/316L memiliki ketahanan sangat baik. Penggunaan tembaga, kuningan, seng, dan aluminium dilarang keras karena rentan terhadap korosi amonia. Gasket dan seal menggunakan PTFE, grafit, atau elastomer perfluoro.
+
+**Design Pressure dan Temperature:** Bejana tekan dirancang sesuai ASME Section VIII Division 1, dengan tekanan desain tidak kurang dari tekanan uap amonia pada suhu desain maksimum (lazim 250 psig/17 barg atau lebih). Untuk tangki refrigerated, desain mengikuti API 620 dengan mempertimbangkan tekanan operasi sedikit di atas atmosferik dan suhu minimum -45 °C.
+
+**Safety Valve Sizing:** Katup pengaman dihitung berdasarkan skenario terburuk, seperti api eksternal (fire case) atau block outlet. Kapasitas relief harus memadai untuk mencegah tekanan melampaui 121% tekanan desain. Untuk tangki refrigerated, dipertimbangkan juga kasus kehilangan refrigerasi.
+
+**Layout dan Spacing:** Jarak aman tangki amonia bertekanan dari properti sekitar dan equipment lain mengacu pada standar seperti NFPA 30 atau peraturan lokal, dengan pertimbangan radiasi termal jika terjadi kebakaran dan dispersi toksik. Drainase dan containment dike dirancang untuk menampung 110% volume tangki terbesar.
+
+**Sistem Deteksi dan Shutdown:** Gas detector tipe point dan/atau open-path dipilih berdasarkan analisis dispersi. Arsitektur safety instrumented system (SIS) untuk fungsi isolasi darurat dapat mencapai SIL 2 atau SIL 3, bergantung pada analisis lapisan perlindungan (LOPA).
+
+---
+
+## 11. Practical Field Application in Oil & Gas
+
+### 11.1 Ammonia Refrigeration System di Gas Processing
+
+Pada pabrik pemrosesan gas alam, unit pendingin amonia digunakan untuk mendinginkan aliran gas setelah sweetening dan dehidrasi, guna mengkondensasikan fraksi hidrokarbon berat (Natural Gas Liquids, NGL). Sistem ini terdiri dari kompresor amonia, kondensor, dan evaporator dengan akumulator. Potensi bahaya meliputi kebocoran di sisi suction kompresor dan akumulator yang beroperasi pada tekanan rendah, sehingga dapat menyebabkan masuknya udara. Sistem dilengkapi pressure control, oil separator, dan gas detection. Praktik operasi mencakup pemantauan terus-menerus terhadap level cairan dan pressure differential untuk menghindari liquid carryover ke kompresor.
+
+### 11.2 Selective Catalytic Reduction (SCR) pada Turbin Gas
+
+Untuk memenuhi regulasi emisi NOx, turbin gas di fasilitas produksi atau kompresor stasiun dilengkapi dengan SCR yang menginjeksikan amonia encer (19–29% aqueous ammonia) atau urea yang dihidrolisis menjadi amonia. Tangki penyimpan aqueous ammonia bertekanan rendah dipasang dekat unit SCR dengan pengaman sekunder. Bahaya utama berkaitan dengan pelepasan larutan amonia yang dapat menghasilkan uap amonia jika terjadi tumpahan dan pemanasan. Sistem injeksi dilengkapi dengan valve kontrol presisi dan interlock yang menutup aliran saat turbin trip.
+
+### 11.3 Terminal Penyimpanan dan Distribusi Amonia
+
+Terminal penerima amonia anhidrat dari kapal atau truk untuk distribusi ke industri pupuk atau kimia merupakan instalasi khas dengan tangki refrigerated berkapasitas besar. Operasi bongkar muat kapal menggunakan marine loading arm dan vapor return system yang dilengkapi quick release coupling dan ESD. Di terminal ini, perhatian khusus diberikan pada prosedur isolasi darurat dan latihan tanggap darurat berkala melibatkan otoritas setempat.
+
+### 11.4 Pengolahan Air Terproduksi
+
+Amonia dalam konsentrasi rendah kadang digunakan sebagai nutrisi nitrogen untuk proses pengolahan air terproduksi secara biologis, atau sebagai agen pengendali pH. Sistem injeksi kimia dengan tangki kecil dan pompa metering harus tetap mempertimbangkan ventilasi area dan material compatibility, karena larutan amonia bersifat korosif.
+
+---
+
+## Field Quick Reference
+
+| Situasi Lapangan | Kemungkinan Penyebab | Pengecekan Segera |
+| --- | --- | --- |
+| Bau amonia menyengat di area unloading | Kebocoran pada sambungan hose atau coupling | Periksa sambungan secara visual, cek detektor lokal, hentikan transfer, isolasi valve darurat |
+| Alarm detektor amonia pada level rendah (25 ppm) | Kebocoran minor pada flange atau seal valve | Gunakan detektor portabel untuk identifikasi sumber, pastikan ventilasi berfungsi, laporkan ke operator panel |
+| Alarm tinggi (≥ 300 ppm) dan sirene berbunyi | Pelepasan signifikan dari joint, hose putus, atau overpressure event | Evakuasi segera, isolasi otomatis aktif, pastikan SCBA dikenakan, jangan dekati area tanpa perlindungan, cek arah angin |
+| Tekanan tangki bertekanan naik di atas normal | Suhu ambien ekstrem, pendingin tidak aktif, atau PRV macet | Verifikasi suhu aktual, cek status kompresor refrigerasi (jika ada), visual cek posisi PRV, pertimbangkan penyemprotan air untuk pendinginan eksternal |
+| Lapisan es terbentuk di luar pipa atau valve amonia cair | Kebocoran kecil yang menyebabkan auto-refrigeration | Gunakan gas detector dan cari titik bocor, jangan sentuh langsung karena suhu rendah, isolasi bagian tersebut |
+| Vibrasi berlebih pada pipa transfer | Water hammer, support longgar, atau aliran dua fase | Periksa support dan clamp, kurangi laju alir, cek apakah terjadi flashing di pipa, verifikasi desain sistem drain |
+| Indikasi level tangki tidak akurat atau tidak bergerak | Pembekuan atau plugging pada instrument, kerusakan transmitter | Lakukan drain dan purging pada tapping point, cek status pemanas instrument, kalibrasi transmitter |
+
+---
+
+## 12. Key Takeaways
+
+1. Bahaya amonia bersifat multidimensional: toksisitas akut melalui inhalasi, efek korosif pada jaringan dan material, serta potensi kebakaran/ledakan pada konsentrasi tinggi dalam ruang terbatas.
+2. Sifat fisikokimia (tekanan uap tinggi, afinitas air, densitas uap) menentukan perilaku dispersi, skenario pelepasan, dan mekanisme cedera.
+3. Pengendalian utama meliputi integritas containment (desain material, PWHT), sistem deteksi gas bertingkat, ventilasi, water spray sebagai absorpsi, dan peralatan perlindungan diri.
+4. Parameter operasi kritis yang harus dipantau mencakup konsentrasi amonia, tekanan sistem, suhu, laju pelepasan, dan inventori.
+5. Mode kegagalan dominan adalah kebocoran flange, keretakan ASCC, kegagalan seal, dan overpressure; semuanya memerlukan strategi inspeksi dan pemeliharaan berbasis risiko.
+6. Praktik instalasi mencakup layout aman, ESD valve, interlock bongkar muat, dan prosedur tanggap darurat yang terlatih.
+7. Aplikasi di lapangan meliputi sistem refrigerasi NGL, SCR pada turbin gas, terminal penyimpanan, dan pengolahan air, masing-masing dengan profil risiko spesifik yang harus dikelola.
