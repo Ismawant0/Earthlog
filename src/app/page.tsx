@@ -202,29 +202,29 @@ export default async function Home() {
                 <div className="lg:col-span-5 border border-border rounded-xl bg-card p-6 flex flex-col justify-between shadow-sm relative overflow-hidden">
                   <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#1E3A5F_1px,transparent_1px)] bg-[size:1rem_1rem] dark:bg-[radial-gradient(#60A5FA_1px,transparent_1px)]" />
                   
-                  <div className="relative z-10 flex justify-between items-center text-[10px] font-mono text-muted">
-                    <span>SCHEMATIC ID: SP-3F</span>
+                  <div className="relative z-10 flex justify-between items-center text-[10px] font-mono text-muted mb-4">
+                    <span>COVER: {featuredArticle.slug.toUpperCase()}</span>
                     <span className="flex items-center gap-1 text-accent font-bold">
                       <TrendingUp className="h-3 w-3" /> Populer
                     </span>
                   </div>
 
-                  <div className="relative z-10 py-12 flex justify-center">
-                    <svg viewBox="0 0 200 120" className="w-full max-w-[280px] h-auto text-primary dark:text-primary-light">
-                      <rect x="25" y="25" width="150" height="70" rx="10" fill="none" stroke="currentColor" strokeWidth="2" />
-                      <line x1="5" y1="60" x2="25" y2="60" stroke="currentColor" strokeWidth="1.5" />
-                      {/* Fluid layers */}
-                      <rect x="27" y="65" width="146" height="28" fill="#1D4ED8" opacity="0.3" rx="2" />
-                      <rect x="27" y="48" width="146" height="17" fill="#713F12" opacity="0.4" />
-                      {/* Baffle */}
-                      <line x1="120" y1="50" x2="120" y2="92" stroke="currentColor" strokeWidth="2" />
-                      {/* Outlets */}
-                      <line x1="150" y1="95" x2="150" y2="115" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="75" y1="95" x2="75" y2="115" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
+                  <div className="relative z-10 w-full aspect-video flex justify-center items-center rounded-lg overflow-hidden bg-muted/30 border border-border">
+                    {featuredArticle.cover ? (
+                      <img 
+                        src={featuredArticle.cover} 
+                        alt={featuredArticle.title} 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center text-muted">
+                        <BookOpen className="h-10 w-10 opacity-30 mb-2" />
+                        <span className="text-xs">No Image Provided</span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="relative z-10 space-y-2.5">
+                  <div className="relative z-10 mt-4 space-y-2.5">
                     <span className="text-[10px] uppercase font-extrabold tracking-wider px-2 py-0.5 rounded bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light">
                       {featuredArticle.category}
                     </span>
@@ -251,15 +251,18 @@ export default async function Home() {
                       {featuredArticle.description}
                     </p>
 
-                    <div className="pt-2">
-                      <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-2">Pokok Pembahasan:</h4>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-semibold text-muted">
-                        <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-success shrink-0" /> Mekanisme Pemisahan 3 Fasa</li>
-                        <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-success shrink-0" /> Fungsi Coalescing Plates & Weir</li>
-                        <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-success shrink-0" /> Mengatasi Masalah Foaming & Emulsi</li>
-                        <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-success shrink-0" /> Safety Instrument & Alarm Tripping</li>
-                      </ul>
-                    </div>
+                    {featuredArticle.takeaways && featuredArticle.takeaways.length > 0 && (
+                      <div className="pt-2">
+                        <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-2">Pokok Pembahasan:</h4>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-semibold text-muted">
+                          {featuredArticle.takeaways.map((takeaway, idx) => (
+                            <li key={idx} className="flex items-center gap-2">
+                              <CheckCircle2 className="h-4 w-4 text-success shrink-0" /> {takeaway}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
                   <div className="pt-8 border-t border-border/80 flex items-center justify-between">

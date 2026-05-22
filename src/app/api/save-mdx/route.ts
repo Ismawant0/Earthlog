@@ -34,6 +34,7 @@ export async function POST(req: Request) {
       description: metadata.description || '',
       difficulty: metadata.difficulty || 'Beginner',
       keywords: metadata.keywords || [],
+      takeaways: metadata.takeaways || [],
       tags: metadata.tags || [],
       readingTime: metadata.readingTime || '5 min',
       featured: metadata.featured || false,

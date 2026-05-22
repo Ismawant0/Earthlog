@@ -16,6 +16,7 @@ export interface ArticleMetadata {
   featured: boolean;
   tags: string[];
   keywords?: string[];
+  takeaways?: string[];
   cover?: string;
 }
 
@@ -221,6 +222,12 @@ export async function getAllArticles(): Promise<Article[]> {
             ? rawKeywords
             : (typeof rawKeywords === "string" ? rawKeywords.split(/[;,]/).map((k: string) => k.trim()).filter(Boolean) : []);
 
+          // Ensure takeaways are parsed as an array
+          const rawTakeaways = data.takeaways || [];
+          const parsedTakeaways = Array.isArray(rawTakeaways)
+            ? rawTakeaways
+            : (typeof rawTakeaways === "string" ? rawTakeaways.split(/[;,]/).map((k: string) => k.trim()).filter(Boolean) : []);
+
           const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
 
           articles.push({
@@ -237,6 +244,7 @@ export async function getAllArticles(): Promise<Article[]> {
             featured: !!data.featured,
             tags: parsedTags,
             keywords: parsedKeywords,
+            takeaways: parsedTakeaways,
             cover: data.cover || "",
             content: safeContent
           });
@@ -296,6 +304,12 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
         ? rawKeywords
         : (typeof rawKeywords === "string" ? rawKeywords.split(/[;,]/).map((k: string) => k.trim()).filter(Boolean) : []);
 
+      // Ensure takeaways are parsed as an array
+      const rawTakeaways = data.takeaways || [];
+      const parsedTakeaways = Array.isArray(rawTakeaways)
+        ? rawTakeaways
+        : (typeof rawTakeaways === "string" ? rawTakeaways.split(/[;,]/).map((k: string) => k.trim()).filter(Boolean) : []);
+
       const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
 
       return {
@@ -312,6 +326,7 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
         featured: !!data.featured,
         tags: parsedTags,
         keywords: parsedKeywords,
+        takeaways: parsedTakeaways,
         cover: data.cover || "",
         content: safeContent
       };

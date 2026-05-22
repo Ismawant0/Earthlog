@@ -7,6 +7,7 @@ interface Metadata {
   description: string;
   difficulty: string;
   keywords: string[];
+  takeaways: string[];
   tags: string[];
   readingTime: string;
   featured: boolean;
@@ -48,6 +49,7 @@ export function MetadataForm({ initialData, onSave, onCancel }: MetadataFormProp
     description: initialData?.description || '',
     difficulty: initialData?.difficulty || 'Beginner',
     keywords: initialData?.keywords || [],
+    takeaways: initialData?.takeaways || [],
     tags: initialData?.tags || [],
     readingTime: initialData?.readingTime || '5 min',
     featured: initialData?.featured || false,
@@ -87,6 +89,12 @@ export function MetadataForm({ initialData, onSave, onCancel }: MetadataFormProp
     const rawValue = e.target.value;
     const values = rawValue.split(';').map(v => v.trim()).filter(Boolean);
     setFormData(prev => ({ ...prev, keywords: values }));
+  };
+
+  const handleTakeawaysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value;
+    const values = rawValue.split(';').map(v => v.trim()).filter(Boolean);
+    setFormData(prev => ({ ...prev, takeaways: values }));
   };
 
   const applyTag = () => {
@@ -263,6 +271,17 @@ export function MetadataForm({ initialData, onSave, onCancel }: MetadataFormProp
               placeholder="E.g., Pump Basic; Pump Fundamental; Centrifugal Pump"
             />
             <span className="text-[10px] text-gray-400 mt-1 block">Separate multiple keywords with a semicolon (;) to allow multi-word expressions.</span>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Pokok Pembahasan / Takeaways (Semicolon separated)</label>
+            <input 
+              value={formData.takeaways.join('; ')}
+              onChange={handleTakeawaysChange}
+              className="w-full border border-gray-200 rounded-lg px-3.5 py-2 focus:ring-2 focus:ring-black/5 focus:border-gray-400 outline-none text-gray-900 bg-white text-sm font-medium transition shadow-sm"
+              placeholder="E.g., Mekanisme Pemisahan 3 Fasa; Fungsi Coalescing Plates"
+            />
+            <span className="text-[10px] text-gray-400 mt-1 block">Separate multiple points with a semicolon (;). Will be shown on the home page if featured.</span>
           </div>
 
           <div>
