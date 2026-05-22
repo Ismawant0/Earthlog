@@ -1,0 +1,320 @@
+---
+title: 'SISTEM HULU MIGAS: ALIRAN PROSES DARI SUMUR KE TERMINAL'
+slug: sistem-hulu-migas-aliran-proses-dari-sumur-ke-terminal
+category:
+  - fundamentals
+  - process-systems
+  - production-operations
+description: >-
+  Artikel ini menyajikan pembahasan fundamental tentang sistem hulu migas
+  sebagai suatu kesatuan proses terintegrasi, dimulai dari karakteristik aliran
+  dari sumur hingga pengiriman produk ke terminal. Mencakup prinsip separasi,
+  aliran proses tahap demi tahap, peralatan utama, klasifikasi fasilitas,
+  parameter operasi kritis, praktik lapangan, mode kegagalan, strategi inspeksi
+  dan pemeliharaan, serta pertimbangan desain. Disusun sebagai referensi teknis
+  profesional untuk melatih engineer, operator, dan personel teknis dalam
+  memahami seluruh rantai produksi hulu secara komprehensif.
+difficulty: Beginner
+keywords:
+  - Fundamental
+tags:
+  - Fundamental
+  - Oil and Gas
+  - Basic Knowledge
+readingTime: 20 min
+featured: true
+date: '2026-05-22'
+cover: 'https://www.epcm.com/wp-content/uploads/2021/05/home-page-2-1.jpg'
+---
+## 1. Introduction
+
+Sistem hulu migas merupakan kesatuan fasilitas produksi dan pengolahan awal yang menerima fluida dari sumur-sumur minyak dan gas bumi, memisahkannya menjadi fasa gas, minyak, dan air, serta menyalurkan produk yang memenuhi spesifikasi ke titik pengukuran dan pengiriman (custody transfer point) atau terminal penyimpanan. Sistem ini menjembatani reservoir bawah permukaan dengan infrastruktur transportasi dan pengolahan lanjutan. Pada dasarnya, sistem hulu berfungsi mengubah aliran multifasa yang keluar dari wellhead menjadi produk bernilai jual—minyak mentah stabil, gas alam kering, dan kondensat—seraya mengelola air terproduksi sesuai regulasi lingkungan.
+
+Fungsi utama sistem ini dalam process plant adalah: (1) melakukan separasi fasa pertama (primary separation) untuk memisahkan gas bebas dari cairan, (2) menstabilkan minyak mentah melalui penguapan fraksi ringan agar aman selama transportasi dan penyimpanan, (3) mengolah gas alam untuk memenuhi spesifikasi kadar air dan hidrokarbon berat, (4) memproses air terproduksi agar layak dibuang atau diinjeksikan kembali, serta (5) mengukur dan mencatat volume produksi setiap fasa untuk keperluan alokasi, perpajakan, dan pengelolaan reservoir. Peran sistem hulu sangat krusial karena menentukan nilai komersial dan legal dari seluruh operasi produksi, sekaligus menjadi titik awal rantai pasok minyak dan gas.
+
+---
+
+## 2. Fundamental Principle
+
+Prinsip fundamental yang mendasari sistem hulu migas bersumber pada karakteristik aliran dari reservoir dan perilaku fluida multifasa di sepanjang fasilitas permukaan.
+
+a) **Aliran Multifasa dari Reservoir** – Fluida yang keluar dari sumur umumnya berupa campuran gas, minyak, air, dan terkadang padatan (pasir, scale). Pada tekanan reservoir tinggi, gas dapat terlarut dalam minyak. Saat fluida mengalir ke permukaan melalui tubing, tekanan berkurang secara bertahap. Penurunan tekanan ini menyebabkan gas terlarut membebaskan diri (liberation) dan membentuk aliran dua fasa atau tiga fasa. Perilaku aliran multifasa—stratified, slug, annular, atau dispersed bubble—bergantung pada kecepatan superfisial masing-masing fasa, diameter pipa, dan kemiringan. Pemahaman pola aliran diperlukan untuk mengantisipasi fluktuasi laju alir dan masuknya slug cairan ke separator yang dapat menyebabkan liquid carryover atau gangguan proses.
+
+b) **Prinsip Separasi Gravitasi** – Setelah mencapai fasilitas permukaan, komponen fluida dipisahkan berdasarkan perbedaan densitas. Gas, dengan densitas terendah, menempati bagian atas bejana; minyak berada di lapisan tengah; dan air, sebagai fasa terberat, mengendap di dasar. Waktu tinggal (residence time) yang cukup di dalam separator memungkinkan tetesan cairan (droplet) mengendap dari fasa gas (de-misting) dan tetesan air mengendap dari fasa minyak (de-watering). Desain separator memanfaatkan hukum Stokes dan korelasi empiris Souders‑Brown untuk menghitung kecepatan gas maksimum yang diizinkan sebelum terjadi re‑entrainment.
+
+c) **Prinsip Flash Vaporization** – Stabilitas minyak mentah dicapai melalui pengaturan tekanan dan temperatur dalam beberapa tahap separasi (stage separation). Penurunan tekanan secara bertahap dari tekanan tinggi (HP) ke medium (MP) lalu ke rendah (LP) memungkinkan fraksi ringan (metana, etana, sebagian propana) menguap secara terkendali. Proses flash ini menurunkan Reid Vapor Pressure (RVP) minyak mentah hingga memenuhi spesifikasi transportasi (umumnya &lt;12 psia untuk minyak mentah stabil), sekaligus memaksimalkan perolehan cairan bernilai.
+
+d) **Prinsip Dehidrasi Gas** – Gas alam yang meninggalkan separator masih mengandung uap air dalam jumlah setara tekanan uap air pada temperatur operasi. Jika tidak dihilangkan, air dapat membentuk hidrat padat yang menyumbat pipa pada suhu rendah atau tekanan tinggi. Unit dehidrasi gas (glycol dehydration atau solid desiccant) menggunakan prinsip absorpsi atau adsorpsi untuk menurunkan water dew point hingga di bawah suhu minimum yang mungkin dialami gas di sepanjang pipa transmisi.
+
+---
+
+## 3. Working Principle
+
+### 3.1 Aliran Proses dari Sumur ke Terminal
+
+Aliran proses di sistem hulu mengikuti urutan yang umum, dengan variasi disesuaikan pada karakteristik fluida dan fasilitas. Urutan tipikal dijelaskan sebagai berikut:
+
+ 1. **Wellhead dan Flowline** – Fluida dari sumur (minyak, gas, air) mengalir melalui christmas tree ke flowline menuju production manifold. Pada sumur dengan tekanan rendah, gas lift atau pompa ESP dapat digunakan untuk membantu pengangkatan buatan (artificial lift). Manifold produksi menggabungkan aliran dari beberapa sumur ke dalam header menuju separator.
+
+ 2. **Production Manifold dan Inlet Section** – Manifold memungkinkan pengarahan aliran dari sumur tertentu ke test separator untuk pengukuran periodik, atau ke production separator untuk operasi normal. Inlet section dilengkapi dengan choke valve yang mengatur laju alir dan menurunkan tekanan awal. Pressure Safety Valve (PSV) dipasang untuk perlindungan overpressure.
+
+ 3. **Separasi Tahap Pertama (HP Separator)** – Fluida masuk ke High Pressure (HP) separator, biasanya beroperasi pada tekanan 300–1000 psig. Gas bebas dan gas flash terpisah dari cairan dan keluar dari bagian atas menuju sistem gas. Minyak dan air keluar dari bagian bawah menuju separator tahap berikutnya. Level kontrol menjaga batas fasa gas-cairan dan minyak-air tetap stabil.
+
+ 4. **Separasi Tahap Kedua (MP Separator)** – Cairan dari HP separator mengalami penurunan tekanan (pressure letdown) melalui level control valve menuju Medium Pressure (MP) separator pada tekanan 100–300 psig. Gas yang terlepas dikirim ke header gas MP, sedangkan cairan dialirkan ke separator berikutnya.
+
+ 5. **Separasi Tahap Ketiga (LP Separator atau Heater Treater)** – Pemisahan akhir dilakukan pada tekanan rendah (&lt;50 psig) dan kadang dipanaskan (heating) untuk menurunkan viskositas minyak dan memecah emulsi. Gas LP bisa digunakan sebagai fuel gas, dikompresi, atau dibakar di flare jika tidak ada pemanfaatan. Minyak dari LP separator biasanya sudah cukup stabil.
+
+ 6. **Stabilisasi Minyak Mentah** – Untuk minyak yang masih mengandung fraksi ringan tinggi, stabilizer kolom distilasi atau flash tank tambahan digunakan untuk menurunkan RVP. Gas dari stabilizer dapat dimanfaatkan.
+
+ 7. **Pengolahan Minyak (Oil Treating)** – Minyak dari separator mungkin masih mengandung air teremulsi dan garam. Proses desalting/dehydration menggunakan coalescer, electrostatic treater, atau injeksi demulsifier kimia untuk menurunkan kadar air hingga di bawah 0,5% volume (spesifikasi penjualan).
+
+ 8. **Penampungan dan Pengukuran Minyak** – Minyak bersih dialirkan ke storage tank atau langsung menuju sistem pengukuran fiskal (custody transfer metering). Tangki penyimpanan memberikan waktu buffer dan memungkinkan sampling kualitas sebelum pengiriman melalui pipa atau kapal tanker.
+
+ 9. **Kompresi Gas** – Gas dari separator HP, MP, dan LP dikumpulkan dalam header gas. Gas LP harus dikompresi terlebih dahulu ke tekanan MP atau HP sebelum diproses lebih lanjut. Kompresi bertahap (stage compression) dengan intercooling dilakukan untuk efisiensi.
+
+10. **Dehidrasi dan Pengolahan Gas** – Gas hasil kompresi dilewatkan ke glycol contactor (absorber) untuk menyerap uap air. Gas kering kemudian dikirim ke pipeline atau ke unit pemurnian lebih lanjut (amine sweetening) jika mengandung H₂S dan CO₂ di atas batas spesifikasi.
+
+11. **Pengolahan Air Terproduksi (Produced Water Treatment)** – Air yang terpisah di separator dan oil treater dikumpulkan dan diolah melalui hydrocyclone, flotasi (IGF), atau filtration untuk menghilangkan sisa minyak dan padatan. Air bersih dapat dibuang ke laut (offshore), diinjeksikan kembali ke sumur (water injection), atau digunakan untuk keperluan operasi.
+
+12. **Flare dan Vent System** – Semua titik pelepas tekanan (PSV, BDV) dan drain dari peralatan terhubung ke flare header. Gas buang dibakar di elevated flare atau ground flare untuk mencegah pelepasan hidrokarbon langsung ke atmosfer.
+
+### 3.2 Kontrol dan Otomasi
+
+Seluruh aliran proses dimonitor dan dikendalikan oleh Distributed Control System (DCS) dan Safety Instrumented System (SIS). Level control di separator, pressure control di kompresor, temperature control di heater, dan flow control di metering station bekerja secara otomatis. Interlock shutdown akan mengisolasi peralatan jika parameter kritis terlampaui.
+
+---
+
+## 4. Main Components / Main Parts
+
+Sistem hulu migas terdiri dari serangkaian peralatan utama yang saling terintegrasi. Komponen-komponen tersebut disajikan dalam tabel berikut:
+
+| Komponen | Fungsi | Desain / Material Umum |
+| --- | --- | --- |
+| **Wellhead & Christmas Tree** | Mengontrol aliran fluida dari sumur, menahan tekanan reservoir, dan menyediakan titik akses untuk intervensi sumur. | Baja paduan rendah atau stainless steel sesuai sour service (NACE MR0175). |
+| **Choke Valve** | Mengatur laju alir dan menurunkan tekanan fluida dari tekanan sumur ke tekanan separator. | Trim dari tungsten carbide atau ceramic untuk ketahanan erosi. |
+| **Production Manifold** | Mengarahkan aliran dari berbagai sumur ke test atau production header. | Pipa baja karbon dengan katup bola (ball valve) atau plug valve. |
+| **Separator (HP, MP, LP)** | Memisahkan gas, minyak, dan air berdasarkan gravitasi. Dilengkapi inlet diverter, mist extractor, dan weir. | Baja karbon dengan internal coating. Demister pad dari SS wire mesh. Ukuran berdasarkan kapasitas dan residence time. |
+| **Heater Treater / Electrostatic Coalescer** | Memanaskan emulsi dan menggunakan medan listrik untuk memecah emulsi air dalam minyak. | Baja karbon dengan firetube (pemanas) atau elektroda listrik. |
+| **Kolom Stabilizer** | Menghilangkan fraksi ringan dari minyak mentah untuk mencapai RVP yang diinginkan. | Tray atau packing column dari baja karbon atau SS. Reboiler dan condenser. |
+| **Tangki Penyimpanan (Storage Tank)** | Menampung minyak mentah sebelum pengiriman, memberikan waktu pengendapan air bebas. | Baja karbon, fixed roof atau floating roof (internal/external) untuk mengurangi evaporasi. |
+| **Kompresor Gas** | Menaikkan tekanan gas dari LP ke MP atau HP agar dapat diproses atau dikirim. | Reciprocating atau centrifugal. Casing dari baja cor atau baja tempa, internal tahan korosi. |
+| **Glycol Dehydration Unit** | Menyerap uap air dari gas alam menggunakan triethylene glycol (TEG). | Contactor tower dengan bubble cap tray atau structured packing, reboiler, dan regenerator. Material baja karbon, dengan SS pada bagian suhu tinggi. |
+| **Gas Metering Skid** | Mengukur laju alir gas untuk keperluan alokasi dan custody transfer. | Orifice meter, ultrasonic meter, atau Coriolis. Pipa baja karbon atau SS. |
+| **Oil Metering Skid** | Mengukur laju alir minyak, biasanya dilengkapi dengan sampler otomatis. | Positive displacement meter atau Coriolis. |
+| **Produced Water Treatment Package** | Menghilangkan sisa minyak dan padatan dari air terproduksi. | Hydrocyclone liner dari duplex SS atau ceramic, IGF vessel dari baja karbon dengan internal coating. |
+| **Flare System** | Membakar gas buang dari proses secara aman. | Flare stack, KOD, seal drum, flare tip dari stainless steel tahan temperatur tinggi. |
+
+Hubungan antar komponen bersifat sekuensial: setiap peralatan bergantung pada kinerja peralatan di hulu. Misalnya, efisiensi oil treater sangat dipengaruhi oleh pemisahan awal di separator; kualitas gas kering dari dehidrasi bergantung pada efisiensi pemisahan cairan di upstream scrubber.
+
+---
+
+## 5. Types / Classification
+
+Sistem hulu migas tidak memiliki klasifikasi baku tunggal, tetapi dapat dikelompokkan berdasarkan beberapa kriteria:
+
+### 5.1 Berdasarkan Lokasi dan Struktur Fasilitas
+
+- **Onshore Production Facility** – Dibangun di darat, akses dan tata letak lebih leluasa. Umumnya mencakup seluruh komponen dari sumur hingga terminal. Tantangan meliputi manajemen air terproduksi, dampak lingkungan darat, dan keamanan perimeter.
+- **Offshore Platform (Fixed/Jacket, FPSO, TLP, SPAR)** – Ruang dan bobot terbatas, biaya konstruksi tinggi. Desain peralatan harus sangat kompak dan ringan. Separasi multi-tahap sering disederhanakan. FPSO (Floating Production Storage and Offloading) menggabungkan proses, penyimpanan, dan pengiriman dalam satu unit terapung.
+
+### 5.2 Berdasarkan Karakteristik Fluida
+
+- **Sistem Minyak Berat (Heavy Oil System)** – Minyak dengan API gravity rendah (&lt;20°), viskositas tinggi. Memerlukan pemanasan, diluent blending, atau steam injection untuk membantu pemisahan dan transportasi. Separator beroperasi pada suhu lebih tinggi, dan waktu tinggal lebih lama.
+- **Sistem Gas dan Kondensat (Gas Condensate System)** – Gas dari reservoir kaya kondensat. Pemisahan tahap ganda pada tekanan tinggi diperlukan untuk memaksimalkan perolehan kondensat. Pengolahan gas lebih kompleks; unit dehidrasi dan dew point control (Joule‑Thomson atau refrigeration) dipasang.
+- **Sistem Sour Service** – Fluida mengandung H₂S signifikan (&gt;0,05 psia tekanan parsial). Seluruh material harus memenuhi NACE MR0175/ISO 15156. Unit amine sweetening atau scavenger dipasang, dan sistem drainase tertutup wajib.
+
+### 5.3 Berdasarkan Skala Produksi
+
+- **Fasilitas Produksi Skala Besar (Central Processing Facility)** – Melayani puluhan hingga ratusan sumur. Kapasitas bisa mencapai ratusan ribu barel minyak per hari (BOPD) dan milyaran kaki kubik gas per hari (MMSCFD). Menerapkan teknologi separasi bertingkat, kompresi multi‑stage, dan sistem metering fiskal.
+- **Fasilitas Satelit / Well Pad** – Fasilitas minimalis dekat sumur yang hanya melakukan separasi awal dan pengukuran, lalu mengirim fluida ke CPF melalui pipeline multifasa. Mengurangi jejak fasilitas dan biaya.
+
+---
+
+## 6. Operating Parameter
+
+Parameter operasi yang harus dikelola dalam sistem hulu migas mencakup variabel-variabel proses yang saling terkait:
+
+### 6.1 Tekanan Operasi (Operating Pressure)
+
+Setiap tahap separasi dioperasikan pada tekanan tertentu yang ditentukan oleh tekanan sumur, spesifikasi peralatan, dan kebutuhan proses hilir. HP separator mungkin beroperasi pada 600–1200 psig, MP pada 150–400 psig, dan LP pada 10–50 psig. Tekanan harus dijaga stabil oleh pressure controller yang mengatur katup buang gas. Fluktuasi tekanan dapat mengganggu level cairan, mengurangi efisiensi separasi, dan memicu PSV.
+
+### 6.2 Temperatur Operasi
+
+Temperatur fluida di sepanjang sistem cenderung menurun akibat ekspansi dan kehilangan panas ke lingkungan. Temperatur yang terlalu rendah dapat menyebabkan pembentukan wax, hidrat, atau peningkatan viskositas yang menghambat separasi. Pemanas (heater) dipasang di upstream separator atau treater untuk menjaga temperatur di atas titik kabut (cloud point) atau titik beku air-hidrokarbon. Temperatur operasi tipikal berkisar 30–80 °C untuk separasi normal, dan hingga 120 °C untuk heavy oil treating.
+
+### 6.3 Laju Alir (Flow Rate)
+
+Laju alir minyak, gas, dan air merupakan parameter produksi utama yang menentukan kapasitas peralatan. Laju alir total ke separator harus berada dalam rentang desain (turndown ratio). Laju alir gas yang terlalu tinggi menyebabkan kecepatan gas di separator melebihi kecepatan kritis, mengakibatkan liquid carryover. Laju alir cairan tinggi memperpendek residence time, menurunkan efisiensi pemisahan air dan minyak.
+
+### 6.4 Level Cairan
+
+Ketinggian antarmuka gas-cairan dan minyak-air di separator dijaga dalam jendela operasi sempit. Level control yang tidak stabil menyebabkan gas masuk ke saluran cairan (blow-by) atau cairan masuk ke saluran gas (carryover). Level measurement menggunakan displacer, differential pressure, atau guided wave radar.
+
+### 6.5 Kadar Air dan Sedimen (BS&W – Basic Sediment & Water)
+
+Untuk minyak mentah, BS&W harus di bawah 0,5–1% volume sebelum custody transfer. Parameter ini dipantau secara kontinyu dengan capacitance probe atau secara periodik melalui sampling. BS&W tinggi mengakibatkan penolakan pengiriman dan masalah korosi di pipa transportasi.
+
+### 6.6 Reid Vapor Pressure (RVP)
+
+Minyak yang tidak stabil memiliki tekanan uap tinggi, sehingga mudah menguap selama penyimpanan, menimbulkan bahaya kebakaran dan kehilangan volume. RVP diukur dengan metode ASTM D323 dan harus memenuhi spesifikasi terminal (biasanya &lt;12 psia).
+
+### 6.7 Water Dew Point Gas
+
+Gas yang dikirim ke pipa transmisi harus memiliki water dew point di bawah suhu minimum yang akan dilalui. Umumnya disyaratkan 4–7 lb/MMSCF (sekitar 110–190 mg/m³). Parameter ini menentukan kinerja unit dehidrasi.
+
+---
+
+## 7. Installation / Operating Practice
+
+### 7.1 Konfigurasi dan Tata Letak
+
+- Separator dan peralatan besar diatur dalam urutan penurunan tekanan agar aliran gravitasi bisa dimanfaatkan sejauh mungkin, meminimalkan jumlah pompa.
+- Jarak antara peralatan harus memenuhi standar keselamatan (API RP 500 untuk area klasifikasi listrik) dan kemudahan akses pemeliharaan.
+- Pipa header multifasa dirancang dengan kemiringan menuju slug catcher atau separator untuk drainase.
+
+### 7.2 Pengaturan Choke dan Start‑up
+
+- Choke valve diatur untuk mengendalikan laju alir sumur dan mencegah drawdown berlebihan yang dapat menyebabkan produksi pasir atau water coning.
+- Start‑up sumur dilakukan bertahap: buka choke perlahan, pantau tekanan dan temperatur flowline, pastikan aliran stabil di separator sebelum mencapai kapasitas penuh.
+- Saat start‑up, fluida dingin dapat membentuk hidrat di flowline atau choke jika terdapat air; injeksi metanol atau MEG sering dilakukan hingga temperatur operasi normal tercapai.
+
+### 7.3 Kontrol Separator
+
+- Level cairan dijaga oleh level control valve (LCV) di outlet minyak dan air. LCV air seringkali berupa katup dengan trim tahan erosi karena air terproduksi dapat mengandung padatan.
+- Tekanan separator dikontrol oleh pressure control valve (PCV) di outlet gas. Set point tekanan disesuaikan dengan tekanan header gas tujuan.
+- Untuk menghindari foaming yang disebabkan oleh pengotor atau chemical, defoamer diinjeksikan secara kontinyu atau intermiten pada inlet separator.
+
+### 7.4 Penanganan Slurry dan Pasir
+
+- Sumur yang menghasilkan pasir memerlukan sand management: desander dipasang di upstream separator, atau separator memiliki sistem jetting dan drain pasir di bagian bawah.
+- Akumulasi pasir mengurangi volume efektif separator dan dapat mengganggu level measurement. Flushing pasir periodik dilakukan saat separator offline.
+
+### 7.5 Pengiriman Minyak ke Terminal
+
+- Sebelum pengiriman, tangki penyimpanan diuji BS&W dan temperatur. Sampling dilakukan secara otomatis dari aliran yang menuju meter.
+- Pompa pengiriman (booster pump atau main oil line pump) dioperasikan setelah memastikan valve aliran terbuka dan tekanan suction cukup. Pengiriman dihentikan segera jika terdeteksi BS&W tinggi.
+
+---
+
+## 8. Common Failure Modes
+
+Tabel berikut merangkum kegagalan umum di sistem hulu migas, penyebab, mekanisme, dampak, dan mitigasi.
+
+| Failure Mode | Penyebab | Mekanisme Kegagalan | Dampak Operasi | Troubleshooting & Mitigasi |
+| --- | --- | --- | --- | --- |
+| **Liquid Carryover di Separator** | Laju alir gas berlebih, level cairan terlalu tinggi, demister pad tersumbat atau rusak, foaming. | Kecepatan gas melampaui kecepatan kritis; tetesan cairan terbawa aliran gas ke outlet. | Cairan masuk ke kompresor (kerusakan serius), penurunan efisiensi dehidrasi, kontaminasi sistem gas. | Kurangi laju alir gas. Periksa level transmitter. Ganti demister pad. Tambahkan defoamer. |
+| **Gas Blow-by** | Level cairan terlalu rendah (control valve gagal terbuka penuh atau level transmitter error). | Gas keluar melalui saluran outlet cairan menuju tangki atau sistem bertekanan rendah. | Overpressure di tangki, risiko kebakaran/ledakan, pelepasan gas ke atmosfer. | Pastikan level control berfungsi. Pasang alarm dan interlock rendah-rendah. Uji rutin level transmitter. |
+| **Foaming di Separator** | Kontaminan (surfaktan dari chemical, padatan halus), turbulensi tinggi di inlet, gas breakout cepat. | Lapisan busa stabil terbentuk di antarmuka gas-cair, mengganggu kontrol level dan menyebabkan carryover. | Liquid carryover, efisiensi pemisahan buruk, fluktuasi tekanan. | Optimalkan injeksi defoamer. Verifikasi desain inlet diverter. Kurangi agitasi di hulu. |
+| **Emulsi Stabil** | Agitasi tinggi di choke valve, padatan halus, bahan kimia yang tidak kompatibel, viskositas tinggi. | Tetesan air sangat kecil terselubung lapisan film yang mencegah koalesensi. | Kadar air dalam minyak tinggi (&gt;2%), sulit dipisahkan di separator biasa, beban berlebih di treater. | Optimalkan titik injeksi demulsifier. Tingkatkan temperatur. Gunakan coalescer elektrostatik. Evaluasi jenis chemical. |
+| **Pembentukan Hidrat** | Temperatur rendah dan tekanan tinggi, keberadaan air bebas. | Molekul air membentuk kisi yang menjebak gas (metana) membentuk padatan es-hidrat. | Penyumbatan pipa, valve, dan choke; gangguan aliran serius. | Injeksi metanol atau MEG. Turunkan tekanan. Pastikan dehidrasi gas efektif. Insulasi atau heat tracing. |
+| **Korosi dan Erosi** | Adanya CO₂, H₂S, air bebas; kecepatan fluida tinggi membawa partikel pasir. | Material logam terlarut atau terkikis, membentuk alur, pit, atau penipisan dinding. | Kebocoran, kegagalan peralatan. | Pemilihan material tahan korosi. Inhibitor korosi. Batasi kecepatan fluida. Inspeksi ketebalan dinding rutin. |
+| **Kegagalan Kompresor Gas** | Liquid carryover, surge, getaran, kurang pelumasan, fouling. | Suction kompresor kemasukan cairan menyebabkan kerusakan katup, piston, atau impeller. | Kehilangan kapasitas kompresi, shutdown tidak terencana, back pressure naik. | Scrubber upstream yang efektif. Sistem anti-surge. Pemantauan vibrasi. Pemeliharaan berkala. |
+| **Penyumbatan Strainer / Filter** | Pasir, scale, korosi debris, asphaltene, wax. | Aliran terhambat, pressure drop meningkat, aliran ke peralatan hilir berkurang. | Gangguan proses, kavitasi pompa, shutdown. | Pembersihan strainer periodik. Injeksi chemical anti-foulant. Desain dual strainer untuk pembersihan online. |
+| **Kegagalan Level Measurement** | Lapisan kotoran pada displacer, kerusakan elektronik, bridging pasir. | Pembacaan level tidak akurat, kontrol level kacau. | Carryover atau blow-by, kerusakan peralatan. | Kalibrasi rutin. Bersihkan displacer. Pasang level sight glass untuk verifikasi. Gunakan teknologi non-kontak (radar). |
+
+---
+
+## 9. Inspection, Maintenance & Calibration
+
+### 9.1 Inspeksi
+
+- **Inspeksi Internal Separator dan Tangki:** Setiap 3–5 tahun, peralatan diisolasi, dibuka (manway), dan diperiksa kondisi internal: korosi, endapan, keutuhan demister, weir, dan coating. Pembersihan dilakukan jika ditemukan sludge atau scale.
+- **Inspeksi Ketebalan Dinding:** Ultrasonic thickness (UT) dilakukan di titik-titik yang ditentukan (TML – thickness measurement location) pada pipa dan bejana bertekanan setiap 2–4 tahun atau sesuai RBI.
+- **Inspeksi Tube Heater Treater:** Firetube diperiksa dari scale, retak, atau penipisan. Hydrotest dilakukan jika perlu.
+
+### 9.2 Preventive Maintenance
+
+- Pembersihan strainer dan filter secara periodik (mingguan hingga bulanan tergantung laju fouling).
+- Penggantian pelumas kompresor dan analisis oli untuk mendeteksi keausan.
+- Pengecekan fungsi katup pengaman (PSV) setiap 1–3 tahun melalui pop test atau dikirim ke bengkel sertifikasi.
+- Kalibrasi pressure transmitter, level transmitter, dan flow meter sesuai jadwal (biasanya 6–12 bulan).
+
+### 9.3 Predictive Maintenance
+
+- Pemantauan vibrasi pada pompa dan kompresor untuk mendeteksi misalignment, unbalance, atau bearing wear.
+- Analisis oli (oil analysis) pada rotating equipment untuk mengetahui kontaminasi dan keausan.
+- Termografi inframerah pada sambungan listrik dan sistem pemanas.
+- Trend analysis data proses: peningkatan pressure drop filter, penurunan koefisien perpindahan panas, perubahan laju korosi.
+
+### 9.4 Kalibrasi Metering
+
+- Meter minyak dan gas yang digunakan untuk custody transfer dikalibrasi (proving) secara berkala. Untuk turbine meter dan positive displacement meter, dilakukan menggunakan master meter atau pipe prover. Untuk ultrasonic meter, kalibrasi elektronik dan verifikasi kecepatan suara dilakukan.
+- Liquid meter harus dibuktikan (proved) pada kondisi operasi sebenarnya dengan fluida yang sama untuk memastikan akurasi ±0,25%.
+
+---
+
+## 10. Selection / Design Consideration
+
+Perancangan sistem hulu migas harus mempertimbangkan sejumlah besar variabel yang saling berinteraksi. Aspek kunci meliputi:
+
+### 10.1 Karakterisasi Fluida Reservoir
+
+- Komposisi fluida, GOR (Gas‑Oil Ratio), water cut, kandungan H₂S/CO₂, API gravity, viskositas, titik tuang, dan potensi pembentukan padatan (wax, asphaltene, scale). Sampel PVT yang representatif wajib dianalisis.
+- Skenario produksi sepanjang umur lapangan: penurunan tekanan reservoir, peningkatan water cut, dan perubahan GOR harus diantisipasi agar fasilitas tidak cepat usang.
+
+### 10.2 Skenario Operasi dan Kapasitas Desain
+
+- Kapasitas fasilitas ditentukan berdasarkan profil produksi puncak (plateau rate) dengan mempertimbangkan faktor availabilitas dan turndown. Separator biasanya didesain untuk 110–120% kapasitas puncak.
+- Skenario start‑up, shutdown, dan blowdown juga menentukan kapasitas flare, KOD, dan sistem drainase.
+
+### 10.3 Pemilihan Proses dan Teknologi
+
+- Jumlah tahap separasi (2, 3, atau 4 tahap) ditentukan oleh tekanan sumur dan spesifikasi produk akhir. Optimasi jumlah tahap memaksimalkan perolehan cairan dan meminimalkan kebutuhan kompresi.
+- Pemilihan antara glycol dehydration vs. solid desiccant untuk dehidrasi gas tergantung pada water dew point yang diinginkan, kapasitas, dan biaya operasi.
+- Untuk pengolahan minyak berat, pemilihan antara pemanasan kimia, elektrostatik, atau sentrifugal bergantung pada karakteristik emulsi.
+
+### 10.4 Material Selection
+
+- Baja karbon banyak digunakan dengan corrosion allowance (CA) sekitar 3–6 mm, namun dibatasi oleh tekanan parsial H₂S dan CO₂.
+- NACE MR0175/ISO 15156 harus dipatuhi untuk fluida sour. Duplex SS atau clad material digunakan untuk tekanan parsial tinggi.
+- Untuk sistem air terproduksi yang sangat korosif, GRE/FRP banyak digunakan.
+
+### 10.5 Pertimbangan Lingkungan dan Regulasi
+
+- Regulasi emisi gas suar: desain flare harus memenuhi destruction efficiency dan batas radiasi.
+- Regulasi pembuangan air terproduksi: sistem pengolahan air harus mampu menurunkan kadar minyak hingga &lt;15–30 ppm (offshore) atau lebih rendah (onshore).
+- Persyaratan keselamatan seperti area klasifikasi ATEX/IECEx, sistem deteksi api dan gas, serta sistem ESD harus terintegrasi dalam desain.
+
+### 10.6 Operabilitas dan Pemeliharaan
+
+- Kemudahan akses untuk pemeliharaan, pengangkatan internal, dan pembersihan. Ruang untuk crane atau peralatan handling.
+- Redundansi peralatan kritis (pompa, kompresor) untuk menghindari shutdown total. Sparing philosophy ditentukan oleh analisis keandalan (RAM study).
+
+---
+
+## 11. Practical Field Application in Oil & Gas
+
+### 11.1 Fasilitas Produksi Onshore (Blok Minyak Sumatera)
+
+Di blok minyak Sumatra, fluida dari banyak sumur dialirkan ke gathering station. Di sini, HP separator 3‑fasa memisahkan gas yang sebagian digunakan untuk fuel gas, sebagian dikompresi dan dikirim ke LPG plant. Minyak dialirkan ke LP separator lalu ke wash tank (tangki pemisah air) yang dipanaskan. Air terproduksi diolah di kolam pengendapan dan sumur injeksi. Minyak bersih dikirim melalui pipa ke terminal utama untuk custody transfer.
+
+### 11.2 Fasilitas Offshore (Anjungan Lepas Pantai Natuna)
+
+Di anjungan produksi, fluida dari sumur gas kondensat masuk ke HP separator. Gas kaya kondensat didinginkan dan dipisahkan di cold separator. Kondensat ditampung dan dikirim melalui pipeline ke FPSO terdekat. Gas dikeringkan di glycol contactor dan diekspor ke pipa bawah laut. Air terproduksi dibuang ke laut setelah melewati hydrocyclone dan IGF. Anjungan ini mengutamakan peralatan kompak dan proses otomatis penuh karena keterbatasan personel.
+
+### 11.3 FPSO (Floating Production Storage and Offloading)
+
+FPSO menerima fluida dari beberapa sumur bawah laut. Setelah separasi, minyak mentah disimpan di tangki lambung FPSO. Gas yang dihasilkan digunakan untuk pembangkit listrik di FPSO, sisanya diinjeksikan kembali atau dikirim ke pipa ekspor jika tersedia. Air diolah dan dibuang. Keterbatasan ruang dan gerakan kapal (motion) menjadi tantangan desain separator—sering digunakan separator horizontal dengan internal baffle khusus untuk mengurangi efek gelombang.
+
+### 11.4 Central Processing Facility (CPF) di Kalimantan
+
+CPF ini mengolah gas dari puluhan sumur. Gas alam basah masuk ke slug catcher besar, lalu ke HP dan LP separator. Gas manis dikirim ke dehidrasi dan dew point control sebelum diekspor. Air dan kondensat diproses lebih lanjut. Karena skala besar, sistem kompresi terdiri dari 3 stage dengan intercooler. Fasilitas ini juga dilengkapi flare gas recovery untuk mengurangi emisi.
+
+### 11.5 Heavy Oil Facility di Duri
+
+Produksi minyak berat menggunakan steam injection (steamflood). Fluida panas dari sumur dikumpulkan, dipisahkan di separator, dan minyaknya dialirkan ke free water knockout lalu ke heater treater bersuhu tinggi. Minyak yang dihasilkan masih perlu dicampur dengan diluent (kerosene) agar bisa mengalir di pipa. Air yang sangat banyak (water cut &gt;80%) diolah kembali menjadi uap (steam generator) untuk injeksi.
+
+---
+
+## 12. Key Takeaways
+
+ 1. Sistem hulu migas adalah sistem terintegrasi yang menerima fluida multifasa dari sumur, memisahkan dan mengolahnya menjadi minyak, gas, dan air yang memenuhi spesifikasi untuk pengiriman atau pembuangan.
+ 2. Prinsip fundamental meliputi aliran multifasa, separasi gravitasi, flash vaporization bertahap, dehidrasi gas, dan pengolahan air terproduksi.
+ 3. Urutan proses tipikal dimulai dari wellhead, melalui manifold, multi‑stage separator, oil treating, stabilisasi, kompresi gas, dehidrasi, pengolahan air, dan berakhir di custody transfer metering.
+ 4. Komponen utama terdiri dari wellhead, choke, separator, heater treater, tangki penyimpanan, kompresor, glycol contactor, flare system, dan sistem metering; semuanya saling bergantung dalam rantai produksi.
+ 5. Klasifikasi sistem dapat didasarkan pada lokasi (onshore/offshore), karakteristik fluida (heavy oil, gas kondensat, sour service), atau skala produksi (CPF, fasilitas satelit).
+ 6. Parameter operasi kritis yang harus dikendalikan secara ketat adalah tekanan, temperatur, laju alir, level cairan, BS&W, RVP, dan water dew point gas.
+ 7. Praktik instalasi dan operasi yang baik mencakup kemiringan pipa, pengaturan choke bertahap, kontrol level separator yang stabil, penanganan pasir, dan prosedur start‑up/shutdown yang aman.
+ 8. Mode kegagalan umum seperti liquid carryover, gas blow‑by, foaming, emulsi, hidrat, korosi, dan kegagalan kompresor harus dipahami penyebab, dampak, dan mitigasinya oleh seluruh personel operasi dan pemeliharaan.
+ 9. Program inspeksi, preventive dan predictive maintenance yang ketat—UT thickness, analisis vibrasi, kalibrasi meter—serta kalibrasi custody transfer meter adalah elemen vital untuk keandalan dan kepatuhan fiskal.
+10. Desain sistem hulu harus didasarkan pada data reservoir yang akurat, mempertimbangkan seluruh skenario umur lapangan, memilih material yang tepat, memenuhi regulasi lingkungan dan keselamatan, serta menjamin operabilitas jangka panjang.
