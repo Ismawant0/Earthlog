@@ -7,6 +7,7 @@ export interface ArticleMetadata {
   title: string;
   description: string;
   category: string;
+  categories: string[];
   categorySlug: string;
   date: string;
   author: string;
@@ -14,6 +15,8 @@ export interface ArticleMetadata {
   readTime: string;
   featured: boolean;
   tags: string[];
+  keywords?: string[];
+  cover?: string;
 }
 
 export interface Article extends ArticleMetadata {
@@ -95,6 +98,7 @@ const fallbackArticles: Article[] = [
     title: "Separator Tiga Fasa: Pemisahan Gas, Minyak & Air",
     description: "Panduan teknis mendalam tentang separator tiga fasa, fungsi, komponen internal, prinsip pemisahan fluida, dan penanganan masalah operasional di industri migas.",
     category: "Equipment",
+    categories: ["equipment"],
     categorySlug: "equipment",
     date: "2026-05-18",
     author: "Team Garudaloka",
@@ -102,6 +106,8 @@ const fallbackArticles: Article[] = [
     readTime: "8 Menit",
     featured: true,
     tags: ["Separator", "Migas", "Pemisahan Fluida", "Process Equipment"],
+    keywords: ["Separator 3 Fasa", "Separator Tiga Fasa", "Pemisahan Fluida"],
+    cover: "",
     content: ""
   },
   {
@@ -109,6 +115,7 @@ const fallbackArticles: Article[] = [
     title: "Demulsifier: Mengatasi Emulsi Minyak dan Air",
     description: "Panduan kimia perminyakan tentang demulsifier, mekanisme pemecahan emulsi air dalam minyak, jenis surfaktan, dan aplikasi optimal di lapangan produksi migas.",
     category: "Process Chemicals",
+    categories: ["process-chemicals"],
     categorySlug: "process-chemicals",
     date: "2026-05-18",
     author: "Team Garudaloka",
@@ -116,6 +123,8 @@ const fallbackArticles: Article[] = [
     readTime: "6 Menit",
     featured: false,
     tags: ["Chemical", "Migas", "Demulsifier", "Emulsi", "Produksi"],
+    keywords: ["Demulsifier", "Emulsi", "Minyak Air"],
+    cover: "",
     content: ""
   },
   {
@@ -123,6 +132,7 @@ const fallbackArticles: Article[] = [
     title: "Sistem Hulu Migas: Aliran Proses dari Sumur ke Terminal",
     description: "Gambaran komprehensif rantai proses industri hulu (upstream) minyak dan gas bumi, mulai dari reservoir, pengeboran, stasiun pengumpul, hingga stasiun pengapalan.",
     category: "Process Systems",
+    categories: ["process-systems"],
     categorySlug: "process-systems",
     date: "2026-05-18",
     author: "Team Garudaloka",
@@ -130,6 +140,8 @@ const fallbackArticles: Article[] = [
     readTime: "7 Menit",
     featured: false,
     tags: ["Process", "Migas", "Upstream", "Produksi", "Eksplorasi"],
+    keywords: ["Upstream", "Hulu Migas", "Aliran Proses"],
+    cover: "",
     content: ""
   },
   {
@@ -137,6 +149,7 @@ const fallbackArticles: Article[] = [
     title: "Choke Valve: Katup Pengontrol Tekanan Sumur",
     description: "Pengertian teknis choke valve (katup choke), fungsi pencegahan jatuhnya tekanan reservoir secara drastis, serta perbedaan tipe fixed choke dan adjustable choke.",
     category: "Glossary",
+    categories: ["glossary"],
     categorySlug: "glossary",
     date: "2026-05-18",
     author: "Team Garudaloka",
@@ -144,6 +157,8 @@ const fallbackArticles: Article[] = [
     readTime: "4 Menit",
     featured: false,
     tags: ["Glossary", "Migas", "Valves", "Instrumentation", "Peralatan"],
+    keywords: ["Choke Valve", "Katup Choke"],
+    cover: "",
     content: ""
   }
 ];
@@ -173,28 +188,58 @@ export async function getAllArticles(): Promise<Article[]> {
           
           const slug = file.replace(/\.mdx$/, "").replace(/\.md$/, "");
           
+          // Parse categories array and category display string
+          const rawCategory = data.category || folder;
+          let parsedCategories: string[] = [];
+          if (Array.isArray(rawCategory)) {
+            parsedCategories = rawCategory.map(c => String(c).trim());
+          } else if (typeof rawCategory === "string") {
+            parsedCategories = rawCategory.split(",").map(c => c.trim()).filter(Boolean);
+          } else {
+            parsedCategories = [String(rawCategory).trim()];
+          }
+
+          const categoriesSlugs = parsedCategories.map(c => {
+            const found = CATEGORIES.find(cat => cat.slug === c.toLowerCase() || cat.name.toLowerCase() === c.toLowerCase());
+            return found ? found.slug : c.toLowerCase().replace(/\s+/g, '-');
+          });
+
+          const categoriesNames = categoriesSlugs.map(s => {
+            const found = CATEGORIES.find(cat => cat.slug === s);
+            return found ? found.name : s;
+          });
+          
           // Ensure tags are parsed as an array
           const rawTags = data.tags || [];
           const parsedTags = Array.isArray(rawTags)
             ? rawTags
             : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
 
-            const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
+          // Ensure keywords are parsed as an array
+          const rawKeywords = data.keywords || [];
+          const parsedKeywords = Array.isArray(rawKeywords)
+            ? rawKeywords
+            : (typeof rawKeywords === "string" ? rawKeywords.split(/[;,]/).map((k: string) => k.trim()).filter(Boolean) : []);
 
-            articles.push({
-              slug,
-              title: data.title || slug,
-              description: data.description || "",
-              category: data.category || folder,
-              categorySlug: folder,
-              date: data.date || "2026-05-18",
-              author: data.author || "Editor Garudaloka",
-              difficulty: data.difficulty || "Umum",
-              readTime: data.readTime || "5 Menit",
-              featured: !!data.featured,
-              tags: parsedTags,
-              content: safeContent
-            });
+          const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
+
+          articles.push({
+            slug,
+            title: data.title || slug,
+            description: data.description || "",
+            category: categoriesNames.join(", "),
+            categories: categoriesSlugs,
+            categorySlug: categoriesSlugs[0] || folder,
+            date: data.date || "2026-05-18",
+            author: data.author || "Editor Garudaloka",
+            difficulty: data.difficulty || "Umum",
+            readTime: data.readingTime || data.readTime || "5 Menit",
+            featured: !!data.featured,
+            tags: parsedTags,
+            keywords: parsedKeywords,
+            cover: data.cover || "",
+            content: safeContent
+          });
         } catch (fileError) {
           console.error(`Error reading article file ${folder}/${file}:`, fileError);
         }
@@ -219,27 +264,57 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = parseFrontmatter(fileContent);
       
+      // Parse categories array and category display string
+      const rawCategory = data.category || categorySlug;
+      let parsedCategories: string[] = [];
+      if (Array.isArray(rawCategory)) {
+        parsedCategories = rawCategory.map(c => String(c).trim());
+      } else if (typeof rawCategory === "string") {
+        parsedCategories = rawCategory.split(",").map(c => c.trim()).filter(Boolean);
+      } else {
+        parsedCategories = [String(rawCategory).trim()];
+      }
+
+      const categoriesSlugs = parsedCategories.map(c => {
+        const found = CATEGORIES.find(cat => cat.slug === c.toLowerCase() || cat.name.toLowerCase() === c.toLowerCase());
+        return found ? found.slug : c.toLowerCase().replace(/\s+/g, '-');
+      });
+
+      const categoriesNames = categoriesSlugs.map(s => {
+        const found = CATEGORIES.find(cat => cat.slug === s);
+        return found ? found.name : s;
+      });
+
       const rawTags = data.tags || [];
       const parsedTags = Array.isArray(rawTags)
         ? rawTags
         : (typeof rawTags === "string" ? rawTags.split(",").map((t: string) => t.trim()) : []);
 
-        const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
+      // Ensure keywords are parsed as an array
+      const rawKeywords = data.keywords || [];
+      const parsedKeywords = Array.isArray(rawKeywords)
+        ? rawKeywords
+        : (typeof rawKeywords === "string" ? rawKeywords.split(/[;,]/).map((k: string) => k.trim()).filter(Boolean) : []);
 
-        return {
-          slug,
-          title: data.title || slug,
-          description: data.description || "",
-          category: data.category || categorySlug,
-          categorySlug,
-          date: data.date || "2026-05-18",
-          author: data.author || "Editor Garudaloka",
-          difficulty: data.difficulty || "Umum",
-          readTime: data.readTime || "5 Menit",
-          featured: !!data.featured,
-          tags: parsedTags,
-          content: safeContent
-        };
+      const safeContent = content.replace(/<(img|br|hr)\b([^>]*?)(?:\/?)>/gi, '<$1$2 />');
+
+      return {
+        slug,
+        title: data.title || slug,
+        description: data.description || "",
+        category: categoriesNames.join(", "),
+        categories: categoriesSlugs,
+        categorySlug: categoriesSlugs[0] || categorySlug,
+        date: data.date || "2026-05-18",
+        author: data.author || "Editor Garudaloka",
+        difficulty: data.difficulty || "Umum",
+        readTime: data.readingTime || data.readTime || "5 Menit",
+        featured: !!data.featured,
+        tags: parsedTags,
+        keywords: parsedKeywords,
+        cover: data.cover || "",
+        content: safeContent
+      };
     }
   } catch (error) {
     console.error(`Error reading article ${categorySlug}/${slug}`, error);
@@ -248,8 +323,19 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
   // Try matching fallback articles
   const matched = fallbackArticles.find((a) => a.categorySlug === categorySlug && a.slug === slug);
   if (matched) {
-    // Attempt to load the real fallback content if file load failed
     return matched;
+  }
+
+  // Cross-category search fallback if physical folder slug did not match exactly (e.g. secondary categories)
+  try {
+    const all = await getAllArticles();
+    const found = all.find(a => a.slug === slug && (a.categorySlug === categorySlug || a.categories.includes(categorySlug)));
+    if (found) return found;
+    
+    const anyFound = all.find(a => a.slug === slug);
+    if (anyFound) return anyFound;
+  } catch (err) {
+    console.error("Error running fallback search in getArticleBySlug:", err);
   }
   
   return null;
@@ -262,7 +348,7 @@ export async function getFeaturedArticles(): Promise<Article[]> {
 
 export async function getArticlesByCategory(categorySlug: string): Promise<Article[]> {
   const articles = await getAllArticles();
-  return articles.filter((a) => a.categorySlug === categorySlug);
+  return articles.filter((a) => a.categorySlug === categorySlug || a.categories.includes(categorySlug));
 }
 
 export function getLearningPaths(): LearningPath[] {

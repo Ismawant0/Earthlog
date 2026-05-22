@@ -111,9 +111,19 @@ export default async function ArticlePage({ params }: PageProps) {
               Beranda
             </Link>
             <ChevronRight className="h-3 w-3 shrink-0" />
-            <Link href={`/category/${categorySlug}`} className="hover:text-primary transition-colors capitalize">
-              {article.category}
-            </Link>
+            <div className="flex items-center gap-1">
+              {(article.categories || [article.categorySlug]).map((catSlug, i) => {
+                const catName = article.category.split(',')[i]?.trim() || catSlug;
+                return (
+                  <span key={catSlug} className="inline-flex items-center gap-1.5">
+                    {i > 0 && <span className="text-muted/65">/</span>}
+                    <Link href={`/category/${catSlug}`} className="hover:text-primary transition-colors capitalize">
+                      {catName}
+                    </Link>
+                  </span>
+                );
+              })}
+            </div>
             <ChevronRight className="h-3 w-3 shrink-0" />
             <span className="text-foreground font-bold truncate max-w-[240px]">
               {article.title}
@@ -128,9 +138,20 @@ export default async function ArticlePage({ params }: PageProps) {
               
               {/* Header block */}
               <div className="space-y-4 border-b border-border/60 pb-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light border border-primary/15 tracking-wide capitalize">
-                  {article.category}
-                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {(article.categories || [article.categorySlug]).map((catSlug, i) => {
+                    const catName = article.category.split(',')[i]?.trim() || catSlug;
+                    return (
+                      <Link 
+                        key={catSlug}
+                        href={`/category/${catSlug}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light border border-primary/15 tracking-wide hover:bg-primary/20 transition-all select-none capitalize"
+                      >
+                        {catName}
+                      </Link>
+                    );
+                  })}
+                </div>
 
                 <h1 className="text-3xl md:text-5xl font-extrabold font-serif text-foreground leading-[1.2] tracking-tight">
                   {article.title}
@@ -174,13 +195,14 @@ export default async function ArticlePage({ params }: PageProps) {
               <div className="border-t border-border mt-12 pt-6 space-y-4">
                 <div className="flex flex-wrap gap-2">
                   {article.tags.map((tag) => (
-                    <span 
+                    <Link 
                       key={tag} 
-                      className="inline-flex items-center gap-1 text-[11px] font-bold border border-border px-2.5 py-1 rounded bg-background text-muted"
+                      href={`/search?tag=${encodeURIComponent(tag)}`}
+                      className="inline-flex items-center gap-1 text-[11px] font-bold border border-border px-2.5 py-1 rounded bg-background text-muted hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all select-none"
                     >
                       <Tag className="h-3 w-3" />
                       {tag}
-                    </span>
+                    </Link>
                   ))}
                 </div>
 

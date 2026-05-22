@@ -15,11 +15,22 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing required metadata (slug, category)' }, { status: 400 });
     }
 
+    // Extract categories
+    let categorySlugs: string[] = [];
+    if (Array.isArray(metadata.category)) {
+      categorySlugs = metadata.category.map((c: string) => c.trim()).filter(Boolean);
+    } else if (typeof metadata.category === 'string') {
+      categorySlugs = metadata.category.split(',').map((c: string) => c.trim()).filter(Boolean);
+    } else {
+      categorySlugs = [String(metadata.category).trim()];
+    }
+    const primaryCategory = categorySlugs[0] || 'fundamentals';
+
     // Prepare frontmatter object
     const frontmatter = {
       title: metadata.title || '',
       slug: metadata.slug,
-      category: metadata.category,
+      category: categorySlugs, // Stored as array
       description: metadata.description || '',
       difficulty: metadata.difficulty || 'Beginner',
       keywords: metadata.keywords || [],
@@ -40,7 +51,7 @@ export async function POST(req: Request) {
     let localWriteSuccess = false;
     if (!isVercel) {
       try {
-        const categoryFolder = path.join(process.cwd(), 'content', frontmatter.category);
+        const categoryFolder = path.join(process.cwd(), 'content', primaryCategory);
         await fs.mkdir(categoryFolder, { recursive: true });
         const filePath = path.join(categoryFolder, `${frontmatter.slug}.mdx`);
         await fs.writeFile(filePath, fileContent, 'utf-8');
@@ -48,7 +59,7 @@ export async function POST(req: Request) {
         console.log("Local write successful!");
 
         // If it's a rename/move, delete the old file!
-        if (originalSlug && originalCategory && (originalSlug !== frontmatter.slug || originalCategory !== frontmatter.category)) {
+        if (originalSlug && originalCategory && (originalSlug !== frontmatter.slug || originalCategory !== primaryCategory)) {
           const oldFilePath = path.join(process.cwd(), 'content', originalCategory, `${originalSlug}.mdx`);
           try {
             await fs.unlink(oldFilePath);
@@ -64,8 +75,8 @@ export async function POST(req: Request) {
 
     if (localWriteSuccess) {
       // Purge Next.js cache locally
-      revalidatePath(`/${frontmatter.category}/${frontmatter.slug}`, 'page');
-      revalidatePath(`/category/${frontmatter.category}`, 'page');
+      revalidatePath(`/${primaryCategory}/${frontmatter.slug}`, 'page');
+      revalidatePath(`/category/${primaryCategory}`, 'page');
       revalidatePath('/', 'page');
 
       if (originalSlug && originalCategory) {
@@ -82,7 +93,7 @@ export async function POST(req: Request) {
       const repo = 'garudaloka';
 
       // If it's a rename/move on GitHub, first delete the old file on GitHub!
-      if (originalSlug && originalCategory && (originalSlug !== frontmatter.slug || originalCategory !== frontmatter.category)) {
+      if (originalSlug && originalCategory && (originalSlug !== frontmatter.slug || originalCategory !== primaryCategory)) {
         const oldGitPath = `content/${originalCategory}/${originalSlug}.mdx`;
         const oldFileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${oldGitPath}`;
         try {
@@ -117,7 +128,7 @@ export async function POST(req: Request) {
         }
       }
 
-      const gitPath = `content/${frontmatter.category}/${frontmatter.slug}.mdx`;
+      const gitPath = `content/${primaryCategory}/${frontmatter.slug}.mdx`;
       const fileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${gitPath}`;
 
       try {

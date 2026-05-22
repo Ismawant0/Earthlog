@@ -358,23 +358,51 @@ export default async function Home() {
                   key={article.slug}
                   className="border border-border bg-card rounded-xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow transition-all group"
                 >
-                  <div className="p-5 space-y-3.5">
-                    <div className="flex items-center justify-between text-[10px] font-bold text-muted uppercase">
-                      <span className="px-2 py-0.5 rounded bg-background border border-border text-primary dark:text-primary-light">
-                        {article.category}
-                      </span>
-                      <span>{article.readTime}</span>
+                  <div>
+                    {/* Cover Thumbnail Image */}
+                    {article.cover ? (
+                      <div className="relative w-full h-44 overflow-hidden bg-muted border-b border-border select-none">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img 
+                          src={article.cover} 
+                          alt={article.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-full h-44 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800/40 dark:to-slate-900/60 border-b border-border flex items-center justify-center text-muted select-none">
+                        <BookOpen className="h-10 w-10 opacity-30 group-hover:scale-110 transition-transform duration-350" />
+                      </div>
+                    )}
+
+                    <div className="p-5 space-y-3.5">
+                      <div className="flex items-center justify-between text-[10px] font-bold text-muted uppercase">
+                        <div className="flex flex-wrap gap-1">
+                          {(article.categories || [article.categorySlug]).map((catSlug, i) => {
+                            const catName = article.category.split(',')[i]?.trim() || catSlug;
+                            return (
+                              <span 
+                                key={catSlug} 
+                                className="px-2 py-0.5 rounded bg-background border border-border text-primary dark:text-primary-light capitalize font-bold text-[9px] shrink-0"
+                              >
+                                {catName}
+                              </span>
+                            );
+                          })}
+                        </div>
+                        <span className="shrink-0">{article.readTime}</span>
+                      </div>
+
+                      <h3 className="text-base font-bold text-foreground leading-snug group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
+                        <Link href={`/${article.categorySlug}/${article.slug}`}>
+                          {article.title}
+                        </Link>
+                      </h3>
+
+                      <p className="text-xs text-muted leading-relaxed line-clamp-3 text-justify">
+                        {article.description}
+                      </p>
                     </div>
-
-                    <h3 className="text-base font-bold text-foreground leading-snug group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
-                      <Link href={`/${article.categorySlug}/${article.slug}`}>
-                        {article.title}
-                      </Link>
-                    </h3>
-
-                    <p className="text-xs text-muted leading-relaxed line-clamp-3 text-justify">
-                      {article.description}
-                    </p>
                   </div>
 
                   <div className="p-5 border-t border-border/60 bg-background-alt/30 flex items-center justify-between text-[11px]">

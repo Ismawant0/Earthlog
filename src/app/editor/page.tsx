@@ -23,6 +23,7 @@ interface Article {
   title: string;
   description: string;
   category: string;
+  categories?: string[];
   categorySlug: string;
   date: string;
   author: string;
@@ -30,6 +31,8 @@ interface Article {
   readTime: string;
   featured: boolean;
   tags: string[];
+  keywords?: string[];
+  cover?: string;
   content: string;
   htmlContent?: string;
   storageType?: string;
@@ -156,18 +159,24 @@ export default function EditorDashboard() {
               }
             }
             
+            const categorySlugs = String(metadata.category).split(',').map(s => s.trim()).filter(Boolean);
+            const primaryCategory = categorySlugs[0] || 'fundamentals';
+
             const tempArticle: Article = {
               slug: metadata.slug,
               title: metadata.title || metadata.slug,
               description: metadata.description || '',
               category: metadata.category,
-              categorySlug: metadata.category,
+              categories: categorySlugs,
+              categorySlug: primaryCategory,
               date: metadata.date || new Date().toISOString().split('T')[0],
               author: metadata.author || 'Editor Garudaloka',
               difficulty: metadata.difficulty || 'Beginner',
               readTime: metadata.readingTime || '5 min',
               featured: !!metadata.featured,
               tags: metadata.tags || [],
+              keywords: metadata.keywords || [],
+              cover: metadata.cover || '',
               content: mdxContent,
               htmlContent: htmlContent,
               storageType: 'github'
@@ -221,18 +230,24 @@ export default function EditorDashboard() {
           }
         }
         
+        const categorySlugs = String(metadata.category).split(',').map(s => s.trim()).filter(Boolean);
+        const primaryCategory = categorySlugs[0] || 'fundamentals';
+
         const newArticle: Article = {
           slug: metadata.slug,
           title: metadata.title || metadata.slug,
           description: metadata.description || '',
           category: metadata.category,
-          categorySlug: metadata.category, // e.g. equipment
+          categories: categorySlugs,
+          categorySlug: primaryCategory,
           date: metadata.date || new Date().toISOString().split('T')[0],
           author: metadata.author || 'Editor Garudaloka',
           difficulty: metadata.difficulty || 'Beginner',
           readTime: metadata.readingTime || '5 min',
           featured: !!metadata.featured,
           tags: metadata.tags || [],
+          keywords: metadata.keywords || [],
+          cover: metadata.cover || '',
           content: mdxContent,
           htmlContent: htmlContent // Save the rendered HTML as local fallback!
         };
@@ -355,20 +370,27 @@ export default function EditorDashboard() {
     }
   };
 
-  // Convert Article metadata to form-friendly Partial Metadata block
   const getInitialMetadata = () => {
     if (!currentArticle) return undefined;
+    
+    let categoryValue = '';
+    if (Array.isArray((currentArticle as any).categories)) {
+      categoryValue = (currentArticle as any).categories.join(', ');
+    } else {
+      categoryValue = currentArticle.categorySlug || currentArticle.category || '';
+    }
+
     return {
       title: currentArticle.title,
       slug: currentArticle.slug,
-      category: currentArticle.categorySlug,
+      category: categoryValue,
       description: currentArticle.description,
       difficulty: currentArticle.difficulty,
-      keywords: currentArticle.tags, // maps tags to keywords in MetadataForm
-      tags: currentArticle.tags,
+      keywords: (currentArticle as any).keywords || [],
+      tags: currentArticle.tags || [],
       readingTime: currentArticle.readTime,
       featured: currentArticle.featured,
-      cover: '', // default
+      cover: (currentArticle as any).cover || '',
     };
   };
 
@@ -522,10 +544,17 @@ export default function EditorDashboard() {
                         </td>
 
                         {/* Category */}
-                        <td className="px-6 py-5 whitespace-nowrap">
-                          <span className={`inline-flex items-center border px-2.5 py-0.5 rounded-full text-xs font-bold capitalize select-none ${getCategoryColor(article.categorySlug)}`}>
-                            {article.category}
-                          </span>
+                        <td className="px-6 py-5">
+                          <div className="flex flex-wrap gap-1 max-w-[200px]">
+                            {(article.categories || [article.categorySlug]).map(cat => (
+                              <span 
+                                key={cat} 
+                                className={`inline-flex items-center border px-2.5 py-0.5 rounded-full text-[10px] font-bold capitalize select-none ${getCategoryColor(cat)}`}
+                              >
+                                {cat.replace(/-/g, ' ')}
+                              </span>
+                            ))}
+                          </div>
                         </td>
 
                         {/* Date */}
