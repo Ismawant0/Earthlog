@@ -2,6 +2,8 @@ import React from "react";
 import { AlertTriangle, AlertCircle, CheckCircle, Info } from "lucide-react";
 import InteractiveDiagram from "./InteractiveDiagram";
 import FAQAccordion from "./FAQAccordion";
+import Figure from "./mdx/Figure";
+import InteractiveBlock from "./mdx/InteractiveBlock";
 
 // 1. WarningBox Component
 interface WarningBoxProps {
@@ -150,6 +152,8 @@ export const mdxComponents = {
   TechnicalTable,
   FAQAccordion,
   InteractiveDiagram,
+  Figure,
+  InteractiveBlock,
   
   // Custom styled base elements for consistent beautiful typography in MDX
   h1: (props: any) => (

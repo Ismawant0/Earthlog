@@ -330,13 +330,51 @@ export function MetadataForm({ initialData, onSave, onCancel }: MetadataFormProp
 
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Cover Image URL</label>
-            <input 
-              name="cover"
-              value={formData.cover}
-              onChange={handleChange}
-              className="w-full border border-gray-200 rounded-lg px-3.5 py-2 focus:ring-2 focus:ring-black/5 focus:border-gray-400 outline-none text-gray-900 bg-white text-sm font-medium transition shadow-sm"
-              placeholder="E.g., https://images.unsplash.com/photo-..."
-            />
+            <div className="flex gap-2">
+              <input 
+                name="cover"
+                value={formData.cover}
+                onChange={handleChange}
+                className="flex-1 border border-gray-200 rounded-lg px-3.5 py-2 focus:ring-2 focus:ring-black/5 focus:border-gray-400 outline-none text-gray-900 bg-white text-sm font-medium transition shadow-sm"
+                placeholder="E.g., https://images.unsplash.com/photo-..."
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const input = document.createElement('input');
+                  input.type = 'file';
+                  input.accept = 'image/png, image/jpeg, image/jpg, image/webp';
+                  input.onchange = async (e) => {
+                    const file = (e.target as HTMLInputElement).files?.[0];
+                    if (!file) return;
+                    
+                    const fd = new FormData();
+                    fd.append('file', file);
+                    fd.append('category', formData.category.split(',')[0] || 'drafts');
+                    fd.append('slug', formData.slug || `draft-cover-${Date.now()}`);
+
+                    try {
+                      const res = await fetch('/api/upload-image', { method: 'POST', body: fd });
+                      if (res.ok) {
+                        const data = await res.json();
+                        if (data.success && data.url) {
+                          setFormData(prev => ({ ...prev, cover: data.url }));
+                        } else alert(data.error || 'Gagal upload gambar cover.');
+                      } else {
+                        alert('Gagal upload gambar dari server.');
+                      }
+                    } catch (err) {
+                      console.error(err);
+                      alert('Terjadi kesalahan koneksi saat mengunggah cover image.');
+                    }
+                  };
+                  input.click();
+                }}
+                className="bg-gray-50 border border-gray-200 px-3.5 py-2 rounded-lg hover:bg-gray-100 text-xs font-bold text-gray-800 transition cursor-pointer shrink-0"
+              >
+                Upload Cover
+              </button>
+            </div>
           </div>
 
           <div className="flex items-center gap-2.5 pt-1">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Editor } from '@tiptap/react';
 import { 
   Bold, Italic, Underline, Strikethrough, Code, 
@@ -10,6 +10,7 @@ import {
 
 interface ToolbarProps {
   editor: Editor | null;
+  onUploadImage?: (file: File) => Promise<void>;
 }
 
 const ToolbarButton = ({ 
@@ -34,7 +35,9 @@ const ToolbarButton = ({
   );
 };
 
-export function Toolbar({ editor }: ToolbarProps) {
+export function Toolbar({ editor, onUploadImage }: ToolbarProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   if (!editor) return null;
 
   const addLink = () => {
@@ -48,18 +51,32 @@ export function Toolbar({ editor }: ToolbarProps) {
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
   }
 
-  const addImage = () => {
-    const url = window.prompt('Image URL')
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run()
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && onUploadImage) {
+      onUploadImage(file);
     }
-  }
+    e.target.value = ''; // Reset
+  };
 
   return (
     <div className="
       flex flex-wrap items-center gap-1 p-2 border-b border-gray-200 bg-white sticky top-0 z-10 w-full rounded-t-xl
       xl:fixed xl:right-6 xl:top-24 xl:z-40 xl:w-14 xl:flex-col xl:items-center xl:p-3 xl:border xl:border-gray-200 xl:shadow-xl xl:rounded-2xl xl:max-h-[75vh] xl:overflow-y-auto xl:bg-white xl:rounded-t-2xl xl:gap-3 xl:border-b-0
     ">
+      {/* Hidden file input for uploads */}
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        onChange={handleFileChange} 
+        accept="image/png, image/jpeg, image/jpg, image/webp, image/svg+xml, image/gif" 
+        className="hidden" 
+      />
+
       <div className="flex xl:flex-col items-center gap-1 pr-2 xl:pr-0 xl:pb-2 border-r xl:border-r-0 xl:border-b border-gray-200 xl:w-full">
         <ToolbarButton title="Heading 1" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} isActive={editor.isActive('heading', { level: 1 })}>
           <Heading1 size={18} />
@@ -115,7 +132,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <ToolbarButton title="Insert Link" onClick={addLink} isActive={editor.isActive('link')}>
           <LinkIcon size={18} />
         </ToolbarButton>
-        <ToolbarButton title="Insert Image" onClick={addImage}>
+        <ToolbarButton title="Insert Image from Local" onClick={handleImageClick}>
           <ImageIcon size={18} />
         </ToolbarButton>
         <ToolbarButton title="Insert Table" onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>
@@ -162,6 +179,36 @@ export function Toolbar({ editor }: ToolbarProps) {
         <ToolbarButton title="Interactive Diagram" onClick={() => editor.chain().focus().insertContent('<InteractiveDiagram type=""></InteractiveDiagram>').run()}>
           <BarChart size={18} />
         </ToolbarButton>
+        
+        {/* Dropdown for Interactive Block */}
+        <div className="relative" title="Insert Interactive Block">
+          <select
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val) {
+                editor.chain().focus().insertContent(`<InteractiveBlock type="${val}"></InteractiveBlock>`).run();
+                e.target.value = '';
+              }
+            }}
+            className="p-1.5 rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:outline-none cursor-pointer border border-transparent appearance-none w-[30px] h-[30px] flex items-center justify-center"
+            style={{
+              backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg>")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: '16px 16px',
+            }}
+            value=""
+          >
+            <option value="" disabled></option>
+            <option value="steam-trap">Steam Trap</option>
+            <option value="flare-system">Flare System</option>
+            <option value="h2s-detector">H2S Detector</option>
+            <option value="boiler-chemistry">Boiler Chemistry</option>
+            <option value="pump-curve">Pump Curve</option>
+            <option value="pid-interactive">PID Interactive</option>
+            <option value="quiz-block">Quiz Block</option>
+          </select>
+        </div>
       </div>
     </div>
   );

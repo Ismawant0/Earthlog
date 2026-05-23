@@ -22,6 +22,8 @@ import { WarningBoxExtension } from './extensions/WarningBoxExtension';
 import { FAQAccordionExtension } from './extensions/FAQAccordionExtension';
 import { TechnicalTableExtension } from './extensions/TechnicalTableExtension';
 import { InteractiveDiagramExtension } from './extensions/InteractiveDiagramExtension';
+import { FigureExtension } from './extensions/FigureExtension';
+import { InteractiveBlockExtension } from './extensions/InteractiveBlockExtension';
 
 interface EditorComponentProps {
   initialContent?: string;
@@ -97,6 +99,24 @@ const cleanMdx = (rawMdx: string) => {
   cleaned = cleaned.replace(/<warningbox\s+type="([^"]+)">/gi, '<WarningBox type="$1">');
   cleaned = cleaned.replace(/<\/warningbox>/gi, '</WarningBox>');
 
+  // Clean Figure
+  cleaned = cleaned.replace(/<figure\s+([\s\S]*?)>\s*<\/figure>/gi, (match, attrsStr) => {
+    const srcMatch = attrsStr.match(/src="([^"]*)"/);
+    const altMatch = attrsStr.match(/alt="([^"]*)"/);
+    const captionMatch = attrsStr.match(/caption="([^"]*)"/);
+    const src = srcMatch ? srcMatch[1] : '';
+    const alt = altMatch ? altMatch[1] : '';
+    const caption = captionMatch ? captionMatch[1] : '';
+    return `<Figure src="${src}" alt="${alt}" caption="${caption}" />`;
+  });
+
+  // Clean InteractiveBlock
+  cleaned = cleaned.replace(/<interactiveblock\s+([\s\S]*?)>\s*<\/interactiveblock>/gi, (match, attrsStr) => {
+    const typeMatch = attrsStr.match(/type="([^"]*)"/);
+    const type = typeMatch ? typeMatch[1] : '';
+    return `<InteractiveBlock type="${type}" />`;
+  });
+
   return cleaned;
 };
 
@@ -149,6 +169,16 @@ const prepareMdxForEditor = (rawMdx?: string) => {
     }
   });
 
+  // Convert JSX Figure to HTML figure
+  prepared = prepared.replace(/<Figure\s+([\s\S]*?)\s*\/?>/gi, (match, attrsStr) => {
+    return `<figure ${attrsStr}></figure>`;
+  });
+
+  // Convert JSX InteractiveBlock to HTML interactiveblock
+  prepared = prepared.replace(/<InteractiveBlock\s+([\s\S]*?)\s*\/?>/gi, (match, attrsStr) => {
+    return `<interactiveblock ${attrsStr}></interactiveblock>`;
+  });
+
   return prepared;
 };
 
@@ -156,6 +186,49 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
   const [showMetadataForm, setShowMetadataForm] = useState(false);
   const [activeTab, setActiveTab] = useState<'editor' | 'preview'>('editor');
   const [mdxPreview, setMdxPreview] = useState('');
+  const [draftId] = useState(() => `draft-${Math.random().toString(36).substring(2, 9)}`);
+
+  const uploadAndInsertImage = async (file: File) => {
+    let activeCategory = 'drafts';
+    if (initialMetadata?.category) {
+      const cats = String(initialMetadata.category).split(',').map(s => s.trim()).filter(Boolean);
+      if (cats.length > 0) activeCategory = cats[0];
+    }
+    const activeSlug = initialMetadata?.slug || draftId;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('category', activeCategory);
+    formData.append('slug', activeSlug);
+
+    try {
+      const res = await fetch('/api/upload-image', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.url) {
+          editor?.chain().focus().insertContent({
+            type: 'figure',
+            attrs: {
+              src: data.url,
+              alt: file.name.split('.')[0].replace(/[-_]+/g, ' '),
+              caption: ''
+            }
+          }).run();
+        } else {
+          alert(data.error || 'Gagal mengunggah gambar.');
+        }
+      } else {
+        alert('Gagal mengunggah gambar dari server.');
+      }
+    } catch (err) {
+      console.error('Image upload error:', err);
+      alert('Terjadi kesalahan koneksi saat mengunggah gambar.');
+    }
+  };
 
   const editor = useEditor({
     extensions: [
@@ -212,6 +285,8 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
       FAQAccordionExtension,
       TechnicalTableExtension,
       InteractiveDiagramExtension,
+      FigureExtension,
+      InteractiveBlockExtension,
       Placeholder.configure({
         placeholder: ({ node }) => {
           if (node.type.name === 'heading' && node.attrs.level === 1) {
@@ -226,6 +301,31 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
       attributes: {
         class: 'prose prose-lg max-w-none focus:outline-none min-h-[500px] px-8 py-6',
       },
+      handleDrop(view, event, slice, moved) {
+        if (!moved && event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
+          const file = event.dataTransfer.files[0];
+          if (file.type.startsWith('image/')) {
+            event.preventDefault();
+            // Trigger local upload
+            // Note: uploadAndInsertImage is defined dynamically below, but we can call it on the component instance.
+            // Since this callback has access to component scope, it works perfectly.
+            uploadAndInsertImage(file);
+            return true;
+          }
+        }
+        return false;
+      },
+      handlePaste(view, event, slice) {
+        if (event.clipboardData && event.clipboardData.files && event.clipboardData.files[0]) {
+          const file = event.clipboardData.files[0];
+          if (file.type.startsWith('image/')) {
+            event.preventDefault();
+            uploadAndInsertImage(file);
+            return true;
+          }
+        }
+        return false;
+      }
     },
     onUpdate: ({ editor }) => {
       // @ts-ignore
@@ -313,7 +413,7 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 min-h-[600px] overflow-hidden">
         {activeTab === 'editor' ? (
           <>
-            <Toolbar editor={editor} />
+            <Toolbar editor={editor} onUploadImage={uploadAndInsertImage} />
             <div className="editor-content-wrapper font-inter text-[18px] leading-[1.9] max-w-[760px] mx-auto">
               <style dangerouslySetInnerHTML={{__html: `
                 .ProseMirror h1 { font-family: 'Source Serif 4', serif; font-size: 2.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; line-height: 1.2; color: #111827; }

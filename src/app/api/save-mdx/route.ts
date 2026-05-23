@@ -25,6 +25,15 @@ export async function POST(req: Request) {
       categorySlugs = [String(metadata.category).trim()];
     }
     const primaryCategory = categorySlugs[0] || 'fundamentals';
+    const githubToken = process.env.GITHUB_PAT;
+
+    // Perform draft images relocation if any
+    let cleanedMdxContent = mdxContent;
+    try {
+      cleanedMdxContent = await relocateImages(mdxContent, primaryCategory, metadata.slug, githubToken);
+    } catch (relocError) {
+      console.error("Draft relocation error (non-fatal):", relocError);
+    }
 
     // Prepare frontmatter object
     const frontmatter = {
@@ -43,9 +52,8 @@ export async function POST(req: Request) {
     };
 
     // Generate MDX with frontmatter
-    const fileContent = matter.stringify(mdxContent || '', frontmatter);
+    const fileContent = matter.stringify(cleanedMdxContent || '', frontmatter);
 
-    const githubToken = process.env.GITHUB_PAT;
     const isVercel = process.env.VERCEL === '1';
 
     // 1. Try writing locally first if NOT on Vercel
@@ -192,4 +200,163 @@ export async function POST(req: Request) {
     console.error('Error saving MDX:', error);
     return NextResponse.json({ error: error.message || 'Failed to save MDX' }, { status: 500 });
   }
+}
+
+async function relocateImages(
+  mdxContent: string, 
+  primaryCategory: string, 
+  slug: string, 
+  githubToken?: string
+): Promise<string> {
+  const draftRegex = /\/content-assets\/drafts\/(draft-[a-zA-Z0-9]+)\//g;
+  const draftIds = new Set<string>();
+  let match;
+  while ((match = draftRegex.exec(mdxContent)) !== null) {
+    draftIds.add(match[1]);
+  }
+
+  if (draftIds.size === 0) return mdxContent;
+
+  let updatedMdx = mdxContent;
+  const owner = 'Ismawant0';
+  const repo = 'garudaloka';
+
+  for (const draftId of draftIds) {
+    console.log(`[Relocating] Processing draft folder: ${draftId} to ${primaryCategory}/${slug}`);
+    
+    // 1. Local filesystem relocation (if NOT Vercel)
+    const isVercel = process.env.VERCEL === '1';
+    let localMoved = false;
+
+    if (!isVercel) {
+      try {
+        const localSourceDir = path.join(process.cwd(), 'public', 'content-assets', 'drafts', draftId);
+        const localDestDir = path.join(process.cwd(), 'public', 'content-assets', primaryCategory, slug);
+        
+        const stat = await fs.stat(localSourceDir).catch(() => null);
+        if (stat && stat.isDirectory()) {
+          await fs.mkdir(localDestDir, { recursive: true });
+          const files = await fs.readdir(localSourceDir);
+          
+          for (const file of files) {
+            const srcFile = path.join(localSourceDir, file);
+            const destFile = path.join(localDestDir, file);
+            await fs.rename(srcFile, destFile);
+            console.log(`[Relocating] Moved local file: ${file}`);
+          }
+          
+          await fs.rmdir(localSourceDir);
+          localMoved = true;
+          console.log(`[Relocating] Removed local source folder: ${draftId}`);
+        }
+      } catch (err) {
+        console.error(`[Relocating] Local move failed for ${draftId}:`, err);
+      }
+    }
+
+    // 2. GitHub relocation
+    if (githubToken) {
+      const sourceGitDir = `public/content-assets/drafts/${draftId}`;
+      const listUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${sourceGitDir}`;
+
+      try {
+        const listRes = await fetch(listUrl, {
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'Garudaloka-CMS'
+          }
+        });
+
+        if (listRes.ok) {
+          const files = await listRes.json();
+          if (Array.isArray(files)) {
+            for (const file of files) {
+              if (file.type === 'file') {
+                const filename = file.name;
+                const fileSha = file.sha;
+                
+                const getFileRes = await fetch(file.url, {
+                  headers: {
+                    'Authorization': `token ${githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'User-Agent': 'Garudaloka-CMS'
+                  }
+                });
+
+                if (getFileRes.ok) {
+                  const fileData = await getFileRes.json();
+                  const base64Content = fileData.content;
+                  
+                  const destGitPath = `public/content-assets/${primaryCategory}/${slug}/${filename}`;
+                  const putDestUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${destGitPath}`;
+                  
+                  let destSha = undefined;
+                  const getDestRes = await fetch(putDestUrl, {
+                    headers: {
+                      'Authorization': `token ${githubToken}`,
+                      'Accept': 'application/vnd.github.v3+json',
+                      'User-Agent': 'Garudaloka-CMS'
+                    }
+                  });
+                  if (getDestRes.ok) {
+                    const destData = await getDestRes.json();
+                    destSha = destData.sha;
+                  }
+
+                  const putRes = await fetch(putDestUrl, {
+                    method: 'PUT',
+                    headers: {
+                      'Authorization': `token ${githubToken}`,
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/vnd.github.v3+json',
+                      'User-Agent': 'Garudaloka-CMS'
+                    },
+                    body: JSON.stringify({
+                      message: `cms: relocate image ${filename} to ${slug}`,
+                      content: base64Content,
+                      branch: 'main',
+                      sha: destSha
+                    })
+                  });
+
+                  if (putRes.ok) {
+                    console.log(`[Relocating] Copied image on GitHub to: ${destGitPath}`);
+                    
+                    const deleteRes = await fetch(file.url, {
+                      method: 'DELETE',
+                      headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json',
+                        'User-Agent': 'Garudaloka-CMS'
+                      },
+                      body: JSON.stringify({
+                        message: `cms: cleanup relocated draft image ${filename}`,
+                        sha: fileSha,
+                        branch: 'main'
+                      })
+                    });
+                    
+                    if (deleteRes.ok) {
+                      console.log(`[Relocating] Deleted draft image on GitHub: ${file.path}`);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      } catch (gitErr) {
+        console.error(`[Relocating] GitHub image move transaction failed:`, gitErr);
+      }
+    }
+
+    const searchStr = `/content-assets/drafts/${draftId}/`;
+    const replaceStr = `/content-assets/${primaryCategory}/${slug}/`;
+    updatedMdx = updatedMdx.replaceAll(searchStr, replaceStr);
+    console.log(`[Relocating] Rewrote MDX URLs from ${searchStr} to ${replaceStr}`);
+  }
+
+  return updatedMdx;
 }
