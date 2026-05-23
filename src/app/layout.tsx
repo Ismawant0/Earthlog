@@ -21,8 +21,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
+  title: {
+    default: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
+    template: "%s | Garudaloka"
+  },
   description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya. Platform edukasi engineering & industri pertama di Indonesia.",
+  keywords: ["engineering", "oil and gas", "manufacturing", "maintenance", "safety", "process engineering", "mechanical engineering", "teknik kimia", "teknik mesin"],
+  authors: [{ name: "Ismawanto" }],
+  creator: "Ismawanto",
+  publisher: "Garudaloka",
   metadataBase: new URL("https://garudaloka.com"),
   alternates: {
     canonical: "/",
@@ -34,15 +41,25 @@ export const metadata: Metadata = {
     siteName: "Garudaloka",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "/icon.png",
+        width: 800,
+        height: 600,
+        alt: "Garudaloka Engineering Platform",
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
     description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
+    creator: "@garudaloka",
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -50,6 +67,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  verification: {
+    google: "pending-google-verification-code",
   },
 };
 
@@ -60,12 +80,50 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Garudaloka",
+    "url": "https://garudaloka.com",
+    "logo": "https://garudaloka.com/icon.png",
+    "description": "Platform Pengetahuan Teknik & Industri Modern di Indonesia",
+    "sameAs": [
+      "https://github.com/Ismawant0"
+    ]
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Garudaloka",
+    "url": "https://garudaloka.com",
+    "description": "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://garudaloka.com/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <html
       lang="id"
       className={`${inter.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-200">
         <Script 
           src="/scripts/theme.js" 

@@ -41,8 +41,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${article.title} — Garudaloka`,
     description: article.description,
+    keywords: article.keywords?.length ? article.keywords.join(", ") : undefined,
     alternates: {
-      canonical: `/${categorySlug}/${slug}`,
+      canonical: `https://garudaloka.com/${categorySlug}/${slug}`,
     },
     openGraph: {
       title: `${article.title} — Garudaloka`,
@@ -52,14 +53,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: "id_ID",
       type: "article",
       publishedTime: article.date,
+      modifiedTime: article.date,
       authors: [article.author],
       tags: article.tags,
+      images: [
+        {
+          url: article.cover || "https://garudaloka.com/icon.png",
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        }
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${article.title} — Garudaloka`,
       description: article.description,
+      images: [article.cover || "https://garudaloka.com/icon.png"],
     },
+    robots: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    }
   };
 }
 
@@ -94,12 +112,102 @@ export default async function ArticlePage({ params }: PageProps) {
   const allArticles = await getAllArticles();
   const relatedArticles = allArticles
     .filter((a) => a.categorySlug === categorySlug && a.slug !== slug)
+    // Semantic boost: prioritize articles with matching tags
+    .sort((a, b) => {
+      const aMatch = a.tags?.filter(t => article.tags?.includes(t)).length || 0;
+      const bMatch = b.tags?.filter(t => article.tags?.includes(t)).length || 0;
+      return bMatch - aMatch;
+    })
     .slice(0, 2);
 
   const headings = getHeadings(article.content);
 
+  // Layer 5: Structured Data
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": article.title,
+    "description": article.description,
+    "author": {
+      "@type": "Person",
+      "name": article.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Garudaloka",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://garudaloka.com/icon.png"
+      }
+    },
+    "datePublished": article.date,
+    "dateModified": article.date,
+    "image": article.cover || "https://garudaloka.com/icon.png",
+    "keywords": article.keywords?.join(", "),
+    "educationalLevel": article.difficulty,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://garudaloka.com/${categorySlug}/${slug}`
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://garudaloka.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": article.category.split(',')[0] || categorySlug,
+        "item": `https://garudaloka.com/category/${categorySlug}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": article.title,
+        "item": `https://garudaloka.com/${categorySlug}/${slug}`
+      }
+    ]
+  };
+
+  const faqSchema: any = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": []
+  };
+
+  // Safe MDX parsing for FAQ Schema
+  const faqRegex = /<FAQAccordion\s+items="([^"]+)"\s*><\/FAQAccordion>/;
+  const faqMatch = article.content.match(faqRegex);
+  if (faqMatch) {
+    try {
+      const decodedItems = JSON.parse(faqMatch[1].replace(/&quot;/g, '"'));
+      faqSchema.mainEntity = decodedItems.map((item: any) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }));
+    } catch (e) {
+      console.error("Failed to parse FAQ schema:", e);
+    }
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema.mainEntity.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      )}
       <Navbar />
 
       <div className="flex-grow bg-background transition-colors duration-200 py-6 md:py-10">
@@ -137,7 +245,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <article className="xl:col-span-9 space-y-6">
               
               {/* Header block */}
-              <div className="space-y-4 border-b border-border/60 pb-6">
+              <header className="space-y-4 border-b border-border/60 pb-6">
                 <div className="flex flex-wrap gap-1.5">
                   {(article.categories || [article.categorySlug]).map((catSlug, i) => {
                     const catName = article.category.split(',')[i]?.trim() || catSlug;
@@ -159,23 +267,23 @@ export default async function ArticlePage({ params }: PageProps) {
 
                 {/* Meta details bar */}
                 <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-muted pt-2 select-none">
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex items-center gap-1.5" title="Penulis Ahli">
                     <User className="h-3.5 w-3.5" />
                     By {article.author}
                   </span>
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex items-center gap-1.5" title="Diperbarui Pada">
                     <Calendar className="h-3.5 w-3.5" />
-                    {article.date}
+                    <time dateTime={article.date}>{article.date}</time>
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Clock className="h-3.5 w-3.5" />
                     {article.readTime} Bacaan
                   </span>
-                  <span className="text-accent font-extrabold">
+                  <span className="text-accent font-extrabold" title="Tingkat Kesulitan Materi">
                     Tingkat: {article.difficulty}
                   </span>
                 </div>
-              </div>
+              </header>
 
               {/* MDX Compiled content output */}
               <div className="article-container article-body py-4 prose dark:prose-invert">
@@ -192,7 +300,7 @@ export default async function ArticlePage({ params }: PageProps) {
               </div>
 
               {/* Article Footer (Tags and Socials) */}
-              <div className="border-t border-border mt-12 pt-6 space-y-4">
+              <footer className="border-t border-border mt-12 pt-6 space-y-4">
                 <div className="flex flex-wrap gap-2">
                   {article.tags.map((tag) => (
                     <Link 
@@ -223,7 +331,7 @@ export default async function ArticlePage({ params }: PageProps) {
                     </button>
                   </div>
                 </div>
-              </div>
+              </footer>
 
               {/* Related Articles card group */}
               {relatedArticles.length > 0 && (
