@@ -30,35 +30,67 @@ interface PageProps {
   }>;
 }
 
+// Helper to generate a content-based description fallback
+function generateDescription(article: { title: string; description: string; tags: string[]; keywords?: string[]; content?: string }): string {
+  // Use explicit description first
+  if (article.description && article.description.length > 50) {
+    return article.description;
+  }
+  
+  // Try to extract first meaningful paragraph from content
+  if (article.content) {
+    const cleanContent = article.content
+      .replace(/^---[\s\S]*?---\n/m, '') // Remove frontmatter
+      .replace(/<[^>]*>/g, '') // Remove HTML tags
+      .replace(/#{1,6}\s+/g, '') // Remove markdown headings
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // Remove markdown links
+      .replace(/\n{2,}/g, ' ') // Normalize whitespace
+      .trim();
+    
+    const firstParagraph = cleanContent.split(/\n{2,}/).find(p => p.trim().length > 80);
+    if (firstParagraph) {
+      return firstParagraph.trim().slice(0, 320) + (firstParagraph.length > 320 ? '...' : '');
+    }
+  }
+  
+  // Fallback: construct from title, category and tags
+  const tagStr = article.tags?.length ? article.tags.slice(0, 3).join(', ') : '';
+  const keywordStr = article.keywords?.length ? article.keywords.slice(0, 3).join(', ') : '';
+  return `Pelajari ${article.title}. ${keywordStr ? `Topik: ${keywordStr}.` : ''} ${tagStr ? `Kategori: ${tagStr}.` : ''} Panduan teknik engineering terpercaya di Garudaloka.`;
+}
+
 // 1. DYNAMIC METADATA GENERATION FOR technical SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { categorySlug, slug } = await params;
   const article = await getArticleBySlug(categorySlug, slug);
   if (!article) return {};
 
-  const cleanCategory = article.category;
+  const description = generateDescription(article);
+  const canonicalUrl = `https://garudaloka.com/${categorySlug}/${slug}`;
+  const ogImage = article.cover || "https://garudaloka.com/icon.png";
 
   return {
     title: `${article.title} — Garudaloka`,
-    description: article.description,
-    keywords: article.keywords?.length ? article.keywords.join(", ") : undefined,
+    description,
+    keywords: article.keywords?.length ? article.keywords.join(", ") : 
+              article.tags?.length ? article.tags.join(", ") : undefined,
     alternates: {
-      canonical: `https://garudaloka.com/${categorySlug}/${slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: `${article.title} — Garudaloka`,
-      description: article.description,
-      url: `https://garudaloka.com/${categorySlug}/${slug}`,
+      description,
+      url: canonicalUrl,
       siteName: "Garudaloka",
       locale: "id_ID",
       type: "article",
       publishedTime: article.date,
       modifiedTime: article.date,
       authors: [article.author],
-      tags: article.tags,
+      tags: [...new Set([...(article.tags || []), ...(article.keywords || [])])],
       images: [
         {
-          url: article.cover || "https://garudaloka.com/icon.png",
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: article.title,
@@ -68,8 +100,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: "summary_large_image",
       title: `${article.title} — Garudaloka`,
-      description: article.description,
-      images: [article.cover || "https://garudaloka.com/icon.png"],
+      description,
+      images: [ogImage],
     },
     robots: {
       index: true,
@@ -77,7 +109,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
-    }
+    },
+    other: {
+      'article:published_time': article.date,
+      'article:modified_time': article.date,
+      'article:author': article.author,
+      'article:section': article.category?.split(',')[0] || categorySlug,
+    },
   };
 }
 
@@ -122,7 +160,31 @@ export default async function ArticlePage({ params }: PageProps) {
 
   const headings = getHeadings(article.content);
 
-  // Layer 5: Structured Data
+  // Helper: compute word count from content
+  function getWordCount(content: string): number {
+    const clean = content
+      .replace(/^---[\s\S]*?---\n/m, '')
+      .replace(/<[^>]*>/g, '')
+      .replace(/[#*_`~\[\]()>|]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    return clean.split(/\s+/).filter(Boolean).length;
+  }
+
+  // Helper: get first meaningful heading as about topic
+  function getAboutTopic(content: string, _title: string, keywords?: string[], tags?: string[], fallbackSlug?: string): string {
+    const headingMatch = content.match(/^##\s+(.*)$/m);
+    if (headingMatch) {
+      return headingMatch[1].replace(/[\*\_]/g, '').trim();
+    }
+    // Fallback to first keyword or category
+    return keywords?.[0] || tags?.[0] || fallbackSlug || 'engineering';
+  }
+
+  // Layer 5: Structured Data - enhanced with wordCount, about, learningResourceType
+  const wordCount = getWordCount(article.content);
+  const aboutTopic = getAboutTopic(article.content, article.title, article.keywords, article.tags, categorySlug);
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -143,8 +205,16 @@ export default async function ArticlePage({ params }: PageProps) {
     "datePublished": article.date,
     "dateModified": article.date,
     "image": article.cover || "https://garudaloka.com/icon.png",
-    "keywords": article.keywords?.join(", "),
+    "keywords": article.keywords?.join(", ") || article.tags?.join(", "),
+    "wordCount": wordCount,
+    "about": {
+      "@type": "Thing",
+      "name": aboutTopic
+    },
     "educationalLevel": article.difficulty,
+    "learningResourceType": "Article",
+    "inLanguage": "id-ID",
+    "isAccessibleForFree": true,
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://garudaloka.com/${categorySlug}/${slug}`

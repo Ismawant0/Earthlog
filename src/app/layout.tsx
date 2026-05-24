@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Garudaloka"
   },
   description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya. Platform edukasi engineering & industri pertama di Indonesia.",
-  keywords: ["engineering", "oil and gas", "manufacturing", "maintenance", "safety", "process engineering", "mechanical engineering", "teknik kimia", "teknik mesin"],
+  keywords: ["engineering", "oil and gas", "manufacturing", "maintenance", "safety", "process engineering", "mechanical engineering", "teknik kimia", "teknik mesin", "engineering Indonesia", "teknik industri"],
   authors: [{ name: "Ismawanto" }],
   creator: "Ismawanto",
   publisher: "Garudaloka",
@@ -70,6 +70,11 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "pending-google-verification-code",
+  },
+  other: {
+    'theme-color': '#0f172a',
+    'og:locale:alternate': 'en_US',
+    'article:publisher': 'Garudaloka',
   },
 };
 

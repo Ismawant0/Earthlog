@@ -6,7 +6,11 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/save-mdx'],
+        disallow: [
+          '/api/save-mdx',
+          '/api/',
+          '/_next/',
+        ],
       },
       // Explicitly encourage AI crawlers for citation building
       {
@@ -26,6 +30,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
       {
+        userAgent: 'Claude-Web',
+        allow: '/',
+      },
+      {
         userAgent: 'PerplexityBot',
         allow: '/',
       },
@@ -40,7 +48,23 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: 'Meta-ExternalAgent',
         allow: '/',
-      }
+      },
+      {
+        userAgent: 'Applebot-Extended',
+        allow: '/',
+      },
+      {
+        userAgent: 'cohere-ai',
+        allow: '/',
+      },
+      {
+        userAgent: 'OAI-SearchBot',
+        allow: '/',
+      },
+      {
+        userAgent: 'YouBot',
+        allow: '/',
+      },
     ],
     sitemap: 'https://garudaloka.com/sitemap.xml',
   };

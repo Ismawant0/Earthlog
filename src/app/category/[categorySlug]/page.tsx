@@ -17,11 +17,43 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const category = CATEGORIES.find((c) => c.slug === categorySlug);
   if (!category) return {};
 
+  const title = `Materi Teknik ${category.name} — Garudaloka`;
+  const description = `Pelajari topik, peralatan, dan penjelasan teknis mendalam tentang ${category.name} di Garudaloka. Platform edukasi engineering & industri terpercaya.`;
+  const canonicalUrl = `https://garudaloka.com/category/${categorySlug}`;
+
   return {
-    title: `Materi Teknik ${category.name} — Garudaloka`,
-    description: `Pelajari topik, peralatan, dan penjelasan teknis mendalam tentang ${category.name} di Garudaloka.`,
+    title,
+    description,
+    keywords: [`${category.name}`, "engineering", "oil and gas", "teknik", "industri"],
     alternates: {
-      canonical: `/category/${categorySlug}`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "Garudaloka",
+      locale: "id_ID",
+      type: "website",
+      images: [
+        {
+          url: "https://garudaloka.com/icon.png",
+          width: 800,
+          height: 600,
+          alt: `Kategori ${category.name} - Garudaloka`,
+        }
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   };
 }
