@@ -16,11 +16,9 @@ import {
   ArrowRight,
   TrendingUp,
   Award,
-  Zap,
   CheckCircle2,
   Calendar,
   Clock,
-  Sparkles,
   Library,
   Factory,
   AlertTriangle
@@ -28,101 +26,156 @@ import {
 
 export const revalidate = 3600; // ISR - revalidate every hour
 
-// 0. SUBTLE INTRICATE P&ID ENGINEERING BLUEPRINT DRAWING (SVG-based for instant loading & dark/light responsive)
-function PandIDBlueprint() {
+// 0. SUBTLE INTRICATE PLANT & PROCESS SILHOUETTE BLUEPRINT BACKDROP (Full width, extremely low contrast)
+function IndustrialBlueprintBackdrop() {
   return (
-    <svg 
-      className="w-full h-full stroke-slate-400/50 dark:stroke-slate-600/40 fill-none pointer-events-none select-none transition-colors duration-200" 
-      viewBox="0 0 600 500"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* 1. Distillation Column C-101 */}
-      <g strokeWidth="1.2">
-        {/* Column body */}
-        <rect x="180" y="60" width="70" height="260" rx="8" className="stroke-slate-400 dark:stroke-slate-500" />
-        {/* Internal trays */}
-        <line x1="180" y1="100" x2="250" y2="100" strokeDasharray="3 3" />
-        <line x1="180" y1="140" x2="250" y2="140" strokeDasharray="3 3" />
-        <line x1="180" y1="180" x2="250" y2="180" strokeDasharray="3 3" />
-        <line x1="180" y1="220" x2="250" y2="220" strokeDasharray="3 3" />
-        <line x1="180" y1="260" x2="250" y2="260" strokeDasharray="3 3" />
+    <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-[0.06] dark:opacity-[0.11] transition-opacity duration-300">
+      <svg 
+        className="w-full h-full stroke-slate-500 dark:stroke-slate-400 fill-none" 
+        viewBox="0 0 1440 800"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <pattern id="blueprint-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" stroke="currentColor" strokeWidth="0.5" className="text-slate-200 dark:text-slate-800/80" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#blueprint-grid)" />
         
-        {/* Column Labels */}
-        <text x="215" y="165" textAnchor="middle" className="fill-slate-400 dark:fill-slate-600 font-mono text-[9px] font-bold stroke-none select-none">C-101</text>
-        <text x="215" y="177" textAnchor="middle" className="fill-slate-400/70 dark:fill-slate-600/70 font-mono text-[7px] stroke-none select-none">SPLITTER</text>
-      </g>
+        {/* Intricate background refinery plant & process tower lines */}
+        <g strokeWidth="0.75" className="stroke-slate-400/80 dark:stroke-slate-600/70">
+          {/* Distillation Column Silhouette (Far Left) */}
+          <path d="M 120 750 L 120 200 C 120 180 180 180 180 200 L 180 750" />
+          <line x1="120" y1="260" x2="180" y2="260" strokeDasharray="3 3" />
+          <line x1="120" y1="320" x2="180" y2="320" strokeDasharray="3 3" />
+          <line x1="120" y1="380" x2="180" y2="380" strokeDasharray="3 3" />
+          <line x1="120" y1="440" x2="180" y2="440" strokeDasharray="3 3" />
+          <line x1="120" y1="500" x2="180" y2="500" strokeDasharray="3 3" />
+          <line x1="120" y1="560" x2="180" y2="560" strokeDasharray="3 3" />
+          <line x1="120" y1="620" x2="180" y2="620" strokeDasharray="3 3" />
+          
+          {/* Overhead vapor pipeline to reboiler */}
+          <path d="M 150 185 L 150 120 L 420 120 L 420 250" />
+          <circle cx="285" cy="120" r="15" className="fill-background" />
+          <path d="M 275 110 L 295 130 M 275 130 L 295 110" />
+          
+          {/* Right-side process equipment outlines */}
+          <rect x="1100" y="280" width="160" height="80" rx="40" />
+          <line x1="1180" y1="280" x2="1180" y2="190" />
+          <path d="M 1180 190 L 1260 190 L 1260 480" />
+          <g transform="translate(1210, 185)" strokeWidth="0.8">
+            <polygon points="0,0 12,4 12,-4" className="fill-background" />
+            <polygon points="24,0 12,4 12,-4" className="fill-background" />
+            <line x1="12" y1="0" x2="12" y2="-6" />
+          </g>
 
-      {/* 2. Three-Phase Separator Vessel V-102 */}
-      <g strokeWidth="1.2">
-        {/* Vessel body */}
-        <rect x="360" y="200" width="130" height="60" rx="30" className="stroke-slate-400 dark:stroke-slate-500" />
-        {/* Internal baffle / weir */}
-        <line x1="440" y1="210" x2="440" y2="260" strokeDasharray="2 2" />
-        <line x1="420" y1="200" x2="420" y2="245" />
-        
-        {/* Vessel Labels */}
-        <text x="400" y="235" textAnchor="middle" className="fill-slate-400 dark:fill-slate-600 font-mono text-[9px] font-bold stroke-none select-none">V-102</text>
-      </g>
-
-      {/* 3. Heat Exchanger (Condenser) E-101 */}
-      <g strokeWidth="1.2">
-        <circle cx="340" cy="80" r="20" className="stroke-slate-400 dark:stroke-slate-500" />
-        <path d="M 326 70 L 354 90 M 326 90 L 354 70" />
-        <text x="340" y="115" textAnchor="middle" className="fill-slate-400 dark:fill-slate-600 font-mono text-[8px] stroke-none select-none">E-101</text>
-      </g>
-
-      {/* 4. Pumps P-101A/B */}
-      <g strokeWidth="1.2">
-        {/* Pump A */}
-        <circle cx="100" cy="280" r="14" className="stroke-slate-400 dark:stroke-slate-500" />
-        <polygon points="94,272 106,280 94,288" className="fill-none" />
-        <text x="100" y="310" textAnchor="middle" className="fill-slate-400 dark:fill-slate-600 font-mono text-[8px] stroke-none select-none">P-101A</text>
-      </g>
-
-      {/* 5. Process Pipelines (Thicker and cleaner) */}
-      <g strokeWidth="1.5" className="stroke-slate-300 dark:stroke-slate-700">
-        {/* Feed Line to split */}
-        <path d="M 30 280 L 86 280" />
-        <path d="M 114 280 L 180 280" />
-        
-        {/* Splitter Bottoms Line */}
-        <path d="M 215 320 L 215 380 L 360 380" />
-        
-        {/* Column Overhead to Condenser */}
-        <path d="M 215 60 L 215 30 L 340 30 L 340 60" />
-        
-        {/* Condenser to Separator V-102 */}
-        <path d="M 340 100 L 340 150 L 410 150 L 410 200" />
-        
-        {/* Separator Gas Outlet */}
-        <path d="M 425 200 L 425 120 L 540 120" />
-        
-        {/* Separator Liquid Outlet */}
-        <path d="M 465 260 L 465 320 L 540 320" />
-
-        {/* Control Valve Symbol */}
-        <g transform="translate(140, 275)" strokeWidth="1.2">
-          <polygon points="0,0 12,5 12,-5" className="fill-background" />
-          <polygon points="24,0 12,5 12,-5" className="fill-background" />
-          <line x1="12" y1="0" x2="12" y2="-8" />
-          <circle cx="12" cy="-10" r="2.5" className="fill-none" />
+          {/* Detailed piping loops & valve instrumentation */}
+          <path d="M 420 350 L 420 490 L 820 490 L 820 350" />
+          <path d="M 540 490 L 540 550 L 700 550 L 700 490" />
+          <circle cx="540" cy="550" r="10" className="fill-background" />
+          <circle cx="700" cy="550" r="10" className="fill-background" />
+          
+          {/* Text Annotations */}
+          <text x="135" y="245" className="fill-slate-400 dark:fill-slate-500 font-mono text-[8px] stroke-none select-none">T-102 PROCESS TOWER</text>
+          <text x="1125" y="325" className="fill-slate-400 dark:fill-slate-500 font-mono text-[8px] stroke-none select-none">V-106 ACCUMULATOR</text>
+          <text x="285" y="152" textAnchor="middle" className="fill-slate-400 dark:fill-slate-500 font-mono text-[7px] stroke-none select-none">E-103 CONDENSER</text>
         </g>
-      </g>
+      </svg>
+    </div>
+  );
+}
 
-      {/* 6. Control Signals & Instruments (Dotted primary indicator lines) */}
-      <g strokeWidth="0.8" strokeDasharray="3 3" className="stroke-primary/30 dark:stroke-primary/45">
-        {/* Transmitter to Control Valve */}
-        <path d="M 215 240 L 142 240 L 142 265" />
-        {/* Bubble Tag PT-101 */}
-        <circle cx="142" cy="230" r="10" className="fill-background stroke-primary/30 dark:stroke-primary/45" />
-        <text x="142" y="233" textAnchor="middle" className="fill-primary dark:fill-primary-light font-mono text-[7px] stroke-none select-none">PT</text>
+// 0.2 PREMIUM HIGH-PRECISION CAD PROCESS COMPOSITION (Replaces generic illustrations with structured blueprints)
+function TechnicalVisualComposition() {
+  return (
+    <div className="w-full max-w-[480px] aspect-[4/3] rounded-lg border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/40 backdrop-blur-[6px] shadow-[0_12px_30px_rgba(0,0,0,0.02)] dark:shadow-[0_12px_30px_rgba(0,0,0,0.2)] p-6 relative overflow-hidden select-none group transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700">
+      {/* CAD technical borders */}
+      <div className="absolute top-2.5 left-2.5 right-2.5 bottom-2.5 border border-dashed border-slate-200/50 dark:border-slate-800/50 pointer-events-none" />
+      
+      {/* Header telemetry info bar */}
+      <div className="flex justify-between items-center text-[9px] font-mono text-slate-400 dark:text-slate-500 mb-6 border-b border-slate-100 dark:border-slate-800/60 pb-2">
+        <span className="font-bold">SYSTEM SCHEMATIC: V-102</span>
+        <span>SCALE: NTS</span>
+        <span>REV: 02C</span>
+      </div>
+      
+      {/* CAD Process vessel rendering */}
+      <div className="relative w-full h-[185px] flex items-center justify-center">
+        <svg 
+          className="w-full h-full stroke-slate-500 dark:stroke-slate-400 fill-none" 
+          viewBox="0 0 400 180" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Separator Vessel shell */}
+          <rect x="80" y="40" width="240" height="90" rx="45" strokeWidth="1.5" className="stroke-slate-500 dark:stroke-slate-400" />
+          
+          {/* Internal Weir Plate */}
+          <line x1="220" y1="75" x2="220" y2="130" strokeWidth="1.2" />
+          
+          {/* Mist Extractor pad */}
+          <rect x="250" y="42" width="25" height="15" className="fill-slate-100 dark:fill-slate-800/80 stroke-slate-400" strokeWidth="0.8" />
+          <line x1="250" y1="42" x2="275" y2="57" strokeWidth="0.5" />
+          <line x1="275" y1="42" x2="250" y2="57" strokeWidth="0.5" />
+          
+          {/* Inlet Deflector */}
+          <path d="M 95 65 C 105 65 110 75 110 85" strokeWidth="1.2" />
+          
+          {/* Inlets & Outlets */}
+          {/* 1. Feed Inlet */}
+          <path d="M 40 85 L 80 85" strokeWidth="1.5" />
+          <polygon points="76,82 82,85 76,88" className="fill-slate-500 dark:fill-slate-400" />
+          {/* 2. Gas Outlet (Top) */}
+          <path d="M 262 15 L 262 40" strokeWidth="1.5" />
+          {/* 3. Oil Outlet (Bottom Right) */}
+          <path d="M 270 130 L 270 165" strokeWidth="1.5" />
+          {/* 4. Water Outlet (Bottom Left) */}
+          <path d="M 140 130 L 140 165" strokeWidth="1.5" />
 
-        {/* Separator Level Control loop */}
-        <path d="M 480 230 L 515 230 L 515 280" />
-        <circle cx="515" cy="292" r="10" className="fill-background stroke-primary/30 dark:stroke-primary/45" />
-        <text x="515" y="295" textAnchor="middle" className="fill-primary dark:fill-primary-light font-mono text-[7px] stroke-none select-none">LIC</text>
-      </g>
-    </svg>
+          {/* Liquid Levels lines */}
+          <line x1="110" y1="88" x2="220" y2="88" strokeDasharray="3 3" className="stroke-blue-400/40 dark:stroke-blue-500/25" strokeWidth="1" />
+          <line x1="110" y1="112" x2="220" y2="112" strokeDasharray="3 3" className="stroke-emerald-400/30 dark:stroke-emerald-500/20" strokeWidth="1" />
+          <line x1="220" y1="102" x2="300" y2="102" strokeDasharray="3 3" className="stroke-blue-400/40 dark:stroke-blue-500/25" strokeWidth="1" />
+
+          {/* Technical labels */}
+          <g className="fill-slate-400 dark:fill-slate-500 font-mono text-[7px] stroke-none select-none">
+            <text x="35" y="78">FEED INLET</text>
+            <text x="262" y="10" textAnchor="middle">GAS OUT</text>
+            <text x="270" y="174" textAnchor="middle">OIL OUT</text>
+            <text x="140" y="174" textAnchor="middle">WATER OUT</text>
+            
+            <text x="160" y="75" className="fill-slate-300 dark:fill-slate-600">GAS ZONE</text>
+            <text x="160" y="100" className="fill-slate-400 dark:fill-slate-500 font-bold">LIGHT OIL</text>
+            <text x="160" y="123" className="fill-slate-300 dark:fill-slate-600">FREE WATER</text>
+          </g>
+        </svg>
+      </div>
+      
+      {/* Bottom info section with integrated brand signature logo */}
+      <div className="flex justify-between items-end mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 font-mono">
+        <div className="text-left space-y-0.5 text-[8px] text-slate-400 dark:text-slate-500">
+          <div>ASME COMPLIANT SEPARATING VESSEL</div>
+          <div>DESIGN: 45.0 barg @ 120°C</div>
+          <div>TAG: V-102 (3-PHASE HORIZONTAL)</div>
+        </div>
+        
+        {/* Brand Stamp Signature */}
+        <div className="flex items-center gap-2 border-l border-slate-100 dark:border-slate-800/80 pl-4 h-9 select-none">
+          <div className="relative w-6 h-6">
+            <Image 
+              src="/icon-garudaloka.png" 
+              alt="Garudaloka Logo" 
+              fill 
+              className="object-contain filter grayscale opacity-40 dark:opacity-55"
+              sizes="24px"
+            />
+          </div>
+          <div className="text-left leading-none">
+            <span className="block text-[8px] font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase">GARUDALOKA</span>
+            <span className="block text-[6px] text-slate-300 dark:text-slate-650 uppercase font-medium">TECHNICAL PORTAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -158,113 +211,46 @@ export default async function Home() {
       
       <main className="flex-1 transition-colors duration-200">
         
-        {/* 1. HERO SECTION (Redesigned: Clean, Professional, P&ID visual backdrop, adapt dark/light mode) */}
-        <section className="relative overflow-hidden pt-16 pb-20 md:py-32 bg-gradient-to-b from-background-alt via-background to-background">
-          <div className="absolute inset-0 z-0 opacity-60 dark:opacity-40 pointer-events-none select-none">
-            {/* Grid Pattern overlay for engineering blueprint feeling */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#F1F0EE_1px,transparent_1px),linear-gradient(to_bottom,#F1F0EE_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[140px]" />
-          </div>
+        {/* 1. HERO SECTION — Premium Engineering Platform, Corporate-Grade, Clean */}
+        <section className="relative overflow-hidden pt-20 pb-24 md:py-36 bg-gradient-to-b from-background-alt via-background to-background border-b border-border/40">
+          <IndustrialBlueprintBackdrop />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              
-              {/* Hero Copywriting */}
-              <div className="lg:col-span-7 text-left space-y-7 pr-0 lg:pr-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light border border-primary/15 tracking-wide select-none">
-                  <Sparkles className="h-3.5 w-3.5 text-accent animate-pulse" />
-                  Edukasi Visual Engineering #1 di Indonesia
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+
+              {/* LEFT COLUMN: Authoritative Engineering Copywriting */}
+              <div className="lg:col-span-7 text-left space-y-8 pr-0 lg:pr-8">
+                {/* Platform Category Label — Mono, clean, understated */}
+                <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary dark:text-primary-light font-bold select-none opacity-90">
+                  Sains Rekayasa Proses &amp; Standardisasi Industri
                 </span>
-                
-                <h1 className="text-4xl md:text-6xl font-extrabold font-serif text-foreground leading-[1.12] tracking-tight">
-                  Kuasai Ilmu Teknik secara <span className="text-primary dark:text-primary-light">Visual & Presisi</span>
+
+                {/* Authoritative Main Headline */}
+                <h1 className="text-[38px] md:text-[52px] font-bold font-serif text-foreground leading-[1.1] tracking-tight">
+                  Sains Proses &amp; Dokumentasi Teknik untuk{" "}
+                  <span className="text-primary dark:text-primary-light">Ekselensi Operasional</span>
                 </h1>
-                
-                <p className="text-base md:text-[18px] text-muted leading-relaxed max-w-2xl antialiased">
-                  Menyederhanakan konsep teknik kimia, instrumen proses, peralatan industri, dan keselamatan pabrik menjadi diagram alir interaktif yang presisi dan tepercaya.
+
+                {/* Concise Technical Description */}
+                <p className="text-sm md:text-[15px] text-muted leading-relaxed max-w-xl antialiased">
+                  Dokumentasi terstruktur, visualisasi diagram alir proses (PFD), panduan instrumen peralatan, dan referensi standar rekayasa industri (API, ASME, ISO) untuk profesional teknik.
                 </p>
-                
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                  <Link 
-                    href="#categories" 
-                    className="px-6 py-4 bg-primary hover:bg-primary-light text-white text-center text-sm font-bold rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer border border-primary-light/10"
+
+                {/* Single CTA — Mono uppercase, engineering credibility */}
+                <div className="flex items-center pt-2">
+                  <Link
+                    href="#categories"
+                    className="inline-flex items-center gap-2.5 px-7 py-4 bg-primary hover:bg-primary-light text-white text-xs font-mono uppercase tracking-widest font-bold rounded-sm transition-all duration-200 shadow-[0_1px_3px_rgba(0,0,0,0.08)] border border-primary-light/10 cursor-pointer"
                   >
                     Jelajahi Pengetahuan
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
-                  <Link 
-                    href="/equipment/separator-tiga-fasa" 
-                    className="px-6 py-4 bg-card hover:bg-background-alt border border-border/80 text-foreground text-center text-sm font-bold rounded-lg shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    Pelajari Equipment
-                  </Link>
-                </div>
-
-                {/* Micro Stats Bar */}
-                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border/70 max-w-lg select-none">
-                  <div>
-                    <span className="block text-2xl md:text-3xl font-black text-primary dark:text-primary-light">300+</span>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-muted">Materi Teknis</span>
-                  </div>
-                  <div>
-                    <span className="block text-2xl md:text-3xl font-black text-accent">100%</span>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-muted">Visual Diagram</span>
-                  </div>
-                  <div>
-                    <span className="block text-2xl md:text-3xl font-black text-foreground">Akurat</span>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-muted">Ref. Standar API</span>
-                  </div>
                 </div>
               </div>
 
-              {/* Hero Standalone Logo Emblem with detailed blueprint backing & live telemetry indicators */}
+              {/* RIGHT COLUMN: Premium CAD Technical Drawing Composition */}
               <div className="hidden lg:flex lg:col-span-5 relative w-full justify-center items-center py-6">
-                {/* Glow Backdrop */}
-                <div className="absolute w-[400px] h-[400px] bg-primary/10 dark:bg-primary/20 rounded-full blur-[110px] pointer-events-none select-none" />
-                
-                {/* SVG P&ID Blueprint Background (Subtle opacity adapted to theme) */}
-                <div className="absolute inset-0 w-full h-[520px] -right-10 pointer-events-none opacity-[0.14] dark:opacity-[0.24] flex items-center justify-center">
-                  <PandIDBlueprint />
-                </div>
-                
-                {/* Logo Frame Container - Glassmorphic, modern and rich */}
-                <div className="relative z-10 w-full max-w-[420px] aspect-square flex items-center justify-center p-8 rounded-3xl border border-border/40 bg-card/45 dark:bg-card/35 backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.04)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.25)] group hover:border-primary/20 hover:shadow-primary/5 transition-all duration-500">
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
-                  {/* Technical circular spinning rings */}
-                  <div className="absolute inset-4 rounded-full border border-dashed border-primary/20 dark:border-primary/30 animate-[spin_60s_linear_infinite] pointer-events-none" />
-                  <div className="absolute inset-10 rounded-full border border-dotted border-accent/25 dark:border-accent/35 animate-[spin_40s_linear_infinite_reverse] pointer-events-none" />
-
-                  {/* Logo Center Emblem */}
-                  <div className="relative w-full h-full max-w-[280px] aspect-square flex items-center justify-center animate-[pulse_4s_ease-in-out_infinite] group-hover:scale-105 transition-transform duration-500">
-                    <Image 
-                      src="/icon-garudaloka.png" 
-                      alt="Garudaloka Logo" 
-                      fill 
-                      className="object-contain filter drop-shadow-[0_10px_25px_rgba(0,0,0,0.12)] dark:drop-shadow-[0_10px_35px_rgba(255,255,255,0.08)]" 
-                      sizes="350px"
-                      priority
-                    />
-                  </div>
-
-                  {/* Telemetry Indicator 1 - Active Separation Unit (Bottom Left) */}
-                  <div className="absolute -bottom-4 -left-8 bg-card/90 dark:bg-card/80 backdrop-blur-md border border-border p-3.5 rounded-xl shadow-lg flex items-center gap-3 select-none hover:scale-105 hover:border-primary/30 transition-all duration-300">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
-                    <div className="text-left font-mono">
-                      <span className="block text-[8px] font-bold text-muted uppercase tracking-wider">Unit Separator</span>
-                      <span className="block text-[11px] font-black text-foreground">V-102 (3-Phase)</span>
-                    </div>
-                  </div>
-
-                  {/* Telemetry Indicator 2 - System pressure (Top Right) */}
-                  <div className="absolute -top-4 -right-6 bg-card/90 dark:bg-card/80 backdrop-blur-md border border-border p-3.5 rounded-xl shadow-lg flex items-center gap-3 select-none hover:scale-105 hover:border-primary/30 transition-all duration-300">
-                    <Gauge className="h-4.5 w-4.5 text-primary dark:text-primary-light animate-pulse" />
-                    <div className="text-left font-mono">
-                      <span className="block text-[8px] font-bold text-muted uppercase tracking-wider">Tekanan</span>
-                      <span className="block text-[11px] font-black text-foreground">32.4 barg <span className="text-[9px] text-emerald-500 font-bold">OK</span></span>
-                    </div>
-                  </div>
-                </div>
+                <TechnicalVisualComposition />
               </div>
 
             </div>
