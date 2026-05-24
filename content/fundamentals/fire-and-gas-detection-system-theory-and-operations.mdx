@@ -1,0 +1,410 @@
+---
+title: Fire and Gas Detection System Theory and Operations
+slug: fire-and-gas-detection-system-theory-and-operations
+category:
+  - fundamentals
+  - process-systems
+  - production-operations
+  - glossary
+description: >-
+  Panduan teknikal mendalam tentang teori, prinsip kerja, komponen, klasifikasi,
+  parameter operasi, perawatan, dan aplikasi Fire and Gas Detection System di
+  industri minyak dan gas.
+difficulty: Beginner
+keywords:
+  - Fire and Gas System
+  - Detector
+  - Fundamental
+takeaways: []
+tags:
+  - Fire and Gas System
+  - Detector
+  - Fundamental
+readingTime: 5 min
+featured: true
+date: '2026-05-24'
+cover: >-
+  https://www.gexcon.com/wp-content/uploads/2025/07/Webinar-The-challenges-of-fire-and-gas-detection-640x427.jpg
+---
+## Quick Technical Summary
+
+### Function
+
+Fire and Gas Detection System (FGS) berfungsi untuk mendeteksi dini keberadaan api, gas mudah terbakar, dan gas beracun di area proses, serta secara otomatis menginisiasi tindakan proteksi seperti alarm, shutdown, dan sistem pemadam kebakaran untuk mengurangi risiko eskalasi dan melindungi personel, aset, dan lingkungan.
+
+### Working Principle
+
+FGS bekerja berdasarkan pemantauan kontinu parameter fisik-kimia lingkungan (suhu, radiasi, konsentrasi gas) menggunakan sensor spesifik. Ketika parameter melampaui ambang batas yang ditentukan, sinyal dikirim ke logic solver yang mengeksekusi logika voting dan mengaktifkan alarm, serta perangkat proteksi akhir seperti deluge valve, ESD, atau alarm audiovisual.
+
+### Main Operational Concern
+
+False alarm, kegagalan deteksi (fail to danger), drift kalibrasi, coverage gap, dan keterlambatan respons menjadi perhatian utama. Gangguan seperti lensa kotor, sensor teracuni, atau kesalahan wiring dapat menurunkan Safety Integrity Level (SIL) sistem.
+
+### Typical Application
+
+FGS terpasang di seluruh fasilitas hulu-migas, refinery, gas plant, LNG, petrokimia, platform lepas pantai, kompresor station, tangki penyimpanan, dan area proses berbahaya lainnya.
+
+<WarningBox type="important">
+<br>FGS merupakan lapisan proteksi independen (Independent Protection Layer) dalam Safety Instrumented System (SIS) yang mengurangi probabilitas konsekuensi insiden major. Keandalan dan integritasnya harus dijamin melalui siklus hidup keselamatan sesuai standar IEC 61511.<br>
+</WarningBox>
+
+## 30-Second Answer
+
+Fire and Gas Detection System (FGS) merupakan kumpulan perangkat instrumentasi keselamatan yang mendeteksi kebakaran dan kebocoran gas secara otomatis serta memicu alarm dan tindakan mitigasi. Prinsip kerjanya didasarkan pada konversi fenomena fisik (panas, radiasi UV/IR, konduktivitas termal, absorbsi inframerah) menjadi sinyal listrik oleh elemen sensor, yang diproses oleh logic solver untuk menentukan kondisi bahaya dan menjalankan urutan aksi proteksi secara deterministic.
+
+## 1. Introduction
+
+Fire and Gas Detection System (FGS) merupakan sistem keselamatan kritis yang digunakan dalam fasilitas proses hidrokarbon untuk mendeteksi keberadaan api, gas mudah terbakar (flammable gas), dan gas beracun (toxic gas) secara dini, serta menginisiasi respons otomatis guna meminimalkan dampak insiden. Sistem ini berfungsi sebagai lapisan proteksi independen (Independent Protection Layer, IPL) antara penyebab bahaya dan konsekuensi major seperti ledakan, kebakaran besar, atau paparan gas berbahaya terhadap personel.
+
+Dalam konteks hirarki pengendalian risiko, FGS tidak mencegah kebocoran, melainkan mengurangi probabilitas eskalasi setelah kebocoran terjadi. Oleh karena itu, FGS harus memiliki integritas tinggi, respons cepat, dan coverage memadai sesuai dengan hasil analisis risiko seperti Fire and Explosion Risk Assessment (FERA) atau Quantitative Risk Assessment (QRA).
+
+Tujuan penerapan FGS di instalasi migas meliputi:
+
+- Deteksi dini kebakaran dan akumulasi gas berbahaya.
+- Inisiasi alarm visual dan audible untuk evakuasi personel.
+- Mengaktifkan sistem proteksi aktif seperti deluge, foam, CO2, atau water spray.
+- Mengirim sinyal trip ke Emergency Shutdown (ESD) untuk mengisolasi sumber kebocoran.
+- Menyediakan informasi situasi kepada operator di Central Control Room (CCR).
+
+<WarningBox type="important">
+<br>FGS bukan pengganti pencegahan kebocoran primer (seperti integritas bejana tekan, sistem perpipaan, dan pengelolaan korosi), melainkan bagian dari strategi mitigasi berlapis (defense-in-depth).<br>
+</WarningBox>
+
+## 2. Fundamental Principle
+
+Prinsip fundamental FGS adalah deteksi fenomena fisik atau kimia yang tercipta akibat pembakaran (api) atau pelepasan gas ke atmosfer. Sensor mengkonversi besaran fisik (radiasi elektromagnetik, suhu, konsentrasi gas) menjadi sinyal listrik yang kemudian diproses oleh controller untuk menentukan apakah kondisi bahaya terjadi.
+
+Fenomena yang dideteksi antara lain:
+
+- Radiasi ultraviolet (UV) dan inframerah (IR) dari nyala api.
+- Panas konveksi atau radiasi dari api.
+- Perubahan konduktivitas termal akibat adanya gas berbeda dengan udara.
+- Absorbsi cahaya inframerah pada panjang gelombang spesifik oleh molekul gas.
+- Reaksi elektrokimia gas pada permukaan elektroda katalitik.
+
+Mekanisme deteksi umumnya bekerja dalam domain kontinu: sensor menghasilkan sinyal analog yang dibandingkan dengan batas ambang (threshold) di logic solver. Jika sinyal melampaui threshold, maka status bahaya diaktifkan. Untuk meningkatkan keandalan, logika voting seperti 2oo3 (2 out of 3) diterapkan, di mana harus ada lebih dari satu detektor yang terpicu sebelum aksi proteksi dieksekusi.
+
+<WarningBox type="important">
+<br>Penerapan voting logic bertujuan mengurangi probabilitas false alarm yang dapat mengakibatkan produksi berhenti tidak perlu (spurious trip) dan menjaga keandalan deteksi terhadap bahaya nyata.<br>
+</WarningBox>
+
+## 3. Working Principle
+
+Secara operasional, FGS bekerja melalui siklus deteksi–pemrosesan–aksi. Alur kerja tipikal dimulai dari elemen sensor yang terpapar lingkungan proses. Misalnya pada detektor gas hidrokarbon tipe catalytic bead, gas yang mengenai bead katalitik teroksidasi, meningkatkan suhu bead dan mengubah resistansi listrik. Perubahan resistansi ini diukur sebagai sinyal analog 4-20 mA yang dikirim ke Fire and Gas Logic Controller.
+
+Logic controller, yang bisa berupa PLC khusus safety (Safety PLC) atau perangkat solid-state, menerima sinyal dari banyak detektor, melakukan pemrosesan sinyal (filtering, linearisasi, komparasi ambang batas), dan mengeksekusi logika voting sesuai Cause & Effect Matrix (CEM). Jika logika terpenuhi, controller akan mengeluarkan output untuk mengaktifkan:
+
+- Alarm panel di CCR.
+- Klakson dan lampu strobe (audiovisual alarm) di lapangan.
+- Deluge valve atau sistem pemadam otomatis.
+- Shutdown valve (ESDV) untuk isolasi segmen.
+- Sistem komunikasi ke Fire & Gas Panel lainnya.
+
+Seluruh urutan respons ini terjadi dalam hitungan detik sejak detektor mendeteksi hingga aktuasi akhir, bergantung pada time delay yang diprogram untuk menghindari false trip akibat transient fluktuasi.
+
+### 3.1 Siklus Operasi
+
+Urutan operasi FGS:
+
+1. **Monitoring Normal**: Sistem dalam mode stand-by, sensor memantau parameter lingkungan, sinyal 4 mA (no hazard) dikirimkan.
+2. **Deteksi Bahaya**: Parameter melewati threshold; sinyal meningkat menuju 20 mA.
+3. **Pre-Alarm**: Jika melebihi ambang peringatan dini (misal 20% LEL), alarm peringatan di CCR diaktifkan.
+4. **Alarm/Confirmation**: Level bahaya tinggi tercapai, voting logic memvalidasi, alarm utama berbunyi.
+5. **Action Execution**: Output modul mengaktifkan aktuator proteksi (misal solenoid valve deluge).
+6. **Post-Incident**: Setelah kondisi aman, reset manual dilakukan oleh operator untuk mengembalikan sistem ke kondisi normal.
+
+<WarningBox type="success">
+<br>Setiap siklus operasi FGS harus diuji secara periodik melalui functional test untuk memastikan integritas SIL dan performa lapisan proteksi.<br>
+</WarningBox>
+
+### Key Points
+
+- Sensor mengubah fenomena bahaya menjadi sinyal listrik.
+- Logic solver menerapkan voting untuk memvalidasi bahaya dan mencegah false trip.
+- Urutan waktu mulai deteksi hingga eksekusi mitigasi kritis untuk keselamatan.
+
+## 4. Main Components
+
+Sistem FGS terdiri dari beberapa subsistem utama yang saling terhubung secara fungsional.
+
+### 4.1 Field Detection Devices
+
+Merupakan elemen primer yang mengubah fenomena bahaya menjadi sinyal listrik. Klasifikasi meliputi:
+
+- **Flame Detector**: UV, IR, UV/IR combined, multi-spectrum IR. Mendeteksi radiasi nyala api.
+- **Combustible Gas Detector**: Catalytic bead (pellistor) atau Inframerah (IR point atau open path). Mendeteksi gas mudah terbakar dalam % LEL.
+- **Toxic Gas Detector**: Electrochemical atau semiconductor. Spesifik untuk gas seperti H2S, CO, SO2.
+- **Smoke Detector**: Ionization, photoelectric, atau aspirating (VESDA). Digunakan di ruang kontrol, gedung.
+- **Heat Detector**: Fixed temperature, rate-of-rise. Deteksi kebakaran tanpa asap.
+
+### 4.2 Fire & Gas Logic Solver
+
+Merupakan otak sistem yang menerima sinyal dari detektor, melakukan logika, dan mengontrol output. Umumnya menggunakan Safety PLC (programmable logic controller) yang tersertifikasi untuk aplikasi SIL 2 atau SIL 3. Terkadang berupa hardwired relay logic untuk sistem sederhana. Modul input/output (I/O) harus mampu menangani sinyal analog dan digital.
+
+### 4.3 Alarm & Notification System
+
+Termasuk:
+
+- Panel annunciator di CCR, menampilkan status detektor dan zona.
+- Audiovisual beacon (strobe, klakson) di lapangan.
+- Public Address / General Alarm system terintegrasi.
+- Integrasi dengan Distributed Control System (DCS) untuk monitoring.
+
+### 4.4 Final Elements
+
+Aktuator yang diaktivasi oleh FGS untuk mitigasi, antara lain:
+
+- Solenoid valve pada deluge/sprinkler system.
+- Shutdown valve (ESDV, BDV).
+- Motor control circuit untuk fan/pump trip.
+- Gas suppression system release (CO2, FM200).
+
+### 4.5 Field Interface & Infrastructure
+
+Meliputi kabel tahan api, junction box certified explosion-proof, power supply UPS dengan battery backup untuk memastikan operasi saat listrik utama padam.
+
+## 5. Types / Classification
+
+Klasifikasi FGS dapat dilakukan berdasarkan fungsi, teknologi deteksi, dan konfigurasi sistem.
+
+### 5.1 Berdasarkan Fungsi Deteksi
+
+- **Fire Detection System**: Khusus deteksi api dengan flame, smoke, heat detector.
+- **Gas Detection System**: Khusus deteksi flammable dan toxic gas.
+- **Combined Fire & Gas System**: Integrasi keduanya dalam satu platform logika, umum di industri migas modern.
+
+### 5.2 Berdasarkan Teknologi Detektor
+
+| Teknologi | Kelebihan | Keterbatasan |
+| --- | --- | --- |
+| Catalytic Bead | Sederhana, respons linear terhadap LEL | Dapat teracuni oleh silikon, sulfur; butuh oksigen |
+| Inframerah Point | Tidak terpengaruh racun; fail-safe; tahan lama | Hanya untuk gas dengan serapan IR; lebih mahal |
+| Inframerah Open Path | Cakupan luas (hingga 200 m), ideal untuk batas area | Sensitif terhadap fog, hujan deras; hanya rata-rata konsentrasi di path |
+| Electrochemical | Selektif, sensitif untuk gas toksik ppm rendah | Umur terbatas (2-3 tahun); suhu dan kelembaban mempengaruhi |
+| Flame UV/IR | Cepat merespon (ms); tahan false alarm | Lensa kotor mengurangi sensitivitas; perlu line-of-sight |
+
+<WarningBox type="warning">
+<br>Pemilihan teknologi harus mempertimbangkan kondisi lingkungan: kelembaban tinggi, suhu ekstrim, kemungkinan kontaminasi, dan karakteristik gas target.<br>
+</WarningBox>
+
+### 5.3 Berdasarkan Arsitektur Logika
+
+- **Konvensional / Hardwired**: Detektor langsung terhubung ke annunciator panel dan relay. Sederhana, tapi sulit ekspansi.
+- **Addressable / Addressable Loop**: Setiap detektor memiliki alamat unik pada loop data, mengurangi wiring. Banyak dipakai di fire alarm komersial, namun beberapa platform industri migas juga mengadopsi.
+- **PLC-based Networked**: Semua detektor dan output terhubung ke Safety PLC melalui redundant network. Memungkinkan voting kompleks, event logging, dan integrasi DCS.
+
+## Mid-Article Engineering Recap
+
+### In Summary So Far
+
+- FGS adalah sistem keselamatan otomatis yang mendeteksi api dan gas serta memicu proteksi.
+- Prinsip kerja: sensor mendeteksi fenomena fisik/kimia, logic solver memvalidasi melalui voting, mengaktifkan alarm dan final elements.
+- Komponen utama: detektor, logic controller, alarm, aktuator.
+- Teknologi detektor meliputi catalytic, infrared, electrochemical, UV/IR flame, dll., masing-masing dengan trade-off.
+- Parameter kritis: sensitivitas, coverage, response time, voting logic, SIL.
+- Kegagalan dapat berupa false alarm atau fail to detect, dipengaruhi oleh lingkungan dan perawatan.
+
+## 6. Operating Parameter
+
+Beberapa parameter operasi yang menentukan kinerja FGS:
+
+### 6.1 Set Point dan Ambang Batas (Threshold)
+
+- **Flammable Gas**: Umumnya pre-alarm pada 10-20% LEL, alarm utama pada 40-60% LEL, aksi otomatis (misal shutdown) pada 60% LEL, meskipun nilai spesifik mengikuti NFPA 72, ISA-84, atau standar perusahaan.
+- **Toxic Gas**: Berdasarkan konsentrasi ppm (misal H2S alarm rendah 5 ppm, tinggi 10 ppm, aksi 20 ppm sesuai ACGIH/OSH).
+- **Flame**: Sensitivitas dinyatakan dalam jarak dan sudut pandang, serta respon terhadap nyala standar (seperti n-heptane).
+
+### 6.2 Coverage Area
+
+Setiap detektor memiliki coverage terbatas. Penempatan diatur untuk meminimalkan blind spot. Parameter coverage dipengaruhi oleh:
+
+- Detektor titik (point gas detector): radius proteksi sekitar 5-10 m tergantung jenis dan ventilasi.
+- Flame detector: sudut pandang 90°-120° dan jarak deteksi hingga 50 m.
+- Open path gas: panjang path hingga 200 m.
+
+### 6.3 Response Time
+
+Total waktu dari kontak gas hingga output aktuasi. Dipengaruhi waktu tunda sensor (T90) dan waktu pemrosesan logic solver. Respon detektor gas catalytic biasanya 10-20 detik, IR sekitar 5 detik, flame detector kurang dari 50 ms.
+
+### 6.4 Voting Logic
+
+Mengurangi false trip. Logika 2ooN, misal 2oo3, artinya minimal 2 dari 3 detektor dalam zona voting harus terpicu untuk menghasilkan output proteksi. Pemilihan N berdasarkan risiko, ketersediaan, dan analisis SIF.
+
+### 6.5 Safety Integrity Level (SIL)
+
+FGS sebagai bagian dari SIS harus memenuhi target SIL sesuai risk graph atau LOPA. Untuk fungsi deteksi gas, target umum SIL 1 atau SIL 2; untuk fire detection mungkin SIL 2. Arsitektur redundancy dan proof test interval mempengaruhi PFDavg (Probability of Failure on Demand).
+
+<WarningBox type="important">
+<br>Parameter operasi harus divalidasi saat commissioning dan diverifikasi secara periodik melalui proof test untuk memastikan performa SIF tetap sesuai Safety Requirement Specification (SRS).<br>
+</WarningBox>
+
+## 7. Installation / Operating Practice
+
+### 7.1 Posisi Pemasangan Detektor
+
+- Detektor gas lebih ringan dari udara (misal metana) dipasang di ketinggian; lebih berat dari udara (LPG, H2S) di dekat lantai.
+- Flame detector harus memiliki line-of-sight tanpa obstruksi dan dipasang agar sudut pandang overlap.
+- Hindari area dengan aliran udara berlebihan yang dapat mengencerkan gas di bawah LEL sensor.
+
+### 7.2 Wiring dan Sertifikasi Area Berbahaya
+
+Semua perangkat lapangan harus bersertifikat sesuai klasifikasi area berbahaya (Ex d, Ex ia, dll). Instalasi mengikuti IEC 60079. Penggunaan kabel bertipe fire-resistant (misal MICC atau fire survival) untuk memastikan integritas sirkuit saat kebakaran.
+
+### 7.3 Startup dan Commissioning
+
+Sebelum startup, lakukan loop check, kalibrasi, functional test, dan verifikasi CEM. Pastikan logic solver program terverifikasi dan password terlindungi. Setelah plant beroperasi, lakukan walkthrough untuk memastikan tidak ada penambahan obstruksi.
+
+### 7.4 Shutdown dan Override
+
+Beberapa operasi memerlukan inhibit sementara, misal saat pekerjaan panas. Harus dengan prosedur override yang terkendali, tercatat, dan diberi time limit. Penggunaan inhibit yang tidak terkontrol dapat menonaktifkan IPL tanpa disadari.
+
+<WarningBox type="warning">
+<br>Setiap aktivitas override detektor harus melalui izin kerja aman (PTW) dan dikembalikan segera setelah selesai, diikuti functional test untuk konfirmasi.<br>
+</WarningBox>
+
+## 8. Common Failure Modes
+
+Kegagalan FGS dapat bersifat fail-safe (false alarm/spurious trip) atau fail-danger (gagal mendeteksi). Berikut tabel mode kegagalan umum:
+
+| Failure Mode | Possible Cause | Immediate Check |
+| --- | --- | --- |
+| False alarm | Lensa kotor, gas interferensi, EMC | Periksa environmental noise, bersihkan lensa |
+| Drift / zero offset | Sensor aging, suhu ekstrim | Kalibrasi zero, cek suhu housing |
+| No response (fail danger) | Sensor poisoned (catalytic), kabel putus | Gas test bump, inspeksi fisik, check loop |
+| Slow response | Lensa flame kotor, sensor elemen tertutup | Cek kebersihan, buka pelindung |
+| Communication loss | Kabel putus, modul I/O rusak | Cek power supply, terminasi, loop resistance |
+| Spurious trip dari voting | Detektor terlalu sensitif, threshold rendah | Review set point, periksa environment |
+
+Mitigasi: program kalibrasi teratur, pembersihan lensa/bukaan, functional test sesuai interval, redundancy, pemilihan sensor tahan racun, dan monitoring status online.
+
+## 9. Inspection, Maintenance & Calibration
+
+### 9.1 Inspeksi Rutin
+
+Operator melakukan pengecekan visual harian untuk memastikan tidak ada kerusakan fisik, tutupan pelindung, atau lensa kotor. Setiap bulan dilakukan pengecekan fungsi indikator LED, komunikasi ke DCS, dan voltase supply.
+
+### 9.2 Preventive Maintenance
+
+Meliputi pembersihan, pengencangan konektor, penggantian filter membran, dan pengujian bump test. Bump test dengan gas kalibrasi konsentrasi tertentu untuk memverifikasi respon sensor tanpa kalibrasi penuh, dapat dilakukan setiap 3-6 bulan.
+
+### 9.3 Kalibrasi
+
+Kalibrasi penuh dilakukan dengan gas span gas referensi sesuai rekomendasi pabrikan, biasanya setiap 6-12 bulan. Prosedur:
+
+- Aplikasi zero gas (udara bersih) untuk zero adjustment.
+- Aplikasi span gas (misal 50% LEL metana) untuk penyesuaian span.
+- Verifikasi linearitas pada beberapa titik jika diperlukan.
+- Catat hasil, beri label kalibrasi.
+
+<WarningBox type="success">
+<br>Gunakan gas kalibrasi bersertifikat dan perangkat kalibrasi yang terkalibrasi ke standar nasional. Lingkungan kalibrasi harus representatif untuk menghindari deviasi saat operasi.<br>
+</WarningBox>
+
+### 9.4 Predictive Maintenance
+
+Pemantauan trend drift, suhu sensor, dan output mA dapat membantu memprediksi degradasi. Beberapa transmitter cerdas (smart detector) mengirimkan sinyal diagnostik ke asset management system. Remaining life dapat diprediksi dan penggantian dijadwalkan.
+
+### 9.5 Proof Test
+
+Untuk memenuhi SIL verification, proof test dilakukan untuk mendeteksi kegagalan yang tidak terungkap (undetected dangerous failures). Interval dihitung berdasarkan PFDavg target dan diagnostic coverage.
+
+### Key Points
+
+- Bump test verifikasi respons cepat, kalibrasi penuh koreksi akurasi.
+- Predictive maintenance memperpanjang umur sensor dan mengurangi downtime.
+- Proof test memvalidasi integritas SIF sesuai SIL.
+
+## 10. Selection / Design Consideration
+
+Pemilihan dan desain FGS harus mengikuti siklus hidup keselamatan sesuai IEC 61511/ISA 84.
+
+### 10.1 Kesesuaian dengan Zona Berbahaya
+
+Perangkat harus memiliki sertifikasi ATEX/IECEx sesuai zona gas (Zone 0,1,2) atau dust. Temperatur permukaan (T-class) tidak boleh melebihi autoignition temperature gas yang ada.
+
+### 10.2 Jenis dan Konsentrasi Gas Target
+
+Analisis dispersi gas menentukan jenis, lokasi, dan jumlah detektor. Pemilihan teknologi harus sesuai dengan sifat gas: catalytic untuk metana, IR untuk etilen, electrochemical untuk H2S, dsb.
+
+### 10.3 Lingkungan
+
+Suhu ambien, kelembaban, hujan, debu, angin, sinar matahari langsung, dan potensi korosif mempengaruhi desain enclosure dan teknologi. Misal, di area lembab dan berkabut, detektor IR open path mungkin tidak cocok.
+
+### 10.4 Coverage Mapping dan 3D Modelling
+
+Menggunakan software mapping untuk menempatkan detektor sehingga coverage overlap memenuhi target risk reduction. Untuk flame detector, sudut pandang dan jarak harus dihitung berdasarkan peta 3D plant.
+
+### 10.5 Integration
+
+Kemudahan integrasi dengan sistem existing (DCS, ESD, alarm management) dan protokol komunikasi (Modbus, Ethernet/IP, HART) dipertimbangkan.
+
+### 10.6 Maintainability
+
+Akses untuk kalibrasi, penggantian sensor, pembersihan lensa harus terjamin. Pemasangan di elevasi sulit dijangkau memerlukan platform permanen.
+
+### 10.7 Redundancy dan SIL
+
+Untuk fungsi kritis, arsitektur redundancy diterapkan (1oo2, 2oo3) untuk sensor dan logic solver. Logic solver Safety PLC dengan dual processor dan I/O redundant sering dipilih.
+
+<WarningBox type="important">
+<br>Setiap fungsi instrumen keselamatan (SIF) yang dimplementasikan FGS harus memiliki Safety Requirement Specification (SRS) yang mendokumentasikan set point, voting, time response, SIL target, dan proof test interval.<br>
+</WarningBox>
+
+## 11. Practical Field Application in Oil & Gas
+
+### 11.1 Wellhead Platform
+
+Ruang terbatas dengan potensi kebocoran gas bertekanan tinggi. Biasanya dipasang detektor gas catalytic dan IR point di sekitar wellhead, serta flame detector UV/IR dengan coverage ke seluruh area. Logic voting 2ooN dengan output shutdown ke Surface Safety Valve (SSV) dan alarm.
+
+### 11.2 Compressor Station
+
+Kompresor gas alam dilengkapi detektor flammable gas di sekitar seal, cooler, dan area ventilasi. Detektor panas dan flame di enclosure kompresor. Shutdown compressor jika terdeteksi kebocoran gas 40% LEL.
+
+### 11.3 Separator dan Vessel
+
+Pada area separator tiga fasa dan pressure vessel yang banyak mengandung hidrokarbon, gas detector ditempatkan dekat dengan potensi titik bocor (flange, vent). Detektor H2S jika fluida mengandung asam.
+
+### 11.4 Tangki Penyimpanan (Storage Tank)
+
+Fixed roof tank dengan potensi kebocoran di rim seal dilengkapi linear heat detection atau detektor gas open path di atas tangki. Deteksi kebakaran via flame detector di bundwall.
+
+### 11.5 Gas Processing Plant
+
+Fasilitas dengan konsentrasi gas tinggi menggunakan jaringan detektor gas IR point dan open path di jalan akses dan batas area (perimeter). Integrasi dengan ESD dan deluge system untuk unit proses.
+
+### 11.6 Offshore Platform
+
+Aplikasi paling ketat, coverage 100% area proses. Penggunaan redundant flame detector multi-spectrum, gas detector, smoke detector di living quarter, serta H2S detector jika produksi sour. Semua terintegrasi ke platform safety system dengan SIL 2/3.
+
+<WarningBox type="success">
+<br>Dalam praktik, analisis FERA sering merekomendasikan penempatan detektor berdasarkan skenario kebocoran terburuk (worst credible release) untuk memastikan deteksi tepat waktu.<br>
+</WarningBox>
+
+> **Field Note**
+>
+> Di beberapa fasilitas tua, detektor gas catalytic sering teracuni oleh silikon dari gasket atau pelumas. Engineer instrument sering menggantinya dengan tipe infrared point yang tahan racun, meskipun lebih mahal. Retrofitting ini meningkatkan availability sistem.
+
+## 12. Field Quick Reference
+
+| Situation | Possible Cause | Immediate Check |
+| --- | --- | --- |
+| Alarm terus menyala tanpa bahaya | Drift sensor, lensa kotor, gas interferensi | Periksa status LED detektor, bersihkan lensa, lakukan bump test |
+| Tidak ada respon saat gas test | Sensor mati/rusak, wiring putus, alamat salah | Cek tegangan supply, loop current, ganti sensor |
+| Flame detector lambat respon | Lensa buram atau tertutup debu | Bersihkan dengan kain lembut, jangan gunakan cairan abrasif |
+| Open path gas detector "blocked" | Fog, hujan deras, obstruksi mekanis | Cek alignment, tunggu cuaca membaik, bersihkan jendela |
+| Voting logic tidak mengeksekusi output | Setting threshold tidak tercapai, cacat program, force disable | Periksa Cause & Effect di engineering station, cek kondisi inhibit |
+| Power supply fault | UPS lemah, konektor longgar, fuse putus | Cek output UPS, ganti fuse, periksa kabel |
+
+## 13. Key Takeaways
+
+- Fire and Gas Detection System merupakan elemen esensial dalam strategi keselamatan proses, berfungsi mendeteksi bahaya dan memicu mitigasi otomatis.
+- Prinsip kerja bergantung pada sensor spesifik yang mengukur fenomena api dan gas, diproses oleh logic solver dengan voting logic untuk mengurangi false alarm dan memastikan integritas.
+- Komponen utama meliputi detektor (flame, gas, asap, panas), logic controller, alarm, dan final elements.
+- Klasifikasi teknologi detektor mencakup catalytic, infrared, electrochemical, UV/IR flame, masing-masing dengan kelebihan dan batasan sesuai aplikasi.
+- Parameter operasi kritikal: set point, coverage, response time, voting logic, dan SIL target.
+- Kegagalan umum antara lain sensor teracuni, drift kalibrasi, lensa kotor, dan komunikasi putus; memerlukan program inspeksi, kalibrasi, dan proof test yang ketat.
+- Desain dan seleksi mempertimbangkan jenis gas, lingkungan, zoning, coverage mapping, integrasi sistem, dan maintainability.
+- Aplikasi di berbagai fasilitas migas memerlukan pendekatan berbasis risiko untuk memastikan coverage memadai dan respon sesuai SRS.
+- Referensi standar utama: IEC 61511, NFPA 72, ISA TR84.00.07, API RP 14C.
+
+Artikel ini diharapkan memberikan pemahaman menyeluruh tentang teori dan operasi Fire and Gas Detection System sehingga dapat digunakan sebagai referensi pelatihan dan panduan teknis di lapangan.
