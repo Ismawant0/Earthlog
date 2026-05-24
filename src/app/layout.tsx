@@ -30,14 +30,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Ismawanto" }],
   creator: "Ismawanto",
   publisher: "Garudaloka",
-  metadataBase: new URL("https://garudaloka.com"),
+  metadataBase: new URL("https://garudaloka.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
     description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
-    url: "https://garudaloka.com",
+    url: "https://garudaloka.vercel.app",
     siteName: "Garudaloka",
     locale: "id_ID",
     type: "website",
@@ -89,8 +89,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Garudaloka",
-    "url": "https://garudaloka.com",
-    "logo": "https://garudaloka.com/icon.png",
+    "url": "https://garudaloka.vercel.app",
+    "logo": "https://garudaloka.vercel.app/icon.png",
     "description": "Platform Pengetahuan Teknik & Industri Modern di Indonesia",
     "sameAs": [
       "https://github.com/Ismawant0"
@@ -101,13 +101,13 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Garudaloka",
-    "url": "https://garudaloka.com",
+    "url": "https://garudaloka.vercel.app",
     "description": "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://garudaloka.com/search?q={search_term_string}"
+        "urlTemplate": "https://garudaloka.vercel.app/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }

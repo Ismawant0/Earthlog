@@ -7,11 +7,11 @@ export async function GET() {
   const itemsXml = articles.map(article => `
     <item>
       <title><![CDATA[${article.title}]]></title>
-      <link>https://garudaloka.com/${article.categorySlug}/${article.slug}</link>
-      <guid>https://garudaloka.com/${article.categorySlug}/${article.slug}</guid>
+      <link>https://garudaloka.vercel.app/${article.categorySlug}/${article.slug}</link>
+      <guid>https://garudaloka.vercel.app/${article.categorySlug}/${article.slug}</guid>
       <pubDate>${new Date(article.date).toUTCString()}</pubDate>
       <description><![CDATA[${article.description}]]></description>
-      ${article.cover ? `<enclosure url="${article.cover.startsWith('http') ? article.cover : `https://garudaloka.com${article.cover}`}" type="image/jpeg" />` : ''}
+      ${article.cover ? `<enclosure url="${article.cover.startsWith('http') ? article.cover : `https://garudaloka.vercel.app${article.cover}`}" type="image/jpeg" />` : ''}
     </item>
   `).join('');
 
@@ -19,10 +19,10 @@ export async function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Garudaloka - Platform Pengetahuan Teknik</title>
-    <link>https://garudaloka.com</link>
+    <link>https://garudaloka.vercel.app</link>
     <description>Platform edukasi engineering &amp; industri modern.</description>
     <language>id-ID</language>
-    <atom:link href="https://garudaloka.com/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://garudaloka.vercel.app/feed.xml" rel="self" type="application/rss+xml" />
     ${itemsXml}
   </channel>
 </rss>`;

@@ -6,8 +6,8 @@ export async function GET() {
   const now = new Date();
   
   const items = articles.map(article => ({
-    id: `https://garudaloka.com/${article.categorySlug}/${article.slug}`,
-    url: `https://garudaloka.com/${article.categorySlug}/${article.slug}`,
+    id: `https://garudaloka.vercel.app/${article.categorySlug}/${article.slug}`,
+    url: `https://garudaloka.vercel.app/${article.categorySlug}/${article.slug}`,
     title: article.title,
     content_text: article.description,
     content_html: `<p>${article.description}</p>`,
@@ -17,18 +17,18 @@ export async function GET() {
     authors: [{ name: article.author }],
     tags: article.tags || [],
     ...(article.cover ? {
-      image: article.cover.startsWith('http') ? article.cover : `https://garudaloka.com${article.cover}`
+      image: article.cover.startsWith('http') ? article.cover : `https://garudaloka.vercel.app${article.cover}`
     } : {}),
   }));
 
   const feed = {
     version: "https://jsonfeed.org/version/1.1",
     title: "Garudaloka - Platform Pengetahuan Teknik",
-    home_page_url: "https://garudaloka.com",
-    feed_url: "https://garudaloka.com/feed.json",
+    home_page_url: "https://garudaloka.vercel.app",
+    feed_url: "https://garudaloka.vercel.app/feed.json",
     description: "Platform edukasi engineering & industri modern.",
     language: "id-ID",
-    authors: [{ name: "Garudaloka", url: "https://garudaloka.com" }],
+    authors: [{ name: "Garudaloka", url: "https://garudaloka.vercel.app" }],
     items,
   };
 

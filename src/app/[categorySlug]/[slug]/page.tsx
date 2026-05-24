@@ -66,8 +66,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) return {};
 
   const description = generateDescription(article);
-  const canonicalUrl = `https://garudaloka.com/${categorySlug}/${slug}`;
-  const ogImage = article.cover || "https://garudaloka.com/icon.png";
+  const canonicalUrl = `https://garudaloka.vercel.app/${categorySlug}/${slug}`;
+  const ogImage = article.cover || "https://garudaloka.vercel.app/icon.png";
 
   return {
     title: `${article.title} — Garudaloka`,
@@ -199,12 +199,12 @@ export default async function ArticlePage({ params }: PageProps) {
       "name": "Garudaloka",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://garudaloka.com/icon.png"
+        "url": "https://garudaloka.vercel.app/icon.png"
       }
     },
     "datePublished": article.date,
     "dateModified": article.date,
-    "image": article.cover || "https://garudaloka.com/icon.png",
+    "image": article.cover || "https://garudaloka.vercel.app/icon.png",
     "keywords": article.keywords?.join(", ") || article.tags?.join(", "),
     "wordCount": wordCount,
     "about": {
@@ -217,7 +217,7 @@ export default async function ArticlePage({ params }: PageProps) {
     "isAccessibleForFree": true,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://garudaloka.com/${categorySlug}/${slug}`
+      "@id": `https://garudaloka.vercel.app/${categorySlug}/${slug}`
     }
   };
 
@@ -229,19 +229,19 @@ export default async function ArticlePage({ params }: PageProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Beranda",
-        "item": "https://garudaloka.com/"
+        "item": "https://garudaloka.vercel.app/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": article.category.split(',')[0] || categorySlug,
-        "item": `https://garudaloka.com/category/${categorySlug}`
+        "item": `https://garudaloka.vercel.app/category/${categorySlug}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": article.title,
-        "item": `https://garudaloka.com/${categorySlug}/${slug}`
+        "item": `https://garudaloka.vercel.app/${categorySlug}/${slug}`
       }
     ]
   };

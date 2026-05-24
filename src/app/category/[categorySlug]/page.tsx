@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   const title = `Materi Teknik ${category.name} — Garudaloka`;
   const description = `Pelajari topik, peralatan, dan penjelasan teknis mendalam tentang ${category.name} di Garudaloka. Platform edukasi engineering & industri terpercaya.`;
-  const canonicalUrl = `https://garudaloka.com/category/${categorySlug}`;
+  const canonicalUrl = `https://garudaloka.vercel.app/category/${categorySlug}`;
 
   return {
     title,
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       type: "website",
       images: [
         {
-          url: "https://garudaloka.com/icon.png",
+          url: "https://garudaloka.vercel.app/icon.png",
           width: 800,
           height: 600,
           alt: `Kategori ${category.name} - Garudaloka`,

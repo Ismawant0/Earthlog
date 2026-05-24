@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getAllArticles();
   const learningPaths = getLearningPaths();
   
-  const baseUrl = 'https://garudaloka.com';
+  const baseUrl = 'https://garudaloka.vercel.app';
   const now = new Date();
   
   const routes: MetadataRoute.Sitemap = [
