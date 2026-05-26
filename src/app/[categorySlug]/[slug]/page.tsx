@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const description = generateDescription(article);
   const canonicalUrl = `https://garudaloka.vercel.app/${categorySlug}/${slug}`;
-  const ogImage = article.cover || "https://garudaloka.vercel.app/icon.png";
+  const ogImage = article.cover || "https://garudaloka.vercel.app/garudaloka-logo.png";
 
   return {
     title: `${article.title} — Garudaloka`,
@@ -199,12 +199,12 @@ export default async function ArticlePage({ params }: PageProps) {
       "name": "Garudaloka",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://garudaloka.vercel.app/icon.png"
+        "url": "https://garudaloka.vercel.app/garudaloka-logo.png"
       }
     },
     "datePublished": article.date,
     "dateModified": article.date,
-    "image": article.cover || "https://garudaloka.vercel.app/icon.png",
+    "image": article.cover || "https://garudaloka.vercel.app/garudaloka-logo.png",
     "keywords": article.keywords?.join(", ") || article.tags?.join(", "),
     "wordCount": wordCount,
     "about": {

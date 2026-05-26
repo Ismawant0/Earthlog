@@ -11,13 +11,15 @@ export default function Footer() {
           {/* Brand Introduction */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="h-16 w-16 relative flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
+              <div className="h-20 w-20 relative flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
+                {/* Soft backdrop for logo visibility */}
+                <div className="absolute inset-[-6px] rounded-full bg-slate-900/[0.04] dark:bg-white/[0.06] blur-sm pointer-events-none" />
                 <Image 
-                  src="/icon-garudaloka.png" 
+                  src="/garudaloka-logo.png" 
                   alt="Garudaloka Logo" 
                   fill 
-                  className="object-contain transition-all duration-300 dark:[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.25))]" 
-                  sizes="64px"
+                  className="object-contain transition-all duration-300 dark:[filter:drop-shadow(0_0_10px_rgba(255,255,255,0.3))] [filter:drop-shadow(0_0_4px_rgba(0,0,0,0.08))]" 
+                  sizes="80px"
                 />
               </div>
               <div className="flex flex-col">

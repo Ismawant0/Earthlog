@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/icon.png",
+        url: "/garudaloka-logo.png",
         width: 800,
         height: 600,
         alt: "Garudaloka Engineering Platform",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon-garudaloka.png", sizes: "512x512", type: "image/png" },
+      { url: "/garudaloka-logo.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
@@ -101,7 +101,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "Garudaloka",
     "url": "https://garudaloka.vercel.app",
-    "logo": "https://garudaloka.vercel.app/icon.png",
+    "logo": "https://garudaloka.vercel.app/garudaloka-logo.png",
     "description": "Platform Pengetahuan Teknik & Industri Modern di Indonesia",
     "sameAs": [
       "https://github.com/Ismawant0"

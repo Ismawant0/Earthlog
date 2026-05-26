@@ -401,7 +401,7 @@ export default function EditorDashboard() {
         <div className="flex items-center gap-3">
           <div className="w-16 h-16 relative flex-shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icon-garudaloka.png" alt="Garudaloka Logo" className="w-full h-full object-contain" />
+            <img src="/garudaloka-logo.png" alt="Garudaloka Logo" className="w-full h-full object-contain" />
           </div>
           <div>
             <h1 className="font-bold text-gray-900 text-lg leading-tight">

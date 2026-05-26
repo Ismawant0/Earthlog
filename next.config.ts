@@ -59,16 +59,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/icon-garudaloka.png",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=86400",
-          },
-        ],
-      },
-      {
-        source: "/icon.png",
+        source: "/garudaloka-logo.png",
         headers: [
           {
             key: "Cache-Control",

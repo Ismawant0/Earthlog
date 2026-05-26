@@ -162,7 +162,7 @@ function TechnicalVisualComposition() {
         <div className="flex items-center gap-2 border-l border-slate-100 dark:border-slate-800/80 pl-4 h-9 select-none">
           <div className="relative w-6 h-6">
             <Image 
-              src="/icon-garudaloka.png" 
+              src="/garudaloka-logo.png" 
               alt="Garudaloka Logo" 
               fill 
               className="object-contain filter grayscale opacity-40 dark:opacity-55"
@@ -251,17 +251,17 @@ export default async function Home() {
               {/* RIGHT COLUMN: Large Garudaloka Brand Logo */}
               <div className="hidden lg:flex lg:col-span-5 relative w-full justify-center items-center py-6">
                 <div className="relative flex items-center justify-center w-full">
-                  {/* Dark mode ambient glow blob — sits behind the logo */}
-                  <div className="absolute inset-0 hidden dark:block pointer-events-none">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-white/[0.04] blur-3xl" />
+                  {/* Ambient glow blob — visible in both light and dark modes */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-slate-900/[0.02] dark:bg-white/[0.04] blur-3xl" />
                   </div>
                   {/* Logo */}
                   <div className="relative w-[460px] h-[460px] max-w-full transition-transform duration-500 hover:scale-105">
                     <Image
-                      src="/icon-garudaloka.png"
+                      src="/garudaloka-logo.png"
                       alt="Garudaloka Logo"
                       fill
-                      className="object-contain dark:[filter:drop-shadow(0_0_24px_rgba(255,255,255,0.15))] transition-all duration-500"
+                      className="object-contain dark:[filter:drop-shadow(0_0_28px_rgba(255,255,255,0.18))] [filter:drop-shadow(0_0_20px_rgba(0,0,0,0.06))] transition-all duration-500"
                       sizes="460px"
                       priority
                     />

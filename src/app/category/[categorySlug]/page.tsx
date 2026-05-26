@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       type: "website",
       images: [
         {
-          url: "https://garudaloka.vercel.app/icon.png",
+          url: "https://garudaloka.vercel.app/garudaloka-logo.png",
           width: 800,
           height: 600,
           alt: `Kategori ${category.name} - Garudaloka`,
