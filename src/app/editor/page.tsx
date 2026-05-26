@@ -397,10 +397,9 @@ export default function EditorDashboard() {
   return (
     <div className="min-h-screen bg-[#F7F7F5] font-sans selection:bg-blue-100 selection:text-blue-900">
       
-      {/* Dynamic Header */}
       <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between sticky top-0 z-40 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 relative flex-shrink-0">
+          <div className="w-16 h-16 relative flex-shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icon-garudaloka.png" alt="Garudaloka Logo" className="w-full h-full object-contain" />
           </div>

@@ -248,9 +248,25 @@ export default async function Home() {
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: Premium CAD Technical Drawing Composition */}
+              {/* RIGHT COLUMN: Large Garudaloka Brand Logo */}
               <div className="hidden lg:flex lg:col-span-5 relative w-full justify-center items-center py-6">
-                <TechnicalVisualComposition />
+                <div className="relative flex items-center justify-center w-full">
+                  {/* Dark mode ambient glow blob — sits behind the logo */}
+                  <div className="absolute inset-0 hidden dark:block pointer-events-none">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-white/[0.04] blur-3xl" />
+                  </div>
+                  {/* Logo */}
+                  <div className="relative w-[460px] h-[460px] max-w-full transition-transform duration-500 hover:scale-105">
+                    <Image
+                      src="/icon-garudaloka.png"
+                      alt="Garudaloka Logo"
+                      fill
+                      className="object-contain dark:[filter:drop-shadow(0_0_24px_rgba(255,255,255,0.15))] transition-all duration-500"
+                      sizes="460px"
+                      priority
+                    />
+                  </div>
+                </div>
               </div>
 
             </div>

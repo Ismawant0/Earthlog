@@ -52,17 +52,17 @@ export default function Navbar() {
           ? "bg-card/85 backdrop-blur-md border-b border-border/80 shadow-sm" 
           : "bg-background/90 backdrop-blur-sm border-b border-transparent"
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
           
           {/* Logo Branding */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="h-12 w-12 relative flex items-center justify-center transition-transform group-hover:scale-105">
+            <div className="h-[84px] w-[84px] relative flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
               <Image 
-                src="/icon-garudaloka.png" 
+                src="/icon-garudaloka-navbar.png" 
                 alt="Garudaloka Logo" 
                 fill 
-                className="object-contain" 
-                sizes="48px"
+                className="object-contain transition-all duration-300 dark:[filter:drop-shadow(0_0_8px_rgba(255,255,255,0.25))]" 
+                sizes="84px"
                 priority
               />
             </div>
