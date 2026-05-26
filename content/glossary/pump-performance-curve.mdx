@@ -1,0 +1,193 @@
+---
+title: Pump Performance Curve
+slug: pump-performance-curve
+category:
+  - glossary
+description: >-
+  Penjelasan pump performance curve pada centrifugal dan positive displacement
+  pump, termasuk cara membaca curve, BEP, head, flow, efficiency, dan operating
+  point.
+difficulty: Beginner
+keywords:
+  - Pump Performance Curve
+takeaways:
+  - Pump Performance Curve
+tags:
+  - glossary
+  - pump
+  - centrifugal pump
+  - positive displacement pump
+  - rotating equipment
+readingTime: 15 min
+featured: false
+date: '2026-05-26'
+cover: >-
+  /content-assets/glossary/pump-performance-curve/pipe-flow-expert-pd-pump-plus-centrifugal-curve-525.webp
+---
+## Quick Definition
+
+Pump performance curve adalah representasi grafis hubungan antara laju alir (flow rate), head total (total dynamic head), efisiensi pompa (pump efficiency), kebutuhan daya poros (Brake Horsepower/BHP), dan required net positive suction head (NPSHr) pada putaran dan diameter impeller tertentu. Kurva ini berfungsi sebagai dokumen teknis utama untuk memprediksi perilaku hidrolik pompa pada berbagai kondisi operasi, memilih pompa yang sesuai dengan kebutuhan sistem, serta menetapkan batas operasi aman. Data pada kurva diperoleh dari uji kinerja pabrik (factory performance test) sesuai standar seperti API 610 atau ISO 9906.
+
+## 30-Second Answer
+
+Pump performance curve menunjukkan bagaimana head, daya, efisiensi, dan NPSHr berubah terhadap flow rate. Pada pompa sentrifugal, kurva head menurun seiring kenaikan flow; pada pompa positive displacement, flow hampir konstan dan head ditentukan oleh tekanan sistem. Kurva digunakan untuk menentukan titik operasi (operating point), memastikan pompa bekerja mendekati titik efisiensi terbaik (Best Efficiency Point/BEP), serta menghindari kondisi shutoff, runout, atau kavitasi.
+
+## Why It Matters
+
+Pump performance curve merupakan acuan kritis dalam seluruh siklus hidup pompa. Pada tahap sizing dan seleksi, kurva memastikan pompa mampu memberikan flow dan head sesuai kebutuhan proses tanpa overload motor. Saat commissioning dan operasi, kurva digunakan untuk memverifikasi bahwa pompa beroperasi pada titik yang aman dan efisien. Dalam konteks troubleshooting, deviasi dari titik operasi yang diharapkan dapat dideteksi melalui pembacaan kurva, misalnya indikasi keausan internal, kavitasi, atau perubahan karakteristik sistem. Operasi di luar batas yang direkomendasikan berpotensi menyebabkan getaran tinggi, kerusakan bearing dan mechanical seal, kavitasi, serta konsumsi energi berlebih. Dari perspektif reliabilitas, beroperasi terlalu jauh dari BEP meningkatkan beban radial (radial thrust) yang mempercepat keausan komponen.
+
+## Understanding Pump Performance Curve
+
+Kurva kinerja pompa umumnya memuat beberapa parameter yang diplot terhadap flow rate pada sumbu horizontal. Berikut ringkasan parameter utama:
+
+| Parameter | Fungsi | Interpretasi Teknis |
+| --- | --- | --- |
+| Flow Rate (Q) | Volume fluida dipindahkan per satuan waktu | Sumbu horizontal; satuan m³/h, gpm, atau L/s |
+| Head (H) | Energi per satuan berat fluida yang ditambahkan pompa | Sumbu vertikal primer; dinyatakan dalam meter atau feet cairan |
+| Efficiency (η) | Rasio daya hidrolik terhadap daya poros | Kurva terpisah, biasanya berbentuk lonceng dengan puncak di BEP |
+| Brake Horsepower (BHP) | Daya mekanik yang diperlukan pada poros pompa | Kurva naik pada pompa sentrifugal, relatif datar pada PD pump |
+| NPSHr | Head absolut minimum di suction nozzle untuk mencegah kavitasi | Kurva meningkat seiring flow; batas operasi aman |
+| Pump Speed (RPM) | Kecepatan putar impeller | Kurva berlaku untuk satu RPM spesifik; perubahan RPM menggeser kurva sesuai hukum afinitas |
+| Impeller Diameter | Diameter maksimum atau trim impeller | Kurva dapat menampilkan beberapa garis untuk diameter impeller berbeda |
+
+Setiap pompa memiliki kurva tersendiri yang merepresentasikan geometri impeller, jumlah sudu, dan casing spesifik. Kurva berlaku untuk fluida dengan viskositas dan densitas tertentu; koreksi diperlukan untuk fluida kental.
+
+## Centrifugal Pump Performance Curve
+
+<Figure src="/content-assets/glossary/pump-performance-curve/centrifugal-pump-curve.webp" alt="centrifugal pump curve" caption="" />
+
+### Head vs Flow Curve
+
+Pada pompa sentrifugal, kurva head terhadap flow berbentuk menurun (decreasing). Fenomena ini disebabkan oleh perubahan segitiga kecepatan pada impeller: semakin besar flow, semakin besar komponen kecepatan relatif fluida, yang mengakibatkan penurunan head teoritis. Pada area shutoff head (flow = nol), pompa menghasilkan head maksimum karena fluida hanya bersirkulasi di dalam impeller. Sebaliknya, pada runout condition, flow maksimum tercapai saat head mendekati minimum dan pompa beroperasi pada ujung kanan kurva.
+
+Jika flow meningkat, head yang dihasilkan pompa menurun. Kurva dapat memiliki karakteristik stabil (head terus menurun) atau head-capacity curve dengan sedikit kenaikan sebelum turun (kurva berbentuk “drooping”), yang dapat menyebabkan ketidakstabilan operasi pada sistem dengan static head dominan.
+
+### Efficiency Curve
+
+Efisiensi pompa sentrifugal dimulai dari nol pada shutoff, meningkat hingga nilai maksimum di BEP, kemudian menurun kembali pada flow tinggi. BEP merupakan titik desain hidrolik optimum di mana kerugian gesek, resirkulasi, dan shock loss minimal. Operasi di antara 70% hingga 120% BEP umumnya masih diterima untuk reliabilitas, namun di luar rentang tersebut risiko kegagalan meningkat signifikan.
+
+### Power/BHP Curve
+
+BHP pompa sentrifugal umumnya meningkat seiring kenaikan flow. Pada shutoff, daya relatif rendah karena tidak ada kerja aliran yang berguna, hanya kerugian sirkulasi. Seiring katup discharge dibuka, flow dan daya naik. Karena karakteristik inilah, motor penggerak biasanya dipilih berdasarkan BHP pada kondisi runout atau pada diameter impeller maksimum untuk menghindari overload.
+
+### NPSHr Curve
+
+NPSHr merepresentasikan penurunan tekanan dari suction flange ke mata impeller akibat kecepatan dan gesekan. Kurva NPSHr meningkat secara progresif seiring kenaikan flow karena meningkatnya velocity head dan kerugian. Untuk operasi bebas kavitasi, NPSH tersedia (NPSHa) harus lebih besar dari NPSHr dengan margin sesuai standar (misalnya 1 m atau 1,3 kali NPSHr).
+
+<WarningBox type="important">
+Pompa sentrifugal tidak boleh dioperasikan pada kondisi deadhead (shutoff) dalam waktu lama karena seluruh energi berubah menjadi panas, menyebabkan kenaikan temperatur fluida di casing, potensi flashing, dan kerusakan mechanical seal.
+</WarningBox>
+
+## Positive Displacement Pump Curve
+
+<Figure src="/content-assets/glossary/pump-performance-curve/pipe-flow-expert-pd-pump-plus-centrifugal-curve-525.webp" alt="pipe flow expert PD pump plus centrifugal curve 525" caption="" />
+
+Pompa positive displacement (PD) memiliki kurva yang berbeda secara fundamental. Secara ideal, flow rate konstan terhadap tekanan discharge, menghasilkan kurva yang hampir vertikal pada grafik flow vs pressure. Namun pada praktiknya, terjadi penurunan flow seiring kenaikan tekanan akibat slip internal (internal slip) atau kebocoran balik melalui celah antar komponen pemompaan.
+
+Viskositas fluida memainkan peran penting: fluida dengan viskositas lebih tinggi mengurangi slip sehingga flow mendekati teoritis, sementara fluida encer memperbesar slip. Kurva BHP naik secara linear seiring kenaikan differential pressure karena torsi yang diperlukan berbanding lurus dengan tekanan.
+
+Pada PD pump, tidak terdapat istilah shutoff head sebagaimana pompa sentrifugal. Jika discharge ditutup (closed discharge), tekanan akan meningkat tanpa batas hingga mencapai titik kegagalan mekanis atau trip relief valve. Oleh karena itu, proteksi overpressure dengan relief valve pada sisi discharge merupakan persyaratan wajib.
+
+<WarningBox type="error">
+Mengoperasikan positive displacement pump dalam kondisi discharge tertutup tanpa relief valve yang berfungsi akan mengakibatkan kegagalan katastropik casing, pipa, atau komponen internal akibat tekanan berlebih yang tidak terbatas.
+</WarningBox>
+
+## How to Read a Pump Curve
+
+Pembacaan kurva kinerja dilakukan secara sistematis:
+
+1. Tentukan flow rate yang diinginkan pada sumbu horizontal.
+2. Tarik garis vertikal ke atas hingga berpotongan dengan kurva head. Titik potong ini menunjukkan head yang dihasilkan pompa pada flow tersebut.
+3. Pada garis vertikal yang sama, temukan perpotongan dengan kurva efisiensi untuk memperoleh nilai efisiensi operasi.
+4. Lanjutkan ke kurva BHP untuk membaca daya poros yang diperlukan.
+5. Pada titik flow yang sama, baca NPSHr dari kurva NPSHr dan pastikan NPSHa lebih besar dengan margin aman.
+
+Contoh: Sebuah pompa sentrifugal dioperasikan pada flow 100 m³/h. Dari kurva, pada flow tersebut terbaca head = 75 m, efisiensi = 82%, BHP = 45 kW. Interpretasi: pompa memerlukan daya poros 45 kW untuk menghasilkan head 75 m pada flow 100 m³/h, dan efisiensi konversi energinya 82%. Jika densitas fluida 1000 kg/m³, daya hidrolik = Q × H × densitas × g / (3.6×10⁶) ≈ 20.4 kW; selisihnya adalah rugi-rugi mekanis dan hidrolik.
+
+Untuk kurva dengan beberapa diameter impeller, impeller trim yang lebih kecil menghasilkan kurva head lebih rendah. Untuk RPM berbeda, gunakan hukum afinitas: Q ∝ N, H ∝ N², BHP ∝ N³.
+
+## Understanding Operating Point
+
+Operating point adalah titik perpotongan antara pump curve dan system curve. System curve menggambarkan total head yang diperlukan sistem pada setiap flow, terdiri dari static head (elevasi, tekanan) dan dynamic head (kerugian gesek, fitting, equipment). Pada titik perpotongan, head yang diberikan pompa sama dengan head yang dibutuhkan sistem.
+
+Jika system resistance berubah, misalnya karena penutupan katup, system curve bergeser dan operating point baru terbentuk. Pada pompa sentrifugal, peningkatan resistansi (throttling) mengurangi flow dan head bergerak ke kiri kurva; sebaliknya, penurunan resistansi menggeser ke kanan. PD pump bereaksi berbeda: flow hampir tetap, sedangkan tekanan meningkat hingga kemampuan driver atau relief valve.
+
+Interaksi kurva ini penting dalam kontrol proses. Throttling pada discharge centrifugal pump masih umum dilakukan, tetapi pada PD pump, throttling discharge tanpa relief berbahaya.
+
+## Best Efficiency Point (BEP)
+
+<Figure src="/content-assets/glossary/pump-performance-curve/best-efficiency-point-bep.webp" alt="Best Efficiency Point (BEP)" caption="" />
+
+BEP didefinisikan sebagai titik pada kurva head-flow di mana efisiensi hidrolik mencapai maksimum. Pada titik ini, vektor kecepatan fluida masuk dan keluar impeller paling selaras dengan geometri sudu, meminimalkan shock loss, resirkulasi, dan turbulensi. Secara hidrolik, beban radial (radial thrust) pada impeller juga minimum di BEP, terutama pada single volute casing.
+
+Operasi di bawah BEP (low flow) menyebabkan peningkatan resirkulasi pada suction dan discharge, fluktuasi tekanan, kavitasi, dan pemanasan fluida. Operasi di atas BEP (high flow) meningkatkan NPSHr, risiko kavitasi, dan beban radial yang membebani bearing dan seal. Rentang operasi yang direkomendasikan oleh API 610 adalah 70–120% BEP untuk continuous operation, dengan preferensi 80–110% untuk keandalan maksimum.
+
+<WarningBox type="warning">
+Operasi terus-menerus di bawah 50% BEP atau di atas 120% BEP secara signifikan meningkatkan laju kegagalan bearing, seal, dan impeller. Getaran tinggi akibat beban radial yang tidak seimbang seringkali menjadi indikator pertama.
+</WarningBox>
+
+> **Field Note**Di fasilitas LNG, sebuah pompa kondensat beroperasi pada 35% BEP selama turn-down akibat perubahan feed gas. Dalam 3 bulan, terjadi tiga kali kegagalan mechanical seal. Analisis getaran menunjukkan peningkatan subsynchronous vibration yang konsisten dengan resirkulasi suction. Solusi yang diterapkan: pemasangan minimum flow bypass line dengan orifice untuk menjaga flow minimal 70% BEP.
+
+## Common Misconceptions
+
+### Myth: “Semakin besar pressure, semakin besar flow pada pompa sentrifugal.”
+
+Fakta: Pada pompa sentrifugal, flow meningkat justru saat differential pressure menurun. Kurva head menurun terhadap flow. Pressure tinggi terjadi pada flow rendah atau shutoff.
+
+### Myth: “Positive displacement pump menghasilkan flow yang benar-benar konstan berapa pun tekanannya.”
+
+Fakta: Terdapat penurunan flow akibat slip internal yang meningkat seiring kenaikan tekanan. Pada tekanan sangat tinggi, efisiensi volumetrik dapat turun signifikan, terutama pada fluida viskositas rendah.
+
+### Myth: “Pompa boleh terus berjalan jauh dari BEP selama tidak kavitasi.”
+
+Fakta: Selain kavitasi, operasi jauh dari BEP memicu beban radial tinggi, getaran, resirkulasi, dan pemanasan lokal. Kerusakan bearing dan seal terjadi meskipun NPSHa mencukupi.
+
+### Myth: “Deadhead pada centrifugal pump sama berbahayanya dengan positive displacement pump.”
+
+Fakta: Centrifugal pump dapat mentoleransi deadhead singkat dengan kenaikan temperatur yang masih terbatas, sedangkan PD pump langsung menaikkan tekanan tanpa batas hingga kegagalan mekanis jika relief valve tidak ada. Namun deadhead centrifugal pump dalam durasi panjang tetap merusak.
+
+### Myth: “Pump curve hanya relevan untuk engineer desain.”
+
+Fakta: Operator, reliability engineer, dan maintenance memerlukan kurva untuk menilai kondisi operasi aktual, mendeteksi degradasi performa, mengatur recirculation, dan menyetel proteksi motor. Kurva adalah referensi operasional sepanjang umur pompa.
+
+## Industrial Example
+
+### Oil & Gas Example – Crude Transfer Pump
+
+Sebuah pompa sentrifugal multistage digunakan untuk mentransfer crude oil dari separator ke pipeline. Desain BEP pada 250 m³/h, head 600 m. Pada kondisi normal, flow 240 m³/h dan efisiensi 78%. Setelah terjadi penyempitan pipa akibat scaling, system resistance naik. Operating point bergeser ke flow 180 m³/h, head naik mendekati 640 m, efisiensi turun ke 65%. Pompa beroperasi di 72% BEP, masih dalam rentang aman namun efisiensi rendah mengakibatkan biaya energi meningkat dan suhu operasi naik. Data kurva digunakan untuk membenarkan pembersihan pipa.
+
+### Refinery / Petrochemical Example – Boiler Feed Water Pump
+
+Boiler feed water pump dengan kurva head curam (steep) dipilih untuk menjaga stabilitas flow pada variasi tekanan drum boiler. Saat start-up, flow rendah, pompa beroperasi dekat shutoff. Untuk mencegah kerusakan, minimum flow recirculation line otomatis membuka berdasarkan sinyal flow meter. Set point recirculation diatur pada 30% BEP sesuai rekomendasi pabrikan berdasarkan analisis kurva dan kenaikan temperatur. Tanpa proteksi ini, pompa dapat rusak dalam beberapa jam operasi.
+
+## Operational Concern
+
+- **Kavitasi**: Terjadi jika NPSHa &lt; NPSHr, terutama pada flow tinggi. Kurva NPSHr naik di ujung kanan; pastikan margin NPSH cukup di seluruh rentang operasi.
+- **Deadhead**: Aliran nol pada centrifugal pump menyebabkan overheating. Suhu fluida naik dengan laju yang dapat dihitung dari BHP shutoff dan kapasitas termal fluida. Pantau temperatur casing.
+- **Runout**: Operasi pada flow maksimum tanpa head yang cukup dapat menyebabkan kavitasi dan overload motor. Pastikan motor sizing berdasarkan runout BHP.
+- **Overload Motor**: Pada PD pump, tekanan discharge tinggi meningkatkan BHP. Jangan throttle discharge tanpa kontrol tekanan. Pada centrifugal pump, runout dapat menarik ampere di atas FLA.
+- **Recirculation**: Internal recirculation di suction atau discharge terjadi pada flow rendah, menyebabkan fluktuasi tekanan dan kerusakan impeller.
+- **Vibration**: Meningkat tajam jauh dari BEP karena beban radial dan ketidakstabilan aliran. Data vibrasi sering digunakan untuk mengidentifikasi operasi off-BEP.
+- **Seal Failure**: Peningkatan vibrasi, panas, dan ketidakseimbangan aksial/radial memperpendek umur mechanical seal.
+
+## Practical Engineering Tips
+
+- Saat membaca OEM curve, perhatikan catatan kaki: densitas, viskositas referensi, dan kecepatan putar. Kurva standar untuk air bersih. Koreksi untuk fluida lain.
+- Pilih operating region antara 80% dan 110% BEP untuk keandalan tinggi. Hindari daerah kiri dari minimum continuous stable flow (MCSF) yang ditetapkan pabrikan.
+- Sediakan margin BHP minimal 10% di atas BHP runout saat memilih motor, atau sesuai rekomendasi API.
+- Jika kurva menunjukkan efisiensi puncak di bawah 60% untuk pompa berukuran besar, evaluasi ulang desain hidrolik atau pertimbangkan variable speed drive (VSD).
+- Gunakan hukum afinitas untuk mengestimasi performa pada RPM berbeda, namun verifikasi dengan kurva OEM jika tersedia. Efisiensi di BEP cenderung konstan untuk perubahan RPM moderat.
+- Untuk PD pump, pasang relief valve internal atau eksternal dengan kapasitas penuh sesuai flow pompa, dan jangan mengandalkan valve proses untuk proteksi.
+
+## Related Terms
+
+- **Pump Head**: Energi yang ditambahkan pompa per satuan berat fluida.
+- **Flow Rate**: Volume fluida per satuan waktu.
+- **BEP**: Titik efisiensi tertinggi pada kurva.
+- **Cavitation**: Pembentukan dan kolapsnya gelembung uap akibat tekanan lokal di bawah tekanan uap fluida.
+- **NPSH**: Selisih antara total head absolut di suction dan tekanan uap fluida.
+- **Pump Efficiency**: Rasio daya hidrolik output terhadap daya poros input.
+- **TDH**: Total Dynamic Head, total energi yang diperlukan untuk memindahkan fluida dari suction ke discharge.
+- **System Curve**: Kurva head yang diperlukan sistem sebagai fungsi flow.
+- **Recirculation**: Aliran balik internal pada impeller pada flow rendah.
+- **Differential Pressure**: Selisih tekanan antara discharge dan suction pompa.
