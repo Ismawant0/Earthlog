@@ -90,6 +90,7 @@ export const metadata: Metadata = {
 };
 
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({
   children,
@@ -146,6 +147,7 @@ export default function RootLayout({
           strategy="beforeInteractive" 
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
