@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const description = generateDescription(article);
   const canonicalUrl = `https://garudaloka.vercel.app/${categorySlug}/${slug}`;
-  const ogImage = article.cover || "https://garudaloka.vercel.app/garudaloka-logo.png";
+  const ogImage = article.cover || "https://garudaloka.vercel.app/og-image.png";
 
   return {
     title: `${article.title} — Garudaloka`,

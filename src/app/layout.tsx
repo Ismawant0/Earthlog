@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Ismawanto" }],
   creator: "Ismawanto",
   publisher: "Garudaloka",
+  applicationName: "Garudaloka",
   metadataBase: new URL("https://garudaloka.vercel.app"),
   alternates: {
     canonical: "/",
@@ -43,9 +44,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/garudaloka-logo.png",
-        width: 800,
-        height: 600,
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: "Garudaloka Engineering Platform",
       }
     ],
@@ -55,7 +56,8 @@ export const metadata: Metadata = {
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/garudaloka-logo.png", sizes: "512x512", type: "image/png" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
@@ -66,6 +68,7 @@ export const metadata: Metadata = {
     title: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
     description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
     creator: "@garudaloka",
+    site: "@garudaloka",
   },
   robots: {
     index: true,
