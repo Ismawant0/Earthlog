@@ -1,0 +1,464 @@
+---
+title: 'Wellhead dan Christmas Tree: Struktur, Komponen, dan Fungsi Operasional'
+slug: wellhead-dan-christmas-tree-struktur-komponen-dan-fungsi-operasional
+category:
+  - fundamentals
+  - process-systems
+  - production-operations
+description: >-
+  Artikel fundamental tentang sistem wellhead dan Christmas tree di industri
+  migas: struktur, fungsi tiap valve (SSSV, SSV, Wing Valve, Crown Valve,
+  Choke), parameter operasi, mode kegagalan, dan best practice lapangan.
+difficulty: Beginner
+keywords: []
+takeaways:
+  - 'Wellhead dan Christmas Tree: Struktur, Komponen, dan Fungsi Operasional'
+tags:
+  - oil and gas
+  - wellhead
+  - christmas tree
+  - process engineering
+  - production
+readingTime: 28 min
+featured: true
+date: '2026-05-30'
+cover: >-
+  /content-assets/fundamentals/wellhead-dan-christmas-tree-struktur-komponen-dan-fungsi-operasional/well.webp
+---
+<Figure src="/content-assets/fundamentals/wellhead-dan-christmas-tree-struktur-komponen-dan-fungsi-operasional/well.webp" alt="Well" caption="" />
+
+## Quick Technical Summary
+
+### Function
+
+Wellhead merupakan sistem penyekat dan penahan tekanan di permukaan sumur yang menyediakan titik gantung untuk rangkaian tubing dan casing. Christmas tree adalah rakitan katup dan fitting yang dipasang di atas wellhead untuk mengendalikan aliran fluida dari sumur secara aman dan terukur.
+
+### Working Principle
+
+Fluida dari formasi dialirkan melalui tubing, melewati subsurface safety valve (SSSV), masuk ke tubing head, kemudian melalui master valve, wing valve, dan choke di Christmas tree menuju fasilitas produksi. Pengaturan laju alir dan penutupan darurat dilakukan oleh kombinasi katup yang dioperasikan secara manual atau dengan aktuator hidrolik/pneumatik.
+
+### Main Operational Concern
+
+Kegagalan penutupan katup keselamatan (SSV/SSSV) pada saat terjadi tekanan balik abnormal atau perintah emergency shutdown dapat menyebabkan uncontrolled release hidrokarbon. Erosi pada choke akibat partikel padat dan kebocoran pada seal connection merupakan mode kegagalan yang paling sering ditemui.
+
+### Typical Application
+
+Setiap sumur minyak dan gas, baik onshore maupun offshore, dilengkapi wellhead dan Christmas tree sebagai penghubung antara reservoir dan sistem produksi di permukaan.
+
+<WarningBox type="important">
+Wellhead dan Christmas tree merupakan barrier primer antara fluida bertekanan dari sumur dan lingkungan sekitar. Integritas setiap komponennya menentukan keselamatan operasi produksi.
+</WarningBox>
+
+## 30-Second Answer
+
+Wellhead adalah perangkat penyekat di permukaan sumur yang berfungsi sebagai penahan tekanan, tempat menggantung tubing, dan penghubung casing string. Christmas tree adalah kumpulan katup (valve) dan choke yang terpasang di atas wellhead untuk mengontrol aliran fluida dari sumur, mengisolasi sumur saat diperlukan, serta menyediakan akses untuk intervensi. Prinsip kerjanya didasarkan pada sekuens pembukaan dan penutupan katup secara berurutan dari bawah ke atas, dengan subsurface safety valve (SSSV) sebagai pengaman terdalam dan surface safety valve (SSV) sebagai pengaman permukaan, keduanya dirancang gagal-tutup (fail-safe close) saat kehilangan tekanan kontrol.
+
+---
+
+## 1. Why This Topic Matters in the Field
+
+**Inti:** Wellhead dan Christmas tree merupakan titik awal kendali produksi dan pertahanan terakhir terhadap pelepasan hidrokarbon yang tidak terkendali.
+
+Kegagalan satu katup akibat erosi, scaling, atau kegagalan aktuator dapat mengakibatkan ketidakmampuan menutup sumur dalam kondisi darurat. Di lapangan, insiden seperti gas blow-by ke flare system atau semburan liar (blowout) sering kali bermula dari rantai kegagalan dimulai pada wellhead atau komponennya.
+
+Pemahaman mendalam terhadap setiap valve dan fungsinya memungkinkan operator mengambil keputusan cepat ketika menghadapi alarm shutdown, pressure excursion, atau kondisi abnormal. Bagi engineer, pengetahuan ini menjadi dasar untuk menentukan desain komplesi sumur, memilih rating peralatan, dan merancang prosedur operasi yang aman.
+
+<WarningBox type="warning">
+Pada sumur dengan kandungan pasir tinggi atau fluida korosif (H₂S/CO₂), wellhead dan Christmas tree mengalami degradasi lebih cepat. Tanpa inspeksi rutin dan pemilihan material yang tepat, risiko kebocoran meningkat secara signifikan.
+</WarningBox>
+
+---
+
+## 2. Fundamental Principle
+
+**Inti:** Wellhead menyediakan enclosure mekanis dengan sealing element untuk menahan tekanan sumur, sementara Christmas tree mengarahkan dan mengendalikan aliran fluida melalui serangkaian valve yang dapat diisolasi secara individual.
+
+### 2.1 Definisi dan Fungsi Dasar
+
+Wellhead tersusun dari casing head, tubing head, dan sealing assembly yang menghubungkan casing string ke permukaan. Fungsi utamanya:
+
+- Menahan tekanan annulus antara casing dan tubing.
+- Menggantung berat tubing string (tubing hanger).
+- Menyediakan port untuk sirkulasi dan pemantauan tekanan antar annulus.
+
+Christmas tree adalah rakitan valve dan fitting yang terpasang di atas tubing head adapter. Fungsinya:
+
+- Membuka dan menutup aliran produksi.
+- Mengontrol laju alir melalui adjustable choke atau fixed choke.
+- Menyediakan akses intervensi sumur (wireline, coiled tubing).
+- Menjadi titik injeksi bahan kimia (corrosion inhibitor, scale inhibitor).
+
+### 2.2 Konsep Barrier dan Fail-Safe
+
+Wellhead dan Christmas tree dirancang berdasarkan prinsip dual barrier. Secara umum, barrier pertama adalah kolom fluida di dalam tubing dan casing, barrier kedua adalah katup mekanis di pohon natal dan SSSV.
+
+<WarningBox type="important">
+Subsurface Safety Valve (SSSV) dan Surface Safety Valve (SSV) adalah katup yang didesain <em>fail-safe close</em>: katup menutup otomatis jika tekanan hidrolik kontrol hilang, baik karena perintah ESD (Emergency Shutdown) maupun kerusakan jalur kontrol.
+</WarningBox>
+
+Setiap katup di Christmas tree memiliki rating tekanan setara atau di atas tekanan shut-in maksimum sumur. Hirarki penutupan dari bawah ke atas (SSSV → Master Valve → Wing Valve) diterapkan agar jika satu katup gagal, katup berikutnya masih mampu mengisolasi aliran.
+
+### 2.3 Observasi Lapangan
+
+Pada operasi normal, sebagian besar katup Christmas tree berada dalam posisi terbuka penuh, kecuali wing valve yang sebagian (partial) untuk mengarahkan aliran ke test manifold, atau master valve bawah yang kadang dijadikan katup cadangan dalam posisi terbuka.
+
+Kondisi yang sering ditemui di lapangan adalah kristalisasi garam atau penumpukan scale di sekitar seat valve yang menyebabkan valve tidak bisa menutup sempurna. Hal ini memerlukan flushing atau operasi wireline untuk membersihkan seat.
+
+---
+
+## 3. Working Principle
+
+**Inti:** Aliran fluida dari reservoir melewati tubing, masuk ke wellhead melalui tubing hanger, menembus master valve, belok horizontal melewati wing valve, lalu diatur oleh choke sebelum mengalir ke flowline.
+
+### 3.1 Alur Aliran dan Sequence Katup
+
+1. **Subsurface Safety Valve (SSSV)** – Katup pertama dari bawah, terletak di dalam tubing beberapa puluh hingga ratusan meter di bawah wellhead. Dioperasikan secara hidrolik dari panel kontrol permukaan. Terbuka saat tekanan hidrolik diberikan, menutup saat tekanan dilepas. Berfungsi sebagai pengaman terakhir di bawah permukaan.
+
+2. **Tubing Hanger** – Aliran masuk ke wellhead melalui bore tubing hanger yang terpasang di tubing head. Di sini sealing antara tubing dan body wellhead mencegah kebocoran ke lingkungan.
+
+3. **Master Valve** – Katup gate valve pertama di Christmas tree, biasanya dua buah dipasang seri (lower master valve dan upper master valve). LMV digunakan sebagai katup operasional, UMV sebagai cadangan. Dalam operasi normal, salah satu selalu terbuka penuh.
+
+4. **Flow Cross / Tee** – Setelah melewati master valve, aliran masuk ke flow cross. Di sini dipasang wing valve di sisi samping dan crown valve (swab valve) di bagian atas.
+
+5. **Wing Valve** – Katup yang mengarahkan aliran ke flowline. Bisa terdapat dua wing valve: production wing dan kill wing. Production wing valve menuju separator produksi, kill wing valve digunakan untuk operasi mematikan sumur atau injeksi.
+
+6. **Choke** – Terletak downstream dari wing valve. Berupa adjustable choke atau fixed choke bean. Berfungsi membatasi laju alir dan menciptakan back pressure yang diperlukan untuk mencegah kerusakan formasi atau water coning. Choke mengkonversi energi tekanan menjadi kecepatan, sehingga terjadi penurunan tekanan signifikan.
+
+7. **Surface Safety Valve (SSV)** – Beberapa desain menempatkan SSV tepat sebelum atau sesudah choke. SSV adalah katup gerbang yang dioperasikan secara hidrolik/pneumatik dan dikendalikan oleh sistem ESD. Jika terjadi tekanan abnormal di flowline atau perintah darurat, SSV menutup dalam hitungan detik.
+
+### 3.2 Visualisasi Skematik
+
+Secara sederhana dari bawah ke atas:
+
+- Wellhead (casing head, tubing head) → Tubing hanger → Lower Master Valve → Upper Master Valve → Flow Cross
+  - Samping: Wing Valve → Choke → SSV → Flowline
+  - Atas: Crown Valve → Lubricator untuk wireline
+
+Pada sumur gas, kadang terdapat tambahan heat tracing atau methanol injection point di sekitar choke untuk mencegah pembentukan hidrat akibat penurunan suhu.
+
+> **Field Note**
+>
+> Di beberapa lapangan tua, seringkali master valve bawah hanya dioperasikan saat sumur pertama kali dibuka atau saat dilakukan well service. Valve ini tetap terbuka terus menerus selama bertahun-tahun, sehingga seat dapat lengket atau berkerak. Pengujian fungsi secara periodik (valve exercising) adalah praktik standar untuk memastikan katup masih mampu menutup.
+
+<WarningBox type="success">
+Pembukaan valve harus selalu dilakukan secara perlahan untuk mencegah water hammer atau lonjakan tekanan mendadak yang dapat merusak seat valve dan pipa downstream. Standar umum adalah membuka katup sedikit hingga tekanan seimbang, lalu membuka penuh secara bertahap.
+</WarningBox>
+
+### Key Points
+
+- Urutan aliran: SSSV → Tubing Hanger → Master Valve(s) → Wing Valve → Choke → SSV → Flowline.
+- SSSV dan SSV bekerja sebagai katup pengaman fail-safe.
+- Choke berfungsi sebagai pembatas laju alir dan pencipta back pressure.
+- Katup master bawah sering tidak dioperasikan rutin sehingga perlu exercising periodik.
+
+---
+
+## 4. Main Components / Main Parts
+
+**Inti:** Setiap komponen memiliki fungsi spesifik dalam menjaga integritas tekanan, mengendalikan aliran, dan memberikan akses intervensi.
+
+### 4.1 Casing Head
+
+- Tempat berlabuh casing string paling luar (surface casing).
+- Menyediakan port untuk memonitor tekanan annulus A (casing-tubing).
+- Dilengkapi dengan sealing assembly untuk mencegah kebocoran gas dari annulus.
+
+### 4.2 Tubing Head
+
+- Diinstall di atas casing head.
+- Menahan tubing hanger yang menggantung keseluruhan rangkaian tubing.
+- Port pada tubing head memungkinkan akses ke annulus B (tubing-production casing) untuk sirkulasi, injeksi inhibitor, atau monitoring.
+
+### 4.3 Tubing Hanger
+
+- Komponen yang mendudukan tubing string di dalam tubing head.
+- Memiliki sealing system (elastomer atau metal-to-metal) untuk mengisolasi tekanan tubing dari annulus.
+- Terdapat port untuk kontrol SSSV (hydraulic control line) yang menembus hanger menuju ke SSSV di bawah.
+
+### 4.4 Christmas Tree Valves
+
+**Master Valve (Lower & Upper)**
+
+- Gate valve dengan full bore untuk memungkinkan akses wireline tanpa hambatan.
+- Material trim dipilih sesuai dengan tingkat korosifitas fluida (stainless steel, inconel untuk sour service).
+- Lower master valve berfungsi sebagai barrier utama jika SSSV gagal; upper master valve sebagai backup.
+
+<WarningBox type="important">
+Master valve harus mampu menahan tekanan shut-in maksimum sumur dan lazim diuji secara periodik (misalnya 6 bulan) dengan tekanan uji 1,1 kali tekanan kerja maksimum.
+</WarningBox>
+
+**Wing Valve**
+
+- Sama seperti master valve, namun dipasang di sisi lateral.
+- Umumnya ada dua: production wing (menuju flowline) dan kill wing (untuk operasi pemadaman sumur, injeksi fluida berat, atau sirkulasi).
+- Kill wing valve digunakan saat sumur perlu dimatikan dengan menyuntikkan fluida berat ke dalam sumur tanpa melalui choke.
+
+**Crown Valve (Swab Valve)**
+
+- Terletak di puncak pohon natal, di atas flow cross.
+- Digunakan untuk operasi wireline atau coiled tubing. Peralatan lubricator dipasang di atas crown valve.
+- Tekanan di bawah crown valve harus dipastikan nol sebelum membuka penuh untuk mencegah semburan.
+
+**Surface Safety Valve (SSV)**
+
+- Biasanya dipasang di downstream choke.
+- Dioperasikan oleh aktuator hidrolik (atau pneumatik untuk tekanan rendah).
+- Dapat dikonfigurasi untuk menutup secara otomatis jika tekanan flowline turun (low pressure pilot) atau naik melewati batas (high pressure pilot).
+
+**Subsurface Safety Valve (SSSV)**
+
+- Valve yang diturunkan ke dalam tubing, biasanya 30-100 meter di bawah wellhead.
+- Dioperasikan melalui kontrol hidrolik dari permukaan. Kehilangan tekanan hidrolik (akibat ESD atau kebocoran jalur kontrol) menyebabkan katup menutup secara otomatis dengan gaya pegas.
+
+### 4.5 Choke
+
+- Alat yang mempersempit luas penampang aliran, menciptakan pressure drop.
+- Jenis: adjustable choke (jarum atau cage) dan fixed choke (bean) dengan lubang tertentu.
+- Material tahan erosi (tungsten carbide, ceramic) digunakan pada trim untuk mengatasi kecepatan tinggi dan partikel.
+
+### 4.6 Pressure Gauge dan Transmitter
+
+- Dipasang pada tubing head (tekanan tubing), casing head (tekanan annulus), dan downstream choke (tekanan flowline).
+- Membantu memonitor drawdown, tekanan shut-in, dan performa choke.
+
+---
+
+## 5. Types / Classification
+
+**Inti:** Klasifikasi wellhead dan Christmas tree didasarkan pada konfigurasi sumur, lingkungan operasi, dan desain katup.
+
+### 5.1 Berdasarkan Konfigurasi Sumur
+
+| Tipe | Deskripsi | Aplikasi |
+| --- | --- | --- |
+| Single Completion | Satu tubing string, satu Christmas tree | Sumur produksi tunggal |
+| Dual Completion | Dua tubing string paralel, dua Christmas tree independen di atas wellhead yang sama | Sumur yang memproduksi dari dua zona berbeda |
+
+### 5.2 Berdasarkan Orientasi
+
+| Tipe | Deskripsi | Keunggulan |
+| --- | --- | --- |
+| Vertical (Konvensional) | Katup tersusun vertikal dari master valve ke atas | Instalasi dan perawatan lebih mudah, standar untuk sumur darat |
+| Horizontal | Katup wing valve berorientasi horizontal langsung dari tubing head, memangkas ketinggian | Digunakan di sumur subsea atau platform dengan keterbatasan ruang vertikal |
+
+### 5.3 Berdasarkan Lingkungan
+
+- **Onshore:** Umumnya tipe konvensional dengan flanged connection, kemudahan akses manual.
+- **Offshore Platform:** Vertikal atau horizontal, biasanya dilengkapi actuator untuk operasi jarak jauh (remote).
+- **Subsea (Subsea Tree):** Diinstal di dasar laut, dioperasikan secara hidrolik dari fasilitas pengolahan di permukaan. Material harus sangat tahan korosi air laut dan tekanan tinggi.
+
+### 5.4 Konfigurasi Katup Khusus
+
+- **Monobore Christmas Tree:** Diameter dalam yang seragam dari master valve hingga crown valve, memudahkan operasi wireline tanpa hambatan.
+- **Solid Block Tree:** Body utama Christmas tree dibuat dari satu forging, mengurangi jumlah flanged connection dan potensi kebocoran.
+
+<WarningBox type="success">
+Untuk sumur tua dengan tekanan sudah turun, sering dipasang "low pressure tree" dengan rating lebih rendah guna menekan biaya sewa atau pembelian. Konversi ini mensyaratkan pengujian casing integrity terlebih dahulu.
+</WarningBox>
+
+---
+
+## 6. Mid-Article Engineering Recap
+
+### In Summary So Far
+
+- Wellhead adalah penghubung casing dan tubing ke permukaan yang menahan tekanan serta menggantung beban tubing.
+- Christmas tree adalah rakitan katup yang mengatur aliran fluida keluar sumur melalui master valve, wing valve, dan choke.
+- SSSV dan SSV merupakan katup pengaman fail-safe yang menutup otomatis saat kehilangan tekanan kontrol.
+- Urutan operasi katup dari bawah ke atas memastikan isolasi berlapis.
+- Klasifikasi Christmas tree bergantung pada jumlah tubing string, orientasi, dan lingkungan.
+- Degradasi katup akibat scaling, erosi, dan korosi menjadi perhatian utama.
+
+---
+
+## 7. Operating Parameter
+
+**Inti:** Parameter operasi menentukan batas aman dan performa wellhead serta Christmas tree.
+
+### 7.1 Pressure Rating
+
+Wellhead dan Christmas tree diklasifikasikan berdasarkan API 6A dengan rating tekanan mulai dari 2.000 psi hingga 20.000 psi. Rating dipilih berdasarkan tekanan shut-in maksimum sumur (SITP) pada kondisi terparah (zero flow).
+
+<WarningBox type="warning">
+Tekanan operasi normal tidak boleh melampaui working pressure valve. Jika tekanan annulus naik secara tidak terduga, hal ini dapat mengindikasikan kebocoran tubing atau migrasi gas, yang memerlukan tindakan segera.
+</WarningBox>
+
+### 7.2 Temperature Rating
+
+API 6A mendefinisikan kelas suhu: P-U (minimum -29°C hingga maksimum 121°C) dan seterusnya. Pada sumur suhu tinggi, elastomer seal khusus (Viton, Kalrez) digunakan untuk mempertahankan sealing.
+
+### 7.3 Flow Capacity
+
+Kapasitas alir tergantung ukuran bore (biasanya 2-1/16", 3-1/8", 4-1/16" untuk sumur tipikal) dan pressure drop di choke. Choke bean yang terlalu kecil pada laju alir tinggi menyebabkan kecepatan aliran ekstrem dan erosi.
+
+### 7.4 Choke Performance
+
+Hubungan antara bukaan choke, tekanan upstream, tekanan downstream, dan laju alir bersifat non-linear, terutama pada aliran multifasa. Pada aliran gas, choke dapat mencapai sonic flow (critical flow) di mana laju alir tidak lagi dipengaruhi oleh fluktuasi tekanan downstream.
+
+### 7.5 Casing Annulus Pressure
+
+Tekanan annulus A dan B harus dipantau harian. Tekanan annulus yang terus naik bisa menandakan kebocoran tubing atau komunikasi antar annulus yang tidak diinginkan. Batas maksimum biasanya dihitung berdasarkan collapse rating casing atau burst rating tubing.
+
+---
+
+## 8. Installation / Operating Practice
+
+**Inti:** Pemasangan dan pengoperasian wellhead serta Christmas tree mengikuti prosedur ketat untuk menjaga integritas barrier.
+
+### 8.1 Pemasangan Awal (Well Completion)
+
+1. Casing head dipasang pada surface casing setelah penyemenan.
+2. Casing string berikutnya digantung di casing head spool.
+3. Setelah penyemenan production casing, BOP (Blowout Preventer) dilepas, kemudian tubing head dan Christmas tree diinstal.
+4. Tubing string lengkap dengan SSSV dimasukkan, tubing hanger didudukkan di tubing head.
+5. Back pressure valve (BPV) sementara dipasang untuk menahan tekanan saat melepas BOP.
+6. Christmas tree dipasang di atas tubing head, dilakukan pressure test semua koneksi.
+
+### 8.2 Start-Up Sumur
+
+1. Pastikan semua valve downstream siap, flowline terbuka, dan fasilitas produksi ready.
+2. Buka crown valve hanya jika akan menjalankan wireline; dalam start-up normal, crown valve tertutup.
+3. Pastikan master valve bawah dan atas terbuka (atau sesuai SOP).
+4. Buka wing valve perlahan.
+5. Atur choke secara gradual untuk membangun aliran, hindari drawdown berlebihan yang dapat menyebabkan kerusakan formasi atau water coning.
+6. Monitor tekanan tubing dan flowline, pastikan tidak ada kebocoran.
+
+<WarningBox type="success">
+Sebelum membuka sumur, pastikan heater atau methanol injection pada choke berfungsi jika ada potensi pembentukan hidrat. Hidrat yang terbentuk di choke dapat menyumbat aliran dan menciptakan bahaya tekanan berlebih di upstream.
+</WarningBox>
+
+### 8.3 Shutdown dan Isolasi
+
+- Penutupan normal: tutup wing valve atau tutup choke perlahan, lalu tutup master valve bila perlu.
+- Emergency shutdown: SSV dan SSSV menutup otomatis; operator dapat menutup master valve secara manual jika diperlukan.
+- Setelah sumur shut-in, tekanan tubing harus dipantau untuk memastikan tidak ada kebocoran melewati katup.
+
+> **Field Note**
+>
+> Pada sumur gas yang di-shutdown, tekanan tubing akan naik hingga mencapai tekanan reservoir (SITP). Laju kenaikan tekanan ini dapat digunakan untuk memperkirakan permeabilitas formasi di sekitar lubang sumur (wellbore).
+
+### 8.4 Operasi Kill Wing
+
+Ketika sumur perlu dimatikan untuk intervensi berat (workover), fluida pemati (kill fluid) disirkulasikan melalui kill wing valve ke dalam tubing, menggantikan fluida sumur hingga tekanan hidrostatik mampu menahan tekanan formasi. Setelah sumur mati, barulah crown valve dapat dibuka untuk operasi.
+
+---
+
+## 9. Common Failure Modes
+
+**Inti:** Mode kegagalan pada wellhead dan Christmas tree umumnya terkait kebocoran seal, valve stuck, dan erosi.
+
+| Failure Mode | Penyebab | Dampak Operasi | Tindakan Lapangan |
+| --- | --- | --- | --- |
+| **Kebocoran stem packing valve** | Keausan packing, korosi stem | Gas/fluida bocor ke atmosfer, risiko H₂S | Kencangkan packing ring, ganti packing saat shutdown |
+| **Valve tidak bisa menutup sempurna (leak through)** | Scale, pasir, atau debris di seat; scoring pada gate/seat | Tidak mampu mengisolasi sumur, tekanan terus naik di downstream | Lakukan exercising valve, injeksi pelarut scale, atau ganti gate/seat |
+| **Erosi choke bean/seat** | Partikel pasir pada laju alir tinggi, kecepatan fluida di vena contracta | Laju alir tidak terkendali, tekanan downstream naik | Ganti bean secara periodik, pantau bunyi choke (getaran abnormal) |
+| **Kebocoran flanged connection** | Gasket rusak, baut longgar, korosi RTJ groove | Kebocoran hidrokarbon, risiko kebakaran | Torque ulang baut, ganti gasket, perbaiki RTJ groove saat overhaul |
+| **Aktuator SSV gagal menutup** | Kehilangan tekanan hidrolik kontrol, kebocoran fitting, seal aktuator rusak | Katup gagal menutup saat ESD, bahaya blow-by | Cek tekanan panel kontrol, periksa hydraulic quick exhaust, uji fungsi berkala |
+| **SSSV gagal menutup** | Jalur kontrol hidrolik bocor di tubing hanger, seal SSSV aus | Barrier bawah permukaan hilang | Lakukan inflow test, injeksi inhibitor, ganti SSSV dengan wireline |
+| **Scale build-up di bore valve** | Produksi air formasi dengan mineral tinggi, perubahan suhu/tekanan | Restriksi aliran, gangguan wireline | Lakukan acidizing atau scale inhibitor squeeze |
+
+<WarningBox type="error">
+Kebocoran master valve yang tidak terdeteksi saat operasi wireline dapat menyebabkan kejadian catastrophic, karena lubricator tidak dirancang menahan tekanan penuh sumur tanpa adanya sealing master valve yang sempurna.
+</WarningBox>
+
+---
+
+## 10. Inspection, Maintenance & Calibration
+
+**Inti:** Inspeksi periodik dan pengujian fungsional katup memastikan kesiapan barrier.
+
+### 10.1 Inspeksi Visual Harian
+
+- Periksa kebocoran visual di sekitar stem, flanges, fitting gauge.
+- Catat tekanan tubing, tekanan annulus, tekanan flowline. Deviasi dari tren normal segera ditindaklanjuti.
+- Cek posisi katup (terbuka/tertutup) sesuai dengan status operasi.
+
+### 10.2 Valve Exercising
+
+Untuk mencegah katup lengket, setiap valve (terutama master valve bawah dan wing valve yang jarang dioperasikan) harus digerakkan penuh secara periodik (misal 3-6 bulan) dan dikembalikan ke posisi semula. Prosedur ini memastikan gate dan seat tidak terikat oleh scale.
+
+### 10.3 Pressure Test
+
+Pengujian tekanan katup dilakukan dengan menutup katup dan memberikan tekanan dari satu sisi, sementara sisi lain dipantau kebocorannya. Standar API 6A menetapkan acceptance criteria laju kebocoran tertentu. Pressure test dilakukan setelah instalasi, setelah perawatan, atau sebagai bagian dari pengujian rutin tahunan.
+
+### 10.4 Pelumasan Valve (Greasing)
+
+Gate valve memerlukan injeksi grease khusus (valve sealant) untuk mengisi ruang antara gate dan seat, sekaligus melumasi mekanisme operasi. Greasing juga membantu mengeluarkan kotoran dari seat. Dilakukan dengan pompa khusus melalui injection fitting.
+
+### 10.5 Kalibrasi Aktuator SSV
+
+Panel kontrol SSV harus dikalibrasi agar pressure pilot (low/high) bekerja pada set point yang benar. Kecepatan penutupan diuji dengan melepas tekanan kontrol dan mengukur waktu tempuh gate ke posisi tertutup. Respon yang lambat bisa disebabkan oleh kotoran di aktuator atau tekanan kontrol rendah.
+
+<WarningBox type="success">
+Penerapan program PM (Preventive Maintenance) berbasis waktu dan kondisi, misalnya penggantian choke bean setelah melalui volume pasir tertentu atau penggantian packing setelah siklus operasi tertentu, menurunkan risiko kegagalan mendadak secara signifikan.
+</WarningBox>
+
+---
+
+## 11. Selection / Design Consideration
+
+**Inti:** Pemilihan wellhead dan Christmas tree mempertimbangkan tekanan, suhu, karakteristik fluida, dan akses intervensi.
+
+### 11.1 Rating Tekanan dan Suhu
+
+Tekanan kerja (working pressure) minimal 1,5 kali tekanan shut-in maksimum atau sesuai API 6A. Suhu desain disesuaikan dengan suhu alir maksimum dan suhu minimum saat shut-in.
+
+### 11.2 Material dan Sour Service
+
+Untuk fluida yang mengandung H₂S (sour), pemilihan material harus mengacu pada NACE MR0175/ISO 15156. Material body umumnya baja karbon dengan hardness terbatas, trim dari stainless steel atau nickel alloy (Inconel 718, 825) untuk ketahanan korosi dan retak.
+
+### 11.3 Bore Size
+
+Bore diameter harus cukup besar untuk operasi wireline dan logging tools (biasanya 2.813" untuk sumur 3-1/2" tubing). Monobore tree lebih disukai karena memberikan diameter seragam.
+
+### 11.4 Konfigurasi Katup
+
+Jumlah master valve (single atau dual), ada tidaknya SSV, dan posisi choke (manual atau adjustable dengan aktuator) dipilih berdasarkan philosophy operasi dan analisis risiko lapangan.
+
+### 11.5 Pertimbangan Lingkungan
+
+- Offshore: desain kompak, material tahan korosi atmosfer laut, aktuator remote.
+- Subsea: pressure compensation, koneksi hidrolik dan elektrik bawah laut, thermal insulation untuk mencegah hidrat.
+
+---
+
+## 12. Practical Field Application in Oil & Gas
+
+**Inti:** Wellhead dan Christmas tree hadir di setiap titik sumur, dari darat hingga laut dalam, dengan penyesuaian pada jenis operasi.
+
+- **Onshore Gas Well:** Wellhead 5.000 psi, single completion, SSV di flowline. Choke adjustable dengan aktuator elektrik untuk kontrol remote. Methanol injection point di hulu choke.
+- **Offshore Platform:** Dual completion tree untuk produksi dari dua zona, masing-masing memiliki master valve dan wing valve independen. SSV dioperasikan secara hidrolik dari central control. Wellhead bay diproteksi panel fire wall.
+- **Sour Gas Production:** Material trim Inconel, seal Kalrez, rating tekanan 10.000 psi. Detektor H₂S dipasang di sekitar wellhead untuk memicu penutupan SSV.
+- **Sumur Subsea:** Subsea horizontal tree, dioperasikan dari anjungan atau FPSO. Mengandalkan multiple redundant barrier dan sistem methanol injeksi terintegrasi. Akses intervensi memerlukan rig khusus.
+
+<WarningBox type="important">
+Setiap perubahan konfigurasi katup atau penggantian choke harus disertai Management of Change (MOC) dan analisis risiko untuk memastikan sistem barrier tetap terjaga.
+</WarningBox>
+
+---
+
+## 13. Field Quick Reference
+
+| Situation | Possible Cause | Immediate Check |
+| --- | --- | --- |
+| Tekanan tubing naik perlahan setelah shut-in | Valve bocor atau packing SSSV/SSV aus | Monitor kenaikan, bandingkan dengan SITP historis |
+| Kebocoran gas dari stem wing valve | Stem packing longgar atau rusak | Kencangkan packing nut, jika masih bocor rencanakan penggantian |
+| Suara jetting tinggi di choke | Erosi bean atau aliran sonic berlebihan | Cek laju produksi, bandingkan ukuran bean dengan desain, ganti jika perlu |
+| SSV gagal menutup saat ESD test | Tekanan hidrolik kontrol tidak turun, quick exhaust rusak | Cek panel kontrol, tubing jalur kontrol, dan katup pilot |
+| Tekanan annulus A naik terus | Kebocoran tubing di bawah wellhead | Lakukan casing integrity test, analisis gas annulus |
+| Master valve macet tidak bisa diputar | Scale atau korosi pada mekanisme stem | Jangan dipaksa, lakukan penetrating oil dan exercising bertahap |
+
+---
+
+## 14. Key Takeaways
+
+- Wellhead dan Christmas tree merupakan barrier primer yang melindungi personel dan lingkungan dari pelepasan fluida sumur.
+- Setiap valve memiliki fungsi spesifik: SSSV (bawah permukaan) dan SSV (permukaan) sebagai katup pengaman fail-safe, master valve untuk isolasi utama, wing valve untuk operasi produksi/kill, choke untuk kontrol laju alir.
+- Urutan operasi katup dari bawah ke atas memastikan beberapa lapis perlindungan; kegagalan satu katup tidak boleh menyebabkan hilangnya isolasi total.
+- Parameter operasi kritis meliputi tekanan, suhu, kapasitas alir, dan tekanan annulus yang harus dipantau kontinu.
+- Mode kegagalan umum: kebocoran packing, valve stuck akibat scale, erosi choke, kegagalan aktuator SSV/SSSV.
+- Inspeksi visual, valve exercising, greasing, dan pressure test periodik adalah kunci menjaga integritas.
+- Desain dipilih berdasarkan tekanan, kandungan H₂S/CO₂, suhu, dan lingkungan operasi.
+- Setiap perubahan konfigurasi memerlukan analisis risiko formal.
+
+Integritas wellhead dan Christmas tree adalah fondasi keselamatan dan kelangsungan produksi minyak dan gas.
