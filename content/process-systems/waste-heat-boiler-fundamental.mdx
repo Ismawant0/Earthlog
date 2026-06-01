@@ -1,0 +1,272 @@
+---
+title: Waste Heat Boiler Fundamental
+slug: waste-heat-boiler-fundamental
+category:
+  - process-systems
+  - production-operations
+  - equipment
+description: >-
+  Panduan teknis fundamental waste heat boiler: prinsip kerja, komponen,
+  parameter operasi, mode kegagalan, dan praktik lapangan untuk insinyur dan
+  operator industri minyak dan gas.
+difficulty: Intermediate
+keywords:
+  - Waste Heat Boiler Fundamental
+takeaways:
+  - Waste Heat Boiler Fundamental
+tags:
+  - process engineering
+  - waste heat boiler
+  - heat recovery
+readingTime: 25 min
+featured: false
+date: '2026-06-01'
+cover: /content-assets/process-systems/waste-heat-boiler-fundamental/whb.webp
+---
+<Figure src="/content-assets/process-systems/waste-heat-boiler-fundamental/whb.webp" alt="whb" caption="" />
+
+## Quick Technical Summary
+
+### Function
+
+Recover sensible heat dari aliran gas buang panas (turbin gas, insinerator, tungku proses) untuk menghasilkan steam atau memanaskan fluida proses tanpa pembakaran tambahan.
+
+### Working Principle
+
+Perpindahan panas secara konveksi dan radiasi dari gas buang bertemperatur tinggi ke air di dalam tube bundle, menghasilkan steam atau air panas; sirkulasi dapat natural atau forced.
+
+### Main Operational Concern
+
+Fouling (penumpukan deposit) pada permukaan tube, korosi suhu rendah akibat kondensasi asam, dry‑running yang memicu overheating, dan kebocoran tube yang membahayakan operasi hilir.
+
+### Typical Application
+
+Gas turbine exhaust heat recovery (HRSG), process furnace convection section, incinerator waste heat boiler, sulfuric acid plant, Claus sulfur recovery unit.
+
+<WarningBox type="important">
+Waste heat boiler tidak memiliki burner; kegagalan tube dapat menyebabkan air masuk ke aliran gas panas, memicu risiko kerusakan peralatan hilir dan bahaya keselamatan akibat steam explosion pada kondisi tertentu.
+</WarningBox>
+
+## 30-Second Answer
+
+Waste Heat Boiler (WHB) adalah penukar panas tipe fire‑tube atau water‑tube yang menangkap panas sensibel dari gas buang proses bersuhu tinggi. Panas tersebut dipindahkan ke air umpan untuk menghasilkan steam bertekanan, tanpa konsumsi bahan bakar tambahan. Prinsip kerjanya bertumpu pada perbedaan temperatur antara gas buang dan air; laju perpindahan panas bergantung pada luas permukaan tube, koefisien perpindahan panas, dan resistansi fouling.
+
+## 1. Introduction
+
+Waste Heat Boiler (WHB), sering disebut Heat Recovery Steam Generator (HRSG) pada aplikasi turbin gas, merupakan unit perpindahan panas yang mentransfer energi termal dari gas buang proses ke air atau fluida termal lain. Fungsi utamanya adalah meningkatkan efisiensi termal keseluruhan fasilitas dengan mengonversi panas yang sebelumnya terbuang menjadi energi berguna.
+
+Di industri minyak dan gas, WHB ditempatkan di hilir peralatan seperti turbin gas, mesin diesel besar, atau tungku proses untuk memproduksi steam yang diperlukan bagi sistem pemanas, stripping, injeksi, atau pembangkit listrik. Keberhasilan operasi WHB bergantung pada kestabilan laju alir dan temperatur gas buang, kualitas air umpan, serta strategi pengendalian fouling.
+
+<WarningBox type="success">
+Pemanfaatan WHB dapat meningkatkan efisiensi termal total plant hingga 20–30 persen, menurunkan konsumsi bahan bakar boiler konvensional, dan mengurangi emisi CO₂ secara langsung.
+</WarningBox>
+
+## 2. Fundamental Principle
+
+Prinsip dasar WHB adalah perpindahan panas konveksi dan radiasi. Gas buang panas (flue gas) mengalir di sekitar atau di dalam tube yang berisi air/steam. Karena perbedaan temperatur, panas berpindah dari gas ke air melalui dinding tube. Dua mekanisme utama: konveksi dari gas ke dinding tube, dan konduksi melalui dinding tube ke air. Radiasi menjadi signifikan jika temperatur gas melebihi 600 °C.
+
+Laju perpindahan panas overall ditentukan oleh koefisien perpindahan panas overall (U), luas permukaan (A), dan perbedaan temperatur rata‑rata logaritmik (LMTD):
+
+Q = U × A × LMTD
+
+Fouling, scaling, dan slagging menurunkan U secara drastis, sehingga pengendalian deposit menjadi prioritas operasional utama.
+
+<WarningBox type="important">
+Resistansi termal fouling sering menjadi faktor dominan yang membatasi kinerja WHB. Deposit setebal 0.5 mm saja dapat menurunkan perpindahan panas hingga 30 persen, yang langsung mengurangi produksi steam.
+</WarningBox>
+
+### Key Points
+
+- Efisiensi perpindahan panas sangat dipengaruhi oleh kebersihan permukaan tube.
+- LMTD menjadi driving force utama; penurunan temperatur gas masuk akan langsung mengurangi kapasitas steam.
+- Koefisien overall sangat sensitif terhadap fouling resistance pada sisi gas maupun air.
+
+## 3. Working Principle
+
+Gas buang masuk ke WHB melalui inlet duct pada temperatur 400–600 °C (tipikal turbin gas). Gas mengalir melewati tube bundle dan mentransfer panas ke air. Di sisi air, sirkulasi dapat terjadi secara natural (thermosiphon) karena perbedaan densitas air panas dan dingin, atau secara forced menggunakan pompa sirkulasi.
+
+Air dipanaskan hingga mendidih, campuran air‑steam naik ke steam drum. Di dalam drum, pemisahan steam dari air terjadi melalui gravity separation dan bantuan internal seperti cyclone separator dan demister pad. Steam jenuh keluar ke header distribusi, sedangkan air yang belum menguap kembali turun melalui downcomer untuk disirkulasi ulang.
+
+Pada WHB fire‑tube, gas panas mengalir di dalam tube dan air berada di shell. Sebaliknya, pada water‑tube, air mengalir di dalam tube dan gas berada di shell. Urutan pengoperasian, terutama saat start‑up, harus mengendalikan laju kenaikan temperatur gas untuk menghindari thermal shock.
+
+<WarningBox type="warning">
+Start‑up WHB harus dilakukan secara bertahap; pemanasan terlalu cepat dapat menimbulkan tegangan termal berlebihan pada sambungan tube‑to‑tubesheet, berpotensi menyebabkan kebocoran tube.
+</WarningBox>
+
+> **Field Note**Pada WHB yang menangani gas buang dari insinerator, fluktuasi temperatur akibat variasi komposisi limbah memicu thermal cycling yang mempercepat kelelahan material tube. Monitoring temperatur skin tube secara berkala memberikan indikasi awal adanya titik panas atau penipisan dinding.
+
+## 4. Main Components / Main Parts
+
+- **Inlet Duct / Transition Piece** – Menyalurkan gas buang dari sumber ke WHB; sering dilapisi refractory untuk mengurangi heat loss dan melindungi casing.
+- **Tube Bundle** – Kumpulan tube yang menyediakan luas permukaan perpindahan panas. Material umum: carbon steel (temperatur rendah), alloy Cr‑Mo (temperatur tinggi).
+- **Steam Drum** – Tempat pemisahan steam dari campuran dua fase; dilengkapi internal seperti cyclone separator, demister, dan dry pipe. Kualitas pemisahan menentukan kadar carryover.
+- **Mud Drum** (pada water‑tube) – Tempat akumulasi sludge dan lokasi blowdown kontinyu.
+- **Economizer** (opsional) – Preheater air umpan menggunakan gas buang keluar; meningkatkan efisiensi secara signifikan.
+- **Superheater** (opsional) – Menaikkan temperatur steam di atas saturasi untuk kebutuhan turbin.
+- **Sootblower** – Alat pembersih deposit dari permukaan tube menggunakan steam atau udara bertekanan.
+- **Casing & Refractory** – Menahan panas dan melindungi struktur luar; kegagalan refractory dapat menyebabkan hot spot dan deformasi casing.
+- **Safety Valve** – Melindungi sisi steam dari tekanan berlebih sesuai kode ASME.
+
+### Key Points
+
+- Steam drum berperan kritis dalam menjamin kualitas steam; kerusakan demister dapat meningkatkan carryover dan merusak turbin hilir.
+- Pemilihan material tube harus mempertimbangkan temperatur gas dan potensi korosi (sulfur, vanadium).
+
+## 5. Types / Classification
+
+Berdasarkan konfigurasi aliran:
+
+- **Water‑tube WHB** – Air di dalam tube, gas di luar. Cocok untuk tekanan tinggi, kapasitas besar, dan respon termal lebih cepat.
+- **Fire‑tube WHB** – Gas di dalam tube, air di shell. Digunakan pada tekanan rendah hingga sedang, kapasitas kecil, desain lebih kompak.
+
+Berdasarkan sirkulasi:
+
+- **Natural circulation** – Mengandalkan perbedaan densitas; desain sederhana, tanpa pompa sirkulasi.
+- **Forced circulation** – Memerlukan pompa sirkulasi; lebih fleksibel terhadap tata letak dan variasi beban.
+
+Berdasarkan aplikasi spesifik:
+
+- **Gas turbine HRSG** – Multi‑pressure level, dilengkapi superheater dan economizer.
+- **Incinerator WHB** – Gas buang korosif, desain tahan fouling, sering dilengkapi rapper atau sootblower khusus.
+- **Sulfuric acid plant WHB** – Menangani gas SO₂/SO₃ tinggi, memerlukan material stainless steel atau alloy khusus.
+
+<WarningBox type="warning">
+Pemilihan water‑tube vs fire‑tube harus mempertimbangkan tekanan operasi, potensi fouling, dan akses pembersihan. Water‑tube lebih rentan terhadap penyumbatan tube internal jika kualitas air buruk.
+</WarningBox>
+
+## Mid-Article Engineering Recap
+
+### In Summary So Far
+
+- WHB mengonversi panas gas buang menjadi steam tanpa tambahan bahan bakar.
+- Prinsip dasarnya perpindahan panas konveksi dan konduksi; fouling adalah musuh utama perpindahan panas.
+- Komponen utama meliputi tube bundle, steam drum, mud drum, economizer, superheater, sootblower, dan safety valve.
+- Tipe WHB mencakup water‑tube dan fire‑tube, dengan kelebihan dan keterbatasan masing‑masing.
+- Parameter operasi paling kritis: temperatur gas masuk, tekanan steam, kualitas air umpan, dan gas outlet temperature di atas dew point asam.
+
+## 6. Operating Parameter
+
+Parameter kunci yang memengaruhi kinerja WHB:
+
+| Parameter | Typical Range | Operational Impact |
+| --- | --- | --- |
+| Gas inlet temperature | 400–600 °C (turbin gas) | Driving force utama; penurunan langsung mengurangi kapasitas steam |
+| Gas outlet temperature | 150–200 °C | Di bawah dew point asam menyebabkan korosi; di atas mengurangi efisiensi |
+| Steam pressure | 10–100 barg | Menentukan suhu saturasi dan desain mekanik |
+| Feedwater temperature | 105–130 °C (deaerated) | Mencegah thermal shock dan mengurangi gas terlarut |
+| Gas flow rate | Sesuai desain | Perubahan mendadak mengganggu sirkulasi dan stabilitas level drum |
+| Gas side pressure drop | 100–300 mmH₂O | Indikasi fouling atau blockage; kenaikan memerlukan sootblowing |
+| Approach temperature (economizer) | 10–30 °C | Semakin kecil, efisiensi tinggi, tetapi risiko dew point korosi meningkat |
+
+<WarningBox type="important">
+Gas outlet temperature harus dijaga di atas acid dew point – biasanya 120–150 °C bergantung kandungan sulfur – untuk mencegah kondensasi asam sulfat yang sangat korosif pada tube dan casing.
+</WarningBox>
+
+## 7. Installation / Operating Practice
+
+Pemasangan WHB harus mengakomodasi ekspansi termal. Expansion joint tipe bellow dipasang pada ducting untuk menyerap pergerakan. Konfigurasi inlet duct harus menghindari dead zone dan impingement langsung gas berkecepatan tinggi ke tube.
+
+**Start‑up:**
+
+1. Pastikan level air di steam drum normal, sirkulasi sudah berjalan.
+2. Alirkan gas buang secara bertahap; pertahankan ramp rate ≤ 50 °C per jam.
+3. Buka vent steam drum untuk mengeluarkan udara hingga steam space terbentuk sempurna.
+4. Setelah tekanan mencapai setpoint, buka valve ke header secara perlahan sambil menjaga tekanan dan level stabil.
+
+**Shutdown:**
+
+- Turunkan aliran gas secara bertahap, pertahankan sirkulasi air untuk pendinginan merata.
+- Setelah temperatur cukup rendah, tutup isolation damper.
+
+**Operasi normal:**
+
+- Lakukan blowdown kontinyu untuk mengendalikan Total Dissolved Solids (TDS) dan mencegah scaling.
+- Operasikan sootblower secara periodik (tipikal tiap shift) untuk menjaga kebersihan permukaan tube.
+- Pantau dP gas side sebagai indikator fouling.
+
+## 8. Common Failure Modes
+
+| Failure Mode | Cause & Mechanism | Impact & Mitigation |
+| --- | --- | --- |
+| Tube fouling / slagging | Deposit abu, jelaga, atau garam dari gas buang yang menempel akibat temperatur tube rendah atau kecepatan gas tidak memadai. | Heat transfer menurun, back pressure naik, steam production turun. Lakukan sootblowing rutin, optimalkan kecepatan gas desain. |
+| Low‑temperature corrosion | Temperatur gas keluar di bawah acid dew point, memicu kondensasi asam sulfat. | Korosi cepat pada tube dan casing. Jaga suhu outlet &gt; 150 °C, gunakan material tahan asam (Corten steel) atau coating. |
+| Tube leakage / rupture | Overheating lokal akibat dry‑running, thermal fatigue, korosi, atau erosi. | Steam bocor ke sisi gas, menaikkan dew point, korosi downstream. Monitor konduktivitas kondensat stack; jika bocor, shutdown untuk plugging. |
+| Steam carryover | Level drum terlalu tinggi, load swing, kerusakan demister. | Steam basah mengikis sudu turbin dan valve. Jaga level sesuai setpoint, periksa internal drum secara berkala. |
+| Thermal fatigue cracking | Siklus start‑stop yang sering, ramp rate terlalu cepat, distribusi temperatur tidak merata. | Retak pada las tube‑to‑tubesheet. Batasi siklus termal, gunakan kontrol ramp rate, inspeksi dye penetrant. |
+| Economizer steaming | Temperatur air umpan terlalu tinggi atau laju alir rendah, air mulai mendidih di economizer. | Kerusakan struktur economizer. Pastikan aliran minimum, desain dengan recirculation line. |
+
+<WarningBox type="error">
+Tube rupture pada WHB yang menangani gas mudah terbakar (misalnya CO dari FCC) dapat memicu ledakan jika steam dan gas bercampur di ruang terbatas. Sistem interlock harus mematikan sumber panas bila kebocoran terdeteksi.
+</WarningBox>
+
+## 9. Inspection, Maintenance & Calibration
+
+Inspeksi rutin:
+
+- Visual: casing, refractory, expansion joint, dan tanda kebocoran steam.
+- Ultrasonic thickness measurement pada tube untuk mendeteksi penipisan.
+- Boroscopic inspection bagian dalam tube untuk mengevaluasi scaling, pitting, atau deposit.
+- Hydrostatic test berkala sesuai kode ASME Section I atau VIII.
+
+Maintenance preventif:
+
+- Chemical cleaning jika deposit mengeras dan sootblower tidak efektif.
+- Penggantian gasket manhole, packing valve, dan demister pad sesuai jadwal.
+- Kalibrasi level transmitter, pressure gauge, dan temperature sensor.
+
+Predictive maintenance:
+
+- Monitoring tren dP gas side; kenaikan bertahap menunjukkan fouling.
+- Analisis rutin air umpan dan boiler water (pH, TDS, dissolved oxygen) untuk mencegah scaling dan korosi.
+- Termografi casing untuk mendeteksi hot spot akibat kegagalan refractory.
+
+## 10. Selection / Design Consideration
+
+Faktor pemilihan WHB:
+
+- Karakteristik gas buang: temperatur, komposisi (kandungan sulfur, partikulat, korosifitas).
+- Kebutuhan steam: tekanan, temperatur, kapasitas kontinyu.
+- Kualitas air umpan yang tersedia; desain blowdown dan chemical treatment.
+- Batasan ruang dan layout pabrik.
+- Frekuensi start‑stop dan siklus operasi yang direncanakan.
+- Regulasi emisi dan back pressure maksimum yang diizinkan.
+
+Sizing:
+
+- Perhitungan luas permukaan tube berdasarkan LMTD dan overall heat transfer coefficient dengan fouling factor gas side 0.0005–0.002 m²·K/W.
+- Penentuan volume steam drum untuk menjamin residence time pemisahan yang memadai.
+- Desain economizer harus memastikan tidak terjadi steaming pada kondisi turndown rendah.
+
+Material:
+
+- Tube: SA‑178, SA‑192 (carbon steel); SA‑213 T11/T22 (Cr‑Mo) untuk temperatur tinggi; SS304/316 untuk gas sangat korosif.
+- Drum: SA‑516 Grade 70.
+- Refractory: castable padat atau ceramic fiber blanket.
+
+## 11. Practical Field Application in Oil & Gas
+
+- **Gas Turbine Cogeneration** – HRSG di belakang turbin gas pada offshore platform menghasilkan steam untuk injeksi EOR atau keperluan proses.
+- **Refinery FCC Unit** – Gas buang regenerator yang kaya CO dibakar di CO boiler dan berfungsi sebagai WHB untuk menghasilkan steam tekanan tinggi.
+- **Sulfur Recovery Unit (Claus)** – WHB di hilir reaction furnace mendinginkan gas proses dan menghasilkan steam, sekaligus mencegah kondensasi sulfur.
+- **Incinerator Off‑gas** – WHB pada sistem pembakaran limbah memulihkan panas dan menurunkan temperatur sebelum quench atau scrubber.
+- **Reciprocating Engine Exhaust** – WHB kecil yang memanfaatkan panas dari mesin gas untuk pemanas lokal di remote site.
+
+> **Field Note**Pada WHB di belakang Claus furnace, deposit sulfur dan korosi sulfidasi menjadi masalah utama. Temperatur tube metal harus dijaga di atas dew point sulfur (sekitar 150 °C) secara ketat. Kegagalan menjaga temperatur akan menyebabkan plugging dan korosi parah dalam waktu singkat.
+
+## Field Quick Reference
+
+| Situation | Possible Cause | Immediate Check |
+| --- | --- | --- |
+| Penurunan produksi steam | Fouling tube, penurunan temperatur gas masuk | Cek dP gas side, temperatur inlet, operasikan sootblower |
+| Peningkatan dP gas side | Fouling atau partial blockage | Periksa operasi sootblower, inspeksi deposit melalui manhole |
+| Plume putih tebal di stack | Tube leak | Analisis konduktivitas kondensat, cek kenaikan make‑up water |
+| Temperatur stack rendah | Beban rendah, fouling, atau over‑performance economizer | Pantau temperatur, pastikan di atas dew point asam |
+| Tekanan steam fluktuatif | Perubahan beban, masalah kontrol level drum | Cek level drum, feedwater control valve, dan sinyal transmitter |
+
+## 12. Key Takeaways
+
+- WHB adalah peralatan kritis yang mengubah panas buang menjadi steam, meningkatkan efisiensi termal plant tanpa tambahan bahan bakar.
+- Perpindahan panas sangat dipengaruhi oleh kebersihan tube; strategi sootblowing dan kontrol kualitas air umpan wajib dijalankan secara disiplin.
+- Kegagalan tube – akibat fouling, korosi, atau thermal fatigue – menimbulkan konsekuensi serius terhadap keselamatan dan operasi; monitoring dP dan analisis air berfungsi sebagai deteksi dini.
+- Pemilihan material dan desain harus disesuaikan dengan karakteristik gas buang untuk mencapai umur layanan yang andal.
+- Prosedur start‑up dan shutdown bertahap menjadi kunci pencegahan thermal stress dan retak sambungan tube.
