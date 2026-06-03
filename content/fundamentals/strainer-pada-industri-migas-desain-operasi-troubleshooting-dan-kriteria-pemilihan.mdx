@@ -1,0 +1,298 @@
+---
+title: >-
+  Strainer pada Industri Migas: Desain, Operasi, Troubleshooting, dan Kriteria
+  Pemilihan
+slug: >-
+  strainer-pada-industri-migas-desain-operasi-troubleshooting-dan-kriteria-pemilihan
+category:
+  - fundamentals
+  - process-systems
+  - production-operations
+description: >-
+  Panduan teknis menyeluruh tentang fungsi, prinsip kerja, parameter kritis,
+  mode kegagalan, dan praktik pemilihan strainer di fasilitas proses minyak dan
+  gas bumi.
+difficulty: Beginner
+keywords:
+  - >-
+    Strainer pada Industri Migas: Desain, Operasi, Troubleshooting, dan Kriteria
+    Pemilihan
+takeaways:
+  - >-
+    Strainer pada Industri Migas: Desain, Operasi, Troubleshooting, dan Kriteria
+    Pemilihan
+tags:
+  - Strainer
+  - Maintenanance
+  - mechanical equipment
+  - filtration
+readingTime: 16 min
+featured: true
+date: '2026-06-03'
+cover: >-
+  /content-assets/fundamentals/draft-cover-1780452725006/chatgpt-image-jun-3-2026-09-11-18-am.webp
+---
+<Figure src="/content-assets/fundamentals/strainer-pada-industri-migas-desain-operasi-troubleshooting-dan-kriteria-pemilihan/chatgpt-image-jun-3-2026-09-11-18-am.webp" alt="ChatGPT Image Jun 3, 2026, 09 11 18 AM" caption="" />
+
+## Why This Topic Matters in the Field
+
+Strainer merupakan komponen statis berukuran kecil namun dampak kegagalannya dapat menjalar ke peralatan utama berbiaya tinggi. Dalam operasi migas, partikel padat terbawa aliran—serpihan karat, pasir formasi, kerak, atau sisa konstruksi—bersifat inevitabel. Tanpa perlindungan strainer yang andal, debris ini langsung menyerang pompa, kompresor, turbin, control valve, atau heat exchanger, mengakibatkan erosi, penyumbatan, bahkan catastrophic failure. Pemahaman mendalam tentang desain, pemilihan, pengoperasian, dan troubleshooting strainer memungkinkan process engineer dan field operator menjaga integritas aset, menghindari unplanned shutdown, serta memenuhi target keandalan fasilitas.
+
+---
+
+## At‑a‑Glance Technical Brief
+
+Strainer (saringan) adalah perangkat filtrasi mekanis yang menahan partikel padat dari aliran fluida menggunakan elemen berlubang (screen atau basket) dengan ukuran mesh tertentu. Prinsip kerjanya adalah surface filtration: fluida mengalir melalui media, debris tertahan di permukaan hulu, sementara fluida bersih lolos ke sisi hilir. Parameter operasi utama adalah pressure drop (ΔP) lintas elemen, yang bergantung pada laju alir, viskositas fluida, ukuran mesh, dan akumulasi kotoran. ΔP berlebih menandakan penyumbatan dan berisiko menyebabkan elemen collapse atau bypass. Strainer diaplikasikan secara luas di wellhead, suction pompa, inlet kompresor, upstream metering, sistem pelumasan, dan chemical injection.
+
+<WarningBox type="important">
+**Konsep Fundamental:** Strainer bukan pengganti filter. Strainer menangani partikel berukuran &gt;40 µm hingga beberapa milimeter, sedangkan filter menangani partikel lebih halus (&lt;40 µm). Perbedaan mendasar ini menentukan lokasi pemasangan dan kriteria pemilihan.
+</WarningBox>
+
+---
+
+## Introduction
+
+Dalam konteks process plant migas, strainer didefinisikan sebagai perangkat proteksi mechanical equipment yang menyaring kontaminan padat dari aliran fluida kontinu. Fungsi utamanya adalah menjaga keandalan peralatan hilir dengan menahan debris yang dapat menyumbat nozzle, mengerosi impeller, atau mengganggu ketepatan instrumentasi. Berbeda dengan cyclone separator yang mengandalkan gaya sentrifugal, strainer mengandalkan barrier fisik; karenanya pemilihan mesh dan material elemen menjadi keputusan engineering kritis.
+
+---
+
+## Fundamental Principle
+
+Mekanisme strainer bertumpu pada **surface straining**, yaitu pelewatan fluida melalui media berpori dengan bukaan seragam. Partikel dengan dimensi lebih besar dari bukaan tertahan di permukaan media. Proses ini bersifat akumulatif: seiring waktu lapisan kotoran (cake) terbentuk, yang secara progresif memperbesar pressure drop dan dapat meningkatkan efisiensi penahanan partikel lebih kecil dari ukuran mesh. Namun, akumulasi berlebih menurunkan kapasitas alir dan menimbulkan risiko mechanical overload pada elemen.
+
+Parameter kunci yang mengendalikan fenomena ini adalah:
+
+- **Mesh size** (ukuran mesh, µm atau milimeter): diameter bukaan terukur.
+- **Open area ratio** (OAR): perbandingan total luas bukaan terhadap luas penampang aliran. Semakin tinggi OAR, semakin rendah kecepatan fluida di permukaan screen, sehingga pressure drop awal lebih kecil dan laju penyumbatan lebih terkendali.
+- **Differential pressure** (ΔP): gaya dorong yang bekerja pada elemen akibat perbedaan tekanan hulu‑hilir. ΔP desain umumnya berkisar 0,1–0,3 bar untuk elemen bersih, dan alarm biasanya diset pada 0,5–1,0 bar.
+
+<WarningBox type="important">
+**Hubungan Mesh–Pressure Drop:** Memperkecil ukuran mesh (bukaan lebih rapat) untuk perlindungan lebih ketat langsung meningkatkan pressure drop awal karena luas bukaan efektif menyusut. Desainer harus menyeimbangkan kebutuhan perlindungan dengan batas ΔP yang diizinkan oleh sistem, agar tidak mengganggu NPSH pompa atau kapasitas kompresor.
+</WarningBox>
+
+---
+
+## Working Principle
+
+Aliran fluida memasuki rumah strainer (body) melalui nozzle inlet, diarahkan ke sisi luar elemen penyaring. Fluida mengalir secara radial dari luar ke dalam basket/screen, meninggalkan debris di permukaan luar elemen. Aliran bersih terkumpul di ruang dalam elemen dan keluar melalui nozzle outlet. Pada strainer tipe Y dan basket, arah aliran didesain sedemikian rupa sehingga debris terakumulasi di bagian bawah elemen atau di sump, memudahkan pembersihan.
+
+Saat operasi normal, ΔP kecil dan stabil. Ketika debris menumpuk, ΔP meningkat karena luas aliran bebas berkurang. Pada ΔP kritis yang melebihi kekuatan struktural elemen (biasanya dinyatakan dalam collapse pressure), basket atau screen dapat terdeformasi atau pecah, membuka jalur bypass yang tidak terkendali.
+
+Pada sistem dengan duplex strainer, transfer aliran dilakukan tanpa shutdown: satu chamber diisolasi dengan valve, elemen dibersihkan, sementara chamber satunya tetap beroperasi. Pada temporary strainer (cone strainer) yang dipasang saat commissioning, elemen sengaja dipilih untuk menangani kotoran konstruksi dalam jumlah besar, dan harus dilepas setelah periode awal operasi.
+
+<WarningBox type="important">
+**Arah Aliran:** Pemasangan terbalik (fluida masuk dari dalam elemen ke luar) akan membebani elemen dengan gaya yang cenderung membuka lipatan atau jaring, bukan menekan ke inti penyangga (perforated core). Hal ini secara drastis menurunkan collapse pressure dan dapat mengakibatkan kegagalan seketika.
+</WarningBox>
+
+---
+
+## Main Components
+
+1. **Body (Rumah Strainer)** – Menampung elemen dan mengarahkan aliran. Material: baja karbon (CS) untuk servis umum, baja tahan karat (SS 316/304) untuk fluida korosif, atau paduan nickel untuk sour service. Dilengkapi drain dan vent connection.
+2. **Strainer Element (Elemen Saringan)** – Komponen inti berupa screen kawat las atau basket berlubang. Material: SS 304, 316, duplex, Monel, sesuai kompatibilitas fluida. Dilapisi support core (perforated plate) untuk kekuatan mekanis.
+3. **Cover (Tutup)** – Untuk akses pembersihan, biasanya quick‑opening untuk Y‑strainer atau bolted flange untuk basket strainer besar. Gasket harus kompatibel dengan fluida.
+4. **Differential Pressure Indicator/Taps** – Untuk memantau ΔP secara lokal atau transmisi ke DCS. Kesalahan pembacaan langsung berdampak pada keputusan pembersihan.
+5. **Drain/Vent Valves** – Memungkinkan pengosongan cairan sebelum membuka cover, dan ventilasi gas saat pengisian kembali.
+
+---
+
+## Operating Concerns & Critical Parameters
+
+Pengoperasian strainer yang andal bergantung pada pemantauan ketat beberapa parameter dan pemahaman interaksinya.
+
+### Differential Pressure (ΔP)
+
+Parameter paling kritis. ΔP bersih (clean ΔP) ditentukan oleh desain mesh dan laju alir. Peningkatan ΔP secara gradual adalah normal, tetapi kenaikan eksponensial menunjukkan penyumbatan cepat. Batas alarm ΔP diatur pada 0,7–1,0 bar di atas ΔP bersih, bergantung pada spesifikasi kekuatan elemen.
+
+<WarningBox type="warning">
+**Risiko Operasi:** Mengoperasikan strainer dengan ΔP melampaui batas desain dapat menyebabkan <strong>collapse</strong> elemen. Fragmen logam dari elemen yang hancur akan masuk ke suction pompa atau compressor, menyebabkan kerusakan parah (impeller damage, casing wear) dan potensi unplanned shutdown berhari‑hari.
+</WarningBox>
+
+### Mesh Size & Open Area Ratio (OAR)
+
+Mesh size yang terlalu kecil tidak selalu lebih baik; dapat menyebabkan frekuensi pembersihan tinggi dan meningkatkan risiko collapse. OAR rendah (&lt;100% dari luas pipa) mempercepat penyumbatan dan menaikkan ΔP awal. Standar desain umum mensyaratkan OAR minimal 3–4 kali luas penampang pipa untuk strainer servis kontinu.
+
+### Kecepatan Aliran (Face Velocity)
+
+Kecepatan fluida di permukaan screen (face velocity) yang tinggi dapat mendorong partikel masuk ke dalam bukaan (blinding) dan mempercepat erosi pada elemen. Desain yang baik menjaga face velocity di bawah 1,5 m/s untuk liquid dan 30 m/s untuk gas.
+
+### Kompatibilitas Material
+
+Ketidakcocokan material elemen dengan fluida (misalnya CS pada aliran mengandung CO₂ basah) menyebabkan korosi sumuran (pitting) dan lubang tembus, membuka bypass.
+
+### Dirt Holding Capacity (DHC)
+
+Kapasitas menahan kotoran menentukan interval pembersihan. DHC rendah pada temporary strainer cone memerlukan inspeksi harian saat commissioning. Strainer permanen didesain dengan volume sump yang memadai agar interval pembersihan sesuai jadwal PM plant.
+
+### Temperatur & Tekanan Desain
+
+Cover gasket dan body harus memenuhi rating flange (ASME Class 150–2500). Ekspansi termal diferensial antara elemen dan body pada temperature swing tinggi dapat melonggarkan elemen dan menyebabkan bypass.
+
+### Key Points
+
+- ΔP adalah indikator utama kesehatan strainer; kegagalan memantaunya sama dengan mengabaikan proteksi.
+- OAR dan mesh size adalah keputusan desain yang berdampak langsung pada keandalan operasi.
+- Collapse pressure elemen harus jauh di atas setpoint alarm ΔP.
+
+---
+
+## Types and Classification
+
+Pemilihan tipe strainer dilakukan berdasarkan lokasi, fungsi, kebutuhan pembersihan, dan tingkat kontaminasi. Berikut klasifikasi utama yang lazim di fasilitas migas.
+
+| Tipe Strainer | Konfigurasi Khas | Aplikasi Utama |
+| --- | --- | --- |
+| **Y‑Strainer** | Body berbentuk Y, elemen silindris miring. Port drain di ujung leg. | Proteksi pompa kecil, steam traps, instrument air, chemical injection. |
+| **Basket Strainer** | Body silinder horizontal/vertikal, basket besar dengan sump. | Suction pompa proses, heat exchanger protection, fuel gas, lube oil system. |
+| **Tee‑Strainer (T‑Type)** | Seperti basket tapi akses dari atas, sering digunakan di gas service. | Inlet kompresor, gas metering, upstream pressure regulator. |
+| **Cone Strainer (Temporary)** | Elemen kerucut dipasang di antara dua flange (wafer type). | Commissioning, start‑up, flushing line. Harus dilepas setelah masa tertentu. |
+| **Duplex Strainer** | Dua chamber paralel dengan valve transfer. | Continuous operation di fuel oil, liquid proses yang tidak boleh berhenti. |
+| **Automatic Self‑Cleaning** | Mekanisme backwash otomatis dengan motor atau differential pressure trigger. | Offshore produced water, cooling water dengan debris tinggi, sistem continuous tanpa intervensi operator. |
+
+<WarningBox type="success">
+**Best Practice:** Gunakan duplex strainer atau automatic strainer pada servis yang tidak dapat menerima shutdown, seperti main fuel gas ke turbin atau suction pompa crude export. Temporary cone strainer wajib memiliki rencana pelepasan yang terdokumentasi untuk mencegah collapse tak terduga.
+</WarningBox>
+
+---
+
+## Design and Selection Considerations
+
+Proses pemilihan strainer membutuhkan integrasi data proses dan batasan mekanis. Langkah sizing dan seleksi berikut diikuti untuk memastikan perlindungan optimal tanpa menghambat operasi.
+
+1. **Identifikasi Karakteristik Kontaminan**
+
+   - Ukuran partikel yang diharapkan (distribusi), jenis (pasir, kerak, serpihan las), dan konsentrasi.
+   - Untuk perlindungan pompa, mesh umumnya dipilih berdasarkan clearance impeller atau seal minimum. Rule of thumb: mesh size ≤ 0,5 × gap terkecil komponen hilir.
+
+2. **Tentukan Allowable ΔP**
+
+   - Hitung clean ΔP berdasarkan laju alir maksimum menggunakan kurva Cv vendor. ΔP total (bersih + kotor) tidak boleh melebihi 2/3 collapse pressure elemen atau batas NPSH sistem.
+   - Pastikan margin yang cukup: alarm pada 0,7 bar, shutdown/isolasi pada 1,0 bar untuk basket standar.
+
+3. **Hitung Open Area Ratio Minimum**
+
+   - OAR = total luas bukaan / luas penampang pipa. Desain tipikal meminta OAR 3:1 untuk liquid dan 10:1 untuk gas bersih. Untuk gas kotor, bisa lebih besar untuk menunda penyumbatan.
+
+4. **Pilih Material Elemen & Body**
+
+   - Laju korosi tahunan fluida menentukan corrosion allowance dan pemilihan logam (SS316 untuk air laut, Monel untuk HF acid, CS dengan coating internal untuk crude minim korosi).
+   - Perhatikan potensi galvanic corrosion antara elemen dan body.
+
+5. **Sambungan & Instalasi**
+
+   - Sambungan flanged untuk ukuran ≥2″ dan tekanan tinggi; threaded atau socket weld untuk ukuran kecil.
+   - Orientasi pemasangan Y‑strainer: leg horizontal untuk mencegah kantung gas, atau vertikal ke bawah untuk liquid service.
+
+6. **Aksesori Wajib**
+
+   - Differential pressure gauge (dengan manifold) atau transmitter.
+   - Drain valve dan vent valve untuk isolasi aman.
+
+<WarningBox type="important">
+**Perlindungan Mesh:** Jangan mendasarkan pemilihan mesh semata pada ukuran debris historis. Simulasikan ukuran partikel dari potensi kerusakan upstream (korosi, scale spallation) dan gunakan model penyumbatan untuk menentukan DHC dan frekuensi pembersihan.
+</WarningBox>
+
+---
+
+## Installation and Commissioning Considerations
+
+Pemasangan yang salah sering menjadi akar penyebab kegagalan prematur. Prinsip utama instalasi strainer mencakup:
+
+- **Orientasi Aliran** – Pastikan panah di body sesuai arah aliran proses. Terbalik menghilangkan proteksi.
+- **Aksesibilitas** – Sediakan ruang cukup untuk melepas basket/element tanpa membongkar pipa. Pada basket strainer vertikal, headroom untuk lifting basket harus dicek.
+- **Bypass** – Di layanan kritis, pasang bypass dengan valve block untuk memungkinkan pembersihan tanpa shutdown. Pastikan bypass valve laik dan tidak bocor.
+- **Drain & Vent** – Orientasikan drain di titik rendah, vent di titik tinggi untuk menghindari air pocket atau vapor lock.
+- **Temporary Cone Strainer** – Dipasang di upstream peralatan, dengan indicator ΔP. Di awal commissioning, inspeksi harian wajib; jadwal pelepasan tertuang dalam commissioning procedure. Tidak dilepas tepat waktu dapat mengakibatkan collapse dan debris masuk ke sistem bersih.
+
+<WarningBox type="warning">
+**Risiko Pemasangan Cone Strainer:** Pemasangan cone strainer tanpa differential pressure tap membuat operator buta terhadap kondisi penyumbatan. Selalu pasang tap sementara atau atur inspeksi berdasarkan jam operasi, bukan hanya visual dari luar.
+</WarningBox>
+
+> **Field Note**Di platform lepas pantai, akses ke strainer sering terbatas. Gunakan duplex strainer pada fuel gas skid turbin yang terletak di area sempit, dan pastikan valving transfer bisa dioperasikan dari grating. Kegagalan membersihkan satu chamber karena akses sulit akan memaksa shutdown seluruh skid.
+
+---
+
+## Common Failure Modes
+
+Tabel berikut merangkum mode kegagalan dominan pada strainer di proses migas.
+
+| Failure Mode | Typical Causes | Impact on Operation |
+| --- | --- | --- |
+| **Clogging (Penyumbatan)** | Debris berlebih, mesh terlalu halus, OAR rendah, tidak ada pembersihan rutin. | Aliran terhambat, pompa kavitasi atau trip, proses shutdown, potensi collapse elemen. |
+| **Element Collapse/Rupture** | ΔP melebihi collapse pressure, korosi mengurangi ketebalan elemen, pemasangan arah aliran terbalik. | Bypass total debris ke peralatan hilir, kerusakan impeller pompa atau compressor, unplanned outage. |
+| **Bypass Leakage** | Gasket duduk tidak sempurna, elemen tidak terpasang benar setelah pembersihan, korosi pada sealing surface, body retak. | Perlindungan tidak efektif, debris lolos, erosi valve/heat exchanger tube. |
+| **Corrosion/Erosion** | Kompatibilitas material tidak tepat, kecepatan face tinggi dengan partikel abrasif, erosion di ujung basket. | Lubang pada elemen, fragmentasi, kontaminasi metal, potensi kegagalan peralatan rotasi. |
+| **Differential Pressure Tap Blocked** | Kristalisasi, debris halus menutup port tapping, tidak ada purging. | Operator tidak mendapat peringatan dini, operasi buta hingga terjadi failure. |
+
+<WarningBox type="error">
+**Kegagalan Kritis:** Element collapse pada strainer suction pompa merupakan mode gagal paling berbahaya karena fragmen logam langsung terhisap ke casing pompa, merusak wearing ring, impeller, dan shaft sleeve secara masif. Biaya perbaikan dapat melampaui ratusan ribu dolar dan downtime berminggu-minggu.
+</WarningBox>
+
+---
+
+## Field Quick Reference
+
+Tabel berikut digunakan untuk troubleshooting cepat oleh operator dan maintenance.
+
+| Symptom | Possible Cause | Immediate Check |
+| --- | --- | --- |
+| ΔP meningkat tajam | Penyumbatan (clogging), flow rate berlebih, viskositas naik. | Baca ΔP lokal vs DCS; periksa laju alir aktual; lihat tren operasi terakhir. |
+| ΔP rendah (mendekati nol) | Elemen bocor/rusak, gasket bypass, elemen tidak terpasang. | Isolasi dan buka cover (setelah drain); periksa integritas elemen secara visual. |
+| Suara berisik/ vibrasi | Kavitasi di hilir pompa akibat ΔP tinggi, aliran dua fase. | Periksa suction pressure pompa; pastikan tidak ada gas entrainment; cek level upstream vessel. |
+| Penurunan kapasitas alir | Penyumbatan, strainer terlalu kecil, partial blockage downstream. | Bandingkan suction/discharge pressure pompa; cek posisi valve hilir; lakukan backwash jika memungkinkan. |
+| Bocor dari cover flensa | Gasket rusak, baut tidak dikencangkan sesuai torque, thermal cycling. | Kencangkan baut sesuai spesifikasi; jika masih bocor, ganti gasket saat shutdown. |
+
+> **Field Note**Pada strainer yang terpasang di suction pompa crude dengan kandungan pasir, pemasangan ΔP gauge lokal dengan dial besar sangat membantu operator mendeteksi kenaikan yang cepat. Hindari hanya mengandalkan transmitter yang bisa mengalami drift kalibrasi.
+
+---
+
+## Inspection, Maintenance & Best Practices
+
+Program inspeksi dan pemeliharaan strainer terstruktur merupakan kunci keandalan. Aktivitas berikut diintegrasikan ke dalam preventive maintenance (PM) rutin.
+
+### Inspeksi Rutin (Running)
+
+- Catat ΔP setiap shift di log operasi; waspadai tren kenaikan non‑linear.
+- Verifikasi akurasi ΔP gauge dengan manifold venting periodik.
+- Periksa kebocoran eksternal di cover, flange, dan valve drain.
+
+### Pembersihan (Cleaning)
+
+- Lakukan pembersihan saat ΔP mencapai setpoint alarm, bukan setelah trip.
+- Metode: mechanical cleaning (sikat kawat stainless) atau chemical cleaning untuk scale keras. Untuk duplex: transfer aliran, drain, buka cover, angkat basket, bersihkan, inspeksi visual.
+- **Jangan** menggunakan palu atau benda keras untuk menghilangkan kerak, karena dapat merusak mesh.
+
+<WarningBox type="warning">
+**Peringatan Keselamatan:** Sebelum membuka cover, pastikan telah dilakukan drain, depressurization, dan venting hingga tekanan nol. Gas beracun atau hidrokarbon cair yang terperangkap dalam sump dapat menyebabkan pelepasan mendadak berbahaya. Ikuti permit isolasi positif.
+</WarningBox>
+
+### Penggantian Elemen
+
+- Elemen yang menunjukkan tanda korosi lubang, distorsi, atau keausan wire &gt;10% luas permukaan harus diganti.
+- Selalu gunakan suku cadang OEM dengan mesh, material, dan dimensi identik. Elemen non‑OEM sering memiliki OAR lebih rendah atau collapse pressure tidak terverifikasi.
+
+### Best Practice Operasi
+
+- Pasang strainer **sebelum** control valve, steam trap, dan equipment rotasi, bukan setelah.
+- Untuk temporary strainer, tetapkan batas waktu operasi dan sertakan dalam Mechanical Completion certificate.
+- Pada startup, flushing line secara bertahap untuk menghindari lonjakan debris yang langsung menyumbat strainer.
+
+<WarningBox type="success">
+**Strategi Keandalan:** Terapkan pemantauan ΔP berbasis trending di DCS. Konfigurasikan alarm pre‑warning (misal 80% setpoint alarm utama) untuk memberikan waktu bagi operator menjadwalkan pembersihan tanpa terburu‑buru, mengurangi human error saat isolasi.
+</WarningBox>
+
+### Key Points Maintenance
+
+- ΔP trend adalah indikator paling murah dan efektif.
+- Ketersediaan spare basket dengan gasket baru di gudang mempercepat PM.
+- Pembersihan strainer bukan aktivitas minor; prosedur isolasi penuh harus ditegakkan.
+
+---
+
+## Key Takeaways
+
+1. Strainer melindungi aset kritis dengan menyaring kontaminan padat berbasis surface filtration. Pemilihan mesh, OAR, dan material harus selaras dengan toleransi peralatan hilir dan karakteristik fluida.
+2. Parameter operasi paling vital adalah differential pressure; setiap penyimpangan ΔP dari baseline menuntut investigasi segera. Collapse elemen akibat ΔP berlebih adalah mode kegagalan paling merusak dan dapat dicegah sepenuhnya melalui pemantauan rutin.
+3. Klasifikasi tipe strainer (Y, basket, cone, duplex, self‑cleaning) bukan sekadar preferensi, melainkan keputusan berdasarkan kontinuitas operasi, tingkat debris, dan aksesibilitas lapangan.
+4. Praktik instalasi dan commissioning yang buruk (orientasi salah, kelalaian melepas cone strainer, ΔP tap tidak terpasang) secara langsung menghilangkan fungsi proteksi.
+5. Keandalan strainer dicapai melalui desain yang kokoh, pemantauan ΔP berbasis tren, prosedur pembersihan yang aman, dan penggantian elemen tepat waktu. Mengabaikan peralatan kecil ini sama dengan mengabaikan proteksi peralatan utama—konsekuensinya bersifat sistematis dan mahal.
