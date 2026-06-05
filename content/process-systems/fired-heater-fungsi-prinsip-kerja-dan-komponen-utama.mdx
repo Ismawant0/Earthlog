@@ -1,0 +1,249 @@
+---
+title: 'Fired Heater: Fungsi, Prinsip Kerja, dan Komponen Utama'
+slug: fired-heater-fungsi-prinsip-kerja-dan-komponen-utama
+category:
+  - process-systems
+  - production-operations
+  - equipment
+description: >-
+  Panduan teknis dasar fired heater untuk engineer migas: prinsip perpindahan
+  panas radiasi-konveksi, komponen utama, parameter kritis, dan mode kegagalan
+  dominan demi operasi aman dan andal.
+difficulty: Intermediate
+keywords:
+  - Fired Heater
+takeaways:
+  - Fired Heater
+tags:
+  - Fired Heater
+  - process engineering
+  - Furnace
+readingTime: 15 min
+featured: false
+date: '2026-06-05'
+cover: >-
+  /content-assets/process-systems/fired-heater-fungsi-prinsip-kerja-dan-komponen-utama/fired-heater.webp
+---
+<Figure src="/content-assets/process-systems/fired-heater-fungsi-prinsip-kerja-dan-komponen-utama/fired-heater.webp" alt="fired heater" caption="" />
+
+## Why This Topic Matters in the Field
+
+Fired heater adalah peralatan pemanas fluida proses dengan energi pembakaran. Di lapangan, kegagalan fired heater hampir selalu berdampak langsung pada keselamatan, produksi, dan integritas aset. Pemahaman menyeluruh tentang prinsip kerja, komponen kritis, dan batasan operasi menjadi landasan utama bagi engineer operasi, proses, pemeliharaan, maupun operator yang bertanggung jawab menjaga keandalan unit.
+
+Keputusan operasi yang tidak tepat—seperti pengaturan udara berlebih (*excess air*) yang buruk atau pengabaian suhu kulit tabung (*tube skin temperature*)—dapat memicu *coking*, *hot spot*, hingga kegagalan tabung yang berujung kebakaran. Oleh karena itu, penguasaan fundamental fired heater bukan sekadar pengetahuan teoritis, melainkan kompetensi lapangan yang kritis.
+
+## At-a-Glance Technical Brief
+
+Fired heater memanaskan fluida proses (minyak mentah, gas, *heat transfer fluid*, atau umpan reaktor) hingga suhu tertentu dengan memanfaatkan panas pembakaran bahan bakar gas atau cair. Alat ini terdiri atas ruang bakar (*radiant section*) tempat api mentransfer panas terutama secara radiasi, dan *convection section* yang memanfaatkan panas sisa gas buang secara konveksi. Cerobong (*stack*) membuang gas buang ke atmosfer dengan gaya dorong alami atau paksa. Parameter operasi kritis meliputi suhu dinding jembatan (*bridgewall temperature*), kadar oksigen di gas buang (sebagai indikator *excess air*), draf, dan suhu kulit tabung. Risiko utama mencakup *flame impingement*, pembentukan kokas di dalam tabung, kegagalan refraktori, dan ledakan ruang bakar akibat akumulasi gas yang tidak terbakar. Fired heater diaplikasikan secara luas di kilang, pabrik petrokimia, dan fasilitas gas sebagai pemanas umpan distilasi, *reboiler*, *hot oil system*, atau pemanas awal reaktor.
+
+<WarningBox type="important">
+Parameter kritis fired heater—bridgewall temperature, excess O₂, draft, dan tube skin temperature—harus dipantau dan dikendalikan dalam rentang desain. Setiap penyimpangan signifikan dapat menyebabkan kegagalan tabung, penurunan kapasitas, atau shutdown tidak terencana.
+</WarningBox>
+
+## Introduction
+
+Fired heater, sering disebut *process furnace* atau *direct-fired heater*, adalah peralatan stasioner yang memindahkan energi panas dari pembakaran bahan bakar ke fluida proses yang mengalir di dalam susunan tabung (*tube coil*). Perannya dalam *process plant* adalah menaikkan suhu fluida kerja sebelum memasuki unit proses berikutnya, misalnya kolom distilasi, reaktor, atau turbin. Tanpa fired heater, banyak reaksi dan pemisahan di industri migas tidak dapat mencapai kondisi termal yang disyaratkan.
+
+Berbeda dengan penukar panas tak-langsung (*unfired heat exchanger*), fired heater menerima panas langsung dari nyala api dan gas buang bertemperatur tinggi. Konsekuensinya, material tabung dan desain ruang bakar harus tahan terhadap beban termal yang ekstrem, potensi oksidasi, serta ekspansi termal diferensial. Desain dan operasi fired heater sangat diatur oleh standar seperti API 560 (*Fired Heaters for General Refinery Service*) untuk memastikan integritas dan keselamatan.
+
+## Fundamental Principle
+
+Prinsip dasar fired heater adalah perpindahan panas dari gas pembakaran ke fluida proses melalui dua mekanisme dominan: radiasi di *radiant section* dan konveksi di *convection section*. Di ruang bakar, nyala api burner dan gas buang bertemperatur 800–1.200°C memancarkan energi radiasi termal yang diserap langsung oleh permukaan tabung yang terpapar. Karena energi radiasi sebanding dengan pangkat empat suhu absolut (Hukum Stefan-Boltzmann), kontribusi panas radiasi sangat dominan pada suhu tinggi. Setelah melewati bidang jembatan (*bridgewall*), gas buang yang sudah lebih dingin (500–800°C) mengalir melalui *convection section*, tempat panas dipindahkan terutama secara konveksi ke tabung-tabung yang biasanya bersirip (*finned tubes*) untuk meningkatkan luas permukaan.
+
+Efisiensi termal keseluruhan bergantung pada seberapa banyak panas yang berhasil diekstraksi dari gas buang sebelum dilepas ke atmosfer. Semakin rendah suhu gas buang keluar *stack*, semakin tinggi efisiensi, tetapi suhu tersebut tidak boleh turun di bawah titik embun asam (*acid dew point*) karena dapat menyebabkan korosi asam sulfat pada permukaan logam *convection section* dan cerobong.
+
+<WarningBox type="important">
+Perpindahan panas radiasi mendominasi di ruang bakar (sekitar 60–70% total panas diserap), sementara konveksi menyumbang sisanya. Distribusi ini menentukan profil suhu tabung dan menjadi dasar penetapan batas <em>bridgewall temperature</em> dan <em>tube skin temperature</em> maksimum.
+</WarningBox>
+
+### Key Points
+
+- Panas radiasi ∝ T⁴, membuat *radiant section* sangat efektif pada suhu tinggi.
+- *Convection section* memanfaatkan gas buang untuk pemanasan awal atau pemanasan lanjut.
+- Suhu gas buang keluar dibatasi titik embun asam untuk mencegah korosi.
+
+## Working Principle
+
+Aliran proses di dalam fired heater dirancang *counter-current*: fluida dingin masuk melalui *convection section* terlebih dahulu, kemudian dialirkan ke *radiant section* untuk mencapai suhu akhir tertinggi. Arah aliran gas buang berlawanan, yaitu dari ruang bakar naik melalui *convection section* menuju cerobong. Konfigurasi ini memaksimalkan perbedaan suhu rata-rata logaritmik (LMTD) dan efisiensi perpindahan panas.
+
+Urutan operasi dimulai dari penyalaan *burner* setelah prosedur *purging* ruang bakar untuk menghilangkan sisa gas mudah terbakar. Udara pembakaran masuk melalui *burner throat* secara alami (*natural draft*) atau dipaksa oleh *forced draft fan*. Gas bahan bakar bercampur dengan udara di ujung *burner tip* dan terbakar menghasilkan nyala yang memenuhi ruang bakar. Panas radiasi diserap oleh dinding tabung dan ditransfer ke fluida di dalamnya. Gas buang hasil pembakaran mengalir melewati *bridgewall* menuju *convection section*, melewati *tube bank* dan *finned tubes*, lalu keluar melalui *stack*. *Damper* di cerobong mengatur laju alir gas buang dan tekanan negatif (draf) di dalam heater. Draf yang tepat menjaga agar gas panas tidak keluar dari celah inspeksi dan memastikan aliran gas buang stabil.
+
+<WarningBox type="important">
+Purging ruang bakar sebelum penyalaan ulang adalah prosedur wajib untuk mencegah ledakan. Volume ruang bakar harus diganti minimal empat kali dengan udara segar untuk menjamin konsentrasi gas di bawah batas mudah terbakar bawah (LFL).
+</WarningBox>
+
+*Draft control* merupakan elemen kunci operasi. *Natural draft* mengandalkan perbedaan densitas gas panas di dalam *stack* terhadap udara luar; *forced draft* menggunakan *fan* untuk menyuplai udara, dan *induced draft* menggunakan *fan* di sisi keluar untuk menarik gas buang. *Balanced draft* mengombinasikan keduanya untuk menjaga tekanan ruang bakar sedikit negatif (-2 hingga -5 mmH₂O).
+
+> **Field Note** Pada fired heater dengan *natural draft*, ketinggian *stack* menentukan kapasitas draf. Penambahan *damper* yang terlalu tertutup dapat menyebabkan tekanan positif di ruang bakar, memaksa gas panas keluar melalui *sight port* dan membahayakan personel.
+
+## Main Components
+
+### Radiant Section (Seksi Radiasi)
+
+Merupakan ruang bakar tempat *burner* terpasang. Dinding bagian dalam dilapisi refraktori atau serat keramik untuk menahan suhu tinggi dan memantulkan panas radiasi ke tabung. Tabung di seksi ini umumnya berdiameter 4–8 inci, terbuat dari material tahan *creep* seperti 9Cr-1Mo, 5Cr-½Mo, atau SS 304H/316H untuk layanan suhu sangat tinggi. Tabung dapat disusun vertikal, horizontal, atau helikal.
+
+### Burner (Pembakar)
+
+Burner mencampur bahan bakar dan udara, menstabilkan nyala, dan membentuk pola api yang sesuai dengan geometri ruang bakar. Tipe burner meliputi *raw gas burner*, *premix burner*, dan *low-NOx burner*. Kinerja burner menentukan efisiensi pembakaran, emisi, dan risiko *flame impingement*.
+
+### Convection Section (Seksi Konveksi)
+
+Terletak di atas *bridgewall*, seksi ini berisi beberapa baris tabung horizontal, seringkali dilengkapi sirip (*fins*) atau stud untuk menambah luas perpindahan panas. Gas buang mengalir melintasi *tube bank* secara silang (*cross-flow*). Material tabung dapat berupa baja karbon untuk suhu rendah-menengah atau paduan rendah untuk suhu lebih tinggi. *Convection section* juga menjadi tempat injeksi *soot blower* jika bahan bakar mengandung residu karbon.
+
+### Refractory & Insulation
+
+Lapisan refraktori (bata tahan api, *castable*, atau *ceramic fiber*) melindungi *casing* baja dari suhu tinggi, mengurangi kehilangan panas, dan menjaga efisiensi termal. Kegagalan refraktori menyebabkan *hot spot* pada *casing* dan peningkatan suhu permukaan yang membahayakan.
+
+### Stack (Cerobong) & Damper
+
+Cerobong menghasilkan draf dan membuang gas buang ke atmosfer. *Damper* berfungsi mengatur aliran gas buang dengan membuka atau menutup sirip di dalam cerobong. Posisi *damper* dikendalikan secara manual atau otomatis berdasarkan sinyal tekanan ruang bakar.
+
+### Tube Supports & Hangers
+
+Penyangga tabung menjaga posisi dan menyerap ekspansi termal. Material penyangga harus tahan suhu tinggi, umumnya paduan berbasis nikel atau *cast austenitic stainless steel*, karena terletak di area dengan radiasi langsung.
+
+### Header & Return Bends
+
+*Header* mengumpulkan dan mendistribusikan fluida ke beberapa *pass* paralel. *Return bends* atau *U-bends* menghubungkan lintasan tabung, biasanya ditempatkan di luar ruang bakar atau di dalam *header box* untuk menghindari paparan panas langsung.
+
+<WarningBox type="success">
+Pemilihan material tabung <em>radiant section</em> harus mempertimbangkan suhu operasi maksimum, tekanan parsial H₂S, dan laju korosi fluida proses. Paduan 9Cr-1Mo umum digunakan hingga suhu kulit 650°C untuk ketahanan <em>creep</em> dan oksidasi.
+</WarningBox>
+
+### Key Points – Main Components
+
+- *Radiant section* adalah zona panas utama dengan perpindahan radiasi dominan.
+- *Convection section* mengekstrak panas sisa, sering menggunakan *finned tubes*.
+- Refraktori, *tube support*, dan *damper* adalah komponen pendukung yang secara langsung mempengaruhi keandalan dan keamanan.
+
+## Tipe-Tipe Fired Heater
+
+Klasifikasi fired heater berdasarkan konfigurasi fisik dan arah aliran gas buang relevan dalam pemilihan desain dan pertimbangan operasi. Perbedaan utama terletak pada orientasi tabung, bentuk ruang bakar, dan lokasi *convection section*.
+
+1. **Cabin / Box-Type Heater**: Ruang bakar berbentuk kotak dengan *burner* di lantai dan tabung vertikal di dinding. Cocok untuk kapasitas besar. *Convection section* horizontal di atas ruang bakar.
+2. **Vertical Cylindrical Heater**: Ruang bakar silinder vertikal dengan *burner* di bagian bawah dan *coil* vertikal atau helikal di sekeliling dinding. Banyak digunakan untuk *hot oil heater* dan *reboiler* karena tapak kecil dan biaya konstruksi lebih rendah.
+3. **Arbor Coil / Helical Coil Heater**: *Coil* helikal melingkari ruang bakar silinder, memberikan distribusi panas lebih seragam dan mengurangi *flame impingement*.
+4. **End-Fired / Side-Fired Heater**: Konfigurasi *burner* di ujung atau di sisi dinding. Reformer dan *cracking furnace* sering menggunakan desain *side-fired* atau *top-fired* untuk kontrol profil suhu yang ketat.
+5. **Radiant-Wall Heater**: Seluruh dinding ruang bakar dilapisi tabung, menghasilkan fluks panas radiasi yang tinggi dan seragam, dipakai pada *reformer*.
+
+Masing-masing tipe memiliki karakteristik distribusi fluks panas dan sensitivitas terhadap *flame impingement* yang berbeda. Pemilihan tipe didasarkan pada kapasitas panas, jenis fluida, risiko *coking*, dan batasan tapak.
+
+## Operating Concerns & Critical Parameters
+
+Operasi fired heater yang aman dan efisien bergantung pada pengendalian sejumlah parameter dalam batas yang telah ditentukan. Penyimpangan parameter kritis dapat menyebabkan kerusakan progresif atau kegagalan seketika.
+
+### Bridgewall Temperature (BWT)
+
+Suhu gas buang pada titik jembatan antara *radiant section* dan *convection section*. BWT adalah indikator utama keseimbangan panas di ruang bakar. BWT yang terlalu tinggi menandakan kelebihan beban panas atau kekurangan aliran fluida proses, sehingga meningkatkan suhu kulit tabung dan risiko *coking*. BWT rendah menunjukkan kelebihan aliran fluida atau pembakaran kurang sempurna, yang menurunkan efisiensi.
+
+### Excess Air / Oxygen Content
+
+Kandungan oksigen di gas buang (biasanya diukur di *stack* atau setelah *convection section*) menunjukkan tingkat udara berlebih. O₂ terlalu rendah (kurang dari 1–2% vol basah) menyebabkan pembakaran tidak sempurna, menghasilkan CO dan jelaga, serta potensi *afterburning* di *convection section*. O₂ terlalu tinggi meningkatkan volume gas buang, menurunkan efisiensi termal karena lebih banyak panas terbawa keluar, dan mempercepat pembentukan NOx. Rentang tipikal O₂ yang direkomendasikan adalah 2–3% untuk bahan bakar gas.
+
+### Draft & Furnace Pressure
+
+Draf diukur pada *arch*, *bridgewall*, dan di bawah *stack*. Draf yang terlalu rendah (tekanan ruang bakar positif) mendorong gas panas dan api keluar melalui bukaan, membahayakan operator dan merusak struktur. Draf berlebihan dapat mengisap udara palsu (*tramp air*) melalui kebocoran, menurunkan efisiensi dan mengganggu kendali O₂. Draf *arch* (tepat di atas *bridgewall*) biasanya dijaga sekitar -2 hingga -5 mmH₂O.
+
+### Tube Skin Temperature (TST)
+
+Suhu logam tabung adalah parameter yang paling langsung menentukan umur tabung dan risiko *coking*. TST diukur oleh termokopel yang ditempelkan pada permukaan tabung atau diprediksi dari suhu fluida dan fluks panas. Melebihi batas material menyebabkan *creep* dipercepat, oksidasi, dan penipisan dinding. Flame impingement menciptakan *hot spot* lokal dengan TST ekstrem.
+
+### Flame Pattern & Impingement
+
+Pola api yang tidak simetris atau menyentuh tabung (*flame impingement*) menghasilkan pemanasan lokal yang sangat tinggi, menyebabkan degradasi material setempat, ekspansi tidak merata, dan deformasi tabung. Api harus pendek, stabil, dan berwarna biru jernih untuk bahan bakar gas.
+
+### Fouling & Coking
+
+Fluida proses yang mengandung komponen tidak stabil termal (seperti hidrokarbon berat) akan membentuk endapan karbon (kokas) di dinding dalam tabung jika suhu film melebihi ambang batas. Kokas menurunkan koefisien perpindahan panas, menaikkan suhu tabung lebih lanjut, dan menciptakan siklus positif yang berujung pada *tube rupture*.
+
+<WarningBox type="warning">
+Flame impingement adalah penyebab umum kegagalan tabung prematur. Operator wajib memeriksa pola api secara visual melalui <em>sight port</em> setiap <em>shift</em> dan segera melakukan penyesuaian <em>burner</em> jika ditemukan ketidaknormalan.
+</WarningBox>
+
+<WarningBox type="warning">
+Pembentukan kokas di dalam tabung (*internal coking*) bersifat swa-pacu (*self-accelerating*). Ketika ketebalan kokas meningkat, suhu kulit tabung naik untuk mempertahankan fluks panas, yang justru mempercepat laju <em>coking</em>. Deteksi dini melalui tren TST sangat penting.
+</WarningBox>
+
+## Common Failure Modes
+
+Pemahaman mode kegagalan membantu personel operasi dan pemeliharaan melakukan tindakan pencegahan tepat sasaran. Berikut mode kegagalan dominan pada fired heater beserta penyebab dan konsekuensinya.
+
+### Tabel 1. Failure Modes Terkait Pembakaran dan Gas Buang
+
+| Failure Mode | Possible Causes | Potential Consequences |
+| --- | --- | --- |
+| Ledakan ruang bakar (*firebox explosion*) | Kegagalan purging, kebocoran fuel gas, kegagalan *flame scanner*, nyala padam tidak terdeteksi | Kerusakan struktural, cedera fatal, shutdown panjang |
+| Afterburning di *convection section* | Pembakaran tidak sempurna, kelebihan udara rendah, *burner* kotor | Suhu BWT tidak terkendali, kerusakan *finned tubes*, kebakaran |
+| Flame impingement | Tekanan fuel gas berlebih, *burner tip* aus, distribusi udara buruk, *fouling* burner | Hot spot, tube bulge, creep rupture |
+| Draf tidak stabil / tekanan positif | *Damper* macet, *stack* tersumbat, *fan* draft gagal, *tramp air* berlebih | Keluarnya gas panas, risiko personel, operasi tidak aman |
+
+### Tabel 2. Failure Modes Terkait Tabung dan Refraktori
+
+| Failure Mode | Possible Causes | Potential Consequences |
+| --- | --- | --- |
+| Tube rupture (pecah) | Overheating jangka panjang, coking tebal, creep, korosi, thermal shock | Kebakaran besar, pelepasan hidrokarbon bertekanan, shutdown darurat |
+| Refractory spalling / collapse | Thermal cycling, kelembaban saat startup, pemasangan buruk, usia | Hot spot casing, penurunan efisiensi, debris menyumbat aliran |
+| Tube bowing / sagging | Overheating, dukungan tabung longgar, ekspansi termal terhambat | Distribusi aliran tidak merata, kontak antar tabung, kegagalan fatik |
+| Header plugging | Kotoran, produk korosi, kokas lepas | Aliran parsial mati, overheating di *pass* lain, risiko *coking* cepat |
+
+<WarningBox type="error">
+Tube rupture di radiant section adalah mode kegagalan paling berbahaya. Fluida hidrokarbon bertekanan tinggi yang tersembur ke ruang bakar memicu api tak terkendali dan ledakan sekunder. Interlock fuel gas <em>shut-off</em> pada deteksi tekanan rendah burner dan api padam wajib berfungsi setiap saat.
+</WarningBox>
+
+## Field Quick Reference
+
+Tabel berikut menyajikan panduan cepat bagi operator dan teknisi lapangan saat menghadapi gejala abnormal.
+
+| Symptom | Possible Cause | Immediate Check |
+| --- | --- | --- |
+| BWT naik tiba-tiba | Aliran fluida proses turun, burner *over-firing* | Laju alir umpan, posisi *control valve*, tekanan fuel gas |
+| O₂ rendah & asap hitam dari *stack* | Kekurangan udara pembakaran, *burner tip* kotor | Pembukaan *damper*, *burner air register*, inspeksi visual api |
+| Suhu kulit tabung tinggi di satu titik | *Flame impingement* lokal, kokas setempat | Pola api *burner* terdekat, keseimbangan aliran per *pass* |
+| Getaran / suara gemuruh rendah di *firebox* | Pembakaran tidak stabil, *draft* berfluktuasi | Tekanan *firebox*, posisi *damper*, kualitas bahan bakar |
+| *Casing* panas membara terlihat | Kegagalan refraktori, *hot spot* | Termografi atau *contact pyrometer*, buka *inspection door* terdekat |
+| Nyala berwarna kuning/jingga | Pembakaran tidak sempurna, jelaga, kurang udara | *Excess air*, tekanan bahan bakar, kondisi *burner tip* |
+| Aliran fluida keluar tidak mencapai suhu target | *Fouling* tabung, kapasitas burner turun | BWT, *fuel gas flow*, ΔP *coil*, *tube skin* |
+
+## Inspection, Maintenance & Best Practices
+
+Keandalan fired heater bergantung pada program inspeksi dan pemeliharaan yang terstruktur serta disiplin operasi yang ketat. Praktik terbaik mencakup pemantauan parameter *online*, inspeksi visual rutin, dan *turnaround* berbasis kondisi.
+
+### Inspeksi dan Pemantauan Online
+
+- **Tube skin thermocouple** harus dikalibrasi dan dipantau trennya untuk mendeteksi *coking* dini. Kenaikan bertahap TST pada laju alir dan BWT tetap adalah indikasi pengotoran internal.
+- **Analisis gas buang (O₂, CO, NOx)** dilakukan secara kontinu. Validasi *analyzer* dengan *portable flue gas analyzer* setiap bulan.
+- **Draft gauge** dan *pressure transmitter* diperiksa kebocoran jalur impulsnya karena uap air dapat mengembun dan menyumbat.
+
+### Inspeksi Saat Shutdown
+
+- **Pengukuran ketebalan tabung** (*ultrasonic thickness gauging*) di titik-titik yang telah dipetakan berdasarkan riwayat *tube skin temperature* tinggi. Fokus pada area *return bend* dan sisi menghadap burner.
+- **Pemeriksaan refraktori**: identifikasi retak, spalling, atau penipisan. Gunakan *thermography* saat operasi untuk memetakan area mencurigakan.
+- **Inspeksi burner**: bersihkan *tip*, periksa keausan, dan verifikasi dimensi bukaan udara sesuai spesifikasi.
+- **Uji tekanan tabung** atau *hydrostatic test* setelah perbaikan atau penggantian tabung.
+
+### Best Practice Operasi
+
+1. **Purging terkendali**: Sebelum penyalaan, pastikan *damper* terbuka penuh, jalankan *air purge* sesuai prosedur (minimal 5 menit atau sesuai volume setara empat kali pergantian ruang bakar).
+2. **Pemanasan bertahap**: Saat *startup* dari dingin, naikkan suhu dengan laju maksimum yang diizinkan oleh prosedur (umumnya 50–75°C per jam) untuk mencegah *thermal shock* pada refraktori dan tabung.
+3. **Pengaturan *excess air***: Targetkan O₂ 2–3% untuk gas, 3–5% untuk bahan bakar minyak. Lakukan penyetelan *air register* setiap kali terjadi perubahan signifikan pada laju pembakaran atau kondisi cuaca.
+4. **Pemantauan *flame* rutin**: Setiap *shift*, periksa kondisi nyala melalui *sight port*. Dokumentasikan jika terdeteksi perubahan bentuk, warna, atau posisi nyala.
+5. **Manajemen *soot blowing***: Jika heater membakar minyak atau residu, jalankan *soot blower* secara berkala sesuai jadwal untuk menjaga kebersihan *finned tubes* di *convection section*.
+
+<WarningBox type="success">
+Jangan mengabaikan tren data operasi. Kenaikan TST 10–20°C dalam sebulan pada laju aliran konstan adalah sinyal awal <em>coking</em> dan harus ditindaklanjuti dengan penyesuaian beban atau persiapan <em>decoking</em> sebelum terjadi kegagalan.
+</WarningBox>
+
+<WarningBox type="warning">
+Pengoperasian <em>burner</em> dengan udara berlebih terlalu rendah (O₂ &lt; 1%) sangat berbahaya. Selain menghasilkan CO, kondisi ini berpotensi menyebabkan <em>afterburning</em> di <em>convection section</em> yang dapat melelehkan <em>finned tubes</em>.
+</WarningBox>
+
+> **Field Note** Saat inspeksi *convection section*, *finned tubes* yang melengkung atau berubah warna sering menjadi indikator historis adanya *afterburning* atau kelebihan suhu gas buang di masa lalu. Area ini harus mendapatkan perhatian lebih pada pengukuran ketebalan.
+
+## Key Takeaways
+
+1. **Fired heater memindahkan panas melalui radiasi dan konveksi**; distribusi suhu di *radiant section* dan *convection section* harus dipahami untuk menghindari overheating lokal dan memaksimalkan efisiensi.
+2. **Bridgewall temperature (BWT) dan excess O₂ adalah dua parameter kendali utama** yang mencerminkan keseimbangan pembakaran dan serapan panas. Setiap deviasi harus dikoreksi segera untuk mencegah *coking* atau kerugian efisiensi.
+3. **Tube skin temperature (TST) adalah parameter batas keselamatan material** yang mempengaruhi laju *creep* dan *coking*. Pemantauan tren TST sama pentingnya dengan batas absolutnya.
+4. **Flame impingement dan internal coking adalah mode kegagalan paling umum yang dapat berkembang menjadi tube rupture.** Deteksi dini melalui inspeksi visual dan analisis data operasi adalah benteng pencegahan.
+5. **Disiplin prosedur startup, purging, dan pengaturan *excess air* tidak dapat ditawar.** Sebagian besar insiden ledakan *firebox* bermula dari kelalaian purging atau kegagalan interlock burner.
+6. **Program inspeksi dan pemeliharaan berbasis kondisi** —memanfaatkan termografi, ketebalan ultrasonik, dan analisis tren— memungkinkan intervensi sebelum kegagalan terjadi, menjaga keselamatan dan kontinuitas produksi.
