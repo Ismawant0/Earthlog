@@ -1,0 +1,277 @@
+---
+title: >-
+  Steam Heater (Pemanas Uap) di Proses Migas: Fungsi, Prinsip Kerja, dan
+  Komponen Utama
+slug: >-
+  steam-heater-pemanas-uap-di-proses-migas-fungsi-prinsip-kerja-dan-komponen-utama
+category:
+  - fundamentals
+  - process-systems
+  - production-operations
+description: >-
+  Handbook teknis steam heater — peralatan penukar panas yang menggunakan steam
+  sebagai media pemanas untuk menaikkan temperatur fluida proses seperti gas
+  alam, amine, dan kondensat. Fokus pada prinsip kondensasi, manajemen
+  kondensat, parameter kritis, dan mode kegagalan.
+difficulty: Beginner
+keywords:
+  - Steam Heater
+takeaways:
+  - >-
+    Steam Heater (Pemanas Uap) di Proses Migas: Fungsi, Prinsip Kerja, dan
+    Komponen Utama
+tags:
+  - Steam Heater
+readingTime: 25 min
+featured: false
+date: '2026-06-10'
+cover: >-
+  /content-assets/fundamentals/steam-heater-pemanas-uap-di-proses-migas-fungsi-prinsip-kerja-dan-komponen-utama/steam-heater.webp
+---
+<Figure src="/content-assets/fundamentals/steam-heater-pemanas-uap-di-proses-migas-fungsi-prinsip-kerja-dan-komponen-utama/steam-heater.webp" alt="Steam Heater" caption="" />
+
+## Why This Topic Matters in the Field
+
+Pemanas berbasis uap (steam heater) — yang di beberapa area operasi dikenal dengan istilah “steam boiler” — adalah peralatan penukar panas yang menggunakan steam sebagai fluida pemanas untuk menaikkan temperatur fluida proses. Aplikasi khas di fasilitas migas mencakup pemanasan gas alam sebelum ekspansi (gas pre-heater), pemanasan ulang gas setelah pemrosesan (gas reheater), dan pemanasan larutan amine di sirkuit regenerasi (amine reboiler atau amine heater). Istilah “boiler” di sini bukan merujuk pada ketel uap (steam generator), melainkan pada fungsi peralatan yang “mendidihkan” fluida air di sisi pemanas menjadi kondensat — namun salah kaprah tersebut sudah terlanjur lazim di beberapa wilayah operasi.
+
+Steam heater menempati posisi kritis dalam rantai proses karena berhubungan langsung dengan kualitas pemanasan yang menjamin operasi downstream stabil. Kegagalan steam heater pada gas pre-heater, misalnya, dapat menyebabkan terbentuknya hidrat di downstream pressure letdown valve akibat temperatur gas turun di bawah titik embun air. Pada sistem amine, pemanasan yang tidak memadai di amine heater/reboiler mengurangi efisiensi pelepasan gas asam dari larutan kaya, sehingga menurunkan kapasitas penyerapan amine dan memicu korosi di kolom absorber.
+
+Dari sisi keandalan, steam heater beroperasi pada kondisi perbedaan temperatur tinggi dan mengalami siklus termal berulang. Kegagalan tipikal seperti kebocoran tube akibat korosi CO₂ di sisi kondensat atau water hammer akibat pengelolaan kondensat yang buruk dapat menyebabkan shutdown tidak terencana dan membahayakan personel. Penguasaan prinsip kondensasi steam, manajemen steam trap, dan kontrol temperatur menjadi kompetensi esensial bagi engineer operasi.
+
+<WarningBox type="important">
+**Mengapa Topik Ini Kritis:** Steam heater memproses fluida proses langsung dengan media steam bertekanan. Kegagalan pengendalian kondensat menyebabkan water hammer yang mampu merusak tube bundle dan casing secara katastropik, serta memicu bahaya keselamatan akibat pelepasan gas beracun atau mudah terbakar.
+</WarningBox>
+
+## At-a-Glance Technical Brief
+
+Steam heater adalah penukar panas yang mentransfer energi termal dari steam ke fluida proses melalui dinding tube atau coil. Steam masuk ke sisi shell (atau tube) pada tekanan tertentu, melepaskan panas laten kondensasi saat berubah fasa menjadi air (kondensat), sehingga temperatur fluida proses di sisi lain meningkat. Kondensat yang terbentuk dialirkan keluar melalui steam trap menuju sistem pengumpulan kondensat.
+
+Fungsi utama: menaikkan temperatur fluida proses (gas, amine, air, minyak) ke nilai yang dipersyaratkan untuk proses selanjutnya, seperti mencegah kondensasi hidrokarbon berat di pipa, memenuhi syarat temperatur masuk reaktor, atau menyediakan panas untuk reaksi desorpsi di stripper amine.
+
+Parameter kritis operasi mencakup tekanan steam (menentukan temperatur saturasi dan driving force termal), laju alir kondensat, subcooling kondensat di sisi keluar, dan kinerja steam trap. Akumulasi kondensat di dalam heater (flooding) secara drastis mengurangi area perpindahan panas efektif, menyebabkan kehilangan kapasitas pemanasan. Di sisi lain, kebocoran steam trap yang menyebabkan kehilangan steam hidup (live steam loss) menurunkan efisiensi energi dan membebani sistem kondensat.
+
+Aplikasi tipikal di migas: gas pre-heater sebelum pressure control valve, gas reheater setelah sweetening, amine heater/reboiler di unit regenerasi amine, fuel gas heater, dan pemanas minyak bakar.
+
+<WarningBox type="important">
+**At-a-Glance:** Steam heater memanfaatkan panas laten kondensasi steam untuk memanaskan fluida proses. Kunci operasi andal adalah pengelolaan kondensat yang sempurna — tanpa flooding dan tanpa kebocoran steam hidup — melalui pemilihan dan pemeliharaan steam trap yang tepat.
+</WarningBox>
+
+## 1. Introduction
+
+Steam heater adalah peralatan penukar panas yang menggunakan steam sebagai sumber panas untuk menaikkan temperatur fluida proses. Dalam terminologi standar, alat ini tergolong *shell and tube heat exchanger* atau *coil heater* dengan media pemanas steam. Namun, di banyak lapangan migas di Indonesia, peralatan ini kerap disebut “steam boiler” karena kemiripan konstruksi (berbentuk tabung horizontal dengan kumparan tube) dan fungsinya yang melibatkan “pendidihan” air menjadi kondensat. Untuk menghindari kerancuan dengan boiler pembangkit uap, istilah **steam heater** atau **pemanas uap** digunakan di dalam artikel ini.
+
+Fungsi utama steam heater adalah menyediakan panas yang bersih, terkendali, dan efisien ke fluida proses. Karena steam memiliki koefisien perpindahan panas kondensasi yang sangat tinggi (orde 5,000–15,000 W/m²·K), permukaan perpindahan yang dibutuhkan relatif kecil dibanding pemanas berbasis minyak panas atau gas buang. Hal ini menjadikan steam heater pilihan utama di lokasi di mana steam sudah tersedia dari sistem utilas pusat.
+
+Peran dalam process plant: steam heater menjamin fluida proses mencapai temperatur yang diperlukan untuk operasi downstream. Pada unit pengolahan gas, gas pre-heater mencegah pembentukan hidrat di choke valve; pada unit regenerasi amine, amine heater menyediakan energi untuk memecah ikatan kimia antara amine dan gas asam. Tanpa pemanasan yang memadai, efisiensi proses menurun, biaya operasi meningkat, dan risiko kerusakan peralatan naik.
+
+## 2. Fundamental Principle
+
+Prinsip fundamental steam heater bertumpu pada dua fenomena perpindahan panas simultan: **kondensasi uap di sisi panas** dan **pemanasan fluida di sisi dingin**. Berbeda dengan sensible heat exchanger, mayoritas energi yang dipindahkan berasal dari panas laten pengembunan — sekitar 2,100 kJ untuk setiap kilogram steam yang mengembun pada tekanan 10 bar.
+
+### 2.1 Mekanisme Perpindahan Panas Kondensasi
+
+Saat steam jenuh berkontak dengan dinding tube yang lebih dingin (karena fluida proses di sisi lain menyerap panas), uap air mengembun membentuk lapisan tipis kondensat di permukaan tube. Proses ini disebut *film condensation*. Lapisan kondensat ini mengalir ke bawah oleh gravitasi, menyingkap permukaan baru bagi steam untuk mengembun. Koefisien perpindahan panas kondensasi jauh lebih tinggi daripada koefisien konveksi gas atau cairan.
+
+<WarningBox type="important">
+**Konsep Kunci:** Panas laten kondensasi steam nilainya besar dan dilepaskan pada temperatur konstan (temperatur saturasi). Inilah yang memberikan steam heater kemampuan pemanasan yang stabil dan mudah dikendalikan — dengan mengatur tekanan steam, temperatur saturasi ikut berubah, sehingga <em>driving force</em> termal (ΔT) dapat disetel secara presisi.
+</WarningBox>
+
+### 2.2 Kurva Perpindahan Panas dan Zona Kondensasi
+
+Di dalam steam heater, profil temperatur sisi steam terbagi menjadi tiga zona potensial:
+
+1. **Zona Desuperheating** (jika steam masuk dalam keadaan superheat): temperatur steam turun hingga saturasi. Zona ini sempit dan jarang dimanfaatkan di steam heater proses.
+2. **Zona Kondensasi (condensing zone)**: tempat perubahan fasa terjadi pada temperatur saturasi konstan. Di sini panas laten dilepaskan dan hampir seluruh perpindahan panas terjadi.
+3. **Zona Subcooling**: kondensat yang sudah terbentuk didinginkan di bawah temperatur saturasi. Zona ini tidak diinginkan jika terlalu luas karena mengurangi efisiensi dan menyebabkan *water hammer* bila kondensat tidak segera dibuang.
+
+Desain steam heater yang baik memaksimalkan zona kondensasi dan meminimalkan subcooling kondensat di dalam shell. Steam trap yang berfungsi baik akan membuang kondensat segera setelah terbentuk.
+
+### 2.3 Pengaruh Gas Tak Terkondensasi
+
+Gas tak terkondensasi (NCG, *non-condensable gas*) seperti CO₂ dan udara yang terbawa steam dapat terakumulasi di permukaan tube, membentuk lapisan isolasi yang menghalangi steam mencapai dinding tube. Akibatnya, koefisien perpindahan panas turun drastis. Venting NCG secara periodik atau kontinyu dari sisi shell adalah keharusan operasional yang sering terabaikan.
+
+<WarningBox type="warning">
+**Risiko Operasi:** Akumulasi gas tak terkondensasi menurunkan kapasitas pemanasan secara signifikan. Pada kasus parah, kehilangan kapasitas mencapai 30–40% tanpa perubahan tekanan steam terlihat. Operator sering keliru menaikkan tekanan steam, padahal penyebabnya adalah NCG <em>blanketing</em>.
+</WarningBox>
+
+## 3. Working Principle
+
+Alur operasi steam heater menggambarkan interaksi antara sistem steam, peralatan penukar panas, dan sistem pengumpulan kondensat. Pemahaman urutan proses krusial untuk mencegah kondisi abnormal.
+
+### 3.1 Aliran Steam dan Fluida Proses
+
+Steam dari header distribusi memasuki steam heater melalui *steam inlet nozzle*, biasanya di bagian atas shell atau sisi tube. Fluida proses (misal gas alam dingin atau amine kaya) masuk di sisi lain — umumnya di tube side untuk kemudahan pembersihan mekanis. Konfigurasi tipikal adalah steam di *shell side* dan fluida proses di *tube side*, meskipun desain sebaliknya juga ditemukan.
+
+Begitu steam berkontak dengan permukaan tube yang lebih dingin, kondensasi terjadi. Kondensat yang terbentuk mengalir turun ke bagian bawah shell karena gravitasi. Dari *bottom outlet*, kondensat menuju steam trap — katup otomatis yang membuka saat ada kondensat dan menutup saat steam mendekat. Setelah steam trap, kondensat bertekanan lebih rendah dikirim ke sistem *condensate return* menuju deaerator atau tangki pengumpul.
+
+Fluida proses menyerap panas sepanjang lintasannya di dalam tube, temperatur keluar dipantau oleh *temperature control loop* (TIC) yang mengatur *steam inlet control valve* atau *condensate outlet valve*.
+
+### 3.2 Kontrol Temperatur
+
+Dua strategi kontrol yang lazim:
+
+- **Kontrol steam inlet:** control valve di jalur steam mengatur laju alir steam masuk berdasarkan temperatur fluida proses keluar. Metode ini dominan pada heater berukuran kecil hingga menengah.
+- **Kontrol condensate flooding:** control valve di jalur kondensat menahan sebagian kondensat di dalam shell, sehingga mengecilkan area perpindahan panas efektif (flooded control). Metode ini memberikan response yang lebih halus dan banyak dipakai di reboiler atau heater besar.
+
+<WarningBox type="important">
+**Prinsip Kerja:** Steam trap harus mampu membedakan antara steam dan kondensat secara akurat. Kegagalan steam trap menyebabkan salah satu dari dua mode: (1) <em>cold trap</em> — kondensat tidak terbuang, heater tergenang, kapasitas drop; (2) <em>blowing trap</em> — steam hidup terbuang, efisiensi turun dan header kondensat bertekanan.
+</WarningBox>
+
+### 3.3 Urutan Operasi Normal
+
+1. **Pre-start venting:** buka vent sisi shell untuk mengeluarkan udara dan NCG sebelum steam dimasukkan.
+2. **Slow steam admission:** buka steam valve perlahan untuk pemanasan seragam, mencegah kejut termal.
+3. **Condensate drain:** pastikan steam trap berfungsi, buka bypass trap sementara untuk membuang kondensat cold-start.
+4. **Temperature control attune:** secara bertahap naikkan beban hingga temperatur keluar mencapai setpoint.
+5. **Continuous operation:** monitor tekanan steam, temperatur keluar, dan kinerja steam trap secara periodik.
+
+> **Field Note:** Pada startup awal setelah perawatan, selalu lakukan *warming-up* dengan membuka bypass steam trap dan membiarkan kondensat mengalir bebas. Tutup bypass hanya setelah steam trap mulai beroperasi normal — yang ditandai dengan bunyi klik teratur dan casing trap panas di sisi inlet namun hangat di sisi outlet.
+
+## 4. Main Components
+
+Komponen steam heater dirancang untuk menangani dua fase di sisi panas dan memisahkan kondensat secara efisien.
+
+| Komponen | Fungsi | Material Umum |
+| --- | --- | --- |
+| **Shell / Casing** | Menampung steam dan bundle tube; harus tahan tekanan dan temperatur steam. | Carbon steel, ketebalan sesuai ASME BPVC Sec. VIII |
+| **Tube Bundle** | Permukaan perpindahan panas; fluida proses mengalir di dalam tube. | Stainless steel (304/316) jika fluida korosif; carbon steel untuk gas kering; kadang duplex untuk amine. |
+| **Tubesheet** | Menahan tube di ujung dan memisahkan sisi shell dari sisi tube. | Carbon steel dengan clad SS jika diperlukan. |
+| **Steam Inlet Nozzle** | Titik masuk steam; sering dilengkapi impingement plate untuk mencegah erosi tube. | Carbon steel. |
+| **Condensate Outlet Nozzle** | Titik keluar kondensat dari bagian bawah shell; desain harus meminimalkan genangan. | Carbon steel. |
+| **Vent Connection** | Mengeluarkan gas tak terkondensasi (NCG) dari sisi shell. | Carbon steel atau SS. |
+| **Steam Trap** | Katup otomatis pemisah steam-kondensat; komponen paling kritis untuk operasi. | Body: cast steel/SS; internal: stainless steel. |
+| **Baffle/Support Plate** | Mengarahkan aliran shell side dan mendukung tube dari getaran. | Carbon steel. |
+| **Expansion Joint (jika ada)** | Menyerap ekspansi termal diferensial antara shell dan tube pada fixed tubesheet design. | Stainless steel bellows. |
+
+**Steam trap** layak mendapatkan perhatian khusus karena fungsinya sebagai garda terakhir pengendali kondensat. Tipe umum: *thermostatic*, *float & thermostatic (F&T)*, *thermodynamic (TD)*. Pemilihan tipe bergantung pada kapasitas kondensat, tekanan, dan tingkat subcooling yang diizinkan.
+
+<WarningBox type="success">
+**Best Practice:** Pasang strainer sebelum steam trap dan pastikan akses inspeksi serta penggantian trap mudah. Gunakan <em>bucket trap</em> atau <em>F&amp;T trap</em> untuk heater proses dengan kondensat load bervariasi, karena responsnya baik pada beban rendah maupun tinggi.
+</WarningBox>
+
+## 5. Operating Concerns & Critical Parameters
+
+Pengoperasian steam heater yang stabil dan efisien bergantung pada kontrol ketat beberapa parameter. Penyimpangan kecil bisa memicu deret kegagalan yang eskalatif.
+
+### 5.1 Tekanan Steam dan Temperatur Saturasi
+
+Tekanan steam menentukan temperatur saturasi — satu-satunya temperatur di mana kondensasi terjadi. Jika tekanan steam turun, ΔT mengecil, laju perpindahan panas turun, dan temperatur fluida proses keluar anjlok. Penurunan tekanan dapat disebabkan oleh fluktuasi beban di boiler sentral atau kebocoran di jalur distribusi.
+
+**Batasan operasi:** Tekanan steam dijaga dalam rentang spesifikasi desain heater. Tekanan terlalu tinggi dapat melebihi rating flange atau tubesheet, serta menyebabkan overheating lokal pada tube yang bisa memicu *stress corrosion cracking* jika fluida proses korosif.
+
+### 5.2 Manajemen Kondensat dan Steam Trap Performance
+
+Kondensat harus dikeluarkan secepat terbentuk. Genangan kondensat (*flooding*) menutup sebagian area tube dari paparan steam, menurunkan kapasitas pemanasan. Indikasi flooding:
+
+- Temperatur kondensat di outlet trap rendah (subcooling berlebih).
+- Fluktuasi atau penurunan temperatur fluida proses keluar tanpa perubahan tekanan steam.
+- Suara gemuruh atau hammer di dalam heater.
+
+Sebaliknya, steam trap yang bocor (*blowing*) membuang steam hidup ke sistem kondensat. Ini menyebabkan:
+
+- Tekanan header kondensat naik, mengganggu aliran dari trap lain.
+- Kehilangan energi signifikan.
+- Peningkatan temperatur header kondensat berpotensi menimbulkan *flash steam* di pipa.
+
+### 5.3 Gas Tak Terkondensasi (NCG)
+
+Udara masuk saat shutdown atau terbawa dalam steam akibat deaerasi boiler yang tidak sempurna. CO₂ dapat terbentuk dari dekomposisi bikarbonat di air boiler. Akumulasi NCG membentuk lapisan tipis di dinding tube yang menghalangi steam mencapai permukaan. Parameter kontrol: periksa penurunan koefisien perpindahan panas keseluruhan (U) dibandingkan nilai bersih desain. Tindakan: venting manual atau otomatis dari titik tertinggi shell.
+
+### 5.4 Laju Alir Fluida Proses
+
+Laju alir fluida proses yang terlalu rendah dapat menyebabkan overheating lokal dan peningkatan fouling. Untuk fluida seperti amine, velocity rendah memperburuk pengendapan padatan dan korosi di area stagnan. Sebaliknya, laju alir terlalu tinggi menyebabkan penurunan tekanan sisi tube berlebihan dan berpotensi menggerus baffle.
+
+### 5.5 Subcooling Kondensat
+
+Subcooling kondensat di dalam heater menandakan adanya genangan dan inefisiensi. Parameter ini harus dimonitor dengan mengukur temperatur outlet trap. Jika subcooling &gt; 5–10°C, periksa steam trap atau kemungkinan undersizing.
+
+<WarningBox type="warning">
+**Risiko Operasi:** Kondensat yang subcooling berlebih di pipa setelah trap dapat menimbulkan <em>water hammer</em> saat bertemu dengan steam dari trap lain di header. Selalu isolasi pipa kondensat dan pastikan kemiringan pipa cukup untuk drainase.
+</WarningBox>
+
+## 6. Common Failure Modes
+
+Kegagalan steam heater dapat dikelompokkan berdasarkan lokasi: sisi steam/shell, sisi tube/proses, dan sistem kondensat. Tabel berikut merangkum mode kegagalan paling relevan.
+
+### 6.1 Mode Kegagalan Sisi Steam dan Kondensat
+
+| Mode Kegagalan | Gejala | Dampak Operasi |
+| --- | --- | --- |
+| **Steam trap gagal tutup (blowing)** | Temperatur trap outlet tinggi, terdengar aliran kontinu, tekanan header kondensat naik. | Kehilangan steam, kapasitas pemanasan tidak stabil, beban boiler meningkat. |
+| **Steam trap gagal buka (cold trap)** | Temperatur trap inlet rendah, heater tidak panas, temperatur fluida proses turun. | Flooding heater, kapasitas pemanasan hilang, risiko water hammer. |
+| **Akumulasi NCG** | Penurunan kapasitas tanpa perubahan tekanan steam, temperatur keluar fluida proses rendah. | Blanketing permukaan tube, kehilangan efisiensi. |
+| **Water hammer di sisi steam** | Bunyi pukulan keras di dalam heater atau pipa steam/kondensat, getaran casing. | Kerusakan tube, baffle, sambungan las, dan potensi ruptur. |
+| **Korosi sisi shell (CO₂/O₂)** | Penipisan dinding shell atau tube OD, kebocoran steam. | Kehilangan inventori steam, bahaya bagi personel di sekitar. |
+
+### 6.2 Mode Kegagalan Sisi Tube/Proses
+
+| Mode Kegagalan | Gejala | Dampak Operasi |
+| --- | --- | --- |
+| **Fouling sisi tube** | Kenaikan ΔP tube side, penurunan temperatur keluar pada beban sama, kenaikan tekanan steam dibutuhkan. | Penurunan kapasitas, peningkatan konsumsi energi. |
+| **Korosi/erosi tube** | Kebocoran internal: steam masuk ke fluida proses atau sebaliknya; getaran tube; penipisan wall tube. | Kontaminasi fluida proses oleh steam, risiko keracunan katalis, korosi downstream. |
+| **Kegagalan tubesheet joint** | Kebocoran di sambungan tube-tubesheet, fluida proses bercampur steam. | Sama dengan di atas, sulit dideteksi sebelum shutdown. |
+
+<WarningBox type="error">
+**Mode Kegagalan Kritis:** Tube pecah akibat water hammer atau korosi lokal dapat melepaskan fluida proses ke sisi shell steam, yang dalam kasus gas bertekanan tinggi atau amine kaya H₂S, berpotensi menyebabkan pelepasan gas beracun/mudah terbakar ke atmosfer melalui vent atau sistem kondensat. Ini adalah skenario <em>loss of containment</em> yang memerlukan shutdown darurat.
+</WarningBox>
+
+## 7. Field Quick Reference
+
+Tabel berikut membantu identifikasi cepat masalah operasional steam heater berdasarkan gejala yang teramati.
+
+| Gejala | Kemungkinan Penyebab | Pemeriksaan Segera |
+| --- | --- | --- |
+| Temperatur fluida proses keluar turun, tekanan steam normal. | Steam trap flooding atau NCG blanketing. | Periksa temperatur trap inlet vs outlet; buka vent NCG sebentar; cek suara aliran trap. |
+| Temperatur fluida proses fluktuatif. | Steam trap cycling tidak normal, kontrol valve hunting. | Periksa sinyal kontrol; bersihkan strainer trap; pastikan level kondensat stabil. |
+| Bunyi pukulan di heater saat startup. | Water hammer akibat kondensat tidak dibuang saat pemanasan awal. | Pastikan drain startup terbuka penuh; tutup steam valve, buka bypass trap dahulu. |
+| Tekanan header kondensat naik, trap lain terganggu. | Satu atau lebih steam trap blowing. | Isolasi masing-masing trap bergantian, periksa outlet trap dengan termometer atau sight glass. |
+| Tekanan steam turun terus menerus. | Beban boiler berlebih atau kebocoran di sistem distribusi. | Cek konsumsi steam plant lain, periksa insulasi pipa dan steam trap bocor. |
+| Temperatur outlet trap terlalu rendah (subcooling &gt;10°C). | Steam trap undersize atau gagal buka. | Bandingkan kapasitas trap dengan load kondensat, periksa internal trap untuk kerak. |
+| Kapasitas pemanas terus menurun meski steam pressure dinaikkan. | Fouling di sisi tube atau akumulasi NCG parah. | Hitung U overall, bandingkan dengan data bersih; rencanakan cleaning tube atau perbaiki venting. |
+
+## 8. Inspection, Maintenance & Best Practices
+
+Keandalan steam heater dibangun melalui inspeksi terstruktur, pemeliharaan steam trap yang ketat, dan kepatuhan terhadap prosedur operasi.
+
+### 8.1 Inspeksi Rutin dan Predictive Maintenance
+
+- **Steam trap survey** bulanan: gunakan perangkat ultrasonik atau *thermal gun* untuk mendeteksi trap blowing atau flooding. Catat tren temperatur inlet-outlet.
+- **Monitoring koefisien perpindahan panas (U):** hitung *duty* aktual dari data aliran dan temperatur fluida proses, bandingkan dengan U bersih. Penurunan &gt;20% menandakan fouling atau NCG accumulation.
+- **Inspeksi visual casing dan joint** setiap kesempatan shutdown: periksa tanda kebocoran, korosi, dan deformasi.
+- **Venting NCG** dilakukan harian (atau otomatis) untuk heater yang steamnya cenderung mengandung NCG.
+- **Pemeriksaan strainer steam trap** setiap 3 bulan; bersihkan kotoran yang lolos.
+
+### 8.2 Preventive Maintenance Steam Trap
+
+| Kegiatan | Frekuensi | Catatan |
+| --- | --- | --- |
+| Pemeriksaan fungsional (uji blow/flood) | Bulanan | Gunakan ultrasonik; bandingkan dengan baseline. |
+| Pembersihan strainer internal | 3 bulan | Isolasi trap, buka penutup, bersihkan screen. |
+| Overhaul atau penggantian internal trap | 1–2 tahun | Ganti seat, disc, float jika aus; kalibrasi ulang jika memungkinkan. |
+| Pemeriksaan pipa kondensat dari korosi | Tahunan | Cek ketebalan dinding pipa; korosi CO₂ umum terjadi di kondensat. |
+
+<WarningBox type="success">
+**Best Practice:** Sediakan <em>spare steam trap</em> identik di gudang dengan tagging yang jelas. Dalam program PM, lakukan penggantian trap secara rotasi sehingga tidak ada trap yang beroperasi melampaui masa pakai desain. Trap yang dicabut dapat diperbaiki di bengkel.
+</WarningBox>
+
+### 8.3 Prosedur Kritis Startup dan Shutdown
+
+- **Startup dingin:** selalu buka *vent shell* dan *drain startup* sebelum steam dimasukkan. Alirkan steam perlahan dengan valve kecil, biarkan kondensat keluar bebas melalui bypass trap. Tutup bypass hanya setelah trap beroperasi normal.
+- **Shutdown:** tutup steam inlet valve, biarkan trap tetap beroperasi untuk menguras kondensat. Jangan mematikan aliran fluida proses sebelum steam dimatikan, untuk mencegah overheating dan coking. Setelah dingin, buka vent untuk mencegah vakum saat sistem mendingin.
+- **Pemeliharaan sisi tube:** isolasi heater dari steam, buang tekanan, lalu lakukan *hydroblasting* atau *chemical cleaning* tube sesuai jadwal fouling.
+
+<WarningBox type="warning">
+**Peringatan:** Jangan menutup condensate outlet valve saat steam masih mengalir, karena akan menyebabkan flooding tiba-tiba dan water hammer parah. Selalu pastikan steam trap atau bypass dalam kondisi terbuka sebelum steam dinaikkan.
+</WarningBox>
+
+## 9. Key Takeaways
+
+1. **Fungsi sejati steam heater** adalah mentransfer panas laten kondensasi steam ke fluida proses, bukan sekadar mencampur steam. Pengelolaan kondensat adalah kunci keberhasilan: setiap detik kondensat yang tertahan di shell adalah area perpindahan panas yang hilang.
+
+2. **Steam trap adalah komponen paling menentukan keandalan heater** — bukan sekadar aksesoris. Inspeksi trap secara terstruktur menggunakan alat ultrasonik memberikan gambaran real-time kesehatan heater. Trap yang bocor atau mampat berdampak langsung pada kapasitas pemanasan dan efisiensi energi.
+
+3. **Parameter kontrol TIK (temperature indicator controller) tidak boleh dijadikan satu-satunya metrik kesehatan heater.** Tekanan steam, subcooling kondensat, dan koefisien perpindahan panas keseluruhan (U) harus dimonitor secara paralel untuk mendeteksi dini masalah fouling, NCG blanketing, atau kegagalan trap.
+
+4. **Water hammer adalah ancaman keselamatan dan integritas peralatan yang nyata.** Hampir seluruh kejadian water hammer di steam heater berawal dari pengelolaan kondensat yang buruk. Disiplin dalam prosedur *startup* dingin dan *venting* adalah benteng pertahanan utama.
+
+5. **Desain material harus mempertimbangkan korosi CO₂ di sisi kondensat dan potensi H₂S/CO₂ di sisi proses.** Pada heater amine, pemilihan material tube mempertimbangkan *amine stress corrosion cracking*; pada heater gas asam, risiko *sour service cracking* (SSC) harus dimitigasi dengan material sesuai NACE MR0175/ISO 15156.
