@@ -1,0 +1,290 @@
+---
+title: 'Sistem Deaerator pada Boiler Feed Water: Mekanisme Operasi dan Troubleshooting'
+slug: sistem-deaerator-pada-boiler-feed-water-mekanisme-operasi-dan-troubleshooting
+category:
+  - utility-systems
+  - equipment
+description: >-
+  Panduan teknis operasi deaerator boiler feed water mencakup prinsip Henry's
+  Law, parameter kritis suhu saturasi dan oksigen terlarut, mode kegagalan
+  kavitasi, serta prosedur pemeliharaan prediktif di fasilitas migas.
+difficulty: Beginner
+keywords:
+  - boiler feed water
+  - deaerator
+  - steam system
+takeaways:
+  - >-
+    Sistem Deaerator pada Boiler Feed Water: Mekanisme Operasi dan
+    Troubleshooting
+tags:
+  - boiler feed water
+  - deaerator
+  - steam system
+readingTime: 21 min
+featured: true
+date: '2026-06-19'
+cover: >-
+  /content-assets/fundamentals/draft-cover-1781832223045/boiler-feed-water-deaerator.webp
+---
+<Figure src="/content-assets/utility-systems/sistem-deaerator-pada-boiler-feed-water-mekanisme-operasi-dan-troubleshooting/boiler-feed-water-deaerator.webp" alt="Boiler Feed Water Deaerator" caption="" />
+
+## Why This Topic Matters in the Field
+
+Pengendalian korosi pada sistem boiler di industri minyak dan gas tidak hanya bergantung pada pemilihan material, tetapi juga pada kualitas air umpan. Kandungan oksigen terlarut (dissolved oxygen) dan karbon dioksida dalam air umpan merupakan penyebab utama terjadinya korosi sumuran (pitting corrosion) dan korosi seragam pada tube boiler, superheater, dan kondensat.
+
+Kegagalan boiler akibat korosi dapat menyebabkan *unplanned shutdown* yang mengakibatkan kerugian produksi signifikan, bahkan berpotensi menimbulkan kegagalan katastrofik jika terjadi ledakan tube. Oleh karena itu, pemahaman mendalam mengenai sistem *deaerator*—termasuk mekanisme termal, parameter kritis, serta mode kegagalannya—menjadi kompetensi fundamental bagi *process engineer* dan *operation engineer* di lapangan untuk memastikan keandalan unit dan keselamatan operasi.
+
+## At-a-Glance Technical Brief
+
+Deaerator adalah unit termomekanis yang berfungsi menghilangkan gas tidak terkondensasi, khususnya oksigen dan karbon dioksida, dari air umpan boiler (*boiler feed water*, BFW). Prinsip kerjanya berdasarkan penurunan kelarutan gas akibat pemanasan air hingga suhu saturasi pada tekanan operasi. Air *make-up* dan kondensat disemprotkan dan dialirkan secara gravitasi melewati unggun *tray*, sementara uap bertekanan rendah mengalir berlawanan arah (*counter-current*) untuk memanaskan air sekaligus mengekstrak gas-gas terlarut. Gas yang terlepas dibuang ke atmosfer melalui *vent stack*. Air yang telah dikondisikan kemudian ditampung di *storage tank* untuk selanjutnya dipompa ke sistem *boiler*. Parameter kritis operasi meliputi suhu saturasi dan tekanan operasi, karena deviasi suhu dapat mengindikasikan kegagalan stripping, sehingga menyebabkan oksigen terlarut melebihi ambang batas (&lt; 20 ppb) dan mempercepat laju korosi *downstream*.
+
+<WarningBox type="important">
+Deaerator bukan sekadar pemanas air; ia adalah garda pertahanan pertama terhadap korosi sistem boiler. Kandungan oksigen terlarut (DO) yang tidak terkendali di bawah ambang batas 20 ppb akan secara langsung menentukan laju korosi pitting dan <em>fatigue cracking</em> pada boiler tube.
+</WarningBox>
+
+## Introduction
+
+Boiler Feed Water Deaerator (BFW Deaerator) adalah peralatan proses yang dirancang secara spesifik untuk menghilangkan gas-gas terlarut yang bersifat korosif, terutama O₂ dan CO₂, dari air yang akan digunakan sebagai umpan sistem penghasil uap (steam generator).
+
+Dalam konfigurasi pabrik pengolahan gas atau kilang minyak, deaerator ditempatkan di antara unit pengolahan air *make-up* (demineralisasi atau *softening*) dan pompa *feed water* bertekanan tinggi. Gas-gas tersebut apabila tidak dihilangkan akan terakumulasi dalam sistem uap, menurunkan efisiensi transfer panas, menyebabkan korosi pada *tube* dan *drum*, serta memicu pengendapan oksida besi yang dapat menghambat aliran. Dengan demikian, deaerator memiliki fungsi ganda sebagai pemanas awal (pre-heater) dan pengontrol kualitas kimia air.
+
+## Fundamental Principle
+
+Mekanisme kerja deaerator didasarkan pada dua hukum dasar termodinamika dan transfer massa, yaitu **Hukum Henry** dan **Hukum Dalton**.
+
+**Hukum Henry** menyatakan bahwa kelarutan gas dalam cairan berbanding lurus dengan tekanan parsial gas di atas permukaan cairan. Dengan kata lain, pada suhu konstan, semakin tinggi tekanan parsial gas, semakin mudah gas tersebut terlarut. Sebaliknya, jika suhu cairan meningkat, kelarutan gas akan menurun secara eksponensial.
+
+**Hukum Dalton** menyatakan bahwa tekanan total suatu campuran gas sama dengan jumlah tekanan parsial masing-masing gas. Dalam operasi *deaerator*, air dipanaskan hingga mencapai titik didihnya (suhu saturasi). Karena uap air (steam) merupakan komponen dominan yang menempati ruang di atas permukaan air, tekanan parsial gas-gas lain (O₂, CO₂, N₂) menjadi sangat kecil, mendekati nol.
+
+Akibatnya, konsentrasi gas-gas tersebut dalam air juga menjadi sangat rendah karena didorong untuk keluar dari fasa cair menuju fasa uap. Proses pelepasan ini dipercepat dengan agitasi dan pembentukan butiran air (atomisasi) melalui *spray nozzle* atau *tray* untuk memaksimalkan luas permukaan kontak antara air dan uap pemanas.
+
+<WarningBox type="important">
+Efektivitas <em>deaerator</em> sepenuhnya bergantung pada suhu saturasi pada tekanan operasi. Jika tekanan operasi meningkat, suhu saturasi juga meningkat, sehingga kelarutan oksigen semakin rendah. Namun, hal ini membuat sistem lebih rentan terhadap <em>steam hammer</em> dan <em>carryover</em> jika kecepatan aliran uap tidak dikendalikan.
+</WarningBox>
+
+### Key Points
+
+- Hukum Henry menjadi dasar fisis penurunan kelarutan gas dengan pemanasan.
+- Hukum Dalton menjelaskan mekanisme *stripping* di mana uap air "mengusir" gas-gas pengotor.
+- Efisiensi proses bergantung pada suhu air yang harus mendekati suhu saturasi pada tekanan operasi aktual.
+
+## Working Principle
+
+Secara berurutan, aliran proses dalam deaerator dimulai dari masuknya air kondensat atau air *make-up* melalui *inlet* yang terletak di bagian atas kolom (*deaeration section*). Air tersebut melewati *spray valves* atau *nozzles* yang mengubah aliran cairan menjadi butiran halus (atomisasi) untuk meningkatkan luas permukaan kontak.
+
+Butiran air kemudian jatuh secara gravitasi melewati serangkaian *perforated tray* atau *packed bed*. Uap *low pressure* (LP) dialirkan dari bagian bawah kolom melalui *steam distributor* dan bergerak naik (*upward flow*) melawan arah jatuhnya air. Ketika uap panas bersentuhan dengan butiran air, terjadi proses transfer panas dan massa. Panas laten dari uap mengubah fasa air hingga suhu saturasi, sementara gas-gas terlarut terdesak keluar dari fasa cair dan terbawa bersama uap yang bergerak ke atas.
+
+Gas-gas yang tidak terkondensasi kemudian dikumpulkan di bagian puncak dan dikeluarkan melalui *air vent stack*. Untuk menghindari kehilangan uap berlebih, *vent stack* sering dilengkapi dengan *vent condenser* yang mengembunkan uap sisa dan mengembalikannya ke *deaerator*. Air yang sudah bersih dari gas dan panas terkumpul di *deaeration storage tank* di bagian bawah, yang berfungsi sebagai *buffer* dan menyediakan *Net Positive Suction Head* (NPSH) yang cukup untuk pompa transfer.
+
+<WarningBox type="warning">
+Apabila tekanan uap masuk lebih rendah dari tekanan operasi deaerator, uap tidak akan dapat mengalir naik secara efektif. Akibatnya, stripping tidak terjadi dan air hanya akan melewati tray tanpa pemanasan, sehingga kadar DO tetap tinggi. Ini adalah kondisi abnormal yang disebut "steam starvation".
+</WarningBox>
+
+## Main Components
+
+Deaerator dibangun dari berbagai komponen yang masing-masing memiliki fungsi spesifik untuk memastikan transfer panas dan massa berjalan optimal. Material umum yang digunakan adalah baja karbon atau *low alloy steel* dengan lapisan tahan korosi pada bagian internal karena kontak langsung dengan air panas dan uap.
+
+### Deaerator Column
+
+Merupakan ruang vertikal di bagian atas yang berisi *spray nozzle* dan *tray*. Kolom ini berfungsi sebagai zona kontak antar fasa. Pada kolom ini terjadi proses pemanasan awal dan pelepasan gas dengan intensitas tinggi. Komponen internal kolom harus dirancang untuk tahan terhadap erosi karena aliran air yang disemprotkan pada tekanan tinggi.
+
+### Spray Nozzle / Valves
+
+Berfungsi untuk memecah aliran air menjadi percikan halus (atomisasi) agar luas permukaan kontak dengan uap menjadi sangat besar. *Spray nozzle* dapat diatur untuk memberikan pola semprotan kerucut penuh (full cone) atau kerucut berongga (hollow cone) tergantung pada desain. Ketersumbatan pada nozzle adalah masalah umum yang menyebabkan penurunan distribusi air dan berpotensi menurunkan kinerja stripping.
+
+### Tray / Perforated Plate
+
+Komponen internal yang menyediakan jalur aliran air turun secara bergantian dan menahan uap untuk kontak yang lebih lama. Terdapat tipe *sieve tray* (lubang kecil) atau *bubble cap tray* yang memberikan hambatan cukup untuk menciptakan zona kontak yang intensif. Ketinggian *weir* pada tray menentukan waktu tinggal (residence time) air di setiap tray.
+
+### Internal Steam Distributor
+
+Terletak di bagian bawah kolom sebelum ruang tampung (storage). Distributor ini berbentuk pipa berlubang (sparger) yang menyebarkan uap masuk secara merata ke seluruh penampang kolom agar tidak terjadi aliran kanalisasi (channeling) yang dapat mengurangi efisiensi stripping.
+
+### Deaerator Storage Tank
+
+Berfungsi menampung air matang (*deaerated water*) siap transfer. Volume tangki didesain untuk memberikan waktu tinggal (residence time) selama 5–15 menit untuk memastikan gas terlarut benar-benar lepas ke fasa uap sebelum air dipompa keluar. Tangki ini dilengkapi dengan *level glass*, *pressure gauge*, dan *temperature gauge* untuk pemantauan operasi.
+
+### Transfer Pump
+
+Pompa sentrifugal (*centrifugal pump*) yang mengambil air dari *deaerator storage tank* dan memompanya ke *boiler*. Pompa transfer harus memiliki NPSH yang memadai untuk menghindari kavitasi. Dalam aplikasi kritis, biasanya terdapat konfigurasi paralel dengan dua pompa (A dan B) untuk memastikan kontinuitas jika salah satu pompa gagal. **Perhatian khusus harus diberikan pada kondisi *bearing* (bantalan) dan *mechanical seal* pompa**, karena keduanya merupakan komponen paling rentan terhadap keausan dan kebocoran pada aplikasi air panas.
+
+## Operating Concerns & Critical Parameters
+
+Terdapat beberapa parameter operasi yang harus dipantau secara kontinu. Penyimpangan pada parameter ini dapat menyebabkan penurunan kualitas air dan berpotensi memicu kegagalan peralatan.
+
+### Suhu Saturasi
+
+Suhu air *deaerated* harus berada pada kondisi saturasi sesuai dengan tekanan parsial uap dalam tangki. Jika suhu air berada di bawah suhu saturasi, proses pelepasan gas tidak akan optimal. Sebaliknya, jika suhu air berada di atas suhu saturasi, hal ini menandakan adanya uap berlebih yang dapat menyebabkan *carryover* dan pengikisan (*wire drawing*) pada *valve* di hilir.
+
+### Tekanan Operasi
+
+Tekanan tangki harus dijaga konstan. Fluktuasi tekanan dapat menyebabkan perubahan suhu saturasi yang cepat, sehingga DO kembali terlarut. Untuk *deaerator* tipe 0,6–1,0 barg, suhu saturasi berada di kisaran 110–120 °C. Setiap deviasi 1 °C dari suhu saturasi dapat mengindikasikan adanya kebocoran *vent valve* atau masukan uap yang tidak stabil.
+
+### Kadar Oksigen Terlarut (Dissolved Oxygen)
+
+Parameter paling kritis. Target kadar oksigen terlarut adalah di bawah 7 ppb (bagian per miliar) untuk sistem *boiler* bertekanan tinggi, dan di bawah 20 ppb untuk *boiler* bertekanan rendah. Kadar DO yang melebihi 20 ppb akan meningkatkan laju korosi pitting pada lapisan pelindung magnetit (Fe₃O₄).
+
+### Level Cairan (Liquid Level)
+
+Level di *storage tank* harus dijaga dalam rentang normal. Level yang terlalu rendah dapat menyebabkan vorteks yang mengisap udara (terutama jika *deaerator* beroperasi pada tekanan sedikit di atas atmosfer), sementara level yang terlalu tinggi dapat menyebabkan cairan mencapai *tray* dan terjadi *carryover* yang membawa air ke dalam *steam line*.
+
+### Laju Aliran Uap dan Air (Steam-to-Water Ratio)
+
+Rasio uap terhadap air umpan adalah penentu efektivitas proses. Secara tipikal, dibutuhkan sekitar 10–15% uap dari total air umpan untuk mencapai suhu saturasi. Laju uap yang terlalu rendah menyebabkan *deaerator* gagal mencapai suhu satuasi. Laju uap yang terlalu tinggi akan memicu entrainment cairan (*carryover*) yang mengakibatkan kualitas air tiris (silica carryover).
+
+### Dosing Kimia (Chemical Dosing)
+
+*Deaerator* pada umumnya dilengkapi dengan jalur *chemical dosing* untuk injeksi oksigen *scavenger* (seperti hidrazin, N₂H₄, atau karbohidrazid) sebagai langkah perlindungan sekunder. Dosis yang tidak tepat (berlebih atau kurang) dapat mempengaruhi kualitas air dan menyebabkan kegagalan *bearings* atau *seals* pompa karena pembentukan partikel padatan atau korosi galvanik.
+
+<WarningBox type="warning">
+Hindari menginjeksikan bahan kimia <em>scavenger</em> yang tidak kompatibel dengan kondisi <em>deaerator</em>. Karbohidrazid, misalnya, jika diinjeksikan pada suhu di bawah 90 °C tidak akan terdekomposisi sempurna, sehingga sisa reaktan dapat mengendap dan menyumbat sistem injeksi.
+</WarningBox>
+
+### Key Points
+
+- Temperatur saturasi adalah indikator utama efektivitas thermal stripping.
+- DO di atas 20 ppb memicu korosi pitting pada boiler tube.
+- Rasio uap-air perlu dijaga untuk mencegah carryover atau steam starvation.
+
+## Common Failure Modes
+
+Berdasarkan pengalaman lapangan, kegagalan pada sistem *deaerator* umumnya dapat diklasifikasikan ke dalam dua kategori utama: **Kegagalan Mekanis** dan **Kegagalan Operasi/Proses**. Tabel berikut merangkum mode kegagalan dominan beserta dampaknya.
+
+**Tabel 1. Kegagalan Mekanis**
+
+| Mode Kegagalan | Mekanisme Sebab-Akibat | Dampak Operasional |
+| --- | --- | --- |
+| **Kavitasi Pompa Transfer** | Terjadi akibat NPSH tidak mencukupi, *level* tangki terlalu rendah, atau ada penyumbatan pada *strainer* di saluran hisap. Gelembung uap yang terbentuk kemudian pecah secara implosif di dekat *impeller*. | *Impeller* dan *casing* pompa mengalami kerusakan parah; *bearing* dan *mechanical seal* pompa rusak, berpotensi menyebabkan kebocoran besar. |
+| **Steam Hammer** | Terjadi akumulasi kondensat dingin dalam saluran uap masuk yang tiba-tiba terhempas uap panas, menyebabkan *water hammer* atau *condensate-induced water hammer*. | Menyebabkan kerusakan struktural pada sambungan pipa, *steam distributor*, dan pengelasan internal tangki. |
+| **Korosi dan Erosi Internal** | Degradasi material *tray* dan distributor akibat kontak terus-menerus dengan air panas dan uap. Keberadaan DO yang tidak terkendali mempercepat proses korosi internal. | Lubang pada *tray* menyebabkan aliran *bypass* air; efisiensi stripping turun drastis; partikel korosi dapat masuk ke boiler. |
+
+**Tabel 2. Kegagalan Proses dan Operasi**
+
+| Mode Kegagalan | Mekanisme Sebab-Akibat | Dampak Operasional |
+| --- | --- | --- |
+| **Vent Stack Blockage / Malfunction** | *Vent valve* macet terbuka atau tertutup, atau ada *blockage* pada *vent condenser* karena timbunan karat. | Jika tertutup, tekanan internal naik, suhu saturasi naik, tetapi gas tidak keluar, DO menjadi tinggi. Jika terbuka terus, uap terbuang sia-sia. |
+| **Carryover (Entrainment)** | Laju uap terlalu tinggi atau *level* air terlalu tinggi, sehingga air terbawa uap ke *vent* atau saluran uap keluar. | *Boiler tube* menjadi kotor (*fouling*) akibat *silica carryover*, laju perpindahan panas menurun, dan uap mengalami kontaminasi. |
+| **Steam Starvation** | Tekanan uap dari supply tidak mencukupi, *steam trap* pada saluran uap tertutup, atau katup pengatur uap gagal. | Air tidak mencapai suhu saturasi; DO tetap tinggi dan bercampur dengan *make-up water* dingin, berpotensi menimbulkan *thermal shock* pada *drum* boiler. |
+
+## Field Quick Reference
+
+Ketika menemui indikasi abnormal di lapangan, *operator* atau *engineer* dapat menggunakan tabel referensi cepat berikut untuk mengidentifikasi akar masalah secara awal:
+
+| Gejala Indikasi | Kemungkinan Penyebab | Tindakan Pemeriksaan Segera |
+| --- | --- | --- |
+| **Suhu keluar &lt; Suhu Saturasi** | *Steam starvation*, suhu *make-up* air terlalu rendah. | Verifikasi tekanan uap masuk; periksa posisi *steam control valve*; cek *trap* pada saluran pemanas. |
+| **DO tinggi (&gt; 20 ppb)** | Efisiensi stripping rendah, *vent valve* gagal, *tray* rusak. | Periksa pembacaan *DO meter*; cek aliran pada *vent stack* (panas/mengalir); lakukan *boiler water analysis*. |
+| **Tekanan tangki berfluktuasi** | *Vent valve* tidak stabil, *level* cairan *storage* berubah drastis. | Periksa *controller* tekanan; buka *vent manually* jika perlu; stabilkan level tangki. |
+| **Suara "ketukan" keras dari deaerator** | *Steam hammer* karena akumulasi kondensat dingin di saluran uap. | Tutup perlahan katup uap untuk membuang kondensat; pastikan *steam trap* pada saluran uap berfungsi. |
+| **Aliran transfer pump turun** | Kavitasi, filter/strainer tersumbat, kerusakan *impeller*. | Cek *level* tangki; periksa *strainer* saluran hisap; dengar suara kavitasi. |
+
+<WarningBox type="error">
+Jika terjadi suara "ketukan" keras (steam hammer) disertai dengan getaran parah, segera lakukan penutupan katup suplai uap. Jangan biarkan steam hammer berkepanjangan karena dapat memicu retakan pada shell tangki atau pipa manifold.
+</WarningBox>
+
+## Inspection, Maintenance & Best Practices
+
+Kegiatan perawatan dan inspeksi terhadap deaerator dan sistemnya harus dilakukan secara terjadwal untuk meminimalisasi risiko kegagalan saat unit beroperasi.
+
+### Inspeksi Internal
+
+Inspeksi *internal* deaerator umumnya dilakukan selama *turnaround*. Beberapa aspek yang harus diperiksa meliputi:
+
+- **Kondisi Tray & Spray Nozzle**: Tidak ada korosi berlubang, deformasi, atau penyumbatan.
+- **Internal Steam Distributor**: Tidak ada kotoran atau kerak yang menutupi lubang distributor.
+- **Corrosion & Erosion**: Periksa ketebalan dinding (*wall thickness*) pada bagian impingement (tempat semburan air).
+- **Integritas Sambungan Las**: Periksa *welding seam* pada saluran pipa di dalam tangki.
+
+### Pemeliharaan Pompa Transfer
+
+Pompa transfer beroperasi pada air panas (110–120 °C) sehingga rentan terhadap kavitasi dan *thermal expansion*.
+
+- **Bearing**: Lakukan pemeriksaan suhu *bearing* secara rutin menggunakan *thermocouple* atau *infrared gun*. Suhu *bearing* yang melebihi 90 °C mengindikasikan pelumasan tidak memadai. **Pastikan *bearing* yang digunakan memiliki *thermal clearance* yang sesuai untuk aplikasi suhu tinggi, dan selalu gunakan pelumas (grease/oil) dengan viskositas yang disarankan pabrikan.**
+- **Mechanical Seal**: Periksa kebocoran seal. Adanya tetesan menandakan *seal faces* mulai aus dan perlu segera diganti sebelum terjadi *leakage* parah yang membanjiri area peralatan.
+
+### Kalibrasi Instrumentasi
+
+Instrumentasi yang harus dikalibrasi secara berkala meliputi:
+
+- Transmitter tekanan dan suhu tangki.
+- *Level transmitter* dan *level switch*.
+- *Online DO analyzer* (jika terpasang) – harus dikalibrasi setiap kali dilakukan *shutdown* atau perubahan proses signifikan untuk memastikan data DO akurat.
+
+### Best Practices Operasi
+
+1. **Lakukan *blowdown* air kondensat secara periodik** untuk membuang *oil/film* hidrokarbon dan padatan tersuspensi yang dapat melekat pada *tray*.
+2. **Jaga *level* air di tangki pada rentang 40–60%** agar terjadi *residence time* yang cukup tanpa risiko *carryover* atau pengisapan udara.
+3. **Kendalikan *vent* dengan manual atau otomatis** untuk menghindari hilangnya uap secara berlebihan. *Vent valve* biasanya dibuka sekitar 2–5% untuk memastikan aliran keluar gas pengotor.
+4. **Pantau *delta pressure* antara inlet uap dan *deaerator*.** Kenaikan *delta P* secara mendadak pada saluran uap dapat mengindikasikan *steam trap* yang gagal atau adanya deposit yang menghambat aliran uap.
+5. **Periksa *chemical dosing pump* setiap shift** untuk memastikan dosis *scavenger* masih sesuai dengan target DO dan aliran air.
+
+<WarningBox type="success">
+Selama operasi normal, lakukan pemeriksaan kualitas air BFW melalui sampling manual dari <em>deaerator</em> minimal sekali sehari di fasilitas <em>onshore</em>, atau minimal setiap 12 jam pada platform <em>offshore</em>, untuk mengonfirmasi data dari <em>online DO analyzer</em>.
+</WarningBox>
+
+### Key Points
+
+- Inspeksi internal saat *turnaround* adalah peluang utama untuk mendeteksi korosi *tray*.
+- Pemeliharaan pompa transfer difokuskan pada *bearing*, *mechanical seal*, dan kavitasi.
+- Kalibrasi *online DO analyzer* krusial untuk memastikan pembacaan valid, bukan sekadar indikasi.
+
+## Key Takeaways
+
+Deaerator adalah unit *utilities* yang sangat penting dalam siklus *boiler feed water*; kinerjanya berdampak langsung pada umur pakai dan keamanan *boiler* serta peralatan *downstream*. Untuk itu, *engineer* dan *operator* harus memahami:
+
+1. **Mekanisme utama**: Pemanasan termal berdasarkan Hukum Henry dan Dalton untuk menurunkan kelarutan oksigen hingga kurang dari 20 ppb.
+2. **Parameter kritis**: Suhu saturasi, tekanan operasi, dan rasio uap-air adalah variabel yang harus dipantau ketat; penyimpangan kecil pun dapat mengindikasikan masalah serius seperti *steam starvation* atau *carryover*.
+3. **Kegagalan umum**: Kavitasi pompa transfer, *steam hammer*, *carryover*, dan *vent blockage* adalah mode kegagalan yang paling sering ditemui. Deteksi dini melalui indikasi suhu, tekanan, dan *flow* dapat mencegah eskalasi menjadi *unplanned shutdown*.
+4. **Praktik pemeliharaan**: Inspeksi internal, kalibrasi instrumen, dan perawatan pompa transfer (terutama penggantian *bearing* dan *seal*) adalah kunci *reliability* unit.
+
+Kualitas air umpan sangat menentukan *plant reliability*. Deaerator yang terawat dengan baik, dioperasikan pada parameter yang tepat, dan didukung dengan program *chemical dosing* yang efektif adalah investasi fundamental untuk meminimalkan biaya perawatan *boiler* dan memastikan kelangsungan produksi.
+
+## Installation, Startup & Shutdown Considerations
+
+### Startup Procedure
+
+Prosedur *startup* yang benar sangat penting untuk menghindari *thermal shock* yang dapat merusak internal *tray*. Urutan *startup* yang direkomendasikan:
+
+1. Isi tangki dengan air *make-up* hingga level minimal.
+2. Buka katup uap secara perlahan (memasukkan uap) untuk memanaskan tangki dan air secara bertahap. Pastikan semua kondensat dibuang melalui *steam trap* untuk mencegah *steam hammer*. Proses pemanasan awal ini idealnya memakan waktu 30–60 menit.
+3. Setelah mencapai suhu saturasi dan tekanan operasi, mulai masukkan air *make-up* secara bertahap.
+4. Setelah aliran air stabil, buka *vent* ke posisi operasi.
+5. Nyalakan *transfer pump* hanya setelah level air di *storage tank* berada pada kisaran normal dan semua cairan sudah panas.
+
+<WarningBox type="warning">
+Dilarang keras menyalakan pompa transfer saat <em>deaerator</em> masih dalam keadaan dingin atau level air sangat rendah. Pompa yang dioperasikan pada kondisi tersebut akan mengalami kavitasi berat yang dapat memotong <em>impeller</em> dalam hitungan menit.
+</WarningBox>
+
+### Shutdown Procedure
+
+Untuk *shutdown* terencana, prosedur penting yang harus diikuti:
+
+1. Kurangi laju aliran air dan uap secara bertahap.
+2. Matikan *chemical dosing pump* dan bilas jalur injeksi kimia dengan air bersih untuk mencegah pengendapan di dalam nosel.
+3. Matikan pompa transfer.
+4. Tutup katup uap setelah air telah dingin hingga di bawah 60 °C untuk mencegah *steam hammer* saat aliran dihentikan mendadak.
+5. Tutup semua *vent* dan buka *drain* tangki jika tangki akan dikosongkan.
+
+## Design & Selection Consideration
+
+Saat melakukan *sizing* atau penyeleksian ulang deaerator untuk fasilitas baru atau *revamping*, parameter desain utama yang harus dipertimbangkan:
+
+- **Kapasitas Air (Flow Rate)**: Menentukan diameter kolom deaerator dan kapasitas *storage tank*. Diameter kolom harus dihitung berdasarkan *flooding velocity* (kecepatan banjir) untuk mencegah *carryover*. Kecepatan uap maksimum biasanya dijaga di bawah 70% dari kecepatan *flooding*.
+- **Panas yang Diperlukan (Heat Duty)**: Ditentukan oleh debit air, suhu *make-up* masuk, suhu saturasi target, dan panas laten uap. Ini menentukan kebutuhan laju aliran uap pemanas.
+- **Konsumsi Bahan Kimia (Scavenger)**: Kapasitas sistem *dosing* harus dikalkulasikan untuk mengatasi sisa DO setelah *deaerator* (biasanya di bawah 7 ppb) dan untuk reaksi pengikat oksigen saat suhu boiler naik.
+- **Sistem Venting**: *Vent stack* harus memiliki cukup tinggi dan kapasitas untuk membuang gas tanpa menarik uap berlebih. Untuk *offshore platform*, desain *vent* sering dibatasi ruang, sehingga sistem *vent condenser* menjadi lebih kritis untuk meminimalkan *steam loss*.
+
+## Practical Field Application
+
+Di fasilitas pengolahan gas alam (gas processing plant), deaerator pada umumnya terintegrasi dengan *waste heat recovery unit* (WHRU) atau *utility boiler*. Misalnya, pada *platform* lepas pantai dengan ruang terbatas, deaerator tipe *spray-type* (tanpa *tray* internal yang tebal) sering dipilih karena bobotnya lebih ringan, meskipun risikonya adalah efisiensi stripping sedikit lebih rendah dibanding *tray-type*.
+
+Sebaliknya, pada kilang minyak (refinery) dengan area yang luas, digunakan deaerator tipe *tray-type* untuk memastikan DO benar-benar di bawah 5 ppb, karena *refinery boiler* biasanya bertekanan sangat tinggi dan risiko korosi *steam lines* akibat DO sangat kritis.
+
+> **Field Note**Pada salah satu fasilitas *on-shore* LNG, sebuah deaerator dengan tipe *perforated tray* sering mengalami peningkatan *differential pressure* pada *demister pad* di bagian atas *vent* yang disebabkan oleh timbunan salinitas dari air laut yang terbawa angin. Akibatnya, laju *vent* menjadi tersumbat dan DO internal melonjak hingga 60 ppb. Masalah ini teratasi dengan menambahkan *water wash system* pada saluran *vent* saat *turnaround*. Kasus ini menegaskan bahwa *entrainment* tidak selalu berasal dari air umpan, tetapi bisa juga berasal dari kontaminasi lingkungan eksternal.
+
+<WarningBox type="important">
+Pemilihan tipe <em>deaerator</em> (spray vs tray) harus mempertimbangkan kendali ruang dan target kualitas air. Untuk aplikasi <em>boiler</em> kritis yang membutuhkan DO &lt; 5 ppb, <em>tray-type</em> adalah pilihan wajib. Sementara untuk <em>boiler</em> dengan tekanan &lt; 60 barg, <em>spray-type</em> dapat diterima karena mempertimbangkan keterbatasan bobot pada <em>offshore platform</em>.
+</WarningBox>
+
+Dengan mematuhi panduan teknis di atas, tim operasi diharapkan mampu mengelola sistem deaerator secara andal, meminimalkan biaya perbaikan, dan menghindari bahaya korosi yang merugikan. Artikel ini menjadi referensi praktis bagi *engineer* dan *operator* dalam melakukan aktivitas *troubleshooting*, perawatan, dan pengoperasian harian.
