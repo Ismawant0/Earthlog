@@ -35,8 +35,18 @@ export interface LearningPath {
   modulesCount: number;
   tags: string[];
 }
-
 export const CATEGORIES = [
+  // PGDOWN technology categories
+  { name: "AI", slug: "ai", count: 1, icon: "Cpu", desc: "Artificial Intelligence, Machine Learning, LLMs, and Neural Networks." },
+  { name: "Linux", slug: "linux", count: 1, icon: "Terminal", desc: "Linux distributions, kernel development, command line tools, and open source ecosystems." },
+  { name: "Windows", slug: "windows", count: 1, icon: "Monitor", desc: "Windows development, system administration, PowerShell, and enterprise technology." },
+  { name: "Open Source", slug: "open-source", count: 1, icon: "GitBranch", desc: "Open source software, licensing, community projects, and collaborative development." },
+  { name: "Software", slug: "software", count: 1, icon: "Code", desc: "Software engineering, architecture, design patterns, and application development." },
+  { name: "Cyber Security", slug: "cyber-security", count: 1, icon: "Shield", desc: "Network security, penetration testing, threat intelligence, and vulnerability mitigation." },
+  { name: "Programming", slug: "programming", count: 1, icon: "Code2", desc: "Programming languages, algorithms, data structures, and syntax guides." },
+  { name: "Cloud", slug: "cloud", count: 1, icon: "CloudSun", desc: "Cloud computing, AWS, Azure, GCP, Docker, Kubernetes, and DevOps pipelines." },
+
+  // Keep old categories as fallback so dynamic lookup does not crash on existing content
   { name: "Fundamentals", slug: "fundamentals", count: 0, icon: "Library", desc: "Basic engineering, industrial science, thermodynamics, fluid mechanics, and oil & gas fundamentals." },
   { name: "Production Operations", slug: "production-operations", count: 0, icon: "Factory", desc: "Oil & gas production facilities, operational flow, and production systems." },
   { name: "Equipment", slug: "equipment", count: 12, icon: "Settings", desc: "Industrial static and rotating equipment used in oil & gas and process industries." },
@@ -102,7 +112,7 @@ const fallbackArticles: Article[] = [
     categories: ["equipment"],
     categorySlug: "equipment",
     date: "2026-05-18",
-    author: "Team Garudaloka",
+    author: "PGDOWN Team",
     difficulty: "Menengah",
     readTime: "8 Menit",
     featured: true,
@@ -119,7 +129,7 @@ const fallbackArticles: Article[] = [
     categories: ["process-chemicals"],
     categorySlug: "process-chemicals",
     date: "2026-05-18",
-    author: "Team Garudaloka",
+    author: "PGDOWN Team",
     difficulty: "Menengah",
     readTime: "6 Menit",
     featured: false,
@@ -136,7 +146,7 @@ const fallbackArticles: Article[] = [
     categories: ["process-systems"],
     categorySlug: "process-systems",
     date: "2026-05-18",
-    author: "Team Garudaloka",
+    author: "PGDOWN Team",
     difficulty: "Pengantar",
     readTime: "7 Menit",
     featured: false,
@@ -153,7 +163,7 @@ const fallbackArticles: Article[] = [
     categories: ["glossary"],
     categorySlug: "glossary",
     date: "2026-05-18",
-    author: "Team Garudaloka",
+    author: "PGDOWN Team",
     difficulty: "Pengantar",
     readTime: "4 Menit",
     featured: false,
@@ -238,7 +248,7 @@ export async function getAllArticles(): Promise<Article[]> {
             categories: categoriesSlugs,
             categorySlug: categoriesSlugs[0] || folder,
             date: data.date || "2026-05-18",
-            author: data.author || "Editor Garudaloka",
+            author: data.author || "PGDOWN Editor",
             difficulty: data.difficulty || "Umum",
             readTime: data.readingTime || data.readTime || "5 Menit",
             featured: !!data.featured,
@@ -320,7 +330,7 @@ export async function getArticleBySlug(categorySlug: string, slug: string): Prom
         categories: categoriesSlugs,
         categorySlug: categoriesSlugs[0] || categorySlug,
         date: data.date || "2026-05-18",
-        author: data.author || "Editor Garudaloka",
+        author: data.author || "PGDOWN Editor",
         difficulty: data.difficulty || "Umum",
         readTime: data.readingTime || data.readTime || "5 Menit",
         featured: !!data.featured,

@@ -6,8 +6,8 @@ import { getLearningPaths } from "@/lib/content";
 import { ChevronRight, ArrowRight, Compass, Clock, Award, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Learning Paths Terstruktur — Garudaloka",
-  description: "Kuasai kompetensi teknik industri melalui program kurikulum mandiri terstruktur Garudaloka.",
+  title: "Structured Learning Paths — PGDOWN",
+  description: "Master software engineering, system administration, and modern technologies through PGDOWN curriculum.",
   alternates: {
     canonical: "/learning-path",
   },

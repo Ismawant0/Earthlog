@@ -1,150 +1,124 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Compass, BookOpen, Settings, FlaskConical, Shield, Terminal, ArrowUpRight } from "lucide-react";
+import { Cpu, Terminal, Monitor, GitBranch, Code, Shield, Code2, CloudSun, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
+  const categoryLinks = [
+    { name: "Artificial Intelligence", href: "/category/ai", icon: <Cpu className="h-3.5 w-3.5" /> },
+    { name: "Linux Systems", href: "/category/linux", icon: <Terminal className="h-3.5 w-3.5" /> },
+    { name: "Windows Development", href: "/category/windows", icon: <Monitor className="h-3.5 w-3.5" /> },
+    { name: "Open Source", href: "/category/open-source", icon: <GitBranch className="h-3.5 w-3.5" /> },
+    { name: "Software Engineering", href: "/category/software", icon: <Code className="h-3.5 w-3.5" /> },
+    { name: "Cyber Security", href: "/category/cyber-security", icon: <Shield className="h-3.5 w-3.5" /> },
+  ];
+
   return (
-    <footer className="bg-background-alt border-t border-border mt-auto transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <footer className="bg-background-alt border-t border-border mt-auto transition-colors duration-200 select-none pb-[88px] md:pb-0">
+      <div className="max-w-[1280px] mx-auto px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
-          {/* Brand Introduction */}
+          {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="h-20 w-20 relative flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
-                {/* Soft backdrop for logo visibility */}
-                <div className="absolute inset-[-6px] rounded-full bg-slate-900/[0.04] dark:bg-white/[0.06] blur-sm pointer-events-none" />
-                <Image 
-                  src="/garudaloka-logo.png" 
-                  alt="Garudaloka Logo" 
-                  fill 
-                  className="object-contain transition-all duration-300 dark:[filter:drop-shadow(0_0_10px_rgba(255,255,255,0.3))] [filter:drop-shadow(0_0_4px_rgba(0,0,0,0.08))]" 
-                  sizes="80px"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold font-sans tracking-tight text-foreground leading-tight">
-                  Garudaloka
-                </span>
-                <span className="text-[9px] font-bold text-accent tracking-widest uppercase -mt-0.5 leading-none">
-                  Engineering
-                </span>
-              </div>
+            <Link href="/" className="flex items-center gap-1 group">
+              <span className="text-xl font-black tracking-tighter text-foreground">
+                PG<span className="text-primary">DOWN</span>
+              </span>
+              <span className="text-[9px] font-mono border border-primary/20 bg-primary/5 text-primary rounded px-1 py-0.2 uppercase tracking-wide">
+                PRO
+              </span>
             </Link>
             
-            <p className="text-xs md:text-sm text-muted leading-relaxed max-w-sm antialiased text-justify">
-              Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya. Platform edukasi teknik industri terdepan di Indonesia.
+            <p className="text-xs md:text-sm text-muted leading-relaxed max-w-sm antialiased">
+              PGDOWN is a premium technology publication built for serious developers, system architects, and open source enthusiasts. Delivering curated insights, deep technical guides, and curated news daily.
             </p>
             
-            <blockquote className="border-l-2 border-accent pl-3 text-xs italic text-muted max-w-xs">
-              &ldquo;Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.&rdquo;
-            </blockquote>
+            <div className="border-l-2 border-primary pl-3 text-xs italic text-muted-more max-w-xs">
+              &ldquo;Content is the product. Reading is the experience. Navigation is effortless.&rdquo;
+            </div>
           </div>
 
           {/* Quick Categories */}
           <div>
-            <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <Compass className="h-3.5 w-3.5 text-primary dark:text-primary-light" />
-              Eksplorasi Ilmu
+            <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-4">
+              Sections
             </h4>
             <ul className="space-y-2.5 text-xs font-semibold text-muted">
-              <li>
-                <Link href="/category/equipment" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
-                  <Settings className="h-3 w-3" /> Equipment Industri
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/process-chemicals" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
-                  <FlaskConical className="h-3 w-3" /> Process Chemicals
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/process-systems" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
-                  <Terminal className="h-3 w-3" /> Process Systems
-                </Link>
-              </li>
-              <li>
-                <Link href="/learning-path" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
-                  <Terminal className="h-3 w-3" /> Learning Path
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/glossary" className="hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1.5">
-                  <BookOpen className="h-3 w-3" /> Glosari Istilah Teknik
-                </Link>
-              </li>
+              {categoryLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="hover:text-primary transition-colors flex items-center gap-2">
+                    {link.icon}
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Future Readiness Projects */}
+          {/* Useful Pages */}
           <div>
-            <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <Shield className="h-3.5 w-3.5 text-accent" />
-              Prospek V2/V3
+            <h4 className="text-xs font-bold text-foreground uppercase tracking-wider mb-4">
+              Platform Info
             </h4>
             <ul className="space-y-2.5 text-xs text-muted font-medium">
-              <li className="flex items-center justify-between text-muted/65">
-                <span>Engineering AI Assistant</span>
-                <span className="text-[9px] bg-accent/15 text-accent font-bold px-1.5 py-0.5 rounded">Soon</span>
+              <li>
+                <Link href="/category/programming" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <Code2 className="h-3.5 w-3.5" /> Programming
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/cloud" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <CloudSun className="h-3.5 w-3.5" /> Cloud Computing
+                </Link>
+              </li>
+              <li className="flex items-center justify-between text-muted/65 pt-1.5 border-t border-border/50">
+                <span>Developer Tools</span>
+                <span className="text-[9px] bg-primary/10 text-primary font-bold px-1.5 py-0.5 rounded">Soon</span>
               </li>
               <li className="flex items-center justify-between text-muted/65">
-                <span>Mini LMS & Kuis</span>
-                <span className="text-[9px] bg-accent/15 text-accent font-bold px-1.5 py-0.5 rounded">Soon</span>
-              </li>
-              <li className="flex items-center justify-between text-muted/65">
-                <span>Kalkulator Teknik</span>
-                <span className="text-[9px] bg-accent/15 text-accent font-bold px-1.5 py-0.5 rounded">Soon</span>
-              </li>
-              <li className="flex items-center justify-between text-muted/65">
-                <span>Sertifikasi Profesional</span>
-                <span className="text-[9px] bg-accent/15 text-accent font-bold px-1.5 py-0.5 rounded">Soon</span>
+                <span>Interactive Terminal</span>
+                <span className="text-[9px] bg-primary/10 text-primary font-bold px-1.5 py-0.5 rounded">Soon</span>
               </li>
             </ul>
           </div>
 
-          {/* Technical specifications info */}
+          {/* Platform Spec details */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold text-foreground uppercase tracking-wider flex items-center gap-1.5">
-              Spesifikasi Sistem
+            <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">
+              System Specifications
             </h4>
-            <div className="border border-border p-3 rounded-lg bg-card space-y-1.5 text-[10px] font-mono text-muted">
+            <div className="border border-border p-3 rounded-xl bg-card space-y-1.5 text-[10px] font-mono text-muted">
               <div className="flex justify-between">
-                <span>Core Frame:</span>
-                <span className="text-foreground">Next.js v16 (App)</span>
+                <span>Core Engine:</span>
+                <span className="text-foreground">Next.js 16 (App)</span>
               </div>
               <div className="flex justify-between">
-                <span>Styles:</span>
-                <span className="text-foreground">Tailwind v4</span>
+                <span>Styling framework:</span>
+                <span className="text-foreground">Tailwind CSS 4</span>
               </div>
               <div className="flex justify-between">
-                <span>Database:</span>
-                <span className="text-foreground">Supabase ready</span>
+                <span>Search indexer:</span>
+                <span className="text-foreground">Orama Search</span>
               </div>
               <div className="flex justify-between">
-                <span>Search:</span>
-                <span className="text-foreground">Orama Core</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Content:</span>
-                <span className="text-foreground">SSG + MDX Engine</span>
+                <span>Content engine:</span>
+                <span className="text-foreground">SSG + MDX Remote</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        {/* Footer Base divider */}
+        {/* Bottom copyright divider */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold text-muted">
           <div>
-            &copy; {new Date().getFullYear()} Garudaloka. Semua Hak Cipta Dilindungi.
+            &copy; {new Date().getFullYear()} PGDOWN. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-success animate-ping" />
-              Bahasa Indonesia-first
+              Observability Status: Normal
             </span>
             <span className="text-muted/60 flex items-center gap-1">
-              English localization <ArrowUpRight className="h-3 w-3" />
+              Developer Hub <ArrowUpRight className="h-3 w-3" />
             </span>
           </div>
         </div>

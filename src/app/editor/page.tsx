@@ -170,7 +170,7 @@ export default function EditorDashboard() {
               categories: categorySlugs,
               categorySlug: primaryCategory,
               date: metadata.date || new Date().toISOString().split('T')[0],
-              author: metadata.author || 'Editor Garudaloka',
+              author: metadata.author || 'Editor PGDOWN',
               difficulty: metadata.difficulty || 'Beginner',
               readTime: metadata.readingTime || '5 min',
               featured: !!metadata.featured,
@@ -241,7 +241,7 @@ export default function EditorDashboard() {
           categories: categorySlugs,
           categorySlug: primaryCategory,
           date: metadata.date || new Date().toISOString().split('T')[0],
-          author: metadata.author || 'Editor Garudaloka',
+          author: metadata.author || 'Editor PGDOWN',
           difficulty: metadata.difficulty || 'Beginner',
           readTime: metadata.readingTime || '5 min',
           featured: !!metadata.featured,
@@ -397,17 +397,21 @@ export default function EditorDashboard() {
   return (
     <div className="min-h-screen bg-[#F7F7F5] font-sans selection:bg-blue-100 selection:text-blue-900">
       
-      <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+      <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center justify-between sticky top-0 z-40 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-16 h-16 relative flex-shrink-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/garudaloka-logo.png" alt="Garudaloka Logo" className="w-full h-full object-contain" />
+          <div className="flex items-center gap-1.5 py-2 mr-3 shrink-0">
+            <span className="text-2xl font-black font-sans tracking-tighter text-gray-950 dark:text-white">
+              PG<span className="text-primary">DOWN</span>
+            </span>
+            <span className="text-[9px] font-mono border border-primary/20 bg-primary/5 text-primary rounded px-1 py-0.2 uppercase tracking-wide">
+              PRO
+            </span>
           </div>
           <div>
-            <h1 className="font-bold text-gray-900 text-lg leading-tight">
-              {view === 'dashboard' ? 'Garudaloka Editor Dashboard' : `${editorMode === 'edit' ? 'Edit' : 'Tulis'} Artikel`}
+            <h1 className="font-bold text-gray-900 dark:text-gray-100 text-lg leading-tight">
+              {view === 'dashboard' ? 'PGDOWN Editor Dashboard' : `${editorMode === 'edit' ? 'Edit' : 'Write'} Article`}
             </h1>
-            <p className="text-xs text-gray-500 font-medium tracking-wide">DEVELOPER MODE</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wide">DEVELOPER MODE</p>
           </div>
         </div>
 

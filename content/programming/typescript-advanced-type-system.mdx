@@ -1,0 +1,39 @@
+---
+title: 'Deep Dive: TypeScript Advanced Types, Generics, and Conditional Types'
+slug: typescript-advanced-type-system
+category: programming
+description: 'Master generic constraints, mapped types, template literal types, and complex type inferencing.'
+difficulty: Mahir
+keywords:
+  - TypeScript
+  - Programming
+  - Javascript
+  - Generics
+tags:
+  - Programming
+  - Software
+readingTime: 7 Menit
+featured: false
+date: '2026-06-15'
+cover: ''
+---
+
+TypeScript provides one of the most powerful type systems of any mainstream programming language. By mastering generics and conditional types, developers can write type-safe code that automatically adapts to varying runtime behaviors.
+
+## 1. Generic Constraints
+
+Generics allow us to design reusable helper functions or classes. By using constraints, we can enforce specific structure signatures on our types:
+
+```typescript
+function getLength<T extends { length: number }>(obj: T): number {
+  return obj.length;
+}
+```
+
+## 2. Conditional Types
+
+Conditional types help select types dynamically based on boolean operations, mimicking runtime ternary operators at compile time:
+
+```typescript
+type IsString<T> = T extends string ? true : false;
+```

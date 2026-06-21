@@ -1,0 +1,49 @@
+---
+title: 'Modern Windows Terminal Customization: PowerShell, Oh My Posh, and Cascadia Code'
+slug: modern-windows-terminal-customization
+category: windows
+description: 'Build a beautiful, productive command-line environment on Windows using modern terminal settings.'
+difficulty: Pemula
+keywords:
+  - Windows
+  - PowerShell
+  - Terminal
+  - Oh My Posh
+tags:
+  - Windows
+  - Developer Tools
+readingTime: 4 Menit
+featured: false
+date: '2026-06-18'
+cover: ''
+---
+
+Windows Terminal is a modern, fast, and highly customizable terminal emulator developed by Microsoft. When paired with PowerShell 7 and Oh My Posh, it becomes a world-class environment for developers.
+
+## 1. Prerequisites
+
+Before customizing, ensure you have installed:
+
+- **Windows Terminal** (available via Microsoft Store or winget).
+- **PowerShell 7** (for modern shell features).
+- **Cascadia Code Nerd Font** (essential for glyph icons).
+
+## 2. Oh My Posh Integration
+
+Oh My Posh is a custom prompt engine for any shell. Install it on Windows using winget:
+
+```powershell
+winget install JanDeDobbeleer.OhMyPosh -e
+```
+
+Once installed, create or edit your PowerShell profile:
+
+```powershell
+notepad $PROFILE
+```
+
+Add the following initialization command:
+
+```powershell
+oh-my-posh init pwsh | Invoke-Expression
+```

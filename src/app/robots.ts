@@ -66,6 +66,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://garudaloka.vercel.app/sitemap.xml',
+    sitemap: 'https://pgdown.vercel.app/sitemap.xml',
   };
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getArticlesByCategory, CATEGORIES } from "@/lib/content";
-import { ChevronRight, ArrowLeft, Settings, FlaskConical, GitBranch, BookOpen, Clock, Calendar } from "lucide-react";
+import { ChevronRight, ArrowLeft, BookOpen, Clock, Calendar } from "lucide-react";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const category = CATEGORIES.find((c) => c.slug === categorySlug);
   if (!category) return {};
 
-  const title = `Materi Teknik ${category.name} — Garudaloka`;
-  const description = `Pelajari topik, peralatan, dan penjelasan teknis mendalam tentang ${category.name} di Garudaloka. Platform edukasi engineering & industri terpercaya.`;
-  const canonicalUrl = `https://garudaloka.vercel.app/category/${categorySlug}`;
+  const title = `${category.name} Articles — PGDOWN`;
+  const description = `Read the latest technical guides, publications, and analysis on ${category.name} in PGDOWN publication.`;
+  const canonicalUrl = `https://pgdown.vercel.app/category/${categorySlug}`;
 
   return {
     title,
     description,
-    keywords: [`${category.name}`, "engineering", "oil and gas", "teknik", "industri"],
+    keywords: [category.name, "technology", "software engineering", "programming"],
     alternates: {
       canonical: canonicalUrl,
     },
@@ -32,15 +32,15 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       title,
       description,
       url: canonicalUrl,
-      siteName: "Garudaloka",
+      siteName: "PGDOWN",
       locale: "id_ID",
       type: "website",
       images: [
         {
-          url: "https://garudaloka.vercel.app/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: `Kategori ${category.name} - Garudaloka`,
+          url: "https://pgdown.vercel.app/favicon.ico",
+          width: 512,
+          height: 512,
+          alt: `Kategori ${category.name} - PGDOWN`,
         }
       ],
     },
@@ -67,164 +67,134 @@ export async function generateStaticParams() {
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { categorySlug } = await params;
   const category = CATEGORIES.find((c) => c.slug === categorySlug);
-  
-  console.log(`[DEBUG CategoryPage] categorySlug: "${categorySlug}", found category:`, !!category);
 
   if (!category) {
     return notFound();
   }
 
   const articles = await getArticlesByCategory(categorySlug);
-  console.log(`[DEBUG CategoryPage] getArticlesByCategory("${categorySlug}") returned ${articles.length} articles`);
-
-  const getCategoryIcon = (iconName: string) => {
-    switch (iconName) {
-      case "Settings": return <Settings className="h-6 w-6 text-primary dark:text-primary-light" />;
-      case "FlaskConical": return <FlaskConical className="h-6 w-6 text-accent" />;
-      case "GitBranch": return <GitBranch className="h-6 w-6 text-primary" />;
-      case "BookOpen":
-      default:
-        return <BookOpen className="h-6 w-6 text-success" />;
-    }
-  };
 
   return (
     <>
       <Navbar />
 
-      <main className="flex-grow bg-background py-8 md:py-12 transition-colors duration-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="flex-grow bg-background py-8 md:py-12 transition-colors duration-200 min-h-[70vh]">
+        <div className="max-w-[1280px] mx-auto px-6 space-y-8">
           
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-xs font-semibold text-muted mb-8 select-none">
+          <nav className="flex items-center gap-2 text-xs font-semibold text-muted-more select-none">
             <Link href="/" className="hover:text-primary transition-colors">
-              Beranda
+              Home
             </Link>
             <ChevronRight className="h-3 w-3" />
             <span className="text-foreground font-bold capitalize">
-              Kategori: {category.name}
+              {category.name}
             </span>
           </nav>
 
-          {/* Category Jumbotron */}
-          <div className="border border-border rounded-2xl bg-card p-6 md:p-10 shadow-sm mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#1C1917_1px,transparent_1px)] bg-[size:16px_16px]" />
-            <div className="relative z-10 space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="p-3 bg-background border border-border rounded-xl shadow-inner">
-                  {getCategoryIcon(category.icon)}
-                </span>
-                <span className="text-xs uppercase font-extrabold tracking-wider text-accent">
-                  Cabang Keilmuan
+          {/* Category Banner Card - Light & Soft */}
+          <div className="bg-background-alt/40 border border-border/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden select-none">
+            <div className="absolute inset-0 opacity-[0.015] bg-[radial-gradient(#E95420_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+            
+            <div className="relative z-10 space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-primary">
+                  Category Section
                 </span>
               </div>
-              <h1 className="text-2xl md:text-3xl font-extrabold font-serif text-foreground">
-                Kategori: {category.name}
+              <h1 className="text-2xl md:text-3xl font-black text-foreground tracking-tight">
+                {category.name}
               </h1>
               <p className="text-sm text-muted max-w-xl leading-relaxed">
                 {category.desc}
               </p>
             </div>
             
-            <div className="relative z-10 bg-background-alt border border-border px-5 py-4 rounded-xl text-center md:text-right shrink-0">
-              <span className="block text-3xl font-black text-primary dark:text-primary-light">
+            <div className="relative z-10 bg-background border border-border/30 px-5 py-3.5 rounded-2xl text-center md:text-right shrink-0 shadow-xs">
+              <span className="block text-3xl font-black text-primary leading-none mb-1">
                 {articles.length}
               </span>
-              <span className="text-[10px] font-bold text-muted uppercase tracking-wider">
-                Dokumen Tersedia
+              <span className="text-[9px] font-bold text-muted-more uppercase tracking-wider">
+                Articles Available
               </span>
             </div>
           </div>
 
           {/* Articles Listing Grid */}
           <div className="space-y-6">
-            <h2 className="text-lg font-bold text-foreground border-b border-border/60 pb-3 flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-primary" />
-              Materi Pembelajaran ({articles.length})
+            <h2 className="text-sm font-bold uppercase tracking-wider text-muted-more border-b border-border/30 pb-3 flex items-center gap-2 select-none">
+              <BookOpen className="h-4.5 w-4.5 text-primary" />
+              Publications List
             </h2>
 
             {articles.length === 0 ? (
-              <div className="border border-dashed border-border p-12 text-center rounded-xl bg-card">
-                <BookOpen className="h-10 w-10 text-muted mx-auto mb-3 opacity-40" />
-                <h3 className="text-sm font-bold text-foreground">Kajian Belum Tersedia</h3>
+              <div className="border border-dashed border-border/40 p-12 text-center rounded-3xl bg-background-alt/25">
+                <BookOpen className="h-8 w-8 text-muted mx-auto mb-3 opacity-40" />
+                <h3 className="text-sm font-bold text-foreground">No Articles Available Yet</h3>
                 <p className="text-xs text-muted max-w-xs mx-auto mt-1">
-                  Tim insinyur kami sedang menyusun diagram visual dan dokumen teknis terpercaya untuk kategori ini.
+                  Our editorial team is compiling technical documentation for this section. Check back soon.
                 </p>
                 <Link 
                   href="/" 
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary mt-4 hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-primary mt-4 hover:underline"
                 >
-                  <ArrowLeft className="h-4.5 w-4.5" /> Kembali ke Beranda
+                  <ArrowLeft className="h-4 w-4" /> Back to Home
                 </Link>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {articles.map((article) => (
                   <article
                     key={article.slug}
-                    className="border border-border bg-card rounded-xl overflow-hidden flex flex-col justify-between hover:border-primary/40 shadow-sm transition-all group"
+                    className="flex flex-col justify-between rounded-2xl group transition-all duration-200"
                   >
-                    <div>
-                      {/* Cover Thumbnail Image */}
-                      {article.cover ? (
-                        <div className="relative w-full h-44 overflow-hidden bg-muted border-b border-border select-none">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <div className="space-y-3">
+                      {/* Thumbnail */}
+                      <Link href={`/${article.categorySlug}/${article.slug}`} className="block relative aspect-video rounded-2xl overflow-hidden bg-background-alt border border-border/40 select-none">
+                        {article.cover ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img 
                             src={article.cover} 
                             alt={article.title} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                           />
-                        </div>
-                      ) : (
-                        <div className="relative w-full h-44 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800/40 dark:to-slate-900/60 border-b border-border flex items-center justify-center text-muted select-none">
-                          <BookOpen className="h-10 w-10 opacity-30 group-hover:scale-110 transition-transform duration-350" />
-                        </div>
-                      )}
-
-                      <div className="p-5 space-y-3.5">
-                        <div className="flex items-center justify-between text-[10px] font-bold text-muted uppercase">
-                          <div className="flex flex-wrap gap-1">
-                            <span className="px-2 py-0.5 rounded bg-background border border-border text-accent capitalize font-bold text-[9px] shrink-0">
-                              {article.difficulty}
-                            </span>
-                            {(article.categories || [article.categorySlug]).map((catSlug, i) => {
-                              const catName = article.category.split(',')[i]?.trim() || catSlug;
-                              return (
-                                <span 
-                                  key={catSlug} 
-                                  className="px-2 py-0.5 rounded bg-background border border-border text-primary dark:text-primary-light capitalize font-bold text-[9px] shrink-0"
-                                >
-                                  {catName}
-                                </span>
-                              );
-                            })}
+                        ) : (
+                          <div className="w-full h-full bg-linear-to-br from-slate-100 to-slate-200 dark:from-slate-800/40 dark:to-slate-900/60 flex items-center justify-center text-xs text-muted-more font-bold">
+                            PGDOWN
                           </div>
-                          <span className="flex items-center gap-1 shrink-0">
+                        )}
+                      </Link>
+
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase">
+                          <span>{article.difficulty}</span>
+                          <span className="text-muted-more/30">&bull;</span>
+                          <span className="flex items-center gap-1 text-muted-more font-semibold">
                             <Clock className="h-3 w-3" /> {article.readTime}
                           </span>
                         </div>
 
-                        <h3 className="text-base font-bold text-foreground leading-snug group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
+                        <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2 tracking-tight">
                           <Link href={`/${article.categorySlug}/${article.slug}`}>
                             {article.title}
                           </Link>
                         </h3>
 
-                        <p className="text-xs text-muted leading-relaxed line-clamp-3 text-justify">
+                        <p className="text-xs text-muted leading-relaxed line-clamp-3">
                           {article.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="p-5 border-t border-border/60 bg-background-alt/30 flex items-center justify-between text-[11px] select-none">
-                      <span className="text-muted font-medium flex items-center gap-1">
+                    <div className="flex items-center justify-between border-t border-border/30 mt-4 pt-3 text-[10px] font-semibold text-muted-more select-none">
+                      <span className="flex items-center gap-1">
                         <Calendar className="h-3.5 w-3.5" /> {article.date}
                       </span>
                       <Link
                         href={`/${article.categorySlug}/${article.slug}`}
-                        className="text-primary dark:text-primary-light hover:underline font-bold"
+                        className="text-primary hover:underline font-bold"
                       >
-                        Pelajari Materi →
+                        Read Article &rarr;
                       </Link>
                     </div>
                   </article>

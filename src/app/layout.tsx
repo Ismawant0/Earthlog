@@ -22,24 +22,24 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
-    template: "%s | Garudaloka"
+    default: "PGDOWN — Elite Technology Publication",
+    template: "%s | PGDOWN"
   },
-  description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya. Platform edukasi engineering & industri pertama di Indonesia.",
-  keywords: ["engineering", "oil and gas", "manufacturing", "maintenance", "safety", "process engineering", "mechanical engineering", "teknik kimia", "teknik mesin", "engineering Indonesia", "teknik industri"],
-  authors: [{ name: "Ismawanto" }],
-  creator: "Ismawanto",
-  publisher: "Garudaloka",
-  applicationName: "Garudaloka",
-  metadataBase: new URL("https://garudaloka.vercel.app"),
+  description: "Elite technology publication covering Artificial Intelligence, Operating Systems, Linux, Windows, Open Source, Software Engineering, Cyber Security, Cloud, and Developer Tools.",
+  keywords: ["technology news", "artificial intelligence", "linux", "windows", "open source", "software engineering", "cyber security", "cloud computing", "programming", "developer tools"],
+  authors: [{ name: "PGDOWN Editorial Team" }],
+  creator: "PGDOWN Team",
+  publisher: "PGDOWN",
+  applicationName: "PGDOWN",
+  metadataBase: new URL("https://pgdown.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
-    description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
-    url: "https://garudaloka.vercel.app",
-    siteName: "Garudaloka",
+    title: "PGDOWN — Elite Technology Publication",
+    description: "Premium editorial media covering Artificial Intelligence, Linux, Windows, Open Source, Software, Cyber Security, and Cloud Computing.",
+    url: "https://pgdown.vercel.app",
+    siteName: "PGDOWN",
     locale: "id_ID",
     type: "website",
     images: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Garudaloka Engineering Platform",
+        alt: "PGDOWN Technology Publication",
       }
     ],
   },
@@ -65,10 +65,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Garudaloka — Platform Pengetahuan Teknik & Industri Modern",
-    description: "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
-    creator: "@garudaloka",
-    site: "@garudaloka",
+    title: "PGDOWN — Elite Technology Publication",
+    description: "Elite technology publication covering AI, Linux, Windows, Open Source, Software Engineering, Cyber Security, Cloud, and Developer Tools.",
+    creator: "@pgdown",
+    site: "@pgdown",
   },
   robots: {
     index: true,
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
   other: {
     'theme-color': '#0f172a',
     'og:locale:alternate': 'en_US',
-    'article:publisher': 'Garudaloka',
+    'article:publisher': 'PGDOWN',
   },
 };
 
@@ -103,10 +103,10 @@ export default function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Garudaloka",
-    "url": "https://garudaloka.vercel.app",
-    "logo": "https://garudaloka.vercel.app/garudaloka-logo.png",
-    "description": "Platform Pengetahuan Teknik & Industri Modern di Indonesia",
+    "name": "PGDOWN",
+    "url": "https://pgdown.vercel.app",
+    "logo": "https://pgdown.vercel.app/favicon.ico",
+    "description": "Elite technology publication and curated technical knowledge media.",
     "sameAs": [
       "https://github.com/Ismawant0"
     ]
@@ -115,14 +115,14 @@ export default function RootLayout({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Garudaloka",
-    "url": "https://garudaloka.vercel.app",
-    "description": "Menyederhanakan ilmu teknik menjadi pembelajaran visual yang lebih jelas, modern, dan terpercaya.",
+    "name": "PGDOWN",
+    "url": "https://pgdown.vercel.app",
+    "description": "Elite technology publication covering Artificial Intelligence, Linux, Windows, Open Source, Cyber Security, Programming, and Cloud Computing.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://garudaloka.vercel.app/search?q={search_term_string}"
+        "urlTemplate": "https://pgdown.vercel.app/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }
@@ -148,6 +148,21 @@ export default function RootLayout({
         <Script 
           src="/scripts/theme.js" 
           strategy="beforeInteractive" 
+        />
+        <Script
+          id="sw-cleanup"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                  for (let registration of registrations) {
+                    registration.unregister();
+                  }
+                });
+              }
+            `
+          }}
         />
         {children}
         <Analytics />

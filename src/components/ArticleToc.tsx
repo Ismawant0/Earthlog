@@ -27,9 +27,8 @@ export default function ArticleToc({ headings }: ArticleTocProps) {
       }
 
       // 2. Determine active heading section
-      // Check which heading is currently closest to the top of the viewport
       const headingElements = headings.map((h) => document.getElementById(h.id));
-      const scrollPosition = window.scrollY + 120; // offset for sticky navbar + headroom
+      const scrollPosition = window.scrollY + 110; // offset for sticky navbar + spacing
 
       let currentActiveId = "";
       
@@ -49,7 +48,6 @@ export default function ArticleToc({ headings }: ArticleTocProps) {
     };
 
     window.addEventListener("scroll", handleScroll);
-    // Initial run
     handleScroll();
     
     return () => window.removeEventListener("scroll", handleScroll);
@@ -59,36 +57,36 @@ export default function ArticleToc({ headings }: ArticleTocProps) {
 
   return (
     <>
-      {/* 1. TOP READING PROGRESS BAR */}
-      <div className="fixed top-16 left-0 right-0 h-1 z-40 bg-border/20 pointer-events-none">
+      {/* PGDOWN Top Fixed Reading Progress Bar */}
+      <div className="progress-bar-container fixed top-[64px] left-0 right-0 h-[4px] z-50 bg-primary/10 pointer-events-none">
         <div 
-          className="h-full bg-accent transition-all duration-75 ease-out" 
+          className="h-full bg-primary transition-all duration-75 ease-out rounded-r-full" 
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-      {/* 2. SIDEBAR TABLE OF CONTENTS CONTAINER */}
-      <nav className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4 hidden xl:block select-none">
-        <div className="flex items-center gap-2 text-foreground font-bold text-xs uppercase tracking-wider mb-4">
-          <List className="h-4 w-4 text-primary dark:text-primary-light" />
-          <span>Daftar Isi Halaman</span>
+      {/* Sidebar Table of Contents Container */}
+      <nav className="sticky top-20 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4 block select-none scrollbar-none">
+        <div className="flex items-center gap-2 text-foreground font-bold text-[10px] uppercase tracking-wider mb-4">
+          <List className="h-4 w-4 text-primary" />
+          <span>Table of Contents</span>
         </div>
         
-        <ul className="space-y-2 border-l border-border/80 pl-0.5">
+        <ul className="space-y-1.5 border-l border-border pl-0.5">
           {headings.map((heading) => {
             const isActive = heading.id === activeId;
             return (
               <li 
                 key={heading.id} 
                 className="transition-all duration-150"
-                style={{ paddingLeft: `${(heading.level - 2) * 12}px` }}
+                style={{ paddingLeft: `${(heading.level - 2) * 10}px` }}
               >
                 <a
                   href={`#${heading.id}`}
-                  className={`text-xs font-semibold block py-1.5 transition-colors relative border-l-2 pl-3 -ml-0.5 ${
+                  className={`text-xs font-semibold block py-1 transition-colors relative border-l-2 pl-3 -ml-0.5 ${
                     isActive 
-                      ? "border-accent text-accent dark:text-accent-light bg-accent/5 font-bold" 
-                      : "border-transparent text-muted hover:text-foreground hover:border-border"
+                      ? "border-primary text-primary font-extrabold bg-primary/5" 
+                      : "border-transparent text-muted hover:text-foreground hover:border-border/80"
                   }`}
                 >
                   <span className="line-clamp-1 flex items-center gap-1">
