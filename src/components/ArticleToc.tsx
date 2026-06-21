@@ -73,11 +73,11 @@ export default function ArticleToc({ headings }: ArticleTocProps) {
         </div>
         
         <ul className="space-y-1.5 border-l border-border pl-0.5">
-          {headings.map((heading) => {
+          {headings.map((heading, index) => {
             const isActive = heading.id === activeId;
             return (
               <li 
-                key={heading.id} 
+                key={`${heading.id}-${index}`} 
                 className="transition-all duration-150"
                 style={{ paddingLeft: `${(heading.level - 2) * 10}px` }}
               >

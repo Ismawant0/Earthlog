@@ -21,18 +21,14 @@ interface MetadataFormProps {
 }
 
 const CATEGORIES = [
-  'fundamentals',
-  'production-operations',
-  'equipment',
-  'process-systems',
-  'process-chemicals',
-  'instrumentation',
-  'maintenance',
-  'safety',
-  'utility-systems',
-  'troubleshooting',
-  'learning-path',
-  'glossary'
+  'ai',
+  'linux',
+  'windows',
+  'open-source',
+  'software',
+  'cyber-security',
+  'programming',
+  'cloud'
 ];
 
 export function MetadataForm({ initialData, onSave, onCancel }: MetadataFormProps) {

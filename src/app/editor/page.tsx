@@ -71,7 +71,7 @@ export default function EditorDashboard() {
       let localArticles: Article[] = [];
       if (typeof window !== 'undefined') {
         try {
-          const localArticlesStr = localStorage.getItem('garudaloka_local_articles');
+          const localArticlesStr = localStorage.getItem('pgdown_local_articles');
           if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
             const parsed = JSON.parse(localArticlesStr);
             if (Array.isArray(parsed)) {
@@ -97,7 +97,7 @@ export default function EditorDashboard() {
 
       if (localArticlesUpdated && typeof window !== 'undefined') {
         try {
-          localStorage.setItem('garudaloka_local_articles', JSON.stringify(filteredLocalArticles));
+          localStorage.setItem('pgdown_local_articles', JSON.stringify(filteredLocalArticles));
           localArticles = filteredLocalArticles;
         } catch (e) {}
       }
@@ -151,7 +151,7 @@ export default function EditorDashboard() {
         if (data.code === 'GITHUB_SAVED') {
           try {
             let localArticles: Article[] = [];
-            const localArticlesStr = localStorage.getItem('garudaloka_local_articles');
+            const localArticlesStr = localStorage.getItem('pgdown_local_articles');
             if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
               const parsed = JSON.parse(localArticlesStr);
               if (Array.isArray(parsed)) {
@@ -188,7 +188,7 @@ export default function EditorDashboard() {
             } else {
               localArticles.push(tempArticle);
             }
-            localStorage.setItem('garudaloka_local_articles', JSON.stringify(localArticles));
+            localStorage.setItem('pgdown_local_articles', JSON.stringify(localArticles));
           } catch (e) {
             console.error('Error saving temporary local copy for GitHub:', e);
           }
@@ -197,10 +197,10 @@ export default function EditorDashboard() {
         } else {
           // If it successfully wrote to server disk (local development), check if it was previously in local storage and delete it
           try {
-            const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
+            const localArticlesStr = localStorage.getItem('pgdown_local_articles') || '[]';
             const localArticles: Article[] = JSON.parse(localArticlesStr);
             const filtered = localArticles.filter(a => !(a.slug === metadata.slug && a.categorySlug === metadata.category));
-            localStorage.setItem('garudaloka_local_articles', JSON.stringify(filtered));
+            localStorage.setItem('pgdown_local_articles', JSON.stringify(filtered));
           } catch (e) {}
 
           showToast(
@@ -218,7 +218,7 @@ export default function EditorDashboard() {
         let localArticles: Article[] = [];
         if (typeof window !== 'undefined') {
           try {
-            const localArticlesStr = localStorage.getItem('garudaloka_local_articles');
+            const localArticlesStr = localStorage.getItem('pgdown_local_articles');
             if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
               const parsed = JSON.parse(localArticlesStr);
               if (Array.isArray(parsed)) {
@@ -260,7 +260,7 @@ export default function EditorDashboard() {
           localArticles.push(newArticle);
         }
 
-        localStorage.setItem('garudaloka_local_articles', JSON.stringify(localArticles));
+        localStorage.setItem('pgdown_local_articles', JSON.stringify(localArticles));
         
         showToast('Tersimpan secara lokal di browser Anda (Serverless Read-Only).', 'success');
         setView('dashboard');
@@ -287,10 +287,10 @@ export default function EditorDashboard() {
       if (res.ok && data.success) {
         // Clear from localStorage to avoid cached stale representation
         try {
-          const localArticlesStr = localStorage.getItem('garudaloka_local_articles') || '[]';
+          const localArticlesStr = localStorage.getItem('pgdown_local_articles') || '[]';
           const localArticles: Article[] = JSON.parse(localArticlesStr);
           const filtered = localArticles.filter(a => !(a.slug === deleteConfirm.slug && a.categorySlug === deleteConfirm.categorySlug));
-          localStorage.setItem('garudaloka_local_articles', JSON.stringify(filtered));
+          localStorage.setItem('pgdown_local_articles', JSON.stringify(filtered));
         } catch (e) {}
 
         showToast(data.message || 'Artikel berhasil dihapus.', 'success');
@@ -341,30 +341,22 @@ export default function EditorDashboard() {
 
   const getCategoryColor = (categorySlug: string) => {
     switch (categorySlug) {
-      case 'equipment':
-        return 'bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-900/50 dark:text-slate-300 dark:border-slate-800';
-      case 'process-chemicals':
-        return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/50 dark:text-blue-300 dark:border-blue-800';
-      case 'process-systems':
-        return 'bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/50 dark:text-indigo-300 dark:border-indigo-800';
-      case 'instrumentation':
+      case 'ai':
+        return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/50 dark:text-purple-300 dark:border-purple-800';
+      case 'linux':
         return 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/50 dark:text-amber-300 dark:border-amber-800';
-      case 'maintenance':
+      case 'windows':
+        return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/50 dark:text-blue-300 dark:border-blue-800';
+      case 'open-source':
         return 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/50 dark:text-emerald-300 dark:border-emerald-800';
-      case 'safety':
+      case 'software':
+        return 'bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/50 dark:text-indigo-300 dark:border-indigo-800';
+      case 'cyber-security':
         return 'bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/50 dark:text-rose-300 dark:border-rose-800';
-      case 'utility-systems':
+      case 'programming':
         return 'bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-900/50 dark:text-cyan-300 dark:border-cyan-800';
-      case 'learning-path':
-        return 'bg-violet-100 text-violet-800 border-violet-200 dark:bg-violet-900/50 dark:text-violet-300 dark:border-violet-800';
-      case 'glossary':
-        return 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/50 dark:text-orange-300 dark:border-orange-800';
-      case 'fundamentals':
-        return 'bg-teal-100 text-teal-800 border-teal-200 dark:bg-teal-900/50 dark:text-teal-300 dark:border-teal-800';
-      case 'production-operations':
+      case 'cloud':
         return 'bg-sky-100 text-sky-800 border-sky-200 dark:bg-sky-900/50 dark:text-sky-300 dark:border-sky-800';
-      case 'troubleshooting':
-        return 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/50 dark:text-red-300 dark:border-red-800';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700';
     }

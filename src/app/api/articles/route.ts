@@ -66,7 +66,7 @@ export async function DELETE(req: Request) {
     // 2. Delete from GitHub if GITHUB_PAT is present
     if (githubToken) {
       const owner = 'Ismawant0';
-      const repo = 'garudaloka';
+      const repo = 'PGDown';
       const gitPath = `content/${categorySlug}/${slug}.mdx`;
       const fileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${gitPath}`;
 

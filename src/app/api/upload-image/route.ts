@@ -82,7 +82,7 @@ export async function POST(req: Request) {
     // 2. If local write was bypassed/failed and GITHUB_PAT is present, upload to GitHub
     if (!localWriteSuccess && githubToken) {
       const owner = 'Ismawant0';
-      const repo = 'garudaloka';
+      const repo = 'PGDown';
       const gitPath = `public/content-assets/${category}/${slug}/${finalFilename}`;
       const fileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${gitPath}`;
 
