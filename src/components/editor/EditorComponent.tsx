@@ -236,6 +236,8 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
         heading: {
           levels: [1, 2, 3],
         },
+        link: false,
+        underline: false,
       }),
       Link.configure({
         openOnClick: false,

@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
-import sharp from 'sharp';
 
 export async function POST(req: Request) {
   try {
@@ -33,6 +32,8 @@ export async function POST(req: Request) {
     if (shouldOptimize) {
       try {
         // Optimize using sharp: convert to webp, compress, resize if width > 1600px
+        const sharpModule = await import('sharp');
+        const sharp = sharpModule.default || sharpModule;
         let image = sharp(originalBuffer);
         const metadata = await image.metadata();
 
