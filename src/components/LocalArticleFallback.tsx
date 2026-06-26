@@ -179,7 +179,7 @@ export default function LocalArticleFallback({ categorySlug, slug }: LocalArticl
               </div>
 
               {/* HTML Compiled content output */}
-              <div className="article-container article-body py-4 prose dark:prose-invert text-[16px] md:text-[18px] font-normal leading-[1.75] text-foreground">
+              <div className="article-container article-body py-4 prose dark:prose-invert text-[17px] md:text-[19px] font-normal leading-[1.75] text-foreground">
                 <div 
                   className="tiptap-html-content"
                   dangerouslySetInnerHTML={{ __html: article.htmlContent || `<p>${article.content}</p>` }} 

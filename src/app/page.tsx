@@ -55,30 +55,35 @@ export default async function Home() {
                   </Link>
 
                   {/* Details */}
-                  <div className="flex flex-col py-1 flex-1 min-w-0">
-                    <div className="space-y-1.5">
-                      <div className="flex items-center gap-2 text-[11px] uppercase font-bold text-primary">
-                        <Link href={`/category/${art.categorySlug}`} className="hover:underline">
-                          {art.category}
-                        </Link>
-                      </div>
-                      
-                      <h3 className="text-xl md:text-2xl font-bold leading-snug tracking-tight transition-colors duration-200 group-hover:text-primary text-foreground">
-                        <Link href={`/${art.categorySlug}/${art.slug}`}>
-                          {art.title}
-                        </Link>
-                      </h3>
-                      
-                      <p className="text-sm text-muted line-clamp-2 leading-relaxed">
-                        {art.description}
-                      </p>
+                  <div className="flex flex-col py-1 flex-1 min-w-0 gap-1.5">
+
+                    {/* 1. Title */}
+                    <h3 className="text-xl md:text-2xl font-bold leading-snug tracking-tight transition-colors duration-200 group-hover:text-primary text-foreground">
+                      <Link href={`/${art.categorySlug}/${art.slug}`}>
+                        {art.title}
+                      </Link>
+                    </h3>
+
+                    {/* 2. Description */}
+                    <p className="text-sm text-muted line-clamp-2 leading-relaxed">
+                      {art.description}
+                    </p>
+
+                    {/* 3. Category pill | Date */}
+                    <div className="flex items-center gap-2 mt-1">
+                      <Link
+                        href={`/category/${art.categorySlug}`}
+                        className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold"
+                        style={{
+                          backgroundColor: "var(--primary-subtle)",
+                          color: "var(--primary)",
+                        }}
+                      >
+                        {art.category}
+                      </Link>
+                      <span className="text-[11px] text-muted-more">{art.date}</span>
                     </div>
-                    
-                    <div className="flex items-center gap-2 text-xs font-semibold text-muted-more mt-3">
-                      <span>{art.date}</span>
-                      <span>&bull;</span>
-                      <span>By {art.author}</span>
-                    </div>
+
                   </div>
                 </article>
               ))}

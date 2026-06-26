@@ -320,7 +320,7 @@ export default async function ArticlePage({ params }: PageProps) {
               </header>
 
               {/* MDX Compiled content output */}
-              <div className="article-body prose dark:prose-invert text-[16px] md:text-[18px] font-normal leading-[1.75] text-foreground max-w-[760px] mx-auto select-text">
+              <div className="article-body prose dark:prose-invert text-[17px] md:text-[19px] font-normal leading-[1.75] text-foreground max-w-[760px] mx-auto select-text">
                 <MDXRemote 
                   source={article.content} 
                   components={mdxComponents} 

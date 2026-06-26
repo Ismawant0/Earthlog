@@ -37,10 +37,10 @@ export interface LearningPath {
 }
 export const CATEGORIES = [
   // PGDOWN technology categories
-  { name: "📰 News", slug: "news", count: 1, icon: "Newspaper", desc: "Latest updates, announcements, and tech industry news." },
-  { name: "💻 Software", slug: "software", count: 1, icon: "Code", desc: "Software engineering, apps, architecture, and development." },
-  { name: "📱 Hardware", slug: "hardware", count: 1, icon: "Cpu", desc: "Hardware reviews, gadgets, processors, and devices." },
-  { name: "⭐ Reviews", slug: "reviews", count: 1, icon: "Star", desc: "In-depth reviews of software, hardware, and tech services." },
+  { name: "News", slug: "news", count: 1, icon: "Newspaper", desc: "Latest updates, announcements, and tech industry news." },
+  { name: "Software", slug: "software", count: 1, icon: "Code", desc: "Software engineering, apps, architecture, and development." },
+  { name: "Hardware", slug: "hardware", count: 1, icon: "Cpu", desc: "Hardware reviews, gadgets, processors, and devices." },
+  { name: "Reviews", slug: "reviews", count: 1, icon: "Star", desc: "In-depth reviews of software, hardware, and tech services." },
   { name: "AI", slug: "ai", count: 1, icon: "Cpu", desc: "Artificial Intelligence, Machine Learning, LLMs, and Neural Networks." },
   { name: "Linux", slug: "linux", count: 1, icon: "Terminal", desc: "Linux distributions, kernel development, command line tools, and open source ecosystems." },
   { name: "Windows", slug: "windows", count: 1, icon: "Monitor", desc: "Windows development, system administration, PowerShell, and enterprise technology." },
