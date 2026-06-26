@@ -273,11 +273,6 @@ export default async function ArticlePage({ params }: PageProps) {
                   {article.title}
                 </h1>
 
-                {/* 2. Summary */}
-                <p className="text-[19px] font-normal text-muted leading-[1.6]">
-                  {article.description}
-                </p>
-
                 {/* 4. Author details & meta details bar */}
                 <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-muted-more pt-2 select-none">
                   <span className="flex items-center gap-1.5">
