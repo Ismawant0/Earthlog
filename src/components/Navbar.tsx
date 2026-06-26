@@ -65,10 +65,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "📰 News", href: "/category/news" },
-    { name: "💻 Software", href: "/category/software" },
-    { name: "📱 Hardware", href: "/category/hardware" },
-    { name: "⭐ Reviews", href: "/category/reviews" },
+    { name: "News", href: "/category/news" },
+    { name: "Software", href: "/category/software" },
+    { name: "Hardware", href: "/category/hardware" },
+    { name: "Reviews", href: "/category/reviews" },
   ];
 
   return (
@@ -122,13 +122,13 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Center Nav — desktop only, pill hover */}
-          <nav className="hidden lg:flex items-center gap-0.5">
+          {/* Center Nav — visible on all devices, scrollable on mobile */}
+          <nav className="flex flex-1 items-center gap-0.5 overflow-x-auto scrollbar-none mx-1 lg:mx-4">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="group relative text-[13px] font-medium px-3.5 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer"
+                className="group relative text-[13px] font-medium px-3.5 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer whitespace-nowrap"
                 style={{ color: "var(--navbar-text)", transitionTimingFunction: "var(--joy-bezier, cubic-bezier(0.34, 1.56, 0.64, 1))" }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;

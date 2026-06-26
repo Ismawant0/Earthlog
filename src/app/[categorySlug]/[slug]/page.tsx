@@ -285,12 +285,12 @@ export default async function ArticlePage({ params }: PageProps) {
                 </div>
 
                 {/* 2. Headline */}
-                <h1 className="text-3xl md:text-[42px] font-extrabold text-foreground leading-[1.2] tracking-tighter">
+                <h1 className="text-[30px] md:text-[40px] font-bold text-foreground leading-[1.2] tracking-tight">
                   {article.title}
                 </h1>
 
                 {/* 3. Summary */}
-                <p className="text-base text-muted leading-relaxed font-semibold">
+                <p className="text-[18px] md:text-[20px] font-normal text-muted leading-[1.6]">
                   {article.description}
                 </p>
 
@@ -320,7 +320,7 @@ export default async function ArticlePage({ params }: PageProps) {
               </header>
 
               {/* MDX Compiled content output */}
-              <div className="article-body prose dark:prose-invert text-[18px] md:text-[20px] leading-[1.9] text-foreground/90 max-w-[760px] mx-auto select-text">
+              <div className="article-body prose dark:prose-invert text-[16px] md:text-[18px] font-normal leading-[1.75] text-foreground max-w-[760px] mx-auto select-text">
                 <MDXRemote 
                   source={article.content} 
                   components={mdxComponents} 
