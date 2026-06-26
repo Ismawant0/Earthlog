@@ -132,21 +132,6 @@ export default function LocalArticleFallback({ categorySlug, slug }: LocalArticl
       <div className="flex-grow bg-background transition-colors duration-200 py-6 md:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* A. BREADCRUMBS BAR */}
-          <nav className="flex items-center gap-2 text-xs font-semibold text-muted mb-6 md:mb-10 overflow-x-auto whitespace-nowrap pb-2 md:pb-0 select-none">
-            <Link href="/" className="hover:text-primary transition-colors">
-              Beranda
-            </Link>
-            <ChevronRight className="h-3 w-3 shrink-0" />
-            <Link href={`/category/${categorySlug}`} className="hover:text-primary transition-colors capitalize">
-              {article.category}
-            </Link>
-            <ChevronRight className="h-3 w-3 shrink-0" />
-            <span className="text-foreground font-bold truncate max-w-[240px]">
-              {article.title}
-            </span>
-          </nav>
-
           {/* B. MAIN TWO-COLUMN LAYOUT */}
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
             
@@ -189,13 +174,6 @@ export default function LocalArticleFallback({ categorySlug, slug }: LocalArticl
                   <span className="flex items-center gap-1.5">
                     <Calendar className="h-3.5 w-3.5" />
                     {article.date}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5" />
-                    {article.readTime} Bacaan
-                  </span>
-                  <span className="text-accent font-extrabold">
-                    Tingkat: {article.difficulty}
                   </span>
                 </div>
               </div>

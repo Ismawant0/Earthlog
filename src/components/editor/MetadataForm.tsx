@@ -21,14 +21,10 @@ interface MetadataFormProps {
 }
 
 const CATEGORIES = [
-  'ai',
-  'linux',
-  'windows',
-  'open-source',
+  'news',
   'software',
-  'cyber-security',
-  'programming',
-  'cloud'
+  'hardware',
+  'reviews'
 ];
 
 export function MetadataForm({ initialData, onSave, onCancel }: MetadataFormProps) {

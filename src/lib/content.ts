@@ -37,11 +37,14 @@ export interface LearningPath {
 }
 export const CATEGORIES = [
   // PGDOWN technology categories
+  { name: "📰 News", slug: "news", count: 1, icon: "Newspaper", desc: "Latest updates, announcements, and tech industry news." },
+  { name: "💻 Software", slug: "software", count: 1, icon: "Code", desc: "Software engineering, apps, architecture, and development." },
+  { name: "📱 Hardware", slug: "hardware", count: 1, icon: "Cpu", desc: "Hardware reviews, gadgets, processors, and devices." },
+  { name: "⭐ Reviews", slug: "reviews", count: 1, icon: "Star", desc: "In-depth reviews of software, hardware, and tech services." },
   { name: "AI", slug: "ai", count: 1, icon: "Cpu", desc: "Artificial Intelligence, Machine Learning, LLMs, and Neural Networks." },
   { name: "Linux", slug: "linux", count: 1, icon: "Terminal", desc: "Linux distributions, kernel development, command line tools, and open source ecosystems." },
   { name: "Windows", slug: "windows", count: 1, icon: "Monitor", desc: "Windows development, system administration, PowerShell, and enterprise technology." },
   { name: "Open Source", slug: "open-source", count: 1, icon: "GitBranch", desc: "Open source software, licensing, community projects, and collaborative development." },
-  { name: "Software", slug: "software", count: 1, icon: "Code", desc: "Software engineering, architecture, design patterns, and application development." },
   { name: "Cyber Security", slug: "cyber-security", count: 1, icon: "Shield", desc: "Network security, penetration testing, threat intelligence, and vulnerability mitigation." },
   { name: "Programming", slug: "programming", count: 1, icon: "Code2", desc: "Programming languages, algorithms, data structures, and syntax guides." },
   { name: "Cloud", slug: "cloud", count: 1, icon: "CloudSun", desc: "Cloud computing, AWS, Azure, GCP, Docker, Kubernetes, and DevOps pipelines." },

@@ -2,17 +2,17 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { 
-  Search, 
-  Cpu, 
-  Terminal, 
-  Monitor, 
-  GitBranch, 
-  Code, 
-  Shield, 
-  Code2, 
-  CloudSun, 
-  User, 
+import {
+  Search,
+  Cpu,
+  Terminal,
+  Monitor,
+  GitBranch,
+  Code,
+  Shield,
+  Code2,
+  CloudSun,
+  User,
   Mail,
 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
@@ -30,13 +30,10 @@ export default function Navbar() {
       setScrolled(currentY > 10);
 
       if (currentY < 80) {
-        // Near the top — always show
         setVisible(true);
       } else if (currentY < lastScrollY.current) {
-        // Scrolling UP — show
         setVisible(true);
       } else if (currentY > lastScrollY.current + 4) {
-        // Scrolling DOWN — hide (small threshold to avoid jitter)
         setVisible(false);
       }
 
@@ -47,19 +44,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Update HTML class for scroll status so CSS can move components (like the progress bar)
   useEffect(() => {
     if (visible) {
       document.documentElement.classList.remove("navbar-hidden");
     } else {
       document.documentElement.classList.add("navbar-hidden");
     }
-    return () => {
-      document.documentElement.classList.remove("navbar-hidden");
-    };
+    return () => document.documentElement.classList.remove("navbar-hidden");
   }, [visible]);
 
-  // Global Keyboard Shortcut handler for CMD/CTRL + K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -72,98 +65,170 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "AI", href: "/category/ai", icon: <Cpu className="h-4 w-4" /> },
-    { name: "Linux", href: "/category/linux", icon: <Terminal className="h-4 w-4" /> },
-    { name: "Windows", href: "/category/windows", icon: <Monitor className="h-4 w-4" /> },
-    { name: "Open Source", href: "/category/open-source", icon: <GitBranch className="h-4 w-4" /> },
-    { name: "Software", href: "/category/software", icon: <Code className="h-4 w-4" /> },
-    { name: "Cyber Security", href: "/category/cyber-security", icon: <Shield className="h-4 w-4" /> },
-    { name: "Programming", href: "/category/programming", icon: <Code2 className="h-4 w-4" /> },
-    { name: "Cloud", href: "/category/cloud", icon: <CloudSun className="h-4 w-4" /> },
+    { name: "📰 News", href: "/category/news" },
+    { name: "💻 Software", href: "/category/software" },
+    { name: "📱 Hardware", href: "/category/hardware" },
+    { name: "⭐ Reviews", href: "/category/reviews" },
   ];
 
   return (
     <>
-      {/* Sticky Header with hide/show on scroll - Always Black/Dark background */}
+      {/* Navbar — 60px, glass morphism, Material You */}
       <header
-        className={`fixed top-0 left-0 right-0 z-45 w-full h-[64px] flex items-center transition-all duration-300
-          bg-slate-950/95 border-b border-white/10 shadow-md backdrop-blur-xl
+        className={`fixed top-0 left-0 right-0 z-50 w-full h-[60px] flex items-center transition-all duration-300 ease-out
           ${visible ? "translate-y-0" : "-translate-y-full"}
+          ${scrolled ? "shadow-[0_1px_3px_rgba(0,0,0,0.06)]" : ""}
         `}
+        style={{
+          backgroundColor: "var(--navbar-bg)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderBottom: scrolled ? "none" : "none",
+        }}
       >
-        <div className="w-full max-w-[1280px] mx-auto px-6 flex items-center justify-between gap-4">
-          
-          {/* Logo Branding */}
-          <Link href="/" className="flex items-center gap-2 group shrink-0 select-none">
-            <div className="flex items-center gap-1">
-              <span className="text-2xl font-black font-sans tracking-tighter text-white">
-                PG<span className="text-primary">DOWN</span>
+        <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
+
+          {/* Logo — morphs from neutral → blue on hover */}
+          <Link
+            href="/"
+            className="logo-link flex items-center gap-2 group shrink-0 select-none"
+          >
+            <div className="flex items-center gap-1.5">
+              <span
+                className="logo-text text-[20px] font-bold font-sans tracking-tight transition-all duration-200"
+                style={{ color: "var(--logo-color)", transitionTimingFunction: "var(--joy-bezier, cubic-bezier(0.34, 1.56, 0.64, 1))" }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.color = "var(--logo-hover)";
+                  el.style.transform = "scale(1.03)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.color = "var(--logo-color)";
+                  el.style.transform = "scale(1)";
+                }}
+              >
+                PG
+                <span
+                  className="transition-all duration-200"
+                  style={{ color: "inherit" }}
+                >
+                  DOWN
+                </span>
               </span>
-              <span className="text-[9px] font-mono border border-primary/30 bg-primary/10 text-primary rounded px-1 py-0.5 uppercase tracking-wide">
-                PRO
+              <span className="text-[9px] font-medium bg-primary/10 text-primary rounded-full px-2 py-0.5 tracking-wide uppercase">
+                Beta
               </span>
             </div>
           </Link>
 
-          {/* Center Navigation Links (Desktop) */}
+          {/* Center Nav — desktop only, pill hover */}
           <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-[13px] font-semibold text-slate-300 hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/10 transition-all duration-150"
+                className="group relative text-[13px] font-medium px-3.5 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer"
+                style={{ color: "var(--navbar-text)", transitionTimingFunction: "var(--joy-bezier, cubic-bezier(0.34, 1.56, 0.64, 1))" }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.color = "var(--primary)";
+                  el.style.backgroundColor = "var(--primary-subtle)";
+                  el.style.transform = "scale(1.02)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.color = "var(--navbar-text)";
+                  el.style.backgroundColor = "transparent";
+                  el.style.transform = "scale(1)";
+                }}
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* Right Action Block */}
-          <div className="flex items-center gap-2">
-            
-            {/* Search Box Trigger */}
+          {/* Right actions */}
+          <div className="flex items-center gap-1.5">
+
+            {/* Search trigger — pill shape */}
             <button
+              id="navbar-search-trigger"
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center justify-center p-2 border border-white/10 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-xl transition-all duration-200 w-10 h-9 lg:w-44 text-left cursor-pointer text-sm"
-              aria-label="Cari artikel"
+              className="interactive flex items-center gap-2 px-3 py-1.5 rounded-full border cursor-pointer w-10 h-8 lg:w-44 text-left"
+              style={{
+                borderColor: "var(--border)",
+                backgroundColor: "var(--surface-alt)",
+                color: "var(--text-muted)",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget;
+                el.style.backgroundColor = "var(--surface)";
+                el.style.boxShadow = "var(--shadow-sm)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget;
+                el.style.backgroundColor = "var(--surface-alt)";
+                el.style.boxShadow = "none";
+              }}
+              aria-label="Search articles"
             >
-              <Search className="h-4 w-4 shrink-0 mr-0 lg:mr-2 text-slate-400" />
-              <span className="hidden lg:inline-flex flex-1 truncate text-xs text-slate-400/80">Search...</span>
-              <span className="hidden lg:inline-flex items-center text-[9px] font-bold border border-white/15 px-1.5 py-0.5 rounded bg-white/10 text-slate-300 shrink-0 select-none">
+              <Search className="h-3.5 w-3.5 shrink-0" />
+              <span className="hidden lg:inline-flex flex-1 text-[12px] truncate">Search anything...</span>
+              <span
+                className="hidden lg:inline-flex items-center text-[10px] font-semibold border px-1.5 py-0.5 rounded-md shrink-0 select-none"
+                style={{ borderColor: "var(--border)", color: "var(--caption)" }}
+              >
                 ⌘K
               </span>
             </button>
 
-            {/* Theme Toggle */}
-            <ThemeToggle 
-              className="flex items-center justify-center w-9 h-9 border border-white/10 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-xl transition-all cursor-pointer shadow-sm relative"
+            {/* Theme toggle — pill shape */}
+            <ThemeToggle
+              className="interactive flex items-center justify-center w-8 h-8 rounded-full border cursor-pointer"
+              style={{
+                borderColor: "var(--border)",
+                backgroundColor: "var(--surface-alt)",
+                color: "var(--text-muted)",
+              }}
             />
 
-            {/* Newsletter Link */}
-            <Link 
+            {/* Newsletter — pill */}
+            <Link
               href="#newsletter"
-              className="hidden sm:flex items-center justify-center w-9 h-9 border border-white/10 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-xl transition-all cursor-pointer"
+              className="interactive hidden sm:flex items-center justify-center w-8 h-8 rounded-full border cursor-pointer"
               title="Newsletter"
+              style={{
+                borderColor: "var(--border)",
+                backgroundColor: "var(--surface-alt)",
+                color: "var(--text-muted)",
+              }}
             >
-              <Mail className="h-4 w-4" />
+              <Mail className="h-3.5 w-3.5" />
             </Link>
 
-            {/* User Profile */}
+            {/* User — pill */}
             <button
-              className="flex items-center justify-center w-9 h-9 border border-white/10 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white rounded-xl transition-all cursor-pointer"
+              id="navbar-user-menu"
+              className="interactive flex items-center justify-center w-8 h-8 rounded-full border cursor-pointer"
               aria-label="User Menu"
+              style={{
+                borderColor: "var(--border)",
+                backgroundColor: "var(--surface-alt)",
+                color: "var(--text-muted)",
+              }}
             >
-              <User className="h-4 w-4" />
+              <User className="h-3.5 w-3.5" />
             </button>
 
           </div>
         </div>
       </header>
 
-      {/* Spacer to push content below fixed header */}
-      <div className="h-[64px]" />
+      {/* Spacer — 60px to match navbar height */}
+      <div className="h-[60px]" />
 
-      {/* Global Search Dialog palette */}
+      {/* Search dialog */}
       <SearchDialog isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );

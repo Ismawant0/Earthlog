@@ -1,248 +1,818 @@
 @import "tailwindcss";
 @import "katex/dist/katex.min.css";
 
+/* ============================================================
+   PGDOWN — Material You Design System v2.0
+   Inspired by: Google Material Design 3 · Notion · Linear · Raycast
+   Feel: Soft · Playful · Precise · Tactile
+   ============================================================ */
+
+/* ============================================================
+   LIGHT MODE — Warm gray-blue canvas, pastel accents
+   ============================================================ */
 :root {
-  --background: #F7F8FA;
-  --background-alt: #F1F5F9;
+  /* === SURFACES === */
+  --canvas-bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-alt: #F8F9FA;
+  --surface-elevated: #FFFFFF;
+  --editor-bg: #FFFFFF;
+  --sidebar-bg: #F8F9FA;
+
+  /* Legacy aliases for backward compat */
+  --background: #FFFFFF;
+  --background-alt: #F8F9FA;
   --card: #FFFFFF;
-  --border: rgba(17, 24, 39, 0.08);
-  --foreground: #111827;
-  --muted: #4B5563;
-  --muted-more: #6B7280;
-  --caption: #9CA3AF;
-  
-  --primary: #E95420;
-  --primary-light: #D9480F;
-  --accent: #E95420;
-  --accent-light: #D9480F;
-  
-  --success: #16A34A;
-  --warning: #D97706;
-  --error: #DC2626;
-  
-  --blue: #2563EB;
-  --purple: #7C3AED;
-  
+  --card-elevated: #FFFFFF;
+
+  /* === BORDERS — extremely subtle === */
+  --border: #E8EAED;
+  --border-soft: rgba(0, 0, 0, 0.06);
+
+  /* === TEXT === */
+  --text-primary: #1F1F1F;
+  --text-secondary: #5E5E5E;
+  --text-muted: #757575;
+  --foreground: #1F1F1F;
+  --foreground-sub: #5E5E5E;
+  --muted: #5E5E5E;
+  --muted-more: #80868B;
+  --caption: #BDC1C6;
+
+  /* === BRAND: Google Blue (Elegant & Professional) === */
+  --primary: #0B57D0;
+  --primary-hover: #0842A0;
+  --primary-pressed: #062E6F;
+  --primary-light: #A8C7FA;
+  --primary-subtle: rgba(11, 87, 208, 0.08);
+
+  /* === SECONDARY: Google Green (Refined) === */
+  --secondary: #146C2E;
+  --secondary-hover: #0F5223;
+
+  /* === ACCENT: Google Yellow === */
+  --accent: #E37400;
+  --accent-light: #F9AB00;
+
+  /* === PASTEL ACCENTS (Playful but Simple) === */
+  --green-surface: #E6F4EA;
+  --green-text: #0D652D;
+  --yellow-surface: #FEF7E0;
+  --yellow-text: #E37400;
+  --lavender-surface: #E8F0FE;
+  --lavender-text: #0B57D0;
+  --coral-surface: #FCE8E6;
+  --coral-text: #B3261E;
+
+  /* === SEMANTIC === */
+  --success: #34A853;
+  --warning: #FBBC05;
+  --error: #EA4335;
+  --info: #4285F4;
+
+  /* === LINKS === */
+  --link: #1A73E8;
+  --link-hover: #1558B0;
+  --link-visited: #7B1FA2;
+
+  /* === LOGO — neutral, never rigid brand color === */
+  --logo-color: #1F1F1F;
+  --logo-hover: #4285F4;
+
+  /* === NAVBAR === */
+  --navbar-bg: rgba(255, 255, 255, 0.85);
+  --navbar-border: #E8EAED;
+  --navbar-text: #5E5E5E;
+
+  /* === FOOTER === */
+  --footer-bg: #F1F3F4;
+  --footer-heading: #1F1F1F;
+  --footer-text: #5E5E5E;
+  --footer-link: #5E5E5E;
+  --footer-link-hover: #1A73E8;
+  --footer-divider: #E8EAED;
+
+  /* === SIDEBAR === */
+  --sidebar-title: #1F1F1F;
+  --sidebar-text: #5E5E5E;
+  --sidebar-hover: #4285F4;
+  --sidebar-active-bg: rgba(66, 133, 244, 0.10);
+
+  /* === BUTTONS === */
+  --btn-primary-bg: #4285F4;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #1A73E8;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: #5E5E5E;
+  --btn-secondary-border: #DADCE0;
+  --btn-ghost-hover: #F1F3F4;
+
+  /* === CODE === */
+  --code-bg: #EEF3FD;
+  --code-text: #1558B0;
+  --codeblock-bg: #F8F9FA;
+  --codeblock-text: #1F1F1F;
+  --codeblock-border: #E8EAED;
+
+  /* === BLOCKQUOTE === */
+  --blockquote-bg: rgba(66, 133, 244, 0.04);
+  --blockquote-border: #4285F4;
+  --blockquote-text: #5E5E5E;
+
+  /* === TAGS === */
+  --tag-bg: rgba(66, 133, 244, 0.08);
+  --tag-border: rgba(66, 133, 244, 0.20);
+  --tag-text: #1A73E8;
+  --tag-bg-hover: rgba(66, 133, 244, 0.14);
+
+  /* === TABLE === */
+  --table-header: #F1F3F4;
+  --table-border: #E8EAED;
+  --table-row-hover: #F8F9FA;
+
+  /* === PROGRESS BAR — Google Yellow === */
+  --progress-bar: #FBBC05;
+
+  /* === FOCUS === */
+  --focus-ring: #4285F4;
+
+  /* === RADIUS SYSTEM (Material 3 expressive) === */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+  --radius-editor: 16px;
+  --radius-card: 16px;
+  --radius-panel: 24px;
+  --radius-btn: 9999px;
+  --radius-input: 12px;
+
+  /* === SHADOWS — very subtle === */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --shadow-navbar: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  /* === MOTION === */
+  --joy-bezier: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: ease-out;
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+
+  /* === FONT STACKS === */
   --font-inter: var(--font-inter);
   --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
 }
 
+/* ============================================================
+   DARK MODE — Midnight Charcoal, no pure black
+   ============================================================ */
 .dark {
-  --background: #0B0F19;
-  --background-alt: #0E1524;
-  --card: #151D30;
-  --border: rgba(255, 255, 255, 0.08);
-  --foreground: #F3F4F6;
-  --muted: #9CA3AF;
-  --muted-more: #6B7280;
-  --caption: #4B5563;
-  
-  --primary: #E95420;
-  --primary-light: #F06A38;
-  --accent: #E95420;
-  --accent-light: #F06A38;
-  
-  --success: #22C55E;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  
-  --blue: #3B82F6;
-  --purple: #A855F7;
+  /* Surfaces (Google Dark Mode) */
+  --canvas-bg: #202124;
+  --surface: #202124;
+  --surface-alt: #303134;
+  --surface-elevated: #3C4043;
+  --editor-bg: #202124;
+  --sidebar-bg: #303134;
+
+  /* Legacy aliases */
+  --background: #202124;
+  --background-alt: #303134;
+  --card: #202124;
+  --card-elevated: #3C4043;
+
+  /* Borders */
+  --border: #3C4043;
+  --border-soft: rgba(255, 255, 255, 0.06);
+
+  /* Text */
+  --text-primary: #E3E3E3;
+  --text-secondary: #C4C6C5;
+  --text-muted: #8E918F;
+  --foreground: #E3E3E3;
+  --foreground-sub: #C4C6C5;
+  --muted: #C4C6C5;
+  --muted-more: #8E918F;
+  --caption: #5F6368;
+
+  /* Brand (Material 3 Dark Primary) */
+  --primary: #A8C7FA;
+  --primary-hover: #D3E3FD;
+  --primary-pressed: #7CB0FC;
+  --primary-light: #D3E3FD;
+  --primary-subtle: rgba(168, 199, 250, 0.12);
+
+  /* Secondary */
+  --secondary: #81C995;
+  --secondary-hover: #C4EED0;
+
+  /* Accent */
+  --accent: #FDD663;
+  --accent-light: #FEECE0;
+
+  /* Pastel Glow Accents */
+  --green-surface: rgba(129, 201, 149, 0.15);
+  --green-text: #81C995;
+  --yellow-surface: rgba(253, 214, 99, 0.15);
+  --yellow-text: #FDD663;
+  --lavender-surface: rgba(168, 199, 250, 0.15);
+  --lavender-text: #A8C7FA;
+  --coral-surface: rgba(242, 139, 130, 0.15);
+  --coral-text: #F28B82;
+
+  /* Semantic */
+  --success: #81C995;
+  --warning: #FDD663;
+  --error: #F28B82;
+  --info: #8AB4F8;
+
+  /* Links */
+  --link: #8AB4F8;
+  --link-hover: #669DF6;
+  --link-visited: #CE93D8;
+
+  /* Logo */
+  --logo-color: #E3E3E3;
+  --logo-hover: #A8C7FA;
+
+  /* Navbar */
+  --navbar-bg: rgba(31, 32, 35, 0.85);
+  --navbar-border: #3C4043;
+  --navbar-text: #C4C6C5;
+
+  /* Footer */
+  --footer-bg: #202124;
+  --footer-heading: #E3E3E3;
+  --footer-text: #C4C6C5;
+  --footer-link: #C4C6C5;
+  --footer-link-hover: #8AB4F8;
+  --footer-divider: #3C4043;
+
+  /* Sidebar */
+  --sidebar-title: #E3E3E3;
+  --sidebar-text: #C4C6C5;
+  --sidebar-hover: #8AB4F8;
+  --sidebar-active-bg: rgba(138, 180, 248, 0.12);
+
+  /* Buttons */
+  --btn-primary-bg: #4285F4;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #1A73E8;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: #C4C6C5;
+  --btn-secondary-border: #5F6368;
+  --btn-ghost-hover: #3C4043;
+
+  /* Code */
+  --code-bg: #3C4043;
+  --code-text: #8AB4F8;
+  --codeblock-bg: #1F2023;
+  --codeblock-text: #E3E3E3;
+  --codeblock-border: #3C4043;
+
+  /* Blockquote */
+  --blockquote-bg: rgba(138, 180, 248, 0.06);
+  --blockquote-border: #8AB4F8;
+  --blockquote-text: #C4C6C5;
+
+  /* Tags */
+  --tag-bg: rgba(138, 180, 248, 0.10);
+  --tag-border: rgba(138, 180, 248, 0.25);
+  --tag-text: #8AB4F8;
+  --tag-bg-hover: rgba(138, 180, 248, 0.18);
+
+  /* Table */
+  --table-header: #303134;
+  --table-border: #3C4043;
+  --table-row-hover: #28292E;
+
+  /* Progress */
+  --progress-bar: #FDD663;
+
+  /* Focus */
+  --focus-ring: #8AB4F8;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.30);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.40);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.50);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.30);
+  --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.40);
+  --shadow-navbar: 0 1px 3px rgba(0, 0, 0, 0.30);
 }
 
+/* ============================================================
+   TAILWIND V4 @theme BRIDGE
+   ============================================================ */
 @theme {
+  --color-canvas-bg: var(--canvas-bg);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-elevated: var(--surface-elevated);
+
   --color-background: var(--background);
   --color-background-alt: var(--background-alt);
   --color-card: var(--card);
+  --color-card-elevated: var(--card-elevated);
   --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+
   --color-foreground: var(--foreground);
+  --color-foreground-sub: var(--foreground-sub);
   --color-muted: var(--muted);
   --color-muted-more: var(--muted-more);
   --color-caption: var(--caption);
-  
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
   --color-primary-light: var(--primary-light);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
-  
+
+  --color-green-surface: var(--green-surface);
+  --color-green-text: var(--green-text);
+  --color-yellow-surface: var(--yellow-surface);
+  --color-yellow-text: var(--yellow-text);
+  --color-lavender-surface: var(--lavender-surface);
+  --color-lavender-text: var(--lavender-text);
+
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
-  
-  --color-blue: var(--blue);
-  --color-purple: var(--purple);
-  
+  --color-info: var(--info);
+
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-link-visited: var(--link-visited);
+
+  --color-logo-color: var(--logo-color);
+  --color-logo-hover: var(--logo-hover);
+
+  --color-navbar-bg: var(--navbar-bg);
+  --color-navbar-border: var(--navbar-border);
+  --color-navbar-text: var(--navbar-text);
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-heading: var(--footer-heading);
+  --color-footer-text: var(--footer-text);
+  --color-footer-link: var(--footer-link);
+  --color-footer-link-hover: var(--footer-link-hover);
+  --color-footer-divider: var(--footer-divider);
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-sidebar-title: var(--sidebar-title);
+  --color-sidebar-text: var(--sidebar-text);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-active-bg: var(--sidebar-active-bg);
+
+  --color-btn-primary-bg: var(--btn-primary-bg);
+  --color-btn-primary-text: var(--btn-primary-text);
+  --color-btn-ghost-hover: var(--btn-ghost-hover);
+
+  --color-code-bg: var(--code-bg);
+  --color-code-text: var(--code-text);
+  --color-codeblock-bg: var(--codeblock-bg);
+  --color-codeblock-text: var(--codeblock-text);
+  --color-codeblock-border: var(--codeblock-border);
+  --color-blockquote-bg: var(--blockquote-bg);
+  --color-blockquote-border: var(--blockquote-border);
+  --color-blockquote-text: var(--blockquote-text);
+
+  --color-tag-bg: var(--tag-bg);
+  --color-tag-border: var(--tag-border);
+  --color-tag-text: var(--tag-text);
+  --color-tag-bg-hover: var(--tag-bg-hover);
+
+  --color-table-header: var(--table-header);
+  --color-table-border: var(--table-border);
+  --color-table-row-hover: var(--table-row-hover);
+
+  --color-progress-bar: var(--progress-bar);
+  --color-focus-ring: var(--focus-ring);
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif), ui-serif, Georgia, Cambria, serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --animate-spring-in: spring-in var(--duration-fast) var(--joy-bezier);
+  --animate-fade-in: fade-in var(--duration-base) ease-out;
+}
+
+@keyframes spring-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  line-height: 1.8;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Typography Helpers */
-.hero-title {
-  font-size: 48px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+/* ============================================================
+   LINKS
+   ============================================================ */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease-out;
 }
 
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 32px;
-  }
+/* Explicit text links in prose or article body */
+.article-body a,
+.prose a {
+  color: var(--link);
 }
 
-.section-heading {
-  font-size: 28px;
-  font-weight: 750;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
+.article-body a:hover,
+.prose a:hover {
+  color: var(--link-hover);
 }
 
-@media (max-width: 768px) {
-  .section-heading {
-    font-size: 22px;
-  }
+/* ============================================================
+   FOCUS — Material style
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-input);
 }
 
-.article-h1 {
-  font-size: 42px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.article-h2 {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-top: 2.25rem;
-  margin-bottom: 1.125rem;
-}
-
-.article-h3 {
-  font-size: 22px;
-  font-weight: 650;
-  margin-top: 1.75rem;
-  margin-bottom: 0.875rem;
-}
-
-.article-body {
-  font-size: 20px;
-  line-height: 1.9;
-  color: var(--foreground);
-  max-width: 72ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Content container width */
-.article-container {
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Custom Scrollbar for premium experience */
+/* ============================================================
+   SCROLLBAR — thin & soft
+   ============================================================ */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border-radius: 4px;
+  border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted);
+  background: var(--muted-more);
 }
 
-/* Beautiful MDX Tables generated by remark-gfm with custom borders */
+/* ============================================================
+   GLOBAL TRANSITIONS — Material motion + Joy bezier
+   ============================================================ */
+.interactive {
+  transition: all var(--duration-base) var(--joy-bezier);
+  cursor: pointer;
+}
+
+.interactive:hover {
+  transform: scale(1.02);
+}
+
+.interactive:active {
+  transform: scale(0.97);
+}
+
+button,
+a,
+[role="button"] {
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--joy-bezier);
+}
+
+[disabled],
+[aria-disabled="true"] {
+  opacity: 0.38;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   GLASS MORPHISM UTILITY
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.dark .glass {
+  background: rgba(31, 32, 35, 0.85);
+}
+
+/* ============================================================
+   TAG / BADGE
+   ============================================================ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  color: var(--tag-text);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: background-color 180ms ease-out, transform 180ms ease-out;
+}
+
+.tag:hover {
+  background-color: var(--tag-bg-hover);
+  color: var(--tag-text);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   CARD HOVER — Material elevation lift (spring)
+   ============================================================ */
+.card-hover {
+  transition: transform var(--duration-base) var(--joy-bezier), box-shadow var(--duration-base) var(--joy-bezier);
+  will-change: transform;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   SURFACE CARD UTILITY
+   ============================================================ */
+.surface-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-base) var(--joy-bezier), box-shadow var(--duration-base) var(--joy-bezier);
+}
+
+.surface-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   PILL UTILITY
+   ============================================================ */
+.pill {
+  border-radius: var(--radius-pill);
+}
+
+/* ============================================================
+   TYPOGRAPHY HELPERS
+   ============================================================ */
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 30px;
+  }
+}
+
+.section-heading {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 20px;
+  }
+}
+
+/* ============================================================
+   ARTICLE TYPOGRAPHY
+   ============================================================ */
+.article-h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.article-h2 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.article-h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.article-body {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--foreground-sub);
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-container {
+  max-width: 740px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-meta {
+  color: var(--muted-more);
+  font-size: 13px;
+}
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+.breadcrumb-inactive {
+  color: var(--caption);
+}
+
+.breadcrumb-active {
+  color: var(--primary);
+}
+
+/* ============================================================
+   BLOCKQUOTE
+   ============================================================ */
+.article-body blockquote,
+.article-container blockquote,
+.prose blockquote {
+  background-color: var(--blockquote-bg) !important;
+  border-left: 4px solid var(--blockquote-border) !important;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0 !important;
+  color: var(--blockquote-text) !important;
+  padding: 1rem 1.25rem 1rem 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  font-style: italic;
+}
+
+/* ============================================================
+   INLINE CODE (pill-shaped)
+   ============================================================ */
+.article-body code:not(pre code),
+.article-container code:not(pre code),
+.prose code:not(pre code) {
+  background-color: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  padding: 2px 8px !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.875em !important;
+  font-weight: 500 !important;
+}
+
+/* ============================================================
+   CODE BLOCK
+   ============================================================ */
+.article-body pre,
+.article-container pre,
+.prose pre {
+  background-color: var(--codeblock-bg) !important;
+  color: var(--codeblock-text) !important;
+  border: 1px solid var(--codeblock-border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 1.25rem 1.5rem !important;
+  overflow-x: auto !important;
+  margin: 1.5rem 0 !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+
+/* ============================================================
+   MDX TABLE
+   ============================================================ */
 .article-container.prose table,
 .article-body.prose table {
   width: 100% !important;
   border-collapse: collapse !important;
-  margin-top: 2rem !important;
-  margin-bottom: 2rem !important;
-  font-size: 15px !important;
-  border: 1px solid var(--border) !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 1.75rem !important;
+  font-size: 14.5px !important;
+  border: 1px solid var(--table-border) !important;
   background-color: var(--card) !important;
-  border-radius: 8px !important;
+  border-radius: var(--radius-lg) !important;
   overflow: hidden !important;
 }
 
 .article-container.prose thead,
 .article-body.prose thead {
-  background-color: var(--background-alt) !important;
-  border-bottom: 2px solid var(--border) !important;
+  background-color: var(--table-header) !important;
+  border-bottom: 1px solid var(--table-border) !important;
 }
 
 .article-container.prose th,
 .article-body.prose th {
-  background-color: var(--background-alt) !important;
+  background-color: var(--table-header) !important;
   color: var(--foreground) !important;
-  font-weight: 700 !important;
-  border: 1px solid var(--border) !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--table-border) !important;
   padding: 0.75rem 1rem !important;
   text-align: left !important;
 }
 
 .article-container.prose td,
 .article-body.prose td {
-  border: 1px solid var(--border) !important;
+  border: 1px solid var(--table-border) !important;
   padding: 0.75rem 1rem !important;
-  color: var(--foreground) !important;
+  color: var(--foreground-sub) !important;
 }
 
-.article-container.prose tr:nth-child(even),
-.article-body.prose tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.015) !important;
+.article-container.prose tr:hover,
+.article-body.prose tr:hover {
+  background-color: var(--table-row-hover) !important;
+  transition: background-color 180ms ease-out;
 }
 
-.dark .article-container.prose tr:nth-child(even),
-.dark .article-body.prose tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.02) !important;
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+hr,
+.divider {
+  border-color: var(--border);
 }
 
-/* ============================================
-   KaTeX Math Rendering Styles
-   ============================================ */
-
-/* Inline math */
+/* ============================================================
+   KaTeX MATH
+   ============================================================ */
 .article-body .katex {
   font-size: 1.05em;
 }
 
-/* Block / display math */
 .article-body .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 1.25rem 1.5rem;
-  margin: 1.75rem 0;
+  margin: 1.5rem 0;
   background-color: var(--card);
   border: 1px solid var(--border);
-  border-left: 4px solid var(--primary);
-  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-lg);
   text-align: center;
 }
 
-.article-body .katex-display > .katex {
+.article-body .katex-display>.katex {
   white-space: normal;
 }
 
-/* Dark mode KaTeX colors */
 .dark .article-body .katex {
   color: var(--foreground);
 }
@@ -253,11 +823,104 @@ body {
   border-left-color: var(--primary);
 }
 
-/* Custom transitions for reading progress bar when navbar is hidden */
+/* ============================================================
+   READING PROGRESS BAR — Google Yellow
+   ============================================================ */
 .progress-bar-container {
   transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .navbar-hidden .progress-bar-container {
   top: 0 !important;
+}
+
+/* ============================================================
+   FOOTER — light in both modes
+   ============================================================ */
+footer.site-footer {
+  background-color: var(--footer-bg) !important;
+  border-top: 1px solid var(--footer-divider) !important;
+}
+
+footer.site-footer h1,
+footer.site-footer h2,
+footer.site-footer h3,
+footer.site-footer h4 {
+  color: var(--footer-heading) !important;
+}
+
+footer.site-footer a {
+  color: var(--footer-link);
+  transition: color 180ms ease-out;
+}
+
+footer.site-footer a:hover {
+  color: var(--footer-link-hover);
+}
+
+/* ============================================================
+   SIDEBAR ACTIVE PILL
+   ============================================================ */
+.sidebar-active {
+  background-color: var(--sidebar-active-bg);
+  color: var(--primary);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+/* ============================================================
+   MATERIAL SEGMENTED CONTROL (pill-shaped)
+   ============================================================ */
+.segmented-control {
+  display: inline-flex;
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.segmented-control button {
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--joy-bezier);
+}
+
+.segmented-control button.active {
+  background-color: var(--card);
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.segmented-control button:hover:not(.active) {
+  color: var(--foreground);
+  background-color: var(--btn-ghost-hover);
+}
+
+/* ============================================================
+   ACTIVE LINE INDICATOR (editor)
+   ============================================================ */
+.active-line {
+  background: linear-gradient(to right,
+      var(--yellow-surface) 0%,
+      transparent 70%);
+}
+
+/* ============================================================
+   FOCUS MODE
+   ============================================================ */
+.focus-mode .chrome {
+  opacity: 0.3;
+  transition: opacity 400ms ease-out;
+}
+
+.focus-mode .editor-container {
+  opacity: 1;
 }

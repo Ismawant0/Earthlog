@@ -57,11 +57,12 @@ export default function ArticleToc({ headings }: ArticleTocProps) {
 
   return (
     <>
-      {/* PGDOWN Top Fixed Reading Progress Bar */}
-      <div className="progress-bar-container fixed top-[64px] left-0 right-0 h-[4px] z-50 bg-primary/10 pointer-events-none">
+      {/* PGDOWN Top Fixed Reading Progress Bar — Amber accent per design spec */}
+      <div className="progress-bar-container fixed top-[64px] left-0 right-0 h-[3px] z-50 pointer-events-none"
+        style={{ backgroundColor: 'rgba(245,158,11,0.12)' }}>
         <div 
-          className="h-full bg-primary transition-all duration-75 ease-out rounded-r-full" 
-          style={{ width: `${scrollProgress}%` }}
+          className="h-full transition-all duration-75 ease-out rounded-r-full" 
+          style={{ width: `${scrollProgress}%`, backgroundColor: 'var(--progress-bar)' }}
         />
       </div>
 

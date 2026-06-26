@@ -259,31 +259,6 @@ export default async function ArticlePage({ params }: PageProps) {
       <div className="flex-grow bg-background py-8 md:py-12 transition-colors duration-200">
         <div className="max-w-[1280px] mx-auto px-6">
           
-          {/* Breadcrumbs Bar */}
-          <nav className="flex items-center gap-2 text-xs font-semibold text-muted-more mb-8 overflow-x-auto whitespace-nowrap pb-2 md:pb-0 select-none">
-            <Link href="/" className="hover:text-primary transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="h-3 w-3 shrink-0" />
-            <div className="flex items-center gap-1">
-              {(article.categories || [article.categorySlug]).map((catSlug, i) => {
-                const catName = article.category.split(',')[i]?.trim() || catSlug;
-                return (
-                  <span key={catSlug} className="inline-flex items-center gap-1.5">
-                    {i > 0 && <span className="text-muted-more">/</span>}
-                    <Link href={`/category/${catSlug}`} className="hover:text-primary transition-colors capitalize">
-                      {catName}
-                    </Link>
-                  </span>
-                );
-              })}
-            </div>
-            <ChevronRight className="h-3 w-3 shrink-0" />
-            <span className="text-foreground font-bold truncate max-w-[240px]">
-              {article.title}
-            </span>
-          </nav>
-
           {/* Main Two-Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
@@ -328,13 +303,6 @@ export default async function ArticlePage({ params }: PageProps) {
                   <span className="flex items-center gap-1.5">
                     <Calendar className="h-3.5 w-3.5" />
                     <time dateTime={article.date}>{article.date}</time>
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5" />
-                    {article.readTime} reading time
-                  </span>
-                  <span className="text-primary font-bold">
-                    Level: {article.difficulty}
                   </span>
                 </div>
 

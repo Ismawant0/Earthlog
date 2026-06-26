@@ -158,7 +158,8 @@ export const mdxComponents = {
   // Custom styled base elements for consistent beautiful typography in MDX
   h1: (props: any) => (
     <h1 
-      className="text-3xl md:text-4xl font-bold font-serif tracking-tight mt-8 mb-4 border-b border-border/60 pb-3 text-foreground" 
+      className="text-3xl md:text-4xl font-bold tracking-tight mt-8 mb-4 pb-3 text-foreground"
+      style={{ borderBottom: '1px solid var(--border)' }}
       {...props} 
     />
   ),
@@ -168,7 +169,8 @@ export const mdxComponents = {
     return (
       <h2 
         id={id}
-        className="text-2xl font-bold tracking-tight mt-10 mb-4 text-foreground/95 border-b border-border/30 pb-2 scroll-mt-20" 
+        className="text-2xl font-semibold tracking-tight mt-10 mb-4 scroll-mt-20"
+        style={{ color: 'var(--foreground)', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}
         {...props} 
       />
     );
@@ -179,26 +181,30 @@ export const mdxComponents = {
     return (
       <h3 
         id={id}
-        className="text-xl font-bold mt-6 mb-3 text-foreground/90 scroll-mt-20" 
+        className="text-xl font-semibold mt-7 mb-3 scroll-mt-20"
+        style={{ color: 'var(--foreground)' }}
         {...props} 
       />
     );
   },
   p: (props: any) => (
     <p 
-      className="text-[17px] md:text-lg leading-[1.85] text-foreground/80 my-4 text-justify" 
+      className="text-[16.5px] leading-[1.85] my-4"
+      style={{ color: 'var(--foreground-sub)' }}
       {...props} 
     />
   ),
   ul: (props: any) => (
     <ul 
-      className="list-disc pl-6 my-4 space-y-2 text-[16px] md:text-[17px] text-foreground/80" 
+      className="list-disc pl-6 my-4 space-y-2 text-[16px]"
+      style={{ color: 'var(--foreground-sub)' }}
       {...props} 
     />
   ),
   ol: (props: any) => (
     <ol 
-      className="list-decimal pl-6 my-4 space-y-2 text-[16px] md:text-[17px] text-foreground/80" 
+      className="list-decimal pl-6 my-4 space-y-2 text-[16px]"
+      style={{ color: 'var(--foreground-sub)' }}
       {...props} 
     />
   ),
@@ -216,19 +222,38 @@ export const mdxComponents = {
   ),
   blockquote: (props: any) => (
     <blockquote 
-      className="border-l-4 border-accent bg-accent/5 py-2 px-4 rounded-r my-6 italic text-[17px] text-foreground/90" 
+      className="border-l-[3px] py-3 px-5 my-6 italic text-[16px] leading-relaxed"
+      style={{ 
+        backgroundColor: 'var(--blockquote-bg)', 
+        borderLeftColor: 'var(--blockquote-border)',
+        color: 'var(--blockquote-text)',
+        borderRadius: '0 12px 12px 0'
+      }}
       {...props} 
     />
   ),
   pre: (props: any) => (
     <pre 
-      className="bg-card border border-border p-4 rounded-lg overflow-x-auto my-6 font-mono text-sm leading-relaxed" 
+      className="overflow-x-auto my-6 font-mono text-sm leading-relaxed"
+      style={{
+        backgroundColor: 'var(--codeblock-bg)',
+        color: 'var(--codeblock-text)',
+        border: '1px solid var(--codeblock-border)',
+        borderRadius: 'var(--radius-card)',
+        padding: '1.25rem 1.5rem'
+      }}
       {...props} 
     />
   ),
   code: (props: any) => (
     <code 
-      className="bg-background-alt border border-border px-1.5 py-0.5 rounded font-mono text-sm text-accent font-semibold" 
+      className="font-mono text-sm font-medium"
+      style={{
+        backgroundColor: 'var(--code-bg)',
+        color: 'var(--code-text)',
+        padding: '2px 6px',
+        borderRadius: '6px'
+      }}
       {...props} 
     />
   ),
