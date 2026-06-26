@@ -268,29 +268,13 @@ export default async function ArticlePage({ params }: PageProps) {
               {/* Header block following exact requested order */}
               <header className="space-y-4 border-b border-border/65 pb-6">
                 
-                {/* 1. Category */}
-                <div className="flex flex-wrap gap-1.5 select-none">
-                  {(article.categories || [article.categorySlug]).map((catSlug, i) => {
-                    const catName = article.category.split(',')[i]?.trim() || catSlug;
-                    return (
-                      <Link 
-                        key={catSlug}
-                        href={`/category/${catSlug}`}
-                        className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-all select-none capitalize"
-                      >
-                        {catName}
-                      </Link>
-                    );
-                  })}
-                </div>
-
-                {/* 2. Headline */}
+                {/* 1. Headline */}
                 <h1 className="text-[30px] md:text-[40px] font-bold text-foreground leading-[1.2] tracking-tight">
                   {article.title}
                 </h1>
 
-                {/* 3. Summary */}
-                <p className="text-[18px] md:text-[20px] font-normal text-muted leading-[1.6]">
+                {/* 2. Summary */}
+                <p className="text-[19px] font-normal text-muted leading-[1.6]">
                   {article.description}
                 </p>
 
@@ -320,7 +304,7 @@ export default async function ArticlePage({ params }: PageProps) {
               </header>
 
               {/* MDX Compiled content output */}
-              <div className="article-body prose dark:prose-invert text-[17px] md:text-[19px] font-normal leading-[1.75] text-foreground max-w-[760px] mx-auto select-text">
+              <div className="article-body prose dark:prose-invert text-[19px] font-normal leading-[1.75] text-foreground max-w-[760px] mx-auto select-text">
                 <MDXRemote 
                   source={article.content} 
                   components={mdxComponents} 
@@ -335,12 +319,27 @@ export default async function ArticlePage({ params }: PageProps) {
 
               {/* Article Footer (Tags and Actions) */}
               <footer className="border-t border-border/50 mt-12 pt-6 space-y-4 select-none">
+                {/* Tags + Categories row */}
                 <div className="flex flex-wrap gap-2">
+                  {/* Category chips */}
+                  {(article.categories || [article.categorySlug]).map((catSlug, i) => {
+                    const catName = article.category.split(',')[i]?.trim() || catSlug;
+                    return (
+                      <Link
+                        key={catSlug}
+                        href={`/category/${catSlug}`}
+                        className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-all capitalize"
+                      >
+                        {catName}
+                      </Link>
+                    );
+                  })}
+                  {/* Tag chips */}
                   {article.tags.map((tag) => (
                     <Link 
                       key={tag} 
                       href={`/search?tag=${encodeURIComponent(tag)}`}
-                      className="inline-flex items-center gap-1 text-[11px] font-bold border border-border px-2.5 py-1 rounded bg-background text-muted hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all select-none"
+                      className="inline-flex items-center gap-1 text-[11px] font-bold border border-border px-2.5 py-1 rounded-full bg-background text-muted hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all select-none"
                     >
                       <Tag className="h-3 w-3" />
                       {tag}
