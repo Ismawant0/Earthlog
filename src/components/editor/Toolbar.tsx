@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Editor } from '@tiptap/react';
 import { 
   Bold, Italic, Underline, Strikethrough, Code, 
   Heading1, Heading2, Heading3, List, ListOrdered, 
   CheckSquare, Quote, Minus, Table as TableIcon, 
   Link as LinkIcon, Image as ImageIcon, AlertCircle, 
-  HelpCircle, Database, BarChart
+  HelpCircle, Database, BarChart, MousePointerClick
 } from 'lucide-react';
 
 interface ToolbarProps {
@@ -37,6 +37,10 @@ const ToolbarButton = ({
 
 export function Toolbar({ editor, onUploadImage }: ToolbarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showButtonModal, setShowButtonModal] = useState(false);
+  const [btnLabel, setBtnLabel] = useState('Beli Produk Disini');
+  const [btnUrl, setBtnUrl] = useState('https://');
+  const [btnColor, setBtnColor] = useState('#111827');
 
   if (!editor) return null;
 
@@ -64,6 +68,7 @@ export function Toolbar({ editor, onUploadImage }: ToolbarProps) {
   };
 
   return (
+    <>
     <div className="
       flex flex-wrap items-center gap-1 p-2 border-b border-gray-200 bg-white sticky top-0 z-10 w-full rounded-t-xl
       xl:fixed xl:right-6 xl:top-24 xl:z-40 xl:w-14 xl:flex-col xl:items-center xl:p-3 xl:border xl:border-gray-200 xl:shadow-xl xl:rounded-2xl xl:max-h-[75vh] xl:overflow-y-auto xl:bg-white xl:rounded-t-2xl xl:gap-3 xl:border-b-0
@@ -179,6 +184,11 @@ export function Toolbar({ editor, onUploadImage }: ToolbarProps) {
         <ToolbarButton title="Interactive Diagram" onClick={() => editor.chain().focus().insertContent('<InteractiveDiagram type=""></InteractiveDiagram>').run()}>
           <BarChart size={18} />
         </ToolbarButton>
+
+        {/* CTA / Affiliate Button */}
+        <ToolbarButton title="Insert Affiliate Button" onClick={() => setShowButtonModal(true)}>
+          <MousePointerClick size={18} />
+        </ToolbarButton>
         
         {/* Dropdown for Interactive Block */}
         <div className="relative" title="Insert Interactive Block">
@@ -211,5 +221,103 @@ export function Toolbar({ editor, onUploadImage }: ToolbarProps) {
         </div>
       </div>
     </div>
-  );
+
+    {/* ── CTA Button Modal ─────────────────────────────────── */}
+    {showButtonModal && (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 space-y-4 border border-gray-100">
+          <h3 className="text-base font-bold text-gray-900 flex items-center gap-2">
+            <MousePointerClick size={16} /> Insert Affiliate Button
+          </h3>
+
+          <div className="space-y-3">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Label / Caption</label>
+              <input
+                type="text"
+                value={btnLabel}
+                onChange={(e) => setBtnLabel(e.target.value)}
+                placeholder="e.g. Beli Produk Disini"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-400 focus:ring-2 focus:ring-black/5"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">URL Tujuan</label>
+              <input
+                type="url"
+                value={btnUrl}
+                onChange={(e) => setBtnUrl(e.target.value)}
+                placeholder="https://tokopedia.com/..."
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-400 focus:ring-2 focus:ring-black/5"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Warna Tombol</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="color"
+                  value={btnColor}
+                  onChange={(e) => setBtnColor(e.target.value)}
+                  className="w-10 h-10 rounded-lg border border-gray-200 cursor-pointer p-0.5"
+                />
+                {/* Quick colour presets */}
+                <div className="flex gap-1.5">
+                  {['#111827','#2563EB','#16a34a','#dc2626','#7c3aed','#ea580c'].map(c => (
+                    <button
+                      key={c}
+                      type="button"
+                      title={c}
+                      onClick={() => setBtnColor(c)}
+                      className="w-6 h-6 rounded-full border-2 transition"
+                      style={{
+                        backgroundColor: c,
+                        borderColor: btnColor === c ? '#000' : 'transparent',
+                        outline: btnColor === c ? '2px solid #000' : 'none',
+                        outlineOffset: '1px'
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+              {/* Live preview */}
+              <div className="mt-3 text-center">
+                <span
+                  className="inline-block px-5 py-2 rounded-lg font-bold text-sm text-white"
+                  style={{ backgroundColor: btnColor }}
+                >
+                  {btnLabel || 'Preview'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-2 justify-end pt-1">
+            <button
+              type="button"
+              onClick={() => setShowButtonModal(false)}
+              className="px-4 py-2 border border-gray-200 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-50 transition cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (!btnLabel.trim() || !btnUrl.trim()) return;
+                // Insert raw MDX that will be serialised properly
+                editor.chain().focus().insertContent(
+                  `<CtaButton label="${btnLabel.trim()}" href="${btnUrl.trim()}" color="${btnColor}" />`
+                ).run();
+                setShowButtonModal(false);
+              }}
+              className="px-5 py-2 bg-black text-white text-xs font-bold rounded-xl hover:bg-gray-900 transition cursor-pointer"
+            >
+              Insert Button
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+  </>);
 }

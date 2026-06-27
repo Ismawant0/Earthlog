@@ -5,6 +5,35 @@ import FAQAccordion from "./FAQAccordion";
 import Figure from "./mdx/Figure";
 import InteractiveBlock from "./mdx/InteractiveBlock";
 
+// CtaButton — affiliate / call-to-action button inserted from toolbar
+export function CtaButton({ label = 'Click Here', href = '#', color = '#111827' }: { label?: string; href?: string; color?: string }) {
+  return (
+    <div style={{ margin: '1.75rem 0', textAlign: 'center' }}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        style={{
+          display: 'inline-block',
+          padding: '0.7rem 1.8rem',
+          backgroundColor: color,
+          color: '#fff',
+          borderRadius: '0.5rem',
+          fontWeight: 700,
+          fontSize: '1rem',
+          textDecoration: 'none',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+          transition: 'opacity 0.15s',
+        }}
+        onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = '0.85')}
+        onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = '1')}
+      >
+        {label}
+      </a>
+    </div>
+  );
+}
+
 // 1. WarningBox Component
 interface WarningBoxProps {
   type: "success" | "warning" | "error" | "important";
@@ -154,6 +183,7 @@ export const mdxComponents = {
   InteractiveDiagram,
   Figure,
   InteractiveBlock,
+  CtaButton,
   
   // Custom styled base elements for consistent beautiful typography in MDX
   h1: (props: any) => (
