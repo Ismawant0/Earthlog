@@ -24,6 +24,7 @@ import { TechnicalTableExtension } from './extensions/TechnicalTableExtension';
 import { InteractiveDiagramExtension } from './extensions/InteractiveDiagramExtension';
 import { FigureExtension } from './extensions/FigureExtension';
 import { InteractiveBlockExtension } from './extensions/InteractiveBlockExtension';
+import { ButtonExtension } from './extensions/ButtonExtension';
 
 interface EditorComponentProps {
   initialContent?: string;
@@ -40,7 +41,7 @@ const robustParseJSON = (str: string) => {
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>');
-    
+
   // Unescape backslashes if double escaped
   for (let i = 0; i < 5; i++) {
     try {
@@ -60,7 +61,7 @@ const robustParseJSON = (str: string) => {
         if (Array.isArray(parsed) || (parsed && typeof parsed === 'object')) {
           return parsed;
         }
-      } catch {}
+      } catch { }
       break;
     }
   }
@@ -69,7 +70,7 @@ const robustParseJSON = (str: string) => {
 
 const cleanMdx = (rawMdx: string) => {
   let cleaned = rawMdx;
-  
+
   // Clean FAQAccordion
   cleaned = cleaned.replace(/<faqaccordion\s+items="([\s\S]*?)">\s*<\/faqaccordion>/gi, (match: string, items: string) => {
     const parsed = robustParseJSON(items);
@@ -115,6 +116,17 @@ const cleanMdx = (rawMdx: string) => {
     const typeMatch = attrsStr.match(/type="([^"]*)"/);
     const type = typeMatch ? typeMatch[1] : '';
     return `<InteractiveBlock type="${type}" />`;
+  });
+
+  // Clean CtaButton — convert lowercase <ctabutton> HTML to PascalCase <CtaButton /> JSX
+  cleaned = cleaned.replace(/<ctabutton\s+([\s\S]*?)>\s*<\/ctabutton>/gi, (match, attrsStr) => {
+    const labelMatch = attrsStr.match(/label="([^"]*)"/);
+    const hrefMatch = attrsStr.match(/href="([^"]*)"/);
+    const colorMatch = attrsStr.match(/color="([^"]*)"/);
+    const label = labelMatch ? labelMatch[1] : 'Click Here';
+    const href = hrefMatch ? hrefMatch[1] : '#';
+    const color = colorMatch ? colorMatch[1] : '#111827';
+    return `<CtaButton label="${label}" href="${href}" color="${color}" />`;
   });
 
   return cleaned;
@@ -179,6 +191,11 @@ const prepareMdxForEditor = (rawMdx?: string) => {
     return `<interactiveblock ${attrsStr}></interactiveblock>`;
   });
 
+  // Convert JSX CtaButton to HTML ctabutton with closing tag (for tiptap-markdown)
+  prepared = prepared.replace(/<CtaButton\s+([\s\S]*?)\s*\/\s*>/gi, (match, attrsStr) => {
+    return `<ctabutton ${attrsStr}></ctabutton>`;
+  });
+
   return prepared;
 };
 
@@ -206,7 +223,7 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
         method: 'POST',
         body: formData
       });
-      
+
       if (res.ok) {
         const data = await res.json();
         if (data.success && data.url) {
@@ -289,6 +306,7 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
       InteractiveDiagramExtension,
       FigureExtension,
       InteractiveBlockExtension,
+      ButtonExtension,
       Placeholder.configure({
         placeholder: ({ node }) => {
           if (node.type.name === 'heading' && node.attrs.level === 1) {
@@ -354,7 +372,7 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
 
   const submitSave = async (metadata: any) => {
     setShowMetadataForm(false);
-    
+
     // Ensure we get the absolute latest content directly from the editor
     let finalMdx = mdxPreview;
     let htmlContent = '';
@@ -364,7 +382,7 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
       finalMdx = cleanMdx(rawMdx);
       htmlContent = editor.getHTML();
     }
-    
+
     await onSave(finalMdx, metadata, htmlContent);
   };
 
@@ -381,13 +399,13 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
     <div className="max-w-[1000px] mx-auto pt-8 pb-20">
       <div className="flex items-center justify-between mb-6">
         <div className="flex gap-4 border-b border-gray-200">
-          <button 
+          <button
             className={`pb-2 px-2 text-sm font-medium transition ${activeTab === 'editor' ? 'border-b-2 border-black text-black' : 'text-gray-500 hover:text-black'}`}
             onClick={() => setActiveTab('editor')}
           >
             Editor
           </button>
-          <button 
+          <button
             className={`pb-2 px-2 text-sm font-medium transition ${activeTab === 'preview' ? 'border-b-2 border-black text-black' : 'text-gray-500 hover:text-black'}`}
             onClick={() => setActiveTab('preview')}
           >
@@ -396,14 +414,14 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
         </div>
         <div className="flex items-center gap-3">
           {onCancel && (
-            <button 
+            <button
               onClick={onCancel}
               className="border border-gray-300 text-gray-700 px-5 py-2 rounded-full font-medium text-sm hover:bg-gray-50 transition shadow-sm bg-white"
             >
               Back to Dashboard
             </button>
           )}
-          <button 
+          <button
             onClick={handleSaveClick}
             className="bg-black text-white px-5 py-2 rounded-full font-medium text-sm hover:bg-gray-800 transition shadow-sm"
           >
@@ -417,7 +435,8 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
           <>
             <Toolbar editor={editor} onUploadImage={uploadAndInsertImage} />
             <div className="editor-content-wrapper font-inter text-[18px] leading-[1.9] max-w-[760px] mx-auto">
-              <style dangerouslySetInnerHTML={{__html: `
+              <style dangerouslySetInnerHTML={{
+                __html: `
                 .ProseMirror h1 { font-family: 'Source Serif 4', serif; font-size: 2.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; line-height: 1.2; color: #111827; }
                 .ProseMirror h2 { font-family: 'Source Serif 4', serif; font-size: 2rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; line-height: 1.3; color: #111827; }
                 .ProseMirror h3 { font-family: 'Source Serif 4', serif; font-size: 1.5rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; line-height: 1.4; color: #111827; }
@@ -455,7 +474,7 @@ export function EditorComponent({ initialContent, initialMetadata, onSave, onCan
       </div>
 
       {showMetadataForm && (
-        <MetadataForm 
+        <MetadataForm
           initialData={initialMetadata}
           onSave={submitSave}
           onCancel={() => setShowMetadataForm(false)}
