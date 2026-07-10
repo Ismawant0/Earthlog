@@ -70,31 +70,26 @@ function Counter({ label, target, suffix = "" }: StatItemProps) {
 
 export default function ImpactStats() {
   const [stats, setStats] = useState({
-    actions: 1482920,
-    trees: 824310,
-    trash: 412980,
-    countries: 142
+    actions: 0,
+    trees: 0,
+    trash: 0,
+    countries: 0
   });
 
   useEffect(() => {
     // Fetch live user actions from localStorage
     const actions = getActions();
     
-    // Baseline numbers
+    // Baseline numbers starting at 0 for actual Day Zero movement metrics
     let addedActions = actions.length;
     let addedTrees = 0;
     let addedTrash = 0;
     
-    // Default list of major baseline countries to check uniqueness
-    const baselineCountries = new Set([
-      "indonesia", "united states", "germany", "japan", "canada", "kenya",
-      "australia", "united kingdom", "france", "brazil", "india", "china"
-    ]);
     const newCountries = new Set<string>();
 
     actions.forEach((act) => {
       const countryClean = act.country.trim().toLowerCase();
-      if (countryClean && !baselineCountries.has(countryClean)) {
+      if (countryClean) {
         newCountries.add(countryClean);
       }
 
@@ -114,10 +109,10 @@ export default function ImpactStats() {
     });
 
     setStats({
-      actions: 1482920 + addedActions,
-      trees: 824310 + addedTrees,
-      trash: 412980 + addedTrash,
-      countries: 142 + newCountries.size
+      actions: addedActions,
+      trees: addedTrees,
+      trash: addedTrash,
+      countries: newCountries.size
     });
   }, []);
 
