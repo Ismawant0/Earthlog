@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!path) return {};
 
   return {
-    title: `Syllabus: ${path.title} — PGDOWN`,
+    title: `Syllabus: ${path.title} — Earthlog`,
     description: path.description,
     alternates: {
       canonical: `/learning-path/${slug}`,

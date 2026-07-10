@@ -71,7 +71,7 @@ export default function EditorDashboard() {
       let localArticles: Article[] = [];
       if (typeof window !== 'undefined') {
         try {
-          const localArticlesStr = localStorage.getItem('pgdown_local_articles');
+          const localArticlesStr = localStorage.getItem('earthlog_local_articles');
           if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
             const parsed = JSON.parse(localArticlesStr);
             if (Array.isArray(parsed)) {
@@ -97,7 +97,7 @@ export default function EditorDashboard() {
 
       if (localArticlesUpdated && typeof window !== 'undefined') {
         try {
-          localStorage.setItem('pgdown_local_articles', JSON.stringify(filteredLocalArticles));
+          localStorage.setItem('earthlog_local_articles', JSON.stringify(filteredLocalArticles));
           localArticles = filteredLocalArticles;
         } catch (e) {}
       }
@@ -151,7 +151,7 @@ export default function EditorDashboard() {
         if (data.code === 'GITHUB_SAVED') {
           try {
             let localArticles: Article[] = [];
-            const localArticlesStr = localStorage.getItem('pgdown_local_articles');
+            const localArticlesStr = localStorage.getItem('earthlog_local_articles');
             if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
               const parsed = JSON.parse(localArticlesStr);
               if (Array.isArray(parsed)) {
@@ -170,7 +170,7 @@ export default function EditorDashboard() {
               categories: categorySlugs,
               categorySlug: primaryCategory,
               date: metadata.date || new Date().toISOString().split('T')[0],
-              author: metadata.author || 'Editor PGDOWN',
+              author: metadata.author || 'Earthlog Editor',
               difficulty: metadata.difficulty || 'Beginner',
               readTime: metadata.readingTime || '5 min',
               featured: !!metadata.featured,
@@ -188,7 +188,7 @@ export default function EditorDashboard() {
             } else {
               localArticles.push(tempArticle);
             }
-            localStorage.setItem('pgdown_local_articles', JSON.stringify(localArticles));
+            localStorage.setItem('earthlog_local_articles', JSON.stringify(localArticles));
           } catch (e) {
             console.error('Error saving temporary local copy for GitHub:', e);
           }
@@ -197,10 +197,10 @@ export default function EditorDashboard() {
         } else {
           // If it successfully wrote to server disk (local development), check if it was previously in local storage and delete it
           try {
-            const localArticlesStr = localStorage.getItem('pgdown_local_articles') || '[]';
+            const localArticlesStr = localStorage.getItem('earthlog_local_articles') || '[]';
             const localArticles: Article[] = JSON.parse(localArticlesStr);
             const filtered = localArticles.filter(a => !(a.slug === metadata.slug && a.categorySlug === metadata.category));
-            localStorage.setItem('pgdown_local_articles', JSON.stringify(filtered));
+            localStorage.setItem('earthlog_local_articles', JSON.stringify(filtered));
           } catch (e) {}
 
           showToast(
@@ -218,7 +218,7 @@ export default function EditorDashboard() {
         let localArticles: Article[] = [];
         if (typeof window !== 'undefined') {
           try {
-            const localArticlesStr = localStorage.getItem('pgdown_local_articles');
+            const localArticlesStr = localStorage.getItem('earthlog_local_articles');
             if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
               const parsed = JSON.parse(localArticlesStr);
               if (Array.isArray(parsed)) {
@@ -241,7 +241,7 @@ export default function EditorDashboard() {
           categories: categorySlugs,
           categorySlug: primaryCategory,
           date: metadata.date || new Date().toISOString().split('T')[0],
-          author: metadata.author || 'Editor PGDOWN',
+          author: metadata.author || 'Earthlog Editor',
           difficulty: metadata.difficulty || 'Beginner',
           readTime: metadata.readingTime || '5 min',
           featured: !!metadata.featured,
@@ -260,7 +260,7 @@ export default function EditorDashboard() {
           localArticles.push(newArticle);
         }
 
-        localStorage.setItem('pgdown_local_articles', JSON.stringify(localArticles));
+        localStorage.setItem('earthlog_local_articles', JSON.stringify(localArticles));
         
         showToast('Tersimpan secara lokal di browser Anda (Serverless Read-Only).', 'success');
         setView('dashboard');
@@ -287,10 +287,10 @@ export default function EditorDashboard() {
       if (res.ok && data.success) {
         // Clear from localStorage to avoid cached stale representation
         try {
-          const localArticlesStr = localStorage.getItem('pgdown_local_articles') || '[]';
+          const localArticlesStr = localStorage.getItem('earthlog_local_articles') || '[]';
           const localArticles: Article[] = JSON.parse(localArticlesStr);
           const filtered = localArticles.filter(a => !(a.slug === deleteConfirm.slug && a.categorySlug === deleteConfirm.categorySlug));
-          localStorage.setItem('pgdown_local_articles', JSON.stringify(filtered));
+          localStorage.setItem('earthlog_local_articles', JSON.stringify(filtered));
         } catch (e) {}
 
         showToast(data.message || 'Artikel berhasil dihapus.', 'success');
@@ -392,18 +392,18 @@ export default function EditorDashboard() {
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center justify-between sticky top-0 z-40 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 py-2 mr-3 shrink-0">
-            <span className="text-2xl font-black font-sans tracking-tighter text-gray-950 dark:text-white">
-              PG<span className="text-primary">DOWN</span>
+            <span className="text-xl font-bold font-sans tracking-tight text-gray-950 dark:text-white">
+              Earthlog<span className="inline-block w-1.5 h-1.5 rounded-full bg-primary ml-1 mb-0.5"></span>
             </span>
-            <span className="text-[9px] font-mono border border-primary/20 bg-primary/5 text-primary rounded px-1 py-0.2 uppercase tracking-wide">
-              PRO
+            <span className="text-[9px] font-mono border border-primary/20 bg-primary/5 text-primary rounded px-1 py-0.5 uppercase tracking-wide">
+              Editor
             </span>
           </div>
           <div>
             <h1 className="font-bold text-gray-900 dark:text-gray-100 text-lg leading-tight">
-              {view === 'dashboard' ? 'PGDOWN Editor Dashboard' : `${editorMode === 'edit' ? 'Edit' : 'Write'} Article`}
+              {view === 'dashboard' ? 'Earthlog Editor Dashboard' : `${editorMode === 'edit' ? 'Edit' : 'Write'} Article`}
             </h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wide">DEVELOPER MODE</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wide">Write and publish educational articles that inspire people to protect our planet.</p>
           </div>
         </div>
 

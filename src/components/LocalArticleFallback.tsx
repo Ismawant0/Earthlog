@@ -47,7 +47,7 @@ export default function LocalArticleFallback({ categorySlug, slug }: LocalArticl
   useEffect(() => {
     try {
       let localArticles: LocalArticle[] = [];
-      const localArticlesStr = localStorage.getItem("pgdown_local_articles");
+      const localArticlesStr = localStorage.getItem("earthlog_local_articles");
       if (localArticlesStr && localArticlesStr !== 'undefined' && localArticlesStr !== 'null') {
         const parsed = JSON.parse(localArticlesStr);
         if (Array.isArray(parsed)) {

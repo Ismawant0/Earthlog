@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const category = CATEGORIES.find((c) => c.slug === categorySlug);
   if (!category) return {};
 
-  const title = `${category.name} Articles — PGDOWN`;
-  const description = `Read the latest technical guides, publications, and analysis on ${category.name} in PGDOWN publication.`;
-  const canonicalUrl = `https://pgdown.vercel.app/category/${categorySlug}`;
+  const title = `${category.name} Articles — Earthlog`;
+  const description = `Read environmental guides and educational articles on ${category.name} from Earthlog.`;
+  const canonicalUrl = `https://earthlog.org/category/${categorySlug}`;
 
   return {
     title,
     description,
-    keywords: [category.name, "technology", "software engineering", "programming"],
+    keywords: [category.name, "environment", "conservation", "sustainability"],
     alternates: {
       canonical: canonicalUrl,
     },
@@ -32,15 +32,15 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       title,
       description,
       url: canonicalUrl,
-      siteName: "PGDOWN",
-      locale: "id_ID",
+      siteName: "Earthlog",
+      locale: "en_US",
       type: "website",
       images: [
         {
-          url: "https://pgdown.vercel.app/favicon.ico",
+          url: "https://earthlog.org/icon.png",
           width: 512,
           height: 512,
-          alt: `Kategori ${category.name} - PGDOWN`,
+          alt: `${category.name} — Earthlog`,
         }
       ],
     },
@@ -159,8 +159,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                           />
                         ) : (
-                          <div className="w-full h-full bg-linear-to-br from-slate-100 to-slate-200 dark:from-slate-800/40 dark:to-slate-900/60 flex items-center justify-center text-xs text-muted-more font-bold">
-                            PGDOWN
+                          <div className="w-full h-full bg-[#E6EDE8] flex items-center justify-center text-xs text-primary font-bold">
+                            Earthlog
                           </div>
                         )}
                       </Link>

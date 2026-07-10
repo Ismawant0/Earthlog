@@ -54,7 +54,7 @@ function generateDescription(article: { title: string; description: string; tags
   
   const tagStr = article.tags?.length ? article.tags.slice(0, 3).join(', ') : '';
   const keywordStr = article.keywords?.length ? article.keywords.slice(0, 3).join(', ') : '';
-  return `Read ${article.title}. ${keywordStr ? `Topics: ${keywordStr}.` : ''} ${tagStr ? `Category: ${tagStr}.` : ''} Elite tech publication at PGDOWN.`;
+  return `Read ${article.title}. ${keywordStr ? `Topics: ${keywordStr}.` : ''} ${tagStr ? `Category: ${tagStr}.` : ''} An Earthlog environmental article.`;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -63,11 +63,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) return {};
 
   const description = generateDescription(article);
-  const canonicalUrl = `https://pgdown.vercel.app/${categorySlug}/${slug}`;
-  const ogImage = article.cover || "https://pgdown.vercel.app/favicon.ico";
+  const canonicalUrl = `https://earthlog.org/${categorySlug}/${slug}`;
+  const ogImage = article.cover || "https://earthlog.org/icon.png";
 
   return {
-    title: `${article.title} — PGDOWN`,
+    title: `${article.title} — Earthlog`,
     description,
     keywords: article.keywords?.length ? article.keywords.join(", ") : 
               article.tags?.length ? article.tags.join(", ") : undefined,
@@ -75,10 +75,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${article.title} — PGDOWN`,
+      title: `${article.title} — Earthlog`,
       description,
       url: canonicalUrl,
-      siteName: "PGDOWN",
+      siteName: "Earthlog",
       locale: "en_US",
       type: "article",
       publishedTime: article.date,
@@ -96,7 +96,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${article.title} — PGDOWN`,
+      title: `${article.title} — Earthlog`,
       description,
       images: [ogImage],
     },
@@ -177,15 +177,15 @@ export default async function ArticlePage({ params }: PageProps) {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "PGDOWN",
+      "name": "Earthlog",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://pgdown.vercel.app/favicon.ico"
+        "url": "https://earthlog.org/icon.png"
       }
     },
     "datePublished": article.date,
     "dateModified": article.date,
-    "image": article.cover || "https://pgdown.vercel.app/favicon.ico",
+    "image": article.cover || "https://earthlog.org/icon.png",
     "keywords": article.keywords?.join(", ") || article.tags?.join(", "),
     "wordCount": wordCount,
     "educationalLevel": article.difficulty,
@@ -194,7 +194,7 @@ export default async function ArticlePage({ params }: PageProps) {
     "isAccessibleForFree": true,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://pgdown.vercel.app/${categorySlug}/${slug}`
+      "@id": `https://earthlog.org/${categorySlug}/${slug}`
     }
   };
 
@@ -206,19 +206,19 @@ export default async function ArticlePage({ params }: PageProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://pgdown.vercel.app/"
+        "item": "https://earthlog.org/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": article.category.split(',')[0] || categorySlug,
-        "item": `https://pgdown.vercel.app/category/${categorySlug}`
+        "item": `https://earthlog.org/category/${categorySlug}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": article.title,
-        "item": `https://pgdown.vercel.app/${categorySlug}/${slug}`
+        "item": `https://earthlog.org/${categorySlug}/${slug}`
       }
     ]
   };

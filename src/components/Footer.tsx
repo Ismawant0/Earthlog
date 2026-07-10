@@ -8,7 +8,7 @@ export default function Footer() {
   const links = [
     { name: "Privacy", href: "/privacy" },
     { name: "Terms", href: "/terms" },
-    { name: "GitHub", href: "https://github.com/Ismawant0/PGDown" },
+    { name: "GitHub", href: "https://github.com/Ismawant0/Earthlog" },
     { name: "Contact", href: "/contact" },
     { name: "Transparency", href: "/about#transparency" },
   ];

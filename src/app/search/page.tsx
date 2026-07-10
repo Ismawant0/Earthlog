@@ -18,8 +18,8 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
   const { q, tag } = await searchParams;
   const term = tag ? `Tag: ${tag}` : (q ? `"${q}"` : "Search");
   return {
-    title: `Search ${term} — PGDOWN`,
-    description: `Find technical articles, guides, and documentations in PGDOWN publication.`,
+    title: `Search ${term} — Earthlog`,
+    description: `Find technical articles, guides, and documentations in Earthlog publication.`,
   };
 }
 
@@ -72,7 +72,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                   <Search className="h-4 w-4" />
                 </span>
                 <span className="text-[10px] uppercase font-bold tracking-widest text-primary">
-                  PGDOWN Search Engine
+                  Earthlog Search
                 </span>
               </div>
 
@@ -104,7 +104,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               ) : (
                 <div className="space-y-2">
                   <h1 className="text-2xl md:text-3xl font-black text-foreground tracking-tight">
-                    Search PGDOWN Library
+                    Search Earthlog Library
                   </h1>
                   <p className="text-sm text-muted">
                     Enter keywords, topic names, or tag labels to search our technical database.
@@ -171,7 +171,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                           />
                         ) : (
                           <div className="w-full h-full bg-linear-to-br from-slate-100 to-slate-200 dark:from-slate-800/40 dark:to-slate-900/60 flex items-center justify-center text-xs text-muted-more font-bold">
-                            PGDOWN
+                            Earthlog
                           </div>
                         )}
                       </Link>

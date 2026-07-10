@@ -31,7 +31,7 @@ const jsonLd: Record<string, unknown> = {
       "url": "https://earthlog.org",
       "logo": "https://earthlog.org/favicon.ico",
       "description": "A global environmental movement to document small actions for the planet.",
-      "sameAs": ["https://github.com/Ismawant0/PGDown"],
+      "sameAs": ["https://github.com/Ismawant0/Earthlog"],
     },
     {
       "@type": "WebSite",

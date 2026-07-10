@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getAllArticles();
   const learningPaths = getLearningPaths();
   
-  const baseUrl = 'https://pgdown.vercel.app';
+  const baseUrl = 'https://earthlog.org';
   const now = new Date();
   
   const routes: MetadataRoute.Sitemap = [

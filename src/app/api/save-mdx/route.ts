@@ -99,7 +99,7 @@ export async function POST(req: Request) {
     // 2. If local write was bypassed/failed and GITHUB_PAT is present, save to GitHub!
     if (githubToken) {
       const owner = 'Ismawant0';
-      const repo = 'PGDown';
+      const repo = 'Earthlog';
 
       // If it's a rename/move on GitHub, first delete the old file on GitHub!
       if (originalSlug && originalCategory && (originalSlug !== frontmatter.slug || originalCategory !== primaryCategory)) {
@@ -219,7 +219,7 @@ async function relocateImages(
 
   let updatedMdx = mdxContent;
   const owner = 'Ismawant0';
-  const repo = 'PGDown';
+  const repo = 'Earthlog';
 
   for (const draftId of draftIds) {
     console.log(`[Relocating] Processing draft folder: ${draftId} to ${primaryCategory}/${slug}`);

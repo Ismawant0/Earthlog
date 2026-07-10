@@ -22,7 +22,7 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   // Load recent searches from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("pgdown_recent_searches");
+      const saved = localStorage.getItem("earthlog_recent_searches");
       if (saved) {
         try {
           setRecentSearches(JSON.parse(saved));
@@ -104,7 +104,7 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
           // Save to recents
           if (query.trim()) {
             const updated = [query.trim(), ...recentSearches.filter(s => s !== query.trim())].slice(0, 5);
-            localStorage.setItem("pgdown_recent_searches", JSON.stringify(updated));
+            localStorage.setItem("earthlog_recent_searches", JSON.stringify(updated));
           }
 
           window.location.href = url;
@@ -179,7 +179,7 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
   };
 
   const handleClearRecents = () => {
-    localStorage.removeItem("pgdown_recent_searches");
+    localStorage.removeItem("earthlog_recent_searches");
     setRecentSearches([]);
   };
 
@@ -387,7 +387,7 @@ export default function SearchDialog({ isOpen, onClose }: SearchDialogProps) {
             <span>↵ Select</span>
             <span>Esc Close</span>
           </div>
-          <div>Powered by PGDOWN indexer</div>
+          <div>Powered by Earthlog</div>
         </div>
       </div>
     </div>
