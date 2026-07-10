@@ -27,70 +27,61 @@ const jsonLd: Record<string, unknown> = {
   "@graph": [
     {
       "@type": "Organization",
-      "name": "PGDOWN",
-      "url": "https://pgdown.vercel.app",
-      "logo": "https://pgdown.vercel.app/favicon.ico",
-      "description": "Elite technology publication and curated technical knowledge media.",
-      "sameAs": ["https://github.com/Ismawant0"],
+      "name": "Earthlog",
+      "url": "https://earthlog.org",
+      "logo": "https://earthlog.org/favicon.ico",
+      "description": "A global environmental movement to document small actions for the planet.",
+      "sameAs": ["https://github.com/Ismawant0/PGDown"],
     },
     {
       "@type": "WebSite",
-      "name": "PGDOWN",
-      "url": "https://pgdown.vercel.app",
-      "description": "Elite technology publication covering Artificial Intelligence, Linux, Windows, Open Source, Cyber Security, Programming, and Cloud Computing.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://pgdown.vercel.app/search?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
+      "name": "Earthlog",
+      "url": "https://earthlog.org",
+      "description": "Inspiring millions of people to perform and document small positive actions for the planet.",
     },
   ],
 };
 
 export const metadata: Metadata = {
   title: {
-    default: "PGDOWN — Elite Technology Publication",
-    template: "%s | PGDOWN",
+    default: "Earthlog — Every small action leaves a mark.",
+    template: "%s | Earthlog",
   },
   description:
-    "Elite technology publication covering Artificial Intelligence, Operating Systems, Linux, Windows, Open Source, Software Engineering, Cyber Security, Cloud, and Developer Tools.",
+    "Earthlog is a global environmental movement. Its purpose is to inspire millions of people to perform and document small positive actions for the planet.",
   keywords: [
-    "technology news",
-    "artificial intelligence",
-    "linux",
-    "windows",
-    "open source",
-    "software engineering",
-    "cyber security",
-    "cloud computing",
-    "programming",
-    "developer tools",
+    "environmental movement",
+    "climate action",
+    "sustainability",
+    "carbon sink",
+    "conservation",
+    "save water",
+    "plant trees",
+    "trash cleanup",
+    "biodiversity",
   ],
-  authors: [{ name: "PGDOWN Editorial Team" }],
-  creator: "PGDOWN Team",
-  publisher: "PGDOWN",
-  applicationName: "PGDOWN",
-  metadataBase: new URL("https://pgdown.vercel.app"),
+  authors: [{ name: "Earthlog Contributors" }],
+  creator: "Earthlog Community",
+  publisher: "Earthlog",
+  applicationName: "Earthlog",
+  metadataBase: new URL("https://earthlog.org"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "PGDOWN — Elite Technology Publication",
+    title: "Earthlog — Every small action leaves a mark.",
     description:
-      "Premium editorial media covering Artificial Intelligence, Linux, Windows, Open Source, Software, Cyber Security, and Cloud Computing.",
-    url: "https://pgdown.vercel.app",
-    siteName: "PGDOWN",
-    locale: "id_ID",
+      "A global environmental movement inspiring millions of people to perform and document small positive actions for the planet.",
+    url: "https://earthlog.org",
+    siteName: "Earthlog",
+    locale: "en_US",
     type: "website",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PGDOWN Technology Publication",
+        alt: "Earthlog Environmental Movement",
       },
     ],
   },
@@ -114,11 +105,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PGDOWN — Elite Technology Publication",
+    title: "Earthlog — Every small action leaves a mark.",
     description:
-      "Elite technology publication covering AI, Linux, Windows, Open Source, Software Engineering, Cyber Security, Cloud, and Developer Tools.",
-    creator: "@pgdown",
-    site: "@pgdown",
+      "A global environmental movement inspiring millions of people to perform and document small positive actions for the planet.",
+    creator: "@earthlog",
+    site: "@earthlog",
   },
   robots: {
     index: true,
@@ -132,13 +123,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "NTD0iDC2t-J7vtWF4t9A2Ss48ZUSTBpNMnGrRzhMtos",
-  },
   other: {
-    "theme-color": "#0f172a",
+    "theme-color": "#FAFAF7",
     "og:locale:alternate": "en_US",
-    "article:publisher": "PGDOWN",
   },
 };
 
@@ -149,13 +136,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="id"
+      lang="en"
       className={`${inter.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head />
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-200">
-        <Script src="/scripts/theme.js" strategy="beforeInteractive" />
         <Script
           id="sw-cleanup"
           strategy="afterInteractive"

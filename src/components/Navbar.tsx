@@ -1,261 +1,126 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, User, Mail } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
-import SearchDialog from "./SearchDialog";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
-  const lastScrollY = useRef(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 10);
-
-      if (currentY < 80) {
-        setVisible(true);
-      } else if (currentY < lastScrollY.current) {
-        setVisible(true);
-      } else if (currentY > lastScrollY.current + 4) {
-        setVisible(false);
-      }
-
-      lastScrollY.current = currentY;
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (visible) {
-      document.documentElement.classList.remove("navbar-hidden");
-    } else {
-      document.documentElement.classList.add("navbar-hidden");
-    }
-    return () => document.documentElement.classList.remove("navbar-hidden");
-  }, [visible]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setIsSearchOpen((prev) => !prev);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   const navLinks = [
-    { name: "News", href: "/category/news" },
-    { name: "Software", href: "/category/software" },
-    { name: "Hardware", href: "/category/hardware" },
-    { name: "Reviews", href: "/category/reviews" },
+    { name: "Mission", href: "/mission" },
+    { name: "Community", href: "/community" },
+    { name: "Articles", href: "/articles" },
+    { name: "About", href: "/about" },
   ];
 
+  const isLinkActive = (href: string) => pathname === href;
+
   return (
-    <>
-      {/* ── Main Navbar ─────────────────────────────────────────── */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out
-          ${visible ? "translate-y-0" : "-translate-y-full"}
-        `}
-        style={{
-          backgroundColor: "var(--navbar-bg)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-        }}
-      >
-        {/* Top row: logo + desktop nav + actions */}
-        <div
-          className={`w-full h-[60px] flex items-center ${scrolled ? "shadow-[0_1px_3px_rgba(0,0,0,0.06)]" : ""}`}
-        >
-          <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 flex items-center gap-3">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b
+        ${scrolled 
+          ? "bg-white/95 border-border/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)]" 
+          : "bg-transparent border-transparent"
+        }
+      `}
+      style={{
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+      }}
+    >
+      <div className="max-w-[1280px] mx-auto px-6 h-[72px] flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-1.5 select-none font-semibold text-xl tracking-tight text-foreground group">
+          <span>Earthlog</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#2F6B45] transition-transform duration-300 group-hover:scale-125" />
+        </Link>
 
-            {/* Logo */}
-            <Link
-              href="/"
-              className="logo-link flex items-center gap-2 group shrink-0 select-none"
-            >
-              <div className="flex items-center gap-1.5">
-                <span
-                  className="logo-text text-[20px] font-bold font-sans tracking-tight transition-all duration-200"
-                  style={{ color: "var(--logo-color)", transitionTimingFunction: "var(--joy-bezier, cubic-bezier(0.34, 1.56, 0.64, 1))" }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget;
-                    el.style.color = "var(--logo-hover)";
-                    el.style.transform = "scale(1.03)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget;
-                    el.style.color = "var(--logo-color)";
-                    el.style.transform = "scale(1)";
-                  }}
-                >
-                  PG
-                  <span className="transition-all duration-200" style={{ color: "inherit" }}>
-                    DOWN
-                  </span>
-                </span>
-                <span className="text-[9px] font-medium bg-primary/10 text-primary rounded-full px-2 py-0.5 tracking-wide uppercase">
-                  Beta
-                </span>
-              </div>
-            </Link>
-
-            {/* Desktop-only category nav — hidden on mobile */}
-            <nav className="hidden lg:flex flex-1 items-center gap-0.5 mx-4">
-              {navLinks.map((link) => (
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-6">
+            {navLinks.map((link) => {
+              const active = isLinkActive(link.href);
+              return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="group relative text-[13px] font-medium px-3.5 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer whitespace-nowrap"
-                  style={{ color: "var(--navbar-text)", transitionTimingFunction: "var(--joy-bezier, cubic-bezier(0.34, 1.56, 0.64, 1))" }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget;
-                    el.style.color = "var(--primary)";
-                    el.style.backgroundColor = "var(--primary-subtle)";
-                    el.style.transform = "scale(1.02)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget;
-                    el.style.color = "var(--navbar-text)";
-                    el.style.backgroundColor = "transparent";
-                    el.style.transform = "scale(1)";
-                  }}
+                  className={`text-sm font-medium transition-colors duration-200 py-1.5 relative
+                    ${active 
+                      ? "text-primary font-semibold" 
+                      : "text-foreground-sub hover:text-foreground"
+                    }
+                  `}
                 >
                   {link.name}
+                  {active && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                  )}
                 </Link>
-              ))}
-            </nav>
-
-            {/* Spacer for mobile so actions push right */}
-            <div className="flex-1 lg:hidden" />
-
-            {/* Right actions */}
-            <div className="flex items-center gap-1.5">
-
-              {/* Search trigger */}
-              <button
-                id="navbar-search-trigger"
-                onClick={() => setIsSearchOpen(true)}
-                className="interactive flex items-center gap-2 px-3 py-1.5 rounded-full border cursor-pointer w-10 h-8 lg:w-44 text-left"
-                style={{
-                  borderColor: "var(--border)",
-                  backgroundColor: "var(--surface-alt)",
-                  color: "var(--text-muted)",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget;
-                  el.style.backgroundColor = "var(--surface)";
-                  el.style.boxShadow = "var(--shadow-sm)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget;
-                  el.style.backgroundColor = "var(--surface-alt)";
-                  el.style.boxShadow = "none";
-                }}
-                aria-label="Search articles"
-              >
-                <Search className="h-3.5 w-3.5 shrink-0" />
-                <span className="hidden lg:inline-flex flex-1 text-[12px] truncate">Search anything...</span>
-                <span
-                  className="hidden lg:inline-flex items-center text-[10px] font-semibold border px-1.5 py-0.5 rounded-md shrink-0 select-none"
-                  style={{ borderColor: "var(--border)", color: "var(--caption)" }}
-                >
-                  ⌘K
-                </span>
-              </button>
-
-              {/* Theme toggle */}
-              <ThemeToggle
-                className="interactive flex items-center justify-center w-8 h-8 rounded-full border cursor-pointer"
-                style={{
-                  borderColor: "var(--border)",
-                  backgroundColor: "var(--surface-alt)",
-                  color: "var(--text-muted)",
-                }}
-              />
-
-              {/* Newsletter */}
-              <Link
-                href="#newsletter"
-                className="interactive hidden sm:flex items-center justify-center w-8 h-8 rounded-full border cursor-pointer"
-                title="Newsletter"
-                style={{
-                  borderColor: "var(--border)",
-                  backgroundColor: "var(--surface-alt)",
-                  color: "var(--text-muted)",
-                }}
-              >
-                <Mail className="h-3.5 w-3.5" />
-              </Link>
-
-              {/* User */}
-              <button
-                id="navbar-user-menu"
-                className="interactive flex items-center justify-center w-8 h-8 rounded-full border cursor-pointer"
-                aria-label="User Menu"
-                style={{
-                  borderColor: "var(--border)",
-                  backgroundColor: "var(--surface-alt)",
-                  color: "var(--text-muted)",
-                }}
-              >
-                <User className="h-3.5 w-3.5" />
-              </button>
-
-            </div>
+              );
+            })}
           </div>
-        </div>
 
-        {/* Mobile-only category sub-bar — hidden on lg+ */}
-        <div
-          className="lg:hidden w-full border-t"
-          style={{
-            borderColor: "var(--border)",
-            backgroundColor: "var(--navbar-bg)",
-          }}
+          <div className="w-px h-4 bg-border" />
+
+          <Link
+            href="/login"
+            className="text-sm font-medium px-4 py-2 rounded-md transition-all duration-200 border border-transparent text-foreground-sub hover:text-foreground hover:bg-border/30"
+          >
+            Login
+          </Link>
+        </nav>
+
+        {/* Mobile menu toggle */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-1 text-foreground-sub hover:text-foreground cursor-pointer"
+          aria-label="Toggle menu"
         >
-          <div className="flex items-center px-4 py-2 gap-1 overflow-x-auto scrollbar-none">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="whitespace-nowrap text-[13px] font-medium px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer shrink-0"
-                style={{
-                  color: "var(--navbar-text)",
-                  backgroundColor: "var(--surface-alt)",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget;
-                  el.style.color = "var(--primary)";
-                  el.style.backgroundColor = "var(--primary-subtle)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget;
-                  el.style.color = "var(--navbar-text)";
-                  el.style.backgroundColor = "var(--surface-alt)";
-                }}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Nav Overlay */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-[72px] left-0 right-0 bg-white border-b border-border p-6 shadow-md flex flex-col gap-4 animate-fade-in">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-base py-2 transition-colors
+                ${isLinkActive(link.href)
+                  ? "text-primary font-semibold border-l-2 border-primary pl-2"
+                  : "text-foreground-sub hover:text-foreground pl-2"
+                }
+              `}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <div className="h-px bg-border my-1" />
+          <Link
+            href="/login"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-base py-2 text-foreground-sub hover:text-foreground pl-2"
+          >
+            Login
+          </Link>
         </div>
-      </header>
-
-      {/* Spacer: 60px (main bar) + ~40px (mobile sub-bar). On desktop just 60px. */}
-      <div className="h-[100px] lg:h-[60px]" />
-
-      {/* Search dialog */}
-      <SearchDialog isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-    </>
+      )}
+    </header>
   );
 }
