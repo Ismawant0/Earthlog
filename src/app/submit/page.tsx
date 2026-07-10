@@ -17,8 +17,10 @@ export default function SubmitActionPage() {
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [date, setDate] = useState(today);
-  const [photo, setPhoto] = useState<string>("");
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,19 +32,20 @@ export default function SubmitActionPage() {
       return;
     }
 
+    setPhotoFile(file);
     const reader = new FileReader();
     reader.onloadend = () => {
-      setPhoto(reader.result as string);
+      setPhotoPreview(reader.result as string);
       setError(null);
     };
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
-    if (!photo) {
+    if (!photoFile) {
       setError("Please upload a photo of your action.");
       return;
     }
@@ -55,23 +58,65 @@ export default function SubmitActionPage() {
       return;
     }
 
+    setLoading(true);
+
     try {
-      saveAction({
+      // 1. Upload the image file to the API first to get a permanent URL path
+      const formData = new FormData();
+      formData.append("file", photoFile);
+      formData.append("category", "actions");
+      const actionId = `action-${Date.now()}`;
+      formData.append("slug", actionId);
+
+      const uploadRes = await fetch("/api/upload-image", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!uploadRes.ok) {
+        throw new Error("Gagal mengunggah foto. Silakan coba lagi.");
+      }
+
+      const uploadData = await uploadRes.json();
+      const photoUrl = uploadData.url;
+
+      // 2. Prepare the action log metadata structure
+      const actionPayload = {
+        id: actionId,
         category,
         title: title.trim(),
         story: story.trim(),
-        photo,
+        photo: photoUrl,
         country: country.trim() || "Unknown",
         location: city.trim() || undefined,
         date,
+      };
+
+      // 3. Post to save-action API to commit it to GitHub (or write locally in dev)
+      const saveRes = await fetch("/api/save-action", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(actionPayload),
       });
+
+      if (!saveRes.ok) {
+        throw new Error("Gagal menyimpan data aksi ke server/GitHub.");
+      }
+
+      // 4. Save a duplicate copy locally in user's browser localStorage
+      // so they see the post instantly in their dashboard/feed before the build finished.
+      saveAction(actionPayload);
 
       setSuccess(true);
       setTimeout(() => {
         router.push("/community");
       }, 1800);
-    } catch {
-      setError("Something went wrong. Please try again.");
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -90,16 +135,16 @@ export default function SubmitActionPage() {
             </span>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Log a New Action</h1>
             <p className="text-sm text-foreground-sub leading-relaxed">
-              Document a small positive action you performed for the planet. Your entry will appear in the global community feed.
+              Document a small positive action you performed for the planet. Your entry will be saved permanently to our GitHub repository.
             </p>
           </div>
 
           {success ? (
-            <div className="bg-primary/5 border border-primary/20 rounded-xl p-10 text-center space-y-4 select-none">
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-10 text-center space-y-4 select-none animate-in fade-in">
               <CheckCircle2 className="w-12 h-12 text-primary mx-auto" />
               <h3 className="font-bold text-lg text-foreground">Action Logged Successfully</h3>
               <p className="text-sm text-foreground-sub leading-relaxed">
-                Thank you for leaving your mark. Redirecting you to the community feed...
+                Thank you for leaving your mark. Your post is saved to GitHub. Redirecting you to the community feed...
               </p>
             </div>
           ) : (
@@ -122,13 +167,14 @@ export default function SubmitActionPage() {
                     type="file"
                     accept="image/*"
                     onChange={handlePhotoUpload}
+                    disabled={loading}
                     className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                   />
-                  {photo ? (
+                  {photoPreview ? (
                     <div className="space-y-2 text-center w-full">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={photo}
+                        src={photoPreview}
                         alt="Preview"
                         className="max-h-44 mx-auto rounded-lg object-cover border border-border shadow-sm"
                       />
@@ -152,6 +198,7 @@ export default function SubmitActionPage() {
                 <select
                   id="category"
                   value={category}
+                  disabled={loading}
                   onChange={(e) => setCategory(e.target.value)}
                   className="w-full px-4 py-2.5 bg-white border border-border rounded-lg text-sm text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all cursor-pointer"
                 >
@@ -170,7 +217,8 @@ export default function SubmitActionPage() {
                   type="text"
                   id="title"
                   required
-                  placeholder="e.g. Planted two mango trees with my father"
+                  disabled={loading}
+                  placeholder="e.g. Planted two mango trees in my yard"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-full px-4 py-2.5 bg-white border border-border rounded-lg text-sm text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
@@ -186,6 +234,7 @@ export default function SubmitActionPage() {
                   id="story"
                   required
                   rows={5}
+                  disabled={loading}
                   placeholder="Describe your action simply and honestly. No markdown, no formatting — just your story."
                   value={story}
                   onChange={(e) => setStory(e.target.value)}
@@ -202,6 +251,7 @@ export default function SubmitActionPage() {
                   <input
                     type="text"
                     id="country"
+                    disabled={loading}
                     placeholder="e.g. Indonesia"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
@@ -215,6 +265,7 @@ export default function SubmitActionPage() {
                   <input
                     type="text"
                     id="city"
+                    disabled={loading}
                     placeholder="e.g. Malang"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
@@ -231,6 +282,7 @@ export default function SubmitActionPage() {
                 <input
                   type="date"
                   id="date"
+                  disabled={loading}
                   value={date}
                   max={today}
                   onChange={(e) => setDate(e.target.value)}
@@ -245,9 +297,11 @@ export default function SubmitActionPage() {
                 </span>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-primary text-white font-bold text-sm rounded-md shadow-sm hover:bg-primary-hover transition-colors cursor-pointer tracking-wide"
+                  disabled={loading}
+                  className="px-6 py-3 bg-primary text-white font-bold text-sm rounded-md shadow-sm hover:bg-primary-hover disabled:opacity-50 transition-colors cursor-pointer tracking-wide flex items-center gap-2"
                 >
-                  Log Action
+                  {loading && <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}
+                  {loading ? "Saving to GitHub..." : "Log Action"}
                 </button>
               </div>
 

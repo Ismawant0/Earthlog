@@ -11,10 +11,44 @@ export default function CommunityFeedPage() {
   const [actions, setActions] = useState<UserAction[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setActions(getActions());
-    setMounted(true);
+    const fetchActions = async () => {
+      try {
+        const res = await fetch("/api/actions");
+        let serverActions = [];
+        if (res.ok) {
+          serverActions = await res.json();
+        }
+
+        // Merge with temporary localStorage actions (instant local feedback)
+        const localActions = getActions();
+        const mergedMap = new Map();
+        
+        // Let server actions take precedence, or combine them
+        [...serverActions, ...localActions].forEach((act) => {
+          if (act && act.id) {
+            mergedMap.set(act.id, act);
+          }
+        });
+        
+        const mergedList = Array.from(mergedMap.values()) as UserAction[];
+        // Sort newest first
+        mergedList.sort((a, b) => b.id.localeCompare(a.id));
+
+        setActions(mergedList);
+      } catch (err) {
+        console.error("Failed to fetch community feed actions:", err);
+        // Fallback to local storage if API fails
+        setActions(getActions());
+      } finally {
+        setLoading(false);
+        setMounted(true);
+      }
+    };
+
+    fetchActions();
   }, []);
 
   const filteredActions = actions.filter((act) => {
@@ -26,7 +60,7 @@ export default function CommunityFeedPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 bg-background text-foreground py-16 md:py-24">
+      <main className="flex-grow bg-background text-foreground py-16 md:py-24">
         <div className="max-w-[1280px] mx-auto px-6 space-y-10">
 
           {/* Header */}
@@ -91,7 +125,11 @@ export default function CommunityFeedPage() {
           )}
 
           {/* Content Area */}
-          {!mounted ? null : filteredActions.length === 0 ? (
+          {!mounted || loading ? (
+            <div className="py-20 text-center text-sm font-mono text-foreground-sub animate-pulse">
+              Loading community registry...
+            </div>
+          ) : filteredActions.length === 0 ? (
             /* ── Beautiful Empty State ── */
             <div className="flex flex-col items-center justify-center py-24 text-center space-y-6 select-none">
               <div className="w-20 h-20 rounded-full border border-border bg-white flex items-center justify-center shadow-card">
@@ -125,7 +163,7 @@ export default function CommunityFeedPage() {
             </div>
           ) : (
             /* ── Action Cards Grid ── */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-in fade-in duration-200">
               {filteredActions.map((act) => (
                 <article
                   key={act.id}
